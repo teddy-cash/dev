@@ -1,9 +1,10 @@
 const externalAddrs  = {
-  // https://data.chain.link/eth-usd
-  CHAINLINK_AVAXUSD_PROXY: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e", 
+  // https://data.chain.link/avax-usd
+  CHAINLINK_AVAXUSD_PROXY: "0x5498BB86BC934c8D34FDA08E81D444153d0D06aD", 
   // https://docs.tellor.io/tellor/integration/reference-page
   TELLOR_MASTER:"0x20374E579832859f180536A69093A126Db1c8aE9",
   // https://uniswap.org/docs/v2/smart-contracts/factory/
+  // Pangolin 
   PANGOLIN_V2_FACTORY: "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f",
   PANGOLIN_V2_ROUTER02: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
   WAVAX_ERC20: "0xc778417e063141139fce010982780140aa0cd5ab",
