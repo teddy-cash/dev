@@ -58,12 +58,12 @@ export const RedemptionManager: React.FC = () => {
 
   const [canRedeem, description] = total.collateralRatioIsBelowMinimum(price)
     ? [
-        false,
-        <ErrorDescription>
-          You can't redeem LUSD when the total collateral ratio is less than{" "}
-          <Amount>{mcrPercent}</Amount>. Please try again later.
-        </ErrorDescription>
-      ]
+      false,
+      <ErrorDescription>
+        You can't redeem LUSD when the total collateral ratio is less than{" "}
+        <Amount>{mcrPercent}</Amount>. Please try again later.
+      </ErrorDescription>
+    ]
     : lusdAmount.gt(lusdBalance)
     ? [
         false,
@@ -125,7 +125,7 @@ export const RedemptionManager: React.FC = () => {
               tooltip={
                 <Card variant="tooltip" sx={{ minWidth: "240px" }}>
                   The Redemption Fee is charged as a percentage of the redeemed Ether. The Redemption
-                  Fee depends on LUSD redemption volumes and is 0.5% at minimum.
+                  Fee depends on TSD redemption volumes and is 0.5% at minimum.
                 </Card>
               }
             />
