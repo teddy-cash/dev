@@ -142,7 +142,7 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
       >
         {total.collateralRatioIsBelowCritical(price) ? <Box color="danger">Yes</Box> : "No"}
       </Statistic>
-      {}
+      { }
 
       <Heading as="h2" sx={{ mt: 3, fontWeight: "body" }}>
         Frontend
@@ -150,7 +150,7 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
       {kickbackRatePct && (
         <Statistic
           name="Kickback Rate"
-          tooltip="A rate between 0 and 100% set by the Frontend Operator that determines the fraction of LQTY that will be paid out as a kickback to the Stability Providers using the frontend."
+          tooltip="A rate between 0 and 100% set by the Frontend Operator that determines the fraction of TEDDY that will be paid out as a kickback to the Stability Providers using the frontend."
         >
           {kickbackRatePct}%
         </Statistic>
