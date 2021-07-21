@@ -144,12 +144,12 @@ contract('LQTY Token', async accounts => {
 
   it("name(): returns the token's name", async () => {
     const name = await lqtyTokenTester.name()
-    assert.equal(name, "LQTY")
+    assert.equal(name, "TEDDY")
   })
 
   it("symbol(): returns the token's symbol", async () => {
     const symbol = await lqtyTokenTester.symbol()
-    assert.equal(symbol, "LQTY")
+    assert.equal(symbol, "TEDDY")
   })
 
   it("version(): returns the token contract's version", async () => {
