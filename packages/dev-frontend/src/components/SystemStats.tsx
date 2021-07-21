@@ -125,8 +125,8 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
         </Statistic>
       )}
       <Statistic
-        name="Staked LQTY"
-        tooltip="The total amount of LQTY that is staked for earning fee revenue."
+        name="Staked TEDDY"
+        tooltip="The total amount of TEDDY that is staked for earning fee revenue."
       >
         {totalStakedLQTY.shorten()}
       </Statistic>
