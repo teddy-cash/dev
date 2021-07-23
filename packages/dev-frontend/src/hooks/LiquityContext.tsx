@@ -74,8 +74,11 @@ export const LiquityProvider: React.FC<LiquityProviderProps> = ({
         const network = getNetwork(chainId);
 
         if (network.name && supportedNetworks.includes(network.name) && config.infuraApiKey) {
-          provider.openWebSocket(...wsParams(network.name, config.infuraApiKey));
+          provider.openWebSocket(...wsParams(network.name, config.infuraApiKey)); 
+        } else if (network.name === 'fuji'){  
+          provider.openWebSocket(`wss://avax.brkhrd.com/ext/bc/C/ws`, chainId);
         } else if (connection._isDev) {
+          
           provider.openWebSocket(`ws://${window.location.hostname}:8546`, chainId);
         }
 
