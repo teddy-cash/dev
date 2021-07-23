@@ -47,7 +47,7 @@ export const Active: React.FC = () => {
   return (
     <Card>
       <Heading>
-        Uniswap Liquidity Farm
+        Pangolin Liquidity Farm
         {!isTransactionPending && (
           <Flex sx={{ justifyContent: "flex-end" }}>
             <RemainingLQTY />

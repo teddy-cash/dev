@@ -22,7 +22,7 @@ export const NoDeposit: React.FC = props => {
       </Heading>
       <Box sx={{ p: [2, 3] }}>
         <InfoMessage title="You have no TEDDY in the Stability Pool.">
-          You can earn ETH and TEDDY rewards by depositing TSD.
+          You can earn AVAX and TEDDY rewards by depositing TSD.
         </InfoMessage>
 
         <Flex variant="layout.actions">

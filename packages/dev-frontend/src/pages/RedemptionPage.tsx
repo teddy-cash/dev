@@ -7,7 +7,7 @@ import { useLiquity } from "../hooks/LiquityContext";
 import { Icon } from "../components/Icon";
 
 const uniLink = (lusdAddress: string) =>
-  `https://app.uniswap.org/#/swap?inputCurrency=${lusdAddress}&outputCurrency=ETH`;
+  `https://app.pangolin.exchange/#/swap?inputCurrency=${lusdAddress}&outputCurrency=AVAX`;
 
 export const RedemptionPage: React.FC = () => {
   const {
@@ -27,9 +27,9 @@ export const RedemptionPage: React.FC = () => {
                 emerge.
               </Paragraph>
               <Paragraph sx={{ mt: 2 }}>
-                Most of the time you will get a better rate for converting TEDDY to ETH on{" "}
+                Most of the time you will get a better rate for converting TEDDY to AVAX on{" "}
                 <Link href={uniLink(addresses["lusdToken"])} target="_blank">
-                  Uniswap <Icon name="external-link-alt" size="xs" />
+                  Pangolin <Icon name="external-link-alt" size="xs" />
                 </Link>{" "}
                 or other exchanges.
               </Paragraph>
