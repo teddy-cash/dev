@@ -64,7 +64,7 @@ export const Adjusting: React.FC = () => {
   return (
     <Card>
       <Heading>
-        Uniswap Liquidity Farm
+        Pangolin Liquidity Farm
         {isDirty && !isTransactionPending && (
           <Button
             variant="titleIcon"

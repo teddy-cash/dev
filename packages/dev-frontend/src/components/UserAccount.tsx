@@ -36,7 +36,7 @@ export const UserAccount: React.FC = () => {
         <Icon name="wallet" size="lg" />
 
         {([
-          ["ETH", accountBalance],
+          ["AVAX", accountBalance],
           [COIN, lusdBalance],
           [GT, lqtyBalance]
         ] as const).map(([currency, balance], i) => (
