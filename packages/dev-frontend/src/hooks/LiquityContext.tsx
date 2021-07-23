@@ -34,7 +34,7 @@ const wsParams = (network: string, infuraApiKey: string): [string, string] => [
   network
 ];
 
-const supportedNetworks = ["homestead", "kovan", "rinkeby", "ropsten", "goerli"];
+const supportedNetworks = ["homestead", "kovan", "rinkeby", "ropsten", "goerli", "fuji"];
 
 export const LiquityProvider: React.FC<LiquityProviderProps> = ({
   children,
@@ -47,13 +47,14 @@ export const LiquityProvider: React.FC<LiquityProviderProps> = ({
 
   const connection = useMemo(() => {
     if (config && provider && account && chainId) {
+      
       try {
         return _connectByChainId(provider, provider.getSigner(account), chainId, {
           userAddress: account,
           frontendTag: config.frontendTag,
           useStore: "blockPolled"
         });
-      } catch {}
+      } catch (e) { console.log(e)}
     }
   }, [config, provider, account, chainId]);
 

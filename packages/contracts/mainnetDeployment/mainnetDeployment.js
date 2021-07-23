@@ -45,16 +45,16 @@ async function mainnetDeploy(configParams) {
   let LUSDWETHPairAddr = await uniswapV2Factory.getPair(liquityCore.lusdToken.address, configParams.externalAddrs.WETH_ERC20)
   let WETHLUSDPairAddr = await uniswapV2Factory.getPair(configParams.externalAddrs.WETH_ERC20, liquityCore.lusdToken.address)
   assert.equal(LUSDWETHPairAddr, WETHLUSDPairAddr)
-
+  console.log(`BWB LUSD pair addr ${LUSDWETHPairAddr}`)
 
   if (LUSDWETHPairAddr == th.ZERO_ADDRESS) {
     // Deploy Unipool for LUSD-WETH
-    await mdh.sendAndWaitForTransaction(uniswapV2Factory.createPair(
+    const pairTx = await mdh.sendAndWaitForTransaction(uniswapV2Factory.createPair(
       configParams.externalAddrs.WETH_ERC20,
       liquityCore.lusdToken.address,
       { gasPrice }
     ))
-
+    console.log(`BWB LUSD pair addr ${pairTx.hash}`)
     // Check Uniswap Pair LUSD-WETH pair after pair creation (forwards and backwards should have same address)
     LUSDWETHPairAddr = await uniswapV2Factory.getPair(liquityCore.lusdToken.address, configParams.externalAddrs.WETH_ERC20)
     assert.notEqual(LUSDWETHPairAddr, th.ZERO_ADDRESS)

@@ -30,16 +30,20 @@ const uniswapQuery = (lqtyTokenAddress: string, uniTokenAddress: string) => `{
 }`;
 
 export async function fetchPrices(lqtyTokenAddress: string, uniTokenAddress: string) {
-  const response = await window.fetch("https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json"
-    },
-    body: JSON.stringify({
-      query: uniswapQuery(lqtyTokenAddress, uniTokenAddress),
-      variables: null
-    })
-  });
+  //const response = await window.fetch("https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2", {
+  const response = await window.fetch(
+    "https://api.thegraph.com/subgraphs/name/dasconnor/pangolin-dex",
+    {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        query: uniswapQuery(lqtyTokenAddress, uniTokenAddress),
+        variables: null
+      })
+    }
+  );
 
   if (!response.ok) {
     return Promise.reject("Network error connecting to Uniswap subgraph");

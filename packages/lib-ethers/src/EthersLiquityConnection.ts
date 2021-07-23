@@ -9,6 +9,7 @@ import kovan from "../deployments/kovan.json";
 import rinkeby from "../deployments/rinkeby.json";
 import ropsten from "../deployments/ropsten.json";
 import mainnet from "../deployments/mainnet.json";
+import fuji from "../deployments/fuji.json";
 
 import { numberify, panic } from "./_utils";
 import { EthersProvider, EthersSigner } from "./types";
@@ -32,6 +33,7 @@ const deployments: {
   [rinkeby.chainId]: rinkeby,
   [goerli.chainId]: goerli,
   [kovan.chainId]: kovan,
+  [fuji.chainId]: fuji,
 
   ...(dev !== null ? { [dev.chainId]: dev } : {})
 };
