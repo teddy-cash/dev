@@ -20,7 +20,7 @@ const Balances: React.FC = () => {
   return (
     <Box sx={{ mb: 3 }}>
       <Heading>My Account Balances</Heading>
-      <Statistic name="ETH"> {accountBalance.prettify(4)}</Statistic>
+      <Statistic name="AVAX"> {accountBalance.prettify(4)}</Statistic>
       <Statistic name={COIN}> {lusdBalance.prettify()}</Statistic>
       <Statistic name={GT}>{lqtyBalance.prettify()}</Statistic>
     </Box>
@@ -94,16 +94,16 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
 
       <Statistic
         name="Borrowing Fee"
-        tooltip="The Borrowing Fee is a one-off fee charged as a percentage of the borrowed amount (in LUSD) and is part of a Trove's debt. The fee varies between 0.5% and 5% depending on LUSD redemption volumes."
+        tooltip="The Borrowing Fee is a one-off fee charged as a percentage of the borrowed amount (in TSD) and is part of a Trove's debt. The fee varies between 0.5% and 5% depending on TSD redemption volumes."
       >
         {borrowingFeePct.toString(2)}
       </Statistic>
 
       <Statistic
         name="TVL"
-        tooltip="The Total Value Locked (TVL) is the total value of Ether locked as collateral in the system, given in ETH and USD."
+        tooltip="The Total Value Locked (TVL) is the total value of AVAX locked as collateral in the system, given in AVAX and USD."
       >
-        {total.collateral.shorten()} <Text sx={{ fontSize: 1 }}>&nbsp;ETH</Text>
+        {total.collateral.shorten()} <Text sx={{ fontSize: 1 }}>&nbsp;AVAX</Text>
         <Text sx={{ fontSize: 1 }}>
           &nbsp;(${Decimal.from(total.collateral.mul(price)).shorten()})
         </Text>
@@ -111,13 +111,13 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
       <Statistic name="Troves" tooltip="The total number of active Troves in the system.">
         {Decimal.from(numberOfTroves).prettify(0)}
       </Statistic>
-      <Statistic name="LUSD supply" tooltip="The total LUSD minted by the Liquity Protocol.">
+      <Statistic name="TSD supply" tooltip="The total TSD minted by the Liquity Protocol.">
         {total.debt.shorten()}
       </Statistic>
       {lusdInStabilityPoolPct && (
         <Statistic
-          name="LUSD in Stability Pool"
-          tooltip="The total LUSD currently held in the Stability Pool, expressed as an amount and a fraction of the LUSD supply.
+          name="TSD in Stability Pool"
+          tooltip="The total TSD currently held in the Stability Pool, expressed as an amount and a fraction of the TSD supply.
         "
         >
           {lusdInStabilityPool.shorten()}
@@ -125,14 +125,14 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
         </Statistic>
       )}
       <Statistic
-        name="Staked LQTY"
-        tooltip="The total amount of LQTY that is staked for earning fee revenue."
+        name="Staked TEDDY"
+        tooltip="The total amount of TEDDY that is staked for earning fee revenue."
       >
         {totalStakedLQTY.shorten()}
       </Statistic>
       <Statistic
         name="Total Collateral Ratio"
-        tooltip="The ratio of the Dollar value of the entire system collateral at the current ETH:USD price, to the entire system debt."
+        tooltip="The ratio of the Dollar value of the entire system collateral at the current AVAX:USD price, to the entire system debt."
       >
         {totalCollateralRatioPct.prettify()}
       </Statistic>
@@ -142,7 +142,7 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
       >
         {total.collateralRatioIsBelowCritical(price) ? <Box color="danger">Yes</Box> : "No"}
       </Statistic>
-      {}
+      { }
 
       <Heading as="h2" sx={{ mt: 3, fontWeight: "body" }}>
         Frontend
@@ -150,7 +150,7 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
       {kickbackRatePct && (
         <Statistic
           name="Kickback Rate"
-          tooltip="A rate between 0 and 100% set by the Frontend Operator that determines the fraction of LQTY that will be paid out as a kickback to the Stability Providers using the frontend."
+          tooltip="A rate between 0 and 100% set by the Frontend Operator that determines the fraction of TEDDY that will be paid out as a kickback to the Stability Providers using the frontend."
         >
           {kickbackRatePct}%
         </Statistic>

@@ -58,9 +58,9 @@ const deployContracts = async (
   priceFeedIsTestnet = true,
   overrides?: Overrides
 ): Promise<[addresses: Omit<_LiquityContractAddresses, "uniToken">, startBlock: number]> => {
-  overrides = {
-    gasPrice: 225000000000
-  } as Overrides;
+  // overrides = {
+  //   gasPrice: 225000000000
+  // } as Overrides;
 
   const [activePoolAddress, startBlock] = await deployContractAndGetBlockNumber(
     deployer,

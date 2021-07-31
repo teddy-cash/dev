@@ -7,7 +7,7 @@ import { useFarmView } from "../../context/FarmViewContext";
 import { RemainingLQTY } from "../RemainingLQTY";
 import { Yield } from "../Yield";
 
-const uniLink = (lusdAddress: string) => `https://app.uniswap.org/#/add/ETH/${lusdAddress}`;
+const uniLink = (lusdAddress: string) => `https://app.pangonlin.exchange/#/add/AVAX/${lusdAddress}`;
 
 export const Inactive: React.FC = () => {
   const { dispatchEvent } = useFarmView();
@@ -25,19 +25,19 @@ export const Inactive: React.FC = () => {
   return (
     <Card>
       <Heading>
-        Uniswap Liquidity Farm
+        Pangolin Liquidity Farm
         <Flex sx={{ justifyContent: "flex-end" }}>
           <RemainingLQTY />
         </Flex>
       </Heading>
       <Box sx={{ p: [2, 3] }}>
-        <InfoMessage title="You aren't farming LQTY.">
-          <Paragraph>You can farm LQTY by staking your Uniswap ETH/LUSD LP tokens.</Paragraph>
+        <InfoMessage title="You aren't farming TEDDY.">
+          <Paragraph>You can farm TEDDY by staking your Pangolin AVAX/TSD LP tokens.</Paragraph>
 
           <Paragraph sx={{ mt: 2 }}>
             You can obtain LP tokens by adding liquidity to the{" "}
             <Link href={uniLink(addresses["lusdToken"])} target="_blank">
-              ETH/LUSD pool on Uniswap. <Icon name="external-link-alt" size="xs" />
+              AVAX/TSD pool on Pangolin. <Icon name="external-link-alt" size="xs" />
             </Link>
           </Paragraph>
         </InfoMessage>

@@ -25,7 +25,7 @@ async function mainnetDeploy(configParams) {
 
   // Get UniswapV2Factory instance at its deployed address
   const uniswapV2Factory = new ethers.Contract(
-    configParams.externalAddrs.PANGOLIN_V2_FACTORY,
+    configParams.externalAddrs.UNISWAP_V2_FACTORY,
     UniswapV2Factory.abi,
     deployerWallet
   )
@@ -42,23 +42,23 @@ async function mainnetDeploy(configParams) {
   await mdh.logContractObjects(liquityCore)
 
   // Check Uniswap Pair LUSD-ETH pair before pair creation
-  let LUSDWETHPairAddr = await uniswapV2Factory.getPair(liquityCore.lusdToken.address, configParams.externalAddrs.WAVAX_ERC20)
-  let WETHLUSDPairAddr = await uniswapV2Factory.getPair(configParams.externalAddrs.WAVAX_ERC20, liquityCore.lusdToken.address)
+  let LUSDWETHPairAddr = await uniswapV2Factory.getPair(liquityCore.lusdToken.address, configParams.externalAddrs.WETH_ERC20)
+  let WETHLUSDPairAddr = await uniswapV2Factory.getPair(configParams.externalAddrs.WETH_ERC20, liquityCore.lusdToken.address)
   assert.equal(LUSDWETHPairAddr, WETHLUSDPairAddr)
-
+  console.log(`BWB LUSD pair addr ${LUSDWETHPairAddr}`)
 
   if (LUSDWETHPairAddr == th.ZERO_ADDRESS) {
     // Deploy Unipool for LUSD-WETH
-    await mdh.sendAndWaitForTransaction(uniswapV2Factory.createPair(
-      configParams.externalAddrs.WAVAX_ERC20,
+    const pairTx = await mdh.sendAndWaitForTransaction(uniswapV2Factory.createPair(
+      configParams.externalAddrs.WETH_ERC20,
       liquityCore.lusdToken.address,
       { gasPrice }
     ))
-
+    console.log(`BWB LUSD pair addr ${pairTx.hash}`)
     // Check Uniswap Pair LUSD-WETH pair after pair creation (forwards and backwards should have same address)
-    LUSDWETHPairAddr = await uniswapV2Factory.getPair(liquityCore.lusdToken.address, configParams.externalAddrs.WAVAX_ERC20)
+    LUSDWETHPairAddr = await uniswapV2Factory.getPair(liquityCore.lusdToken.address, configParams.externalAddrs.WETH_ERC20)
     assert.notEqual(LUSDWETHPairAddr, th.ZERO_ADDRESS)
-    WETHLUSDPairAddr = await uniswapV2Factory.getPair(configParams.externalAddrs.WAVAX_ERC20, liquityCore.lusdToken.address)
+    WETHLUSDPairAddr = await uniswapV2Factory.getPair(configParams.externalAddrs.WETH_ERC20, liquityCore.lusdToken.address)
     console.log(`LUSD-WETH pair contract address after Uniswap pair creation: ${LUSDWETHPairAddr}`)
     assert.equal(WETHLUSDPairAddr, LUSDWETHPairAddr)
   }
@@ -75,7 +75,7 @@ async function mainnetDeploy(configParams) {
   )
 
   // Connect all core contracts up
-  await mdh.connectCoreContractsMainnet(liquityCore, LQTYContracts, configParams.externalAddrs.CHAINLINK_AVAXUSD_PROXY)
+  await mdh.connectCoreContractsMainnet(liquityCore, LQTYContracts, configParams.externalAddrs.CHAINLINK_ETHUSD_PROXY)
   await mdh.connectLQTYContractsMainnet(LQTYContracts)
   await mdh.connectLQTYContractsToCoreMainnet(LQTYContracts, liquityCore)
 
@@ -149,7 +149,7 @@ async function mainnetDeploy(configParams) {
   // Check chainlink proxy price ---
 
   const chainlinkProxy = new ethers.Contract(
-    configParams.externalAddrs.CHAINLINK_AVAXUSD_PROXY,
+    configParams.externalAddrs.CHAINLINK_ETHUSD_PROXY,
     ChainlinkAggregatorV3Interface,
     deployerWallet
   )
@@ -159,9 +159,9 @@ async function mainnetDeploy(configParams) {
   console.log(`current Chainlink price: ${chainlinkPrice}`)
 
   // Check Tellor price directly (through our TellorCaller)
-  let tellorPriceResponse = await liquityCore.tellorCaller.getTellorCurrentValue(1) // id == 1: the ETH-USD request ID
-  console.log(`current Tellor price: ${tellorPriceResponse[1]}`)
-  console.log(`current Tellor timestamp: ${tellorPriceResponse[2]}`)
+  // let tellorPriceResponse = await liquityCore.tellorCaller.getTellorCurrentValue(1) // id == 1: the ETH-USD request ID
+  // console.log(`current Tellor price: ${tellorPriceResponse[1]}`)
+  // console.log(`current Tellor timestamp: ${tellorPriceResponse[2]}`)
 
   // // --- Lockup Contracts ---
   console.log("LOCKUP CONTRACT CHECKS")
@@ -229,7 +229,7 @@ async function mainnetDeploy(configParams) {
   // // Check PriceFeed's & TellorCaller's stored addresses
   // const priceFeedCLAddress = await liquityCore.priceFeed.priceAggregator()
   // const priceFeedTellorCallerAddress = await liquityCore.priceFeed.tellorCaller()
-  // assert.equal(priceFeedCLAddress, configParams.externalAddrs.CHAINLINK_AVAXUSD_PROXY)
+  // assert.equal(priceFeedCLAddress, configParams.externalAddrs.CHAINLINK_ETHUSD_PROXY)
   // assert.equal(priceFeedTellorCallerAddress, liquityCore.tellorCaller.address)
 
   // // Check Tellor address
@@ -303,7 +303,7 @@ async function mainnetDeploy(configParams) {
   // console.log(`LUSD-ETH Pair token 0: ${th.squeezeAddr(token0Addr)},
   //       LUSDToken contract addr: ${th.squeezeAddr(liquityCore.lusdToken.address)}`)
   // console.log(`LUSD-ETH Pair token 1: ${th.squeezeAddr(token1Addr)},
-  //       WETH ERC20 contract addr: ${th.squeezeAddr(configParams.externalAddrs.WAVAX_ERC20)}`)
+  //       WETH ERC20 contract addr: ${th.squeezeAddr(configParams.externalAddrs.WETH_ERC20)}`)
 
   // // Check initial LUSD-ETH pair reserves before provision
   // let reserves = await LUSDETHPair.getReserves()
@@ -312,7 +312,7 @@ async function mainnetDeploy(configParams) {
 
   // // Get the UniswapV2Router contract
   // const uniswapV2Router02 = new ethers.Contract(
-  //   configParams.externalAddrs.PANGOLIN_V2_ROUTER02,
+  //   configParams.externalAddrs.UNISWAP_V2_ROUTER02,
   //   UniswapV2Router02.abi,
   //   deployerWallet
   // )

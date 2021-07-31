@@ -20,14 +20,14 @@ export const Disabled: React.FC = () => {
   return (
     <Card>
       <Heading>
-        Uniswap Liquidity Farm
+        Pangolin Liquidity Farm
         <Flex sx={{ justifyContent: "flex-end" }}>
           <RemainingLQTY />
         </Flex>
       </Heading>
       <Box sx={{ p: [2, 3] }}>
         <InfoMessage title="Liquidity farming period has finished">
-          <Flex>There are no more LQTY rewards left to farm</Flex>
+          <Flex>There are no more TEDDY rewards left to farm</Flex>
         </InfoMessage>
         {hasStake && (
           <>
