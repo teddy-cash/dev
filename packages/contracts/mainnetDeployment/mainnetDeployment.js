@@ -45,7 +45,6 @@ async function mainnetDeploy(configParams) {
   let LUSDWETHPairAddr = await uniswapV2Factory.getPair(liquityCore.lusdToken.address, configParams.externalAddrs.WETH_ERC20)
   let WETHLUSDPairAddr = await uniswapV2Factory.getPair(configParams.externalAddrs.WETH_ERC20, liquityCore.lusdToken.address)
   assert.equal(LUSDWETHPairAddr, WETHLUSDPairAddr)
-  console.log(`BWB LUSD pair addr ${LUSDWETHPairAddr}`)
 
   if (LUSDWETHPairAddr == th.ZERO_ADDRESS) {
     // Deploy Unipool for LUSD-WETH
@@ -54,7 +53,7 @@ async function mainnetDeploy(configParams) {
       liquityCore.lusdToken.address,
       { gasPrice }
     ))
-    console.log(`BWB LUSD pair addr ${pairTx.hash}`)
+
     // Check Uniswap Pair LUSD-WETH pair after pair creation (forwards and backwards should have same address)
     LUSDWETHPairAddr = await uniswapV2Factory.getPair(liquityCore.lusdToken.address, configParams.externalAddrs.WETH_ERC20)
     assert.notEqual(LUSDWETHPairAddr, th.ZERO_ADDRESS)
@@ -64,7 +63,7 @@ async function mainnetDeploy(configParams) {
   }
 
   // Deploy Unipool
-  const unipool = await mdh.deployUnipoolMainnet(deploymentState)
+  const unipool = await mdh.deployUnipoolMainnet(deploymentState);
 
   // Deploy LQTY Contracts
   const LQTYContracts = await mdh.deployLQTYContractsMainnet(
@@ -72,7 +71,7 @@ async function mainnetDeploy(configParams) {
     unipool.address,  // lp rewards address
     configParams.liquityAddrs.LQTY_SAFE, // multisig LQTY endowment address
     deploymentState,
-  )
+  );
 
   // Connect all core contracts up
   await mdh.connectCoreContractsMainnet(liquityCore, LQTYContracts, configParams.externalAddrs.CHAINLINK_ETHUSD_PROXY)
@@ -90,9 +89,14 @@ async function mainnetDeploy(configParams) {
   await mdh.logContractObjects(LQTYContracts)
   console.log(`Unipool address: ${unipool.address}`)
   
-  // let latestBlock = await ethers.provider.getBlockNumber()
-  let deploymentStartTime = await LQTYContracts.lqtyToken.getDeploymentStartTime()
-
+  let latestBlock = await ethers.provider.getBlockNumber()
+  //let deploymentStartTime = await LQTYContracts.lqtyToken.getDeploymentStartTime()
+  let deploymentStartTime = (await ethers.provider.getBlock(latestBlock)).timestamp
+  deploymentState.metadata = deploymentState.metadata || {};
+  deploymentState.metadata.startBlock = latestBlock;
+  deploymentState.metadata.deploymentDate = parseInt(deploymentStartTime.toString() + '000');
+  deploymentState.metadata.network = {name: mdh.hre.network.name, chainId: mdh.hre.network.config.chainId};
+    
   console.log(`deployment start time: ${deploymentStartTime}`)
   const oneYearFromDeployment = (Number(deploymentStartTime) + timeVals.SECONDS_IN_ONE_YEAR).toString()
   console.log(`time oneYearFromDeployment: ${oneYearFromDeployment}`)

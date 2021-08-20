@@ -39,7 +39,9 @@ const waitFunction = async () => {
 const GAS_PRICE = 225000000000 // 1 Gwei
 const TX_CONFIRMATIONS = 1
 
-const ETHERSCAN_BASE_URL = 'https://cchain.explorer.avax-test.network/address'
+//C-chain explorer doesn't support verification api
+//const ETHERSCAN_BASE_URL = 'https://cchain.explorer.avax-test.network/address'
+const ETHERSCAN_BASE_URL = undefined;
 
 module.exports = {
   externalAddrs,
