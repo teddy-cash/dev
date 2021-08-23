@@ -29,7 +29,9 @@ contract LockupContractFactory is ILockupContractFactory, Ownable, CheckContract
     // --- Data ---
     string constant public NAME = "LockupContractFactory";
 
-    uint constant public SECONDS_IN_ONE_YEAR = 31536000;
+    //uint constant public SECONDS_IN_ONE_YEAR = 31536000;
+    // BWB
+    uint constant public SECONDS_IN_ONE_YEAR = 2*60*60;
 
     address public lqtyTokenAddress;
     
