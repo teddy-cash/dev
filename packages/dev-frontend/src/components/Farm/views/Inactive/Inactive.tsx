@@ -32,7 +32,7 @@ export const Inactive: React.FC = () => {
       </Heading>
       <Box sx={{ p: [2, 3] }}>
         <InfoMessage title="You aren't farming TEDDY.">
-          <Paragraph>You can farm TEDDY by staking your Pangolin AVAX/TSD LP tokens.</Paragraph>
+          <Paragraph>You can farm TEDDY by staking your Pangolin AVAX/TEDDY LP tokens.</Paragraph>
 
           <Paragraph sx={{ mt: 2 }}>
             You can obtain LP tokens by adding liquidity to the{" "}
