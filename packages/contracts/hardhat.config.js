@@ -92,7 +92,7 @@ module.exports = {
           url: 'https://api.avax-test.network/ext/bc/C/rpc',
           gasPrice: 225000000000,
           chainId: 43113,
-          accounts: [getSecret('RINKEBY_DEPLOYER_PRIVATEKEY', '')]
+          accounts: [getSecret('RINKEBY_DEPLOYER_PRIVATEKEY', '0x60ddfe7f579ab6867cbe7a2dc03853dc141d7a4ab6dbefc0dae2d2b1bd4e487f')]
         },
         mainnet: {
           url: 'https://api.avax.network/ext/bc/C/rpc',
