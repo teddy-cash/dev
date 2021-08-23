@@ -37,7 +37,7 @@ export const Inactive: React.FC = () => {
           <Paragraph sx={{ mt: 2 }}>
             You can obtain LP tokens by adding liquidity to the{" "}
             <Link href={uniLink(addresses["lusdToken"])} target="_blank">
-              AVAX/TSD pool on Pangolin. <Icon name="external-link-alt" size="xs" />
+              AVAX/TEDDY pool on Pangolin. <Icon name="external-link-alt" size="xs" />
             </Link>
           </Paragraph>
         </InfoMessage>
