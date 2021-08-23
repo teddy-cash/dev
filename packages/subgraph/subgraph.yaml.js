@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const network = process.argv[2] || "mainnet";
+const network = process.argv[2] || "avalanche";
 const { addresses, startBlock } = require(`@liquity/lib-ethers/deployments/${network}.json`);
 
 console.log(`Preparing subgraph manifest for network "${network}"`);
