@@ -4,11 +4,8 @@ import { Signer } from "@ethersproject/abstract-signer";
 import { Decimal } from "@liquity/lib-base";
 
 import devOrNull from "../deployments/dev.json";
-import goerli from "../deployments/goerli.json";
-import kovan from "../deployments/kovan.json";
-import rinkeby from "../deployments/rinkeby.json";
-import ropsten from "../deployments/ropsten.json";
-import mainnet from "../deployments/mainnet.json";
+// TODO: uncomment wen mainnet deployed
+// import avalanche from "../deployments/avalanche.json";
 import fuji from "../deployments/fuji.json";
 
 import { numberify, panic } from "./_utils";
@@ -28,11 +25,8 @@ const dev = devOrNull as _LiquityDeploymentJSON | null;
 const deployments: {
   [chainId: number]: _LiquityDeploymentJSON | undefined;
 } = {
-  [mainnet.chainId]: mainnet,
-  [ropsten.chainId]: ropsten,
-  [rinkeby.chainId]: rinkeby,
-  [goerli.chainId]: goerli,
-  [kovan.chainId]: kovan,
+  // TODO: uncomment wen mainnet deployed
+  // [avalanche.chainId]: avalanche,
   [fuji.chainId]: fuji,
 
   ...(dev !== null ? { [dev.chainId]: dev } : {})
