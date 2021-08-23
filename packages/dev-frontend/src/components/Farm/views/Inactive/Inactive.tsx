@@ -7,7 +7,7 @@ import { useFarmView } from "../../context/FarmViewContext";
 import { RemainingLQTY } from "../RemainingLQTY";
 import { Yield } from "../Yield";
 
-const uniLink = (lusdAddress: string) => `https://app.pangonlin.exchange/#/add/AVAX/${lusdAddress}`;
+const uniLink = (lusdAddress: string) => `https://app.pangolin.exchange/#/add/AVAX/${lusdAddress}`;
 
 export const Inactive: React.FC = () => {
   const { dispatchEvent } = useFarmView();
