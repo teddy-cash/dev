@@ -80,9 +80,8 @@ contract LQTYToken is CheckContract, ILQTYToken {
 
     // --- LQTYToken specific data ---
 
-    //uint public constant ONE_YEAR_IN_SECONDS = 31536000;  // 60 * 60 * 24 * 365
-    // BWB
-    uint public constant ONE_YEAR_IN_SECONDS = 2*60*60;
+    uint public constant ONE_YEAR_IN_SECONDS = 31536000;  // 60 * 60 * 24 * 365
+
     // uint for use with SafeMath
     uint internal _1_MILLION = 1e24;    // 1e6 * 1e18 = 1e24
 
