@@ -1,13 +1,14 @@
 const externalAddrs  = {
   // https://data.chain.link/avalanche/mainnet/crypto-usd/avax-usd
-  CHAINLINK_ETHUSD_PROXY: "", 
+  CHAINLINK_ETHUSD_PROXY: "0x0a77230d17318075983913bc2145db16c7366156", 
   // https://docs.tellor.io/tellor/integration/reference-page
-  TELLOR_MASTER:"",
+  // this address is not valid for Tellor. It is just a copy of the Chainlink one
+  TELLOR_MASTER:"0x0a77230d17318075983913bc2145db16c7366156",
   // https://uniswap.org/docs/v2/smart-contracts/factory/
   // Pangolin 
-  UNISWAP_V2_FACTORY: "",
-  UNISWAP_V2_ROUTER02: "",
-  WETH_ERC20: "",
+  UNISWAP_V2_FACTORY: "0xefa94DE7a4656D787667C749f7E1223D71E9FD88",
+  UNISWAP_V2_ROUTER02: "0xE54Ca86531e17Ef3616d22Ca28b0D458b6C89106",
+  WETH_ERC20: "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
 }
 
 const liquityAddrsTest = {
@@ -23,11 +24,13 @@ const liquityAddrs = {
   DEPLOYER: "0x5604d5Bf34e0347921264d5475C21e2BeAFBADf5",
 }
 
+/*
 const beneficiaries = {
   TEST_INVESTOR_A: "",
   TEST_INVESTOR_B: "",
   TEST_INVESTOR_C: ""
 }
+*/
 
 const OUTPUT_FILE = './mainnetDeployment/avalancheDeploymentOutput.json'
 
