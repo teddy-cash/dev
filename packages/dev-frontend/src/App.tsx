@@ -89,8 +89,7 @@ const App = () => {
       }}
     >
       <Heading sx={{ mb: 3 }}>
-        <Icon name="exclamation-triangle" /> Liquity is not yet deployed to{" "}
-        {chainId === 1 ? "mainnet" : "this network"}.
+        <Icon name="exclamation-triangle" /> Teddy Cash is not yet deployed to this network
       </Heading>
       Please switch to Avalanche C-Chain.
     </Flex>
