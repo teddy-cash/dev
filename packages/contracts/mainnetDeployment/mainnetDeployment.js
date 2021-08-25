@@ -66,6 +66,8 @@ async function mainnetDeploy(configParams) {
     assert.equal(WETHLUSDPairAddr, LUSDWETHPairAddr)
   }
 
+  deploymentState['uniToken'] = {address: LUSDWETHPairAddr};
+
   // Deploy Unipool
   const unipool = await mdh.deployUnipoolMainnet(deploymentState);
 

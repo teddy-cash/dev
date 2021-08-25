@@ -23,10 +23,10 @@
         "communityIssuance": "0x965BD89e9c952B1646c9f3cF612f5455909D9AAF",
         "lqtyToken": "0x128d19C401dcD2ac76C2f9e000090e11282ab761",
         "multiTroveGetter": "0xe423E7F31A5d30e7c3a9bDA694E5AAF015B23A9F",
-        "uniToken": "0x60781C2586D68229fde47564546784ab3fACA982"
+        "uniToken": "0xC9c55814a6ce9deEA213a0847b150E4d9a63Bc4f"
     },
     "chainId": 43114,
-    "startBlock": 3335458,
+    "startBlock": 3360377,
     "deploymentDate": 1629854969000,
-    "version": "9311bcbe66f66dc2da67bbbbe1ab73a4ec060c72"
+    "version": "e35c93cb4de222f4ad9c987273251ef7bc4511a7"
 }
