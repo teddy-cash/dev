@@ -72,7 +72,7 @@
     "txHash": "0xab81a06765b0441ea401f02754c6dce9c7aabe0cc411c4dfc62aba586702283c"
   },
   "metadata": {
-    "startBlock": 3360377,
+    "startBlock": 3335161,
     "deploymentDate": 1629854969000,
     "network": {
       "name": "avalanche",

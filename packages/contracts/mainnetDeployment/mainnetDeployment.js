@@ -14,13 +14,11 @@ async function mainnetDeploy(configParams) {
   // const account2Wallet = (await ethers.getSigners())[1]
   const basefee = await ethers.provider.getGasPrice();
   const gasPrice = toBigNum(basefee).add(toBigNum('10000000000')) // add tip
-  console.log(`BWB gasPrice is ${gasPrice}`);
+  
   configParams.gasPrice = gasPrice;
   const mdh = new MainnetDeploymentHelper(configParams, deployerWallet)
   //const gasPrice = configParams.GAS_PRICE
-
   const deploymentState = mdh.loadPreviousDeployment()
-
   console.log(`deployer address: ${deployerWallet.address}`)
   assert.equal(deployerWallet.address, configParams.liquityAddrs.DEPLOYER)
   // assert.equal(account2Wallet.address, configParams.beneficiaries.ACCOUNT_2)
@@ -95,11 +93,13 @@ async function mainnetDeploy(configParams) {
   await mdh.logContractObjects(LQTYContracts)
   console.log(`Unipool address: ${unipool.address}`)
   
-  let latestBlock = await ethers.provider.getBlockNumber()
+  const deployTx = await ethers.provider.getTransaction(deploymentState['lqtyToken'].txHash)
+  const startBlock = deployTx.blockNumber;
+  
   let deploymentStartTime = await LQTYContracts.lqtyToken.getDeploymentStartTime()
   //let deploymentStartTime = (await ethers.provider.getBlock(latestBlock)).timestamp
   deploymentState.metadata = deploymentState.metadata || {};
-  deploymentState.metadata.startBlock = latestBlock;
+  deploymentState.metadata.startBlock = startBlock;
   deploymentState.metadata.deploymentDate = parseInt(deploymentStartTime.toString() + '000');
   deploymentState.metadata.network = {name: mdh.hre.network.name, chainId: mdh.hre.network.config.chainId};
     

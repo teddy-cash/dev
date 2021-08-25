@@ -26,7 +26,7 @@
         "uniToken": "0xC9c55814a6ce9deEA213a0847b150E4d9a63Bc4f"
     },
     "chainId": 43114,
-    "startBlock": 3360377,
+    "startBlock": 3335161,
     "deploymentDate": 1629854969000,
-    "version": "e35c93cb4de222f4ad9c987273251ef7bc4511a7"
+    "version": "3757cc1e0cd1ed5b669ccfe272a5d539655c3391"
 }
