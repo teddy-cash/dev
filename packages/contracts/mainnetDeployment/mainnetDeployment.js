@@ -14,10 +14,11 @@ async function mainnetDeploy(configParams) {
   // const account2Wallet = (await ethers.getSigners())[1]
   const basefee = await ethers.provider.getGasPrice();
   const gasPrice = toBigNum(basefee).add(toBigNum('10000000000')) // add tip
-  
-  configParams.gasPrice = gasPrice;
+  configParams.GAS_PRICE = gasPrice;
+  console.log(`BWB gasPrice is ${configParams.GAS_PRICE}`)
+
   const mdh = new MainnetDeploymentHelper(configParams, deployerWallet)
-  //const gasPrice = configParams.GAS_PRICE
+  
   const deploymentState = mdh.loadPreviousDeployment()
   console.log(`deployer address: ${deployerWallet.address}`)
   assert.equal(deployerWallet.address, configParams.liquityAddrs.DEPLOYER)
