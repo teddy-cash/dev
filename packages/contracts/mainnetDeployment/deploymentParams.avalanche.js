@@ -31,6 +31,7 @@ const beneficiaries = {
   TEST_INVESTOR_C: ""
 }
 */
+const beneficiaries = [];
 
 const OUTPUT_FILE = './mainnetDeployment/avalancheDeploymentOutput.json'
 
@@ -39,7 +40,7 @@ const waitFunction = async () => {
   return delay(90000) // wait 90s
 }
 
-const GAS_PRICE = 225000000000 // 1 Gwei
+const GAS_PRICE = 225000000000 //225000000000 // 1 Gwei
 const TX_CONFIRMATIONS = 1
 
 //C-chain explorer doesn't support verification api

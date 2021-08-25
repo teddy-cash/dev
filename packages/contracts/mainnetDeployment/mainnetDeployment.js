@@ -12,8 +12,12 @@ async function mainnetDeploy(configParams) {
   console.log(date.toUTCString())
   const deployerWallet = (await ethers.getSigners())[0]
   // const account2Wallet = (await ethers.getSigners())[1]
+  const basefee = await ethers.provider.getGasPrice();
+  const gasPrice = toBigNum(basefee).add(toBigNum('10000000000')) // add tip
+  console.log(`BWB gasPrice is ${gasPrice}`);
+  configParams.gasPrice = gasPrice;
   const mdh = new MainnetDeploymentHelper(configParams, deployerWallet)
-  const gasPrice = configParams.GAS_PRICE
+  //const gasPrice = configParams.GAS_PRICE
 
   const deploymentState = mdh.loadPreviousDeployment()
 
@@ -137,7 +141,7 @@ async function mainnetDeploy(configParams) {
       await mdh.verifyContract(investor, deploymentState, [lqtyTokenAddr, investorAddr, oneYearFromDeployment])
     }
   }
-
+  mdh.saveDeployment(deploymentState)
   // // --- TESTS AND CHECKS  ---
 
   // Deployer repay LUSD

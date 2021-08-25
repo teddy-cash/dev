@@ -52,8 +52,8 @@ contract LQTYToken is CheckContract, ILQTYToken {
 
     // --- ERC20 Data ---
 
-    string constant internal _NAME = "TEDDY";
-    string constant internal _SYMBOL = "TEDDY";
+    string constant internal _NAME = "PTEDDY";
+    string constant internal _SYMBOL = "PTEDDY";
     string constant internal _VERSION = "1";
     uint8 constant internal  _DECIMALS = 18;
 
