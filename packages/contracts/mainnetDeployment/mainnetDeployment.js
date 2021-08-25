@@ -90,8 +90,8 @@ async function mainnetDeploy(configParams) {
   console.log(`Unipool address: ${unipool.address}`)
   
   let latestBlock = await ethers.provider.getBlockNumber()
-  //let deploymentStartTime = await LQTYContracts.lqtyToken.getDeploymentStartTime()
-  let deploymentStartTime = (await ethers.provider.getBlock(latestBlock)).timestamp
+  let deploymentStartTime = await LQTYContracts.lqtyToken.getDeploymentStartTime()
+  //let deploymentStartTime = (await ethers.provider.getBlock(latestBlock)).timestamp
   deploymentState.metadata = deploymentState.metadata || {};
   deploymentState.metadata.startBlock = latestBlock;
   deploymentState.metadata.deploymentDate = parseInt(deploymentStartTime.toString() + '000');
