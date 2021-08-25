@@ -43,3 +43,6 @@ __pycache__
 build/
 reports/
 tests/simulation.csv
+
+# flattened contracts
+flattened/*.flat

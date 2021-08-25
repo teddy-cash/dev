@@ -27,12 +27,13 @@ const Balances: React.FC = () => {
   );
 };
 
-const GitHubCommit: React.FC<{ children?: string }> = ({ children }) =>
-  children?.match(/[0-9a-f]{40}/) ? (
-    <Link href={`https://github.com/liquity/dev/commit/${children}`}>{children.substr(0, 7)}</Link>
+const GitHubCommit: React.FC<{ children?: string }> = ({ children }) => {
+  return children?.match(/[0-9a-f]{40}/) ? (
+    <Link href={`https://github.com/teddy-cash/dev/commit/${children}`}>{children.substr(0, 7)}</Link>
   ) : (
     <>unknown</>
-  );
+  )
+};
 
 type SystemStatsProps = {
   variant?: string;

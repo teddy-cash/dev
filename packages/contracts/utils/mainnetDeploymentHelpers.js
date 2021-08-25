@@ -51,7 +51,7 @@ class MainnetDeploymentHelper {
 
     const contract = await factory.deploy(...params, {gasPrice: this.configParams.GAS_PRICE})
     await this.deployerWallet.provider.waitForTransaction(contract.deployTransaction.hash, this.configParams.TX_CONFIRMATIONS)
-
+    
     deploymentState[name] = {
       address: contract.address,
       txHash: contract.deployTransaction.hash
@@ -79,6 +79,7 @@ class MainnetDeploymentHelper {
 
     // Deploy txs
     const priceFeed = await this.loadOrDeploy(priceFeedFactory, 'priceFeed', deploymentState)
+    
     const sortedTroves = await this.loadOrDeploy(sortedTrovesFactory, 'sortedTroves', deploymentState)
     const troveManager = await this.loadOrDeploy(troveManagerFactory, 'troveManager', deploymentState)
     const activePool = await this.loadOrDeploy(activePoolFactory, 'activePool', deploymentState)

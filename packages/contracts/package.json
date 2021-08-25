@@ -11,6 +11,8 @@
     "prepare": "run-s prepare:*",
     "prepare:compile": "hardhat compile",
     "prepare:set-version": "node scripts/set-version.js",
+    "deploy:avalanche": "npx hardhat --network avalanche run mainnetDeployment/avalancheDeployment.js && node scripts/serializeDeployment.js mainnetDeployment/avalancheDeploymentOutput.json",
+    "deploy:fuji": "npx hardhat --network fuji run mainnetDeployment/fujiDeployment.js && node scripts/serializeDeployment.js mainnetDeployment/fujiDeploymentOutput.json",
     "test": "hardhat test",
     "coverage": "hardhat coverage",
     "coveralls": "cat coverage/lcov.info | coveralls"
