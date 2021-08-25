@@ -3,7 +3,7 @@ const externalAddrs  = {
   CHAINLINK_ETHUSD_PROXY: "0x0a77230d17318075983913bc2145db16c7366156", 
   // https://docs.tellor.io/tellor/integration/reference-page
   // this address is not valid for Tellor. It is just a copy of the Chainlink one
-  TELLOR_MASTER:"0x0a77230d17318075983913bc2145db16c7366156",
+  TELLOR_MASTER:"0x62ac8210fFaB46A8dd209dE6165af103f41AAB71",
   // https://uniswap.org/docs/v2/smart-contracts/factory/
   // Pangolin 
   UNISWAP_V2_FACTORY: "0xefa94DE7a4656D787667C749f7E1223D71E9FD88",

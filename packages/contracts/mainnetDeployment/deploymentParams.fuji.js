@@ -2,7 +2,7 @@ const externalAddrs  = {
   // https://data.chain.link/avalanche/mainnet/crypto-usd/avax-usd
   CHAINLINK_ETHUSD_PROXY: "0x5498BB86BC934c8D34FDA08E81D444153d0D06aD", 
   // https://docs.tellor.io/tellor/integration/reference-page
-  TELLOR_MASTER:"0xc778417e063141139fce010982780140aa0cd5ab",
+  TELLOR_MASTER:"0x7Cea7fb3B21F9C9055094cBD9bE3cC110886De98",
   // https://uniswap.org/docs/v2/smart-contracts/factory/
   // Pangolin 
   UNISWAP_V2_FACTORY: "0xE4A575550C2b460d2307b82dCd7aFe84AD1484dd",
