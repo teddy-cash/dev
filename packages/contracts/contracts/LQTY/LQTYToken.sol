@@ -52,8 +52,8 @@ contract LQTYToken is CheckContract, ILQTYToken {
 
     // --- ERC20 Data ---
 
-    string constant internal _NAME = "PTEDDY";
-    string constant internal _SYMBOL = "PTEDDY";
+    string constant internal _NAME = "TEDDY";
+    string constant internal _SYMBOL = "TEDDY";
     string constant internal _VERSION = "1";
     uint8 constant internal  _DECIMALS = 18;
 
@@ -135,17 +135,17 @@ contract LQTYToken is CheckContract, ILQTYToken {
         
         // --- Initial LQTY allocations ---
      
-        uint bountyEntitlement = _1_MILLION.mul(2); // Allocate 2 million for bounties/hackathons
+        uint bountyEntitlement = _1_MILLION.mul(27); // Allocate 27 million for bounties/hackathons
         _mint(_bountyAddress, bountyEntitlement);
 
-        uint depositorsAndFrontEndsEntitlement = _1_MILLION.mul(32); // Allocate 32 million to the algorithmic issuance schedule
+        uint depositorsAndFrontEndsEntitlement = _1_MILLION.mul(50); // Allocate 50 million to the algorithmic issuance schedule
         _mint(_communityIssuanceAddress, depositorsAndFrontEndsEntitlement);
 
-        uint _lpRewardsEntitlement = _1_MILLION.mul(4).div(3);  // Allocate 1.33 million for LP rewards
+        uint _lpRewardsEntitlement = _1_MILLION.mul(3);  // Allocate 3 million for LP rewards
         lpRewardsEntitlement = _lpRewardsEntitlement;
         _mint(_lpRewardsAddress, _lpRewardsEntitlement);
         
-        // Allocate the remainder to the LQTY Multisig: (100 - 2 - 32 - 1.33) million = 64.66 million
+        // Allocate the remainder to the LQTY Multisig: (100 - 3 - 27 - 50) million = 20
         uint multisigEntitlement = _1_MILLION.mul(100)
             .sub(bountyEntitlement)
             .sub(depositorsAndFrontEndsEntitlement)
