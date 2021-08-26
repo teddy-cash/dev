@@ -5,7 +5,7 @@ import { Decimal } from "@liquity/lib-base";
 
 import devOrNull from "../deployments/dev.json";
 // TODO: uncomment wen mainnet deployed
-// import avalanche from "../deployments/avalanche.json";
+import avalanche from "../deployments/avalanche.json";
 import fuji from "../deployments/fuji.json";
 
 import { numberify, panic } from "./_utils";
@@ -26,7 +26,7 @@ const deployments: {
   [chainId: number]: _LiquityDeploymentJSON | undefined;
 } = {
   // TODO: uncomment wen mainnet deployed
-  // [avalanche.chainId]: avalanche,
+  [avalanche.chainId]: avalanche,
   [fuji.chainId]: fuji,
 
   ...(dev !== null ? { [dev.chainId]: dev } : {})
