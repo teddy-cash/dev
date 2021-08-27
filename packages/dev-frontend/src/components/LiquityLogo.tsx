@@ -7,6 +7,6 @@ type LiquityLogoProps = React.ComponentProps<typeof Box> & {
 
 export const LiquityLogo: React.FC<LiquityLogoProps> = ({ height, ...boxProps }) => (
   <Box sx={{ lineHeight: 0 }} {...boxProps}>
-    <Image src="./teddy-cash-icon.png" sx={{ height }} />
+    <a href="https://teddy.cash"><Image src="./teddy-cash-icon.png" sx={{ height }} /></a>
   </Box>
 );
