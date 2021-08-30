@@ -21,7 +21,7 @@ export const NoDeposit: React.FC = props => {
         </Flex>
       </Heading>
       <Box sx={{ p: [2, 3] }}>
-        <InfoMessage title="You have no TEDDY in the Stability Pool.">
+        <InfoMessage title="You have no TSD in the Stability Pool.">
           You can earn AVAX and TEDDY rewards by depositing TSD.
         </InfoMessage>
 
