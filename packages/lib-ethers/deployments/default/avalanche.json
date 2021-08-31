@@ -23,7 +23,11 @@
         "lockupContractFactory": "0xdD6e1b601A2D86264d62D6ca85Ce2bC944981106",
         "communityIssuance": "0xb4Fbc7839ce88029c8c1c6274660118e27B6f982",
         "lqtyToken": "0x094bd7B2D99711A1486FB94d4395801C6d0fdDcC",
-        "multiTroveGetter": "0x6cf187ADa698F3bD01A4931D6ce4cD053Fce294e"
+      "multiTroveGetter": "0x6cf187ADa698F3bD01A4931D6ce4cD053Fce294e",
+        "traderjoePool2": "",
+        "traderjoePool2Unipool": "",
+        "pangolinPool2": "",
+        "pangolinPool2Unipool": ""
     },
     "chainId": 43114,
     "startBlock": 3415967,

@@ -16,11 +16,12 @@ async function main() {
   const lqtyToken = new ethers.Contract(
     deploymentState['lqtyToken'].address,
     getFactory('LQTYToken', deployerWaller).interface,
-        deployerWallet
+    deployerWallet
   );
   
 
   const investorA = deploymentState['TEST_INVESTOR_A'].address;
+  await lqtyToken.transfer(investorA, );
   const investorAC = new ethers.Contract(
         investorA,
         lockupContractEthersFactory.interface,

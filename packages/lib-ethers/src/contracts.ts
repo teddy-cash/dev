@@ -182,6 +182,10 @@ export interface _LiquityContracts {
   stabilityPool: StabilityPool;
   gasPool: GasPool;
   unipool: Unipool;
+  traderjoePool2: IERC20 | ERC20Mock;
+  traderjoePool2Unipool: Unipool;
+  pangolinPool2: IERC20 | ERC20Mock;
+  pangolinPool2Unipool: Unipool;
   uniToken: IERC20 | ERC20Mock;
 }
 
@@ -219,6 +223,10 @@ const getAbi = (priceFeedIsTestnet: boolean, uniTokenIsMock: boolean): LiquityCo
   gasPool: gasPoolAbi,
   collSurplusPool: collSurplusPoolAbi,
   unipool: unipoolAbi,
+  traderjoePool2: uniTokenIsMock ? erc20MockAbi : iERC20Abi,
+  traderjoePool2Unipool: unipoolAbi,
+  pangolinPool2: uniTokenIsMock ? erc20MockAbi : iERC20Abi,
+  pangolinPool2Unipool: unipoolAbi,
   uniToken: uniTokenIsMock ? erc20MockAbi : iERC20Abi
 });
 
