@@ -34,20 +34,38 @@ export interface LiquityStoreBaseState {
   /** User's Uniswap ETH/LUSD LP token balance. */
   uniTokenBalance: Decimal;
 
+  /** user's balance on Trader Joe Pool2 */
+  tjTokenBalance: Decimal;
+
   /** The liquidity mining contract's allowance of user's Uniswap ETH/LUSD LP tokens. */
   uniTokenAllowance: Decimal;
+
+  /** The liquidity mining contract's allowance of user's Trader Joe Pool2 LP tokens. */
+  tjTokenAllowance: Decimal;
 
   /** Remaining LQTY that will be collectively rewarded to liquidity miners. */
   remainingLiquidityMiningLQTYReward: Decimal;
 
+  /** Remaining LQTY that will be collectively rewarded to liquidity miners on Trader Joe Pool2. */
+  tjRemainingLiquidityMiningLQTYReward: Decimal;
+
   /** Amount of Uniswap ETH/LUSD LP tokens the user has staked in liquidity mining. */
   liquidityMiningStake: Decimal;
+
+  /** Amount of LQTY the user has earned through mining liquidity on Trader Joe. */
+  tjLiquidityMiningStake: Decimal;
 
   /** Total amount of Uniswap ETH/LUSD LP tokens currently staked in liquidity mining. */
   totalStakedUniTokens: Decimal;
 
+  /** Total amount of Uniswap ETH/LUSD LP tokens currently staked in liquidity mining on Trader Joe. */
+  tjTotalStakedUniTokens: Decimal;
+
   /** Amount of LQTY the user has earned through mining liquidity. */
   liquidityMiningLQTYReward: Decimal;
+
+  /** Amount of LQTY the user has earned through mining liquidity on Trader Joe. */
+  tjLiquidityMiningLQTYReward: Decimal;
 
   /**
    * Amount of leftover collateral available for withdrawal to the user.
@@ -373,6 +391,13 @@ export abstract class LiquityStore<T = unknown> {
         baseStateUpdate.uniTokenBalance
       ),
 
+      tjTokenBalance: this._updateIfChanged(
+        eq,
+        "tjTokenBalance",
+        baseState.tjTokenBalance,
+        baseStateUpdate.tjTokenBalance
+      ),
+
       uniTokenAllowance: this._updateIfChanged(
         eq,
         "uniTokenAllowance",
@@ -380,10 +405,23 @@ export abstract class LiquityStore<T = unknown> {
         baseStateUpdate.uniTokenAllowance
       ),
 
+      tjTokenAllowance: this._updateIfChanged(
+        eq,
+        "tjTokenAllowance",
+        baseState.tjTokenAllowance,
+        baseStateUpdate.tjTokenAllowance
+      ),
+
       remainingLiquidityMiningLQTYReward: this._silentlyUpdateIfChanged(
         eq,
         baseState.remainingLiquidityMiningLQTYReward,
         baseStateUpdate.remainingLiquidityMiningLQTYReward
+      ),
+
+      tjRemainingLiquidityMiningLQTYReward: this._silentlyUpdateIfChanged(
+        eq,
+        baseState.tjRemainingLiquidityMiningLQTYReward,
+        baseStateUpdate.tjRemainingLiquidityMiningLQTYReward
       ),
 
       liquidityMiningStake: this._updateIfChanged(
@@ -393,6 +431,13 @@ export abstract class LiquityStore<T = unknown> {
         baseStateUpdate.liquidityMiningStake
       ),
 
+      tjLiquidityMiningStake: this._updateIfChanged(
+        eq,
+        "tjLiquidityMiningStake",
+        baseState.tjLiquidityMiningStake,
+        baseStateUpdate.tjLiquidityMiningStake
+      ),
+
       totalStakedUniTokens: this._updateIfChanged(
         eq,
         "totalStakedUniTokens",
@@ -400,10 +445,23 @@ export abstract class LiquityStore<T = unknown> {
         baseStateUpdate.totalStakedUniTokens
       ),
 
+      tjTotalStakedUniTokens: this._updateIfChanged(
+        eq,
+        "tjTotalStakedUniTokens",
+        baseState.tjTotalStakedUniTokens,
+        baseStateUpdate.tjTotalStakedUniTokens
+      ),
+
       liquidityMiningLQTYReward: this._silentlyUpdateIfChanged(
         eq,
         baseState.liquidityMiningLQTYReward,
         baseStateUpdate.liquidityMiningLQTYReward
+      ),
+
+      tjLiquidityMiningLQTYReward: this._silentlyUpdateIfChanged(
+        eq,
+        baseState.tjLiquidityMiningLQTYReward,
+        baseStateUpdate.tjLiquidityMiningLQTYReward
       ),
 
       collateralSurplusBalance: this._updateIfChanged(

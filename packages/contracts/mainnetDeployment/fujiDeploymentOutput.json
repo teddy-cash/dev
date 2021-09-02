@@ -74,21 +74,13 @@
     "address": "0xD93f787F7182e463A67aB6CB955c5355E4699c09",
     "txHash": "0x5b34765f59f3787a23b8318802614fdd1c6c88e1331d7f33c265423fe86bfc79"
   },
-  "traderjoePool2": {
+  "tjToken": {
     "address": "0x3499B181b28C1c898c41d875639CB7b5F30947d8",
     "txHash": "0x18a47938960b7bb839f59e435aed650942192df2781843f719b9a65b993f919e"
   },
-  "traderjoePool2Unipool": {
-    "address": "0xf0D9C1CF8b910F032973C9b5D2135f9f74c48A4A",
-    "txHash": "0xba2670e5d6ab9618b817e4bbc2b65077d0ed3282ebd70134da2a17d967436b94"
-  },
-  "pangolinPool2": {
+  "pngToken": {
     "address": "0x741Ccd8886092B9bbfFDa72B7460715b7B561888",
     "txHash": "0xa41e88cf68cfc6fd96d6e650025a99c11ab03711032551e9fe0e3276a2327353"
-  },
-  "pangolinPool2Unipool": {
-    "address": "0xBA37D014eFEA96Ee4ed81729AF1B120Ed22AB66D",
-    "txHash": "0x86a7f9f5b7f04b00dd510998548af7c10a2f507e84efe29fecb3ef777a7ae918"
   },
   "metadata": {
     "startBlock": 983777,
@@ -109,5 +101,13 @@
   "TEST_INVESTOR_C": {
     "address": "0x0beEf4f62cFA4613695c03B152C41408A3a92203",
     "txHash": "0x0b80cff0677fe307aedf13465dc18feed556f6d81f88a9ee63b1b0edf46ba38b"
+  },
+  "tjUnipool": {
+    "address": "0xca99d790F0DB93BFc8cdF8576FED0E3ac45EdfAd",
+    "txHash": "0x792e8759838f8536bea9f334ff10a3e1c2d2bd3138997e1db5f801f096cb551f"
+  },
+  "pngUnipool": {
+    "address": "0x58705A172ED52B6EBeB7e2166B047Cb1f0DC8fF1",
+    "txHash": "0xc7d6a62104f1cf6ff4122acdd68b98951b0f4d63f0558a9396b098d5a834123e"
   }
 }

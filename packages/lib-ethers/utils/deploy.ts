@@ -107,7 +107,11 @@ const deployContracts = async (
     gasPool: await deployContract(deployer, getContractFactory, "GasPool", {
       ...overrides
     }),
-    unipool: await deployContract(deployer, getContractFactory, "Unipool", { ...overrides })
+    unipool: await deployContract(deployer, getContractFactory, "Unipool", { ...overrides }),
+    traderjoePool2: "",
+    traderjoePool2Unipool: "",
+    pangolinPool2: "",
+    pangolinPool2Unipool: ""
   };
 
   return [

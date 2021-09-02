@@ -106,7 +106,7 @@ contract Pool2Unipool is LPTokenWrapper, Ownable, CheckContract, IUnipool {
 
         uniToken = IERC20(_uniTokenAddress);
         lqtyToken = ILQTYToken(_lqtyTokenAddress);
-        duration = _duration;
+        //duration = _duration;
 
         // This function must be commented out as it assumes an allocation already exists
         // for this pool immediately after creation. 
@@ -115,6 +115,22 @@ contract Pool2Unipool is LPTokenWrapper, Ownable, CheckContract, IUnipool {
         emit LQTYTokenAddressChanged(_lqtyTokenAddress);
         emit UniTokenAddressChanged(_uniTokenAddress);
 
+        // this must be done in setReward
+        //_renounceOwnership();
+    }
+
+    // This function is separate from setParams because the LQTY allocation cannot be done in code
+    function setReward(
+        uint _duration
+    )
+        external
+        onlyOwner
+    {
+        duration = _duration;
+        require(lqtyToken.balanceOf(address(this)) > 0, "setReward can only be called once LQTY has been allocated to this contract");
+        // This function must be commented out as it assumes an allocation already exists
+        // for this pool immediately after creation. 
+        _notifyRewardAmount(lqtyToken.balanceOf(address(this)), _duration);
         _renounceOwnership();
     }
 

@@ -277,6 +277,10 @@ export interface LiquityStoreBaseState {
     // @internal (undocumented)
     _riskiestTroveBeforeRedistribution: TroveWithPendingRedistribution;
     stabilityDeposit: StabilityDeposit;
+    tjPool2LiquidityMiningStake: Decimal;
+    tjPool2RemainingLiquidityMiningLQTYReward: Decimal;
+    tjPool2TokenAllowance: Decimal;
+    tjPool2TokenBalance: Decimal;
     total: Trove;
     totalRedistributed: Trove;
     totalStakedLQTY: Decimal;

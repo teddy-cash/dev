@@ -136,10 +136,24 @@ export class _CachedReadableLiquity<T extends unknown[]>
     );
   }
 
+  async tjGetUniTokenBalance(address?: string, ...extraParams: T): Promise<Decimal> {
+    return (
+      this._cache.tjGetUniTokenBalance(address, ...extraParams) ??
+      this._readable.tjGetUniTokenBalance(address, ...extraParams)
+    );
+  }
+
   async getUniTokenAllowance(address?: string, ...extraParams: T): Promise<Decimal> {
     return (
       this._cache.getUniTokenAllowance(address, ...extraParams) ??
       this._readable.getUniTokenAllowance(address, ...extraParams)
+    );
+  }
+
+  async tjGetUniTokenAllowance(address?: string, ...extraParams: T): Promise<Decimal> {
+    return (
+      this._cache.tjGetUniTokenAllowance(address, ...extraParams) ??
+      this._readable.tjGetUniTokenAllowance(address, ...extraParams)
     );
   }
 
@@ -150,10 +164,24 @@ export class _CachedReadableLiquity<T extends unknown[]>
     );
   }
 
+  async tjGetRemainingLiquidityMiningLQTYReward(...extraParams: T): Promise<Decimal> {
+    return (
+      this._cache.tjGetRemainingLiquidityMiningLQTYReward(...extraParams) ??
+      this._readable.tjGetRemainingLiquidityMiningLQTYReward(...extraParams)
+    );
+  }
+
   async getLiquidityMiningStake(address?: string, ...extraParams: T): Promise<Decimal> {
     return (
       this._cache.getLiquidityMiningStake(address, ...extraParams) ??
       this._readable.getLiquidityMiningStake(address, ...extraParams)
+    );
+  }
+
+  async tjGetLiquidityMiningStake(address?: string, ...extraParams: T): Promise<Decimal> {
+    return (
+      this._cache.tjGetLiquidityMiningStake(address, ...extraParams) ??
+      this._readable.tjGetLiquidityMiningStake(address, ...extraParams)
     );
   }
 
@@ -164,10 +192,24 @@ export class _CachedReadableLiquity<T extends unknown[]>
     );
   }
 
+  async tjGetTotalStakedUniTokens(...extraParams: T): Promise<Decimal> {
+    return (
+      this._cache.tjGetTotalStakedUniTokens(...extraParams) ??
+      this._readable.tjGetTotalStakedUniTokens(...extraParams)
+    );
+  }
+
   async getLiquidityMiningLQTYReward(address?: string, ...extraParams: T): Promise<Decimal> {
     return (
       this._cache.getLiquidityMiningLQTYReward(address, ...extraParams) ??
       this._readable.getLiquidityMiningLQTYReward(address, ...extraParams)
+    );
+  }
+
+  async tjGetLiquidityMiningLQTYReward(address?: string, ...extraParams: T): Promise<Decimal> {
+    return (
+      this._cache.tjGetLiquidityMiningLQTYReward(address, ...extraParams) ??
+      this._readable.tjGetLiquidityMiningLQTYReward(address, ...extraParams)
     );
   }
 

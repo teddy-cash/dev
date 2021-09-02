@@ -1,7 +1,9 @@
 {
     "bootstrapPeriod": 1209600,
     "totalStabilityPoolLQTYReward": "50000000",
-    "liquidityMiningLQTYRewardRate": "0.257201646090534979",
+  "liquidityMiningLQTYRewardRate": "0.257201646090534979",
+  "tjLiquidityMiningLQTYRewardRate": "0.46296296296296297",
+  "pngLiquidityMiningLQTYRewardRate": "0.46296296296296297",
     "_priceFeedIsTestnet": false,
     "_uniTokenIsMock": false,
     "_isDev": false,
@@ -24,10 +26,10 @@
         "communityIssuance": "0xb4Fbc7839ce88029c8c1c6274660118e27B6f982",
         "lqtyToken": "0x094bd7B2D99711A1486FB94d4395801C6d0fdDcC",
       "multiTroveGetter": "0x6cf187ADa698F3bD01A4931D6ce4cD053Fce294e",
-        "traderjoePool2": "",
-        "traderjoePool2Unipool": "",
-        "pangolinPool2": "",
-        "pangolinPool2Unipool": ""
+        "tjToken": "",
+        "tjUnipool": "",
+        "pngToken": "",
+        "pngUnipool": ""
     },
     "chainId": 43114,
     "startBlock": 3415967,

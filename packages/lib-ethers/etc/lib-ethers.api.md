@@ -212,6 +212,30 @@ export class EthersLiquity implements ReadableEthersLiquity, TransactableLiquity
     // (undocumented)
     stakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<void>;
     // (undocumented)
+    tjApproveUniTokens(allowance?: Decimalish, overrides?: EthersTransactionOverrides): Promise<void>;
+    // (undocumented)
+    tjExitLiquidityMining(overrides?: EthersTransactionOverrides): Promise<void>;
+    // (undocumented)
+    tjGetLiquidityMiningLQTYReward(address?: string, overrides?: EthersCallOverrides): Promise<Decimal>;
+    // (undocumented)
+    tjGetLiquidityMiningStake(address?: string, overrides?: EthersCallOverrides): Promise<Decimal>;
+    // (undocumented)
+    tjGetRemainingLiquidityMiningLQTYReward(overrides?: EthersCallOverrides): Promise<Decimal>;
+    // @internal (undocumented)
+    _tjGetRemainingLiquidityMiningLQTYRewardCalculator(overrides?: EthersCallOverrides): Promise<(blockTimestamp: number) => Decimal>;
+    // (undocumented)
+    tjGetTotalStakedUniTokens(overrides?: EthersCallOverrides): Promise<Decimal>;
+    // (undocumented)
+    tjGetUniTokenAllowance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal>;
+    // (undocumented)
+    tjGetUniTokenBalance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal>;
+    // (undocumented)
+    tjStakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<void>;
+    // (undocumented)
+    tjUnstakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<void>;
+    // (undocumented)
+    tjWithdrawLQTYRewardFromLiquidityMining(overrides?: EthersTransactionOverrides): Promise<void>;
+    // (undocumented)
     transferCollateralGainToTrove(overrides?: EthersTransactionOverrides): Promise<CollateralGainTransferDetails>;
     // (undocumented)
     unstakeLQTY(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<void>;
@@ -245,6 +269,7 @@ export interface EthersLiquityConnection extends EthersLiquityConnectionOptional
     readonly provider: EthersProvider;
     readonly signer?: EthersSigner;
     readonly startBlock: number;
+    readonly tjLiquidityMiningLQTYRewardRate: Decimal;
     readonly totalStabilityPoolLQTYReward: Decimal;
     readonly version: string;
 }
@@ -370,6 +395,16 @@ export class PopulatableEthersLiquity implements PopulatableLiquity<EthersTransa
     stakeLQTY(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<PopulatedEthersLiquityTransaction<void>>;
     // (undocumented)
     stakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<PopulatedEthersLiquityTransaction<void>>;
+    // (undocumented)
+    tjApproveUniTokens(allowance?: Decimalish, overrides?: EthersTransactionOverrides): Promise<PopulatedEthersLiquityTransaction<void>>;
+    // (undocumented)
+    tjExitLiquidityMining(overrides?: EthersTransactionOverrides): Promise<PopulatedEthersLiquityTransaction<void>>;
+    // (undocumented)
+    tjStakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<PopulatedEthersLiquityTransaction<void>>;
+    // (undocumented)
+    tjUnstakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<PopulatedEthersLiquityTransaction<void>>;
+    // (undocumented)
+    tjWithdrawLQTYRewardFromLiquidityMining(overrides?: EthersTransactionOverrides): Promise<PopulatedEthersLiquityTransaction<void>>;
     // (undocumented)
     transferCollateralGainToTrove(overrides?: EthersTransactionOverrides): Promise<PopulatedEthersLiquityTransaction<CollateralGainTransferDetails>>;
     // (undocumented)
@@ -520,6 +555,20 @@ export class ReadableEthersLiquity implements ReadableLiquity {
     getUniTokenBalance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal>;
     hasStore(): this is ReadableEthersLiquityWithStore;
     hasStore(store: "blockPolled"): this is ReadableEthersLiquityWithStore<BlockPolledLiquityStore>;
+    // (undocumented)
+    tjGetLiquidityMiningLQTYReward(address?: string, overrides?: EthersCallOverrides): Promise<Decimal>;
+    // (undocumented)
+    tjGetLiquidityMiningStake(address?: string, overrides?: EthersCallOverrides): Promise<Decimal>;
+    // (undocumented)
+    tjGetRemainingLiquidityMiningLQTYReward(overrides?: EthersCallOverrides): Promise<Decimal>;
+    // @internal (undocumented)
+    _tjGetRemainingLiquidityMiningLQTYRewardCalculator(overrides?: EthersCallOverrides): Promise<(blockTimestamp: number) => Decimal>;
+    // (undocumented)
+    tjGetTotalStakedUniTokens(overrides?: EthersCallOverrides): Promise<Decimal>;
+    // (undocumented)
+    tjGetUniTokenAllowance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal>;
+    // (undocumented)
+    tjGetUniTokenBalance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal>;
 }
 
 // @public
@@ -573,6 +622,16 @@ export class SendableEthersLiquity implements SendableLiquity<EthersTransactionR
     stakeLQTY(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<SentEthersLiquityTransaction<void>>;
     // (undocumented)
     stakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<SentEthersLiquityTransaction<void>>;
+    // (undocumented)
+    tjApproveUniTokens(allowance?: Decimalish, overrides?: EthersTransactionOverrides): Promise<SentEthersLiquityTransaction<void>>;
+    // (undocumented)
+    tjExitLiquidityMining(overrides?: EthersTransactionOverrides): Promise<SentEthersLiquityTransaction<void>>;
+    // (undocumented)
+    tjStakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<SentEthersLiquityTransaction<void>>;
+    // (undocumented)
+    tjUnstakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<SentEthersLiquityTransaction<void>>;
+    // (undocumented)
+    tjWithdrawLQTYRewardFromLiquidityMining(overrides?: EthersTransactionOverrides): Promise<SentEthersLiquityTransaction<void>>;
     // (undocumented)
     transferCollateralGainToTrove(overrides?: EthersTransactionOverrides): Promise<SentEthersLiquityTransaction<CollateralGainTransferDetails>>;
     // (undocumented)

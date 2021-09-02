@@ -93,12 +93,12 @@ async function mainnetDeploy(configParams) {
 
   // deploy pool2
   const pool2Factories = {
-    'traderjoe': new ethers.Contract(
+    'tj': new ethers.Contract(
     configParams.externalAddrs.TJ_FACTORY,
     UniswapV2Factory.abi,
     deployerWallet
     ),
-    'pangolin': new ethers.Contract(
+    'png': new ethers.Contract(
     configParams.externalAddrs.UNISWAP_V2_FACTORY,
     UniswapV2Factory.abi,
     deployerWallet
@@ -110,7 +110,7 @@ async function mainnetDeploy(configParams) {
     let LQTYWETHPairAddr = await factory.getPair(LQTYContracts.lqtyToken.address, configParams.externalAddrs.WETH_ERC20)
     let WETHLQTYPairAddr = await factory.getPair(configParams.externalAddrs.WETH_ERC20, LQTYContracts.lqtyToken.address)
     assert.equal(LQTYWETHPairAddr, WETHLQTYPairAddr)
-    const pool2Name = `${dex}Pool2`;
+    const pool2Name = `${dex}Token`;
     if (LQTYWETHPairAddr == th.ZERO_ADDRESS) {
       // Deploy Unipool for LQTY-WETH
       const pairTx = await mdh.sendAndWaitForTransaction(factory.createPair(

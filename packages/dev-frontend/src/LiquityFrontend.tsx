@@ -21,6 +21,8 @@ import { TroveViewProvider } from "./components/Trove/context/TroveViewProvider"
 import { StabilityViewProvider } from "./components/Stability/context/StabilityViewProvider";
 import { StakingViewProvider } from "./components/Staking/context/StakingViewProvider";
 import { FarmViewProvider } from "./components/Farm/context/FarmViewProvider";
+import { FarmViewProvider as TjFarmViewProvider } from "./components/FarmTj/context/FarmViewProvider";
+import { FarmViewProvider as PngFarmViewProvider } from "./components/FarmPng/context/FarmViewProvider";
 
 type LiquityFrontendProps = {
   loader?: React.ReactNode;
@@ -46,37 +48,41 @@ export const LiquityFrontend: React.FC<LiquityFrontendProps> = ({ loader }) => {
           <StabilityViewProvider>
             <StakingViewProvider>
               <FarmViewProvider>
-                <Flex sx={{ flexDirection: "column", minHeight: "100%" }}>
-                  <Header>
-                    <UserAccount />
-                    <SystemStatsPopup />
-                  </Header>
+                <TjFarmViewProvider>
+                  <PngFarmViewProvider>
+                    <Flex sx={{ flexDirection: "column", minHeight: "100%" }}>
+                        <Header>
+                          <UserAccount />
+                          <SystemStatsPopup />
+                        </Header>
 
-                  <Container
-                    variant="main"
-                    sx={{
-                      display: "flex",
-                      flexGrow: 1,
-                      flexDirection: "column",
-                      alignItems: "center"
-                    }}
-                  >
-                    <Switch>
-                      <Route path="/" exact>
-                        <PageSwitcher />
-                      </Route>
-                      <Route path="/farm">
-                        <Farm />
-                      </Route>
-                      <Route path="/risky-troves">
-                        <RiskyTrovesPage />
-                      </Route>
-                      <Route path="/redemption">
-                        <RedemptionPage />
-                      </Route>
-                    </Switch>
-                  </Container>
-                </Flex>
+                        <Container
+                          variant="main"
+                          sx={{
+                            display: "flex",
+                            flexGrow: 1,
+                            flexDirection: "column",
+                            alignItems: "center"
+                          }}
+                        >
+                          <Switch>
+                            <Route path="/" exact>
+                              <PageSwitcher />
+                            </Route>
+                            <Route path="/farm">
+                              <Farm />
+                            </Route>
+                            <Route path="/risky-troves">
+                              <RiskyTrovesPage />
+                            </Route>
+                            <Route path="/redemption">
+                              <RedemptionPage />
+                            </Route>
+                          </Switch>
+                        </Container>
+                    </Flex>
+                  </PngFarmViewProvider>
+                </TjFarmViewProvider>
               </FarmViewProvider>
             </StakingViewProvider>
           </StabilityViewProvider>

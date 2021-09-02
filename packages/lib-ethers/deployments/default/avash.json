@@ -28,9 +28,9 @@
     "lqtyToken": "0xBBfCE55AD100b5bEd880083fCE366120347Af872",
     "multiTroveGetter": "0xc5812E2F22177682ad9731330814F0444Ac23E9e",
     "uniToken": "0x37913A8722954A0736F79Db25c2e0635118eeDC8",
-            "traderjoePool2": "",
-        "traderjoePool2Unipool": "",
-        "pangolinPool2": "",
-        "pangolinPool2Unipool": ""
+    "tjPool2Token": "",
+    "tjPool2Unipool": "",
+    "pngPool2Token": "",
+    "pngPool2Unipool": ""
   }
 }

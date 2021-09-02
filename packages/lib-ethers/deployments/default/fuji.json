@@ -1,7 +1,9 @@
 {
     "bootstrapPeriod": 1209600,
     "totalStabilityPoolLQTYReward": "50000000",
-    "liquidityMiningLQTYRewardRate": "0.257201646090534979",
+  "liquidityMiningLQTYRewardRate": "0.257201646090534979",
+  "tjLiquidityMiningLQTYRewardRate": "0.46296296296296297",
+  "pngLiquidityMiningLQTYRewardRate": "0.46296296296296297",
     "_priceFeedIsTestnet": false,
     "_uniTokenIsMock": false,
     "_isDev": false,
@@ -24,13 +26,13 @@
         "communityIssuance": "0xCAB55Ec6C3Bf128FD2c1A745BfB5ED4791d292FE",
         "lqtyToken": "0x7B635b81920F2C9B7a217DD898BeC9F6D309470D",
         "multiTroveGetter": "0xD93f787F7182e463A67aB6CB955c5355E4699c09",
-        "traderjoePool2": "0x3499B181b28C1c898c41d875639CB7b5F30947d8",
-        "traderjoePool2Unipool": "0xf0D9C1CF8b910F032973C9b5D2135f9f74c48A4A",
-        "pangolinPool2": "0x741Ccd8886092B9bbfFDa72B7460715b7B561888",
-        "pangolinPool2Unipool": "0xBA37D014eFEA96Ee4ed81729AF1B120Ed22AB66D"
+        "tjToken": "0x3499B181b28C1c898c41d875639CB7b5F30947d8",
+        "pngToken": "0x741Ccd8886092B9bbfFDa72B7460715b7B561888",
+        "tjUnipool": "0xca99d790F0DB93BFc8cdF8576FED0E3ac45EdfAd",
+        "pngUnipool": "0x58705A172ED52B6EBeB7e2166B047Cb1f0DC8fF1"
     },
     "chainId": 43113,
     "startBlock": 983777,
     "deploymentDate": 1630432924000,
-    "version": "3ea8021ab7362e13882b29f3a5e9014009bd961e"
+    "version": "5b13c451dc6ee5ac749785d83c2e026f63dd64e9"
 }

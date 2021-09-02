@@ -196,7 +196,7 @@ class MainnetDeploymentHelper {
 
   async deployPool2UnipoolMainnet(deploymentState, dexName) {
     const unipoolFactory = await this.getFactory("Pool2Unipool")
-    const contractName = `${dexName}Pool2Unipool`
+    const contractName = `${dexName}Unipool`
     const pool2Unipool = await this.loadOrDeploy(unipoolFactory, contractName, deploymentState)
 
     if (!this.configParams.ETHERSCAN_BASE_URL) {
