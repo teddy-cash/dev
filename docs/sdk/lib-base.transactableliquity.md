@@ -40,6 +40,11 @@ Implemented by [EthersLiquity](./lib-ethers.ethersliquity.md)<!-- -->.
 |  [sendLUSD(toAddress, amount)](./lib-base.transactableliquity.sendlusd.md) | Send LUSD tokens to an address. |
 |  [stakeLQTY(amount)](./lib-base.transactableliquity.stakelqty.md) | Stake LQTY to start earning fee revenue or increase existing stake. |
 |  [stakeUniTokens(amount)](./lib-base.transactableliquity.stakeunitokens.md) | Stake Uniswap ETH/LUSD LP tokens to participate in liquidity mining and earn LQTY. |
+|  [tjApproveUniTokens(allowance)](./lib-base.transactableliquity.tjapproveunitokens.md) | Allow the liquidity mining contract to use TJ Pool2 LP tokens for [staking](./lib-base.transactableliquity.stakeunitokens.md)<!-- -->. |
+|  [tjExitLiquidityMining()](./lib-base.transactableliquity.tjexitliquiditymining.md) | Withdraw all staked TJ Pool2 LP tokens from liquidity mining and claim reward. |
+|  [tjStakeUniTokens(amount)](./lib-base.transactableliquity.tjstakeunitokens.md) | Stake TJ Pool2 LP tokens to participate in liquidity mining and earn LQTY. |
+|  [tjUnstakeUniTokens(amount)](./lib-base.transactableliquity.tjunstakeunitokens.md) | Withdraw TJ Pool2 LP tokens from liquidity mining. |
+|  [tjWithdrawLQTYRewardFromLiquidityMining()](./lib-base.transactableliquity.tjwithdrawlqtyrewardfromliquiditymining.md) | Withdraw LQTY that has been earned by mining liquidity. |
 |  [transferCollateralGainToTrove()](./lib-base.transactableliquity.transfercollateralgaintotrove.md) | Transfer [collateral gain](./lib-base.stabilitydeposit.collateralgain.md) from Stability Deposit to Trove. |
 |  [unstakeLQTY(amount)](./lib-base.transactableliquity.unstakelqty.md) | Withdraw LQTY from staking. |
 |  [unstakeUniTokens(amount)](./lib-base.transactableliquity.unstakeunitokens.md) | Withdraw Uniswap ETH/LUSD LP tokens from liquidity mining. |

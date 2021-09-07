@@ -57,7 +57,19 @@ export class _CachedReadableLiquity<T extends unknown[]> implements _ReadableLiq
     getUniTokenAllowance(address?: string, ...extraParams: T): Promise<Decimal>;
     // (undocumented)
     getUniTokenBalance(address?: string, ...extraParams: T): Promise<Decimal>;
-    }
+    // (undocumented)
+    tjGetLiquidityMiningLQTYReward(address?: string, ...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    tjGetLiquidityMiningStake(address?: string, ...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    tjGetRemainingLiquidityMiningLQTYReward(...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    tjGetTotalStakedUniTokens(...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    tjGetUniTokenAllowance(address?: string, ...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    tjGetUniTokenBalance(address?: string, ...extraParams: T): Promise<Decimal>;
+}
 
 // @internal (undocumented)
 export type _CollateralChange<T> = (_CollateralDeposit<T> & _NoCollateralWithdrawal) | (_CollateralWithdrawal<T> & _NoCollateralDeposit);
@@ -277,10 +289,12 @@ export interface LiquityStoreBaseState {
     // @internal (undocumented)
     _riskiestTroveBeforeRedistribution: TroveWithPendingRedistribution;
     stabilityDeposit: StabilityDeposit;
-    tjPool2LiquidityMiningStake: Decimal;
-    tjPool2RemainingLiquidityMiningLQTYReward: Decimal;
-    tjPool2TokenAllowance: Decimal;
-    tjPool2TokenBalance: Decimal;
+    tjLiquidityMiningLQTYReward: Decimal;
+    tjLiquidityMiningStake: Decimal;
+    tjRemainingLiquidityMiningLQTYReward: Decimal;
+    tjTokenAllowance: Decimal;
+    tjTokenBalance: Decimal;
+    tjTotalStakedUniTokens: Decimal;
     total: Trove;
     totalRedistributed: Trove;
     totalStakedLQTY: Decimal;
@@ -468,6 +482,11 @@ export interface PopulatableLiquity<R = unknown, S = unknown, P = unknown> exten
     setPrice(price: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
     stakeLQTY(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
     stakeUniTokens(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    tjApproveUniTokens(allowance?: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    tjExitLiquidityMining(): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    tjStakeUniTokens(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    tjUnstakeUniTokens(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    tjWithdrawLQTYRewardFromLiquidityMining(): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
     transferCollateralGainToTrove(): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, CollateralGainTransferDetails>>>>;
     unstakeLQTY(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
     unstakeUniTokens(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
@@ -521,6 +540,12 @@ export interface ReadableLiquity {
     getTroves(params: TroveListingParams): Promise<UserTrove[]>;
     getUniTokenAllowance(address?: string): Promise<Decimal>;
     getUniTokenBalance(address?: string): Promise<Decimal>;
+    tjGetLiquidityMiningLQTYReward(address?: string): Promise<Decimal>;
+    tjGetLiquidityMiningStake(address?: string): Promise<Decimal>;
+    tjGetRemainingLiquidityMiningLQTYReward(): Promise<Decimal>;
+    tjGetTotalStakedUniTokens(): Promise<Decimal>;
+    tjGetUniTokenAllowance(address?: string): Promise<Decimal>;
+    tjGetUniTokenBalance(address?: string): Promise<Decimal>;
 }
 
 // @internal (undocumented)
@@ -562,7 +587,6 @@ export interface SendableLiquity<R = unknown, S = unknown> extends _SendableFrom
     closeTrove(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, TroveClosureDetails>>>;
     depositCollateral(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, TroveAdjustmentDetails>>>;
     depositLUSDInStabilityPool(amount: Decimalish, frontendTag?: string): Promise<SentLiquityTransaction<S, LiquityReceipt<R, StabilityDepositChangeDetails>>>;
-    exitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     liquidate(address: string | string[]): Promise<SentLiquityTransaction<S, LiquityReceipt<R, LiquidationDetails>>>;
     liquidateUpTo(maximumNumberOfTrovesToLiquidate: number): Promise<SentLiquityTransaction<S, LiquityReceipt<R, LiquidationDetails>>>;
     openTrove(params: TroveCreationParams<Decimalish>, maxBorrowingRate?: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, TroveCreationDetails>>>;
@@ -575,6 +599,11 @@ export interface SendableLiquity<R = unknown, S = unknown> extends _SendableFrom
     setPrice(price: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     stakeLQTY(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     stakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    tjApproveUniTokens(allowance?: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    tjExitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    tjStakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    tjUnstakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    tjWithdrawLQTYRewardFromLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     transferCollateralGainToTrove(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, CollateralGainTransferDetails>>>;
     unstakeLQTY(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     unstakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
@@ -665,6 +694,11 @@ export interface TransactableLiquity {
     setPrice(price: Decimalish): Promise<void>;
     stakeLQTY(amount: Decimalish): Promise<void>;
     stakeUniTokens(amount: Decimalish): Promise<void>;
+    tjApproveUniTokens(allowance?: Decimalish): Promise<void>;
+    tjExitLiquidityMining(): Promise<void>;
+    tjStakeUniTokens(amount: Decimalish): Promise<void>;
+    tjUnstakeUniTokens(amount: Decimalish): Promise<void>;
+    tjWithdrawLQTYRewardFromLiquidityMining(): Promise<void>;
     transferCollateralGainToTrove(): Promise<CollateralGainTransferDetails>;
     unstakeLQTY(amount: Decimalish): Promise<void>;
     unstakeUniTokens(amount: Decimalish): Promise<void>;

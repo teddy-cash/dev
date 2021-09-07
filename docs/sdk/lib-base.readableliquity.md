@@ -43,4 +43,10 @@ Implemented by [EthersLiquity](./lib-ethers.ethersliquity.md)<!-- -->.
 |  [getTroves(params)](./lib-base.readableliquity.gettroves_1.md) | Get a slice from the list of Troves. |
 |  [getUniTokenAllowance(address)](./lib-base.readableliquity.getunitokenallowance.md) | Get the liquidity mining contract's allowance of a holder's Uniswap ETH/LUSD LP tokens. |
 |  [getUniTokenBalance(address)](./lib-base.readableliquity.getunitokenbalance.md) | Get the amount of Uniswap ETH/LUSD LP tokens held by an address. |
+|  [tjGetLiquidityMiningLQTYReward(address)](./lib-base.readableliquity.tjgetliquiditymininglqtyreward.md) | Get the amount of LQTY earned by an address through mining liquidity on TJ. |
+|  [tjGetLiquidityMiningStake(address)](./lib-base.readableliquity.tjgetliquidityminingstake.md) | Get the amount of Uniswap ETH/LUSD LP tokens currently staked by an address in liquidity mining on TJ. |
+|  [tjGetRemainingLiquidityMiningLQTYReward()](./lib-base.readableliquity.tjgetremainingliquiditymininglqtyreward.md) | Get the remaining LQTY that will be collectively rewarded to liquidity miners on TJ Pool2. |
+|  [tjGetTotalStakedUniTokens()](./lib-base.readableliquity.tjgettotalstakedunitokens.md) | Get the total amount of Uniswap ETH/LUSD LP tokens currently staked in liquidity mining on TJ. |
+|  [tjGetUniTokenAllowance(address)](./lib-base.readableliquity.tjgetunitokenallowance.md) | Get the liquidity mining contract's allowance of a holder's Uniswap ETH/LUSD LP tokens. |
+|  [tjGetUniTokenBalance(address)](./lib-base.readableliquity.tjgetunitokenbalance.md) | Get the amount of TJ Pool2 LP tokens held by an address. |
 
