@@ -15,11 +15,11 @@ import { useValidationState } from "../../context/useValidationState";
 import { useLiquitySelector } from "@liquity/lib-react";
 
 const transactionId = /farm-/;
-const selector = ({ totalStakedUniTokens }: LiquityStoreState) => ({ totalStakedUniTokens });
+const selector = ({ tjTotalStakedUniTokens }: LiquityStoreState) => ({ tjTotalStakedUniTokens });
 
 export const Staking: React.FC = () => {
   const { dispatchEvent } = useFarmView();
-  const { totalStakedUniTokens } = useLiquitySelector(selector);
+  const { tjTotalStakedUniTokens: totalStakedUniTokens } = useLiquitySelector(selector);
 
   const [amount, setAmount] = useState<Decimal>(Decimal.from(0));
   const editingState = useState<string>();
