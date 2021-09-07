@@ -261,10 +261,6 @@ export const _connectToContracts = (
 ): _LiquityContracts => {
   const abi = getAbi(_priceFeedIsTestnet, _uniTokenIsMock);
   return mapLiquityContracts(addresses, (address, key) => {
-    if (!abi[key]) {
-      console.error(`BWB abi is undefined for ${key}`);
-      throw new Error("BWB abi undefined");
-    }
     return new _LiquityContract(address, abi[key], signerOrProvider) as _TypedLiquityContract;
   }) as _LiquityContracts;
 };

@@ -355,8 +355,6 @@ export class ReadableEthersLiquity implements ReadableLiquity {
       unipool.lastUpdateTime({ ...overrides }).then(numberify)
     ]);
     return (blockTimestamp: number) => {
-      console.log(`BWB timestamp ${blockTimestamp}`);
-      console.log(`BWB periodFinish ${periodFinish}`);
       return rewardRate.mul(
         Math.max(0, periodFinish - (totalSupply.isZero() ? lastUpdateTime : blockTimestamp))
       );

@@ -23,14 +23,6 @@ type FarmStakeValidation = {
   hasSetMaximumStake: boolean;
 };
 
-let counter = 0;
-const printOnce = (func: any) => {
-  if (counter === 0) {
-    func();
-  }
-  counter += 1;
-};
-
 export const useValidationState = (amount: Decimal): FarmStakeValidation => {
   const {
     tjTokenBalance: uniTokenBalance,
@@ -38,15 +30,6 @@ export const useValidationState = (amount: Decimal): FarmStakeValidation => {
     tjLiquidityMiningStake: liquidityMiningStake,
     tjRemainingLiquidityMiningLQTYReward: remainingLiquidityMiningLQTYReward
   } = useLiquitySelector(selector);
-
-  printOnce(() => {
-    console.log(`BWB tjPool2TokenBalance is ${uniTokenBalance}`);
-    console.log(`BWB tjPool2TokenAllowance is ${uniTokenAllowance}`);
-    console.log(`BWB tjPool2LiquidityMiningStake is ${liquidityMiningStake}`);
-    console.log(
-      `BWB tjPool2RemainingLiquidityMiningLQTYReward is ${remainingLiquidityMiningLQTYReward}`
-    );
-  });
 
   const isWithdrawing = liquidityMiningStake.gt(amount);
   const amountChanged = isWithdrawing
