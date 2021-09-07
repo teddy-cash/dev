@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { Card, Heading, Box, Flex, Button } from "theme-ui";
-import { LP, GT } from "../../../../strings";
+import { POOL2LP, GT } from "../../../../strings";
 import { LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
 import { Icon } from "../../../Icon";
@@ -14,22 +14,22 @@ import { UnstakeAndClaim } from "../UnstakeAndClaim";
 import { Yield } from "../Yield";
 
 const selector = ({
-  liquidityMiningStake,
-  liquidityMiningLQTYReward,
-  totalStakedUniTokens
+  pngLiquidityMiningStake,
+  pngLiquidityMiningLQTYReward,
+  pngTotalStakedUniTokens
 }: LiquityStoreState) => ({
-  liquidityMiningStake,
-  liquidityMiningLQTYReward,
-  totalStakedUniTokens
+  pngLiquidityMiningStake,
+  pngLiquidityMiningLQTYReward,
+  pngTotalStakedUniTokens
 });
 const transactionId = /farm-/i;
 
 export const Active: React.FC = () => {
   const { dispatchEvent } = useFarmView();
   const {
-    liquidityMiningStake,
-    liquidityMiningLQTYReward,
-    totalStakedUniTokens
+    pngLiquidityMiningStake: liquidityMiningStake,
+    pngLiquidityMiningLQTYReward: liquidityMiningLQTYReward,
+    pngTotalStakedUniTokens: totalStakedUniTokens
   } = useLiquitySelector(selector);
 
   const handleAdjustPressed = useCallback(() => {
@@ -60,7 +60,7 @@ export const Active: React.FC = () => {
             label="Stake"
             inputId="farm-stake"
             amount={liquidityMiningStake.prettify(4)}
-            unit={LP}
+            unit={POOL2LP}
           />
           {poolShare.infinite ? (
             <StaticRow label="Pool share" inputId="farm-share" amount="N/A" />

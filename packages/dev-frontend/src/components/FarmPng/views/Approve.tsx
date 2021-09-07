@@ -34,11 +34,11 @@ export const Approve: React.FC<ApproveProps> = ({ amount }) => {
   return (
     <Transaction
       id={transactionId}
-      send={liquity.approveUniTokens.bind(liquity, undefined)}
+      send={liquity.pngApproveUniTokens.bind(liquity, undefined)}
       showFailure="asTooltip"
       tooltipPlacement="bottom"
     >
-      <Button sx={{ width: "60%" }}>Approve UNI LP</Button>
+      <Button sx={{ width: "60%" }}>Approve PNG LP</Button>
     </Transaction>
   );
 };

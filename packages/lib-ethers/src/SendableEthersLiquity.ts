@@ -244,6 +244,14 @@ export class SendableEthersLiquity
     return this._populate.approveUniTokens(allowance, overrides).then(sendTransaction);
   }
 
+  /** {@inheritDoc @liquity/lib-base#SendableLiquity.pngApproveUniTokens} */
+  pngApproveUniTokens(
+    allowance?: Decimalish,
+    overrides?: EthersTransactionOverrides
+  ): Promise<SentEthersLiquityTransaction<void>> {
+    return this._populate.pngApproveUniTokens(allowance, overrides).then(sendTransaction);
+  }
+
   /** {@inheritDoc @liquity/lib-base#SendableLiquity.tjApproveUniTokens} */
   tjApproveUniTokens(
     allowance?: Decimalish,
@@ -258,6 +266,14 @@ export class SendableEthersLiquity
     overrides?: EthersTransactionOverrides
   ): Promise<SentEthersLiquityTransaction<void>> {
     return this._populate.stakeUniTokens(amount, overrides).then(sendTransaction);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#SendableLiquity.pngStakeUniTokens} */
+  pngStakeUniTokens(
+    amount: Decimalish,
+    overrides?: EthersTransactionOverrides
+  ): Promise<SentEthersLiquityTransaction<void>> {
+    return this._populate.pngStakeUniTokens(amount, overrides).then(sendTransaction);
   }
 
   /** {@inheritDoc @liquity/lib-base#SendableLiquity.tjStakeUniTokens} */
@@ -276,6 +292,14 @@ export class SendableEthersLiquity
     return this._populate.unstakeUniTokens(amount, overrides).then(sendTransaction);
   }
 
+  /** {@inheritDoc @liquity/lib-base#SendableLiquity.pngUnstakeUniTokens} */
+  pngUnstakeUniTokens(
+    amount: Decimalish,
+    overrides?: EthersTransactionOverrides
+  ): Promise<SentEthersLiquityTransaction<void>> {
+    return this._populate.pngUnstakeUniTokens(amount, overrides).then(sendTransaction);
+  }
+
   /** {@inheritDoc @liquity/lib-base#SendableLiquity.tjUnstakeUniTokens} */
   tjUnstakeUniTokens(
     amount: Decimalish,
@@ -291,6 +315,13 @@ export class SendableEthersLiquity
     return this._populate.withdrawLQTYRewardFromLiquidityMining(overrides).then(sendTransaction);
   }
 
+  /** {@inheritDoc @liquity/lib-base#SendableLiquity.pngWithdrawLQTYRewardFromLiquidityMining} */
+  pngWithdrawLQTYRewardFromLiquidityMining(
+    overrides?: EthersTransactionOverrides
+  ): Promise<SentEthersLiquityTransaction<void>> {
+    return this._populate.pngWithdrawLQTYRewardFromLiquidityMining(overrides).then(sendTransaction);
+  }
+
   /** {@inheritDoc @liquity/lib-base#SendableLiquity.tjWithdrawLQTYRewardFromLiquidityMining} */
   tjWithdrawLQTYRewardFromLiquidityMining(
     overrides?: EthersTransactionOverrides
@@ -303,6 +334,13 @@ export class SendableEthersLiquity
     overrides?: EthersTransactionOverrides
   ): Promise<SentEthersLiquityTransaction<void>> {
     return this._populate.exitLiquidityMining(overrides).then(sendTransaction);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#SendableLiquity.pngExitLiquidityMining} */
+  pngExitLiquidityMining(
+    overrides?: EthersTransactionOverrides
+  ): Promise<SentEthersLiquityTransaction<void>> {
+    return this._populate.pngExitLiquidityMining(overrides).then(sendTransaction);
   }
 
   /** {@inheritDoc @liquity/lib-base#SendableLiquity.tjExitLiquidityMining} */

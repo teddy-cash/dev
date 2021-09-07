@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "theme-ui";
 import { useLiquity } from "../../../hooks/LiquityContext";
-import { LP } from "../../../strings";
+import { POOL2LP } from "../../../strings";
 import { Transaction } from "../../Transaction";
 import { Decimal } from "@liquity/lib-base";
 import { ActionDescription } from "../../ActionDescription";
@@ -22,7 +22,7 @@ export const Description: React.FC<DescriptionProps> = ({ amount }) => {
   if (!hasApproved) {
     return (
       <ActionDescription>
-        <Text>To stake your {LP} tokens you need to allow Liquity to stake them for you</Text>
+        <Text>To stake your {POOL2LP} tokens you need to allow Liquity to stake them for you</Text>
       </ActionDescription>
     );
   }
@@ -34,16 +34,16 @@ export const Description: React.FC<DescriptionProps> = ({ amount }) => {
   return (
     <ActionDescription>
       {isWithdrawing && (
-        <Transaction id={transactionId} send={liquity.unstakeUniTokens.bind(liquity, amountChanged)}>
+        <Transaction id={transactionId} send={liquity.pngUnstakeUniTokens.bind(liquity, amountChanged)}>
           <Text>
-            You are unstaking {amountChanged.prettify(4)} {LP}
+            You are unstaking {amountChanged.prettify(4)} {POOL2LP}
           </Text>
         </Transaction>
       )}
       {!isWithdrawing && (
-        <Transaction id={transactionId} send={liquity.stakeUniTokens.bind(liquity, amountChanged)}>
+        <Transaction id={transactionId} send={liquity.pngStakeUniTokens.bind(liquity, amountChanged)}>
           <Text>
-            You are staking {amountChanged.prettify(4)} {LP}
+            You are staking {amountChanged.prettify(4)} {POOL2LP}
           </Text>
         </Transaction>
       )}

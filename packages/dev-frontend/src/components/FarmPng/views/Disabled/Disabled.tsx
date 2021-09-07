@@ -6,15 +6,14 @@ import { InfoMessage } from "../../../InfoMessage";
 import { UnstakeAndClaim } from "../UnstakeAndClaim";
 import { RemainingLQTY } from "../RemainingLQTY";
 import { StaticRow } from "../../../Trove/Editor";
-import { GT, LP } from "../../../../strings";
+import { GT, POOL2LP } from "../../../../strings";
 
-const selector = ({ liquidityMiningStake, liquidityMiningLQTYReward }: LiquityStoreState) => ({
-  liquidityMiningStake,
-  liquidityMiningLQTYReward
+const selector = ({ pngLiquidityMiningStake, pngLiquidityMiningLQTYReward }: LiquityStoreState) => ({
+  pngLiquidityMiningStake, pngLiquidityMiningLQTYReward 
 });
 
 export const Disabled: React.FC = () => {
-  const { liquidityMiningStake, liquidityMiningLQTYReward } = useLiquitySelector(selector);
+  const { pngLiquidityMiningStake: liquidityMiningStake, pngLiquidityMiningLQTYReward: liquidityMiningLQTYReward } = useLiquitySelector(selector);
   const hasStake = !liquidityMiningStake.isZero;
 
   return (
@@ -36,7 +35,7 @@ export const Disabled: React.FC = () => {
                 label="Stake"
                 inputId="farm-deposit"
                 amount={liquidityMiningStake.prettify(4)}
-                unit={LP}
+                unit={POOL2LP}
               />
               <StaticRow
                 label="Reward"

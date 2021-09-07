@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { Card, Heading, Box, Flex, Button, Link, Paragraph } from "theme-ui";
 import { useLiquity } from "../../../../hooks/LiquityContext";
+import { POOL2LP } from "../../../../strings";
 import { Icon } from "../../../Icon";
 import { InfoMessage } from "../../../InfoMessage";
 import { useFarmView } from "../../context/FarmViewContext";
@@ -25,19 +26,19 @@ export const Inactive: React.FC = () => {
   return (
     <Card>
       <Heading>
-        AVAX/TEDDY on Pangolin
+        {POOL2LP} on Pangolin
         <Flex sx={{ justifyContent: "flex-end" }}>
           <RemainingLQTY />
         </Flex>
       </Heading>
       <Box sx={{ p: [2, 3] }}>
         <InfoMessage title="You aren't farming TEDDY.">
-          <Paragraph>You can farm TEDDY by staking your Pangolin AVAX/TEDDY LP tokens.</Paragraph>
+          <Paragraph>You can farm TEDDY by staking your Pangolin {POOL2LP} tokens.</Paragraph>
 
           <Paragraph sx={{ mt: 2 }}>
             You can obtain LP tokens by adding liquidity to the{" "}
             <Link href={uniLink(addresses["lqtyToken"])} target="_blank">
-              AVAX/TEDDY pool on Pangolin. <Icon name="external-link-alt" size="xs" />
+              {POOL2LP} on Pangolin. <Icon name="external-link-alt" size="xs" />
             </Link>
           </Paragraph>
         </InfoMessage>

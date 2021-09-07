@@ -66,6 +66,17 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [liquidate(address, overrides)](./lib-ethers.ethersliquity.liquidate.md) |  | Liquidate one or more undercollateralized Troves. |
 |  [liquidateUpTo(maximumNumberOfTrovesToLiquidate, overrides)](./lib-ethers.ethersliquity.liquidateupto.md) |  | Liquidate the least collateralized Troves up to a maximum number. |
 |  [openTrove(params, maxBorrowingRateOrOptionalParams, overrides)](./lib-ethers.ethersliquity.opentrove.md) |  | Open a new Trove by depositing collateral and borrowing LUSD. |
+|  [pngApproveUniTokens(allowance, overrides)](./lib-ethers.ethersliquity.pngapproveunitokens.md) |  | Allow the liquidity mining contract to use Png Pool2 LP tokens for [staking](./lib-base.transactableliquity.pngstakeunitokens.md)<!-- -->. |
+|  [pngExitLiquidityMining(overrides)](./lib-ethers.ethersliquity.pngexitliquiditymining.md) |  |  |
+|  [pngGetLiquidityMiningLQTYReward(address, overrides)](./lib-ethers.ethersliquity.pnggetliquiditymininglqtyreward.md) |  | Get the amount of LQTY earned by an address through mining liquidity on PNG pool2. |
+|  [pngGetLiquidityMiningStake(address, overrides)](./lib-ethers.ethersliquity.pnggetliquidityminingstake.md) |  | Get the amount of PNG Pool2 LP tokens currently staked by an address in liquidity mining. |
+|  [pngGetRemainingLiquidityMiningLQTYReward(overrides)](./lib-ethers.ethersliquity.pnggetremainingliquiditymininglqtyreward.md) |  | Get the remaining LQTY that will be collectively rewarded to liquidity miners on PNG pool2. |
+|  [pngGetTotalStakedUniTokens(overrides)](./lib-ethers.ethersliquity.pnggettotalstakedunitokens.md) |  | Get the total amount of PNG Pool2 LP tokens currently staked in liquidity mining. |
+|  [pngGetUniTokenAllowance(address, overrides)](./lib-ethers.ethersliquity.pnggetunitokenallowance.md) |  | Get the liquidity mining contract's allowance of a holder's PNG Pool2 LP tokens. |
+|  [pngGetUniTokenBalance(address, overrides)](./lib-ethers.ethersliquity.pnggetunitokenbalance.md) |  | Get the amount of Png Pool2 LP tokens held by an address. |
+|  [pngStakeUniTokens(amount, overrides)](./lib-ethers.ethersliquity.pngstakeunitokens.md) |  | Stake Png Pool2 LP tokens to participate in liquidity mining and earn LQTY. |
+|  [pngUnstakeUniTokens(amount, overrides)](./lib-ethers.ethersliquity.pngunstakeunitokens.md) |  | Withdraw Png Pool2 LP tokens from liquidity mining. |
+|  [pngWithdrawLQTYRewardFromLiquidityMining(overrides)](./lib-ethers.ethersliquity.pngwithdrawlqtyrewardfromliquiditymining.md) |  | Withdraw LQTY that has been earned by mining liquidity on Png Pool2. |
 |  [redeemLUSD(amount, maxRedemptionRate, overrides)](./lib-ethers.ethersliquity.redeemlusd.md) |  | Redeem LUSD to native currency (e.g. Ether) at face value. |
 |  [registerFrontend(kickbackRate, overrides)](./lib-ethers.ethersliquity.registerfrontend.md) |  | Register current wallet address as a Liquity frontend. |
 |  [repayLUSD(amount, overrides)](./lib-ethers.ethersliquity.repaylusd.md) |  | Adjust existing Trove by repaying some of its debt. |

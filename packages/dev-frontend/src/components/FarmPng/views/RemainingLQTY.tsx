@@ -4,12 +4,12 @@ import { Flex } from "theme-ui";
 import { LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
 
-const selector = ({ remainingLiquidityMiningLQTYReward }: LiquityStoreState) => ({
-  remainingLiquidityMiningLQTYReward
+const selector = ({ pngRemainingLiquidityMiningLQTYReward }: LiquityStoreState) => ({
+  pngRemainingLiquidityMiningLQTYReward
 });
 
 export const RemainingLQTY: React.FC = () => {
-  const { remainingLiquidityMiningLQTYReward } = useLiquitySelector(selector);
+  const { pngRemainingLiquidityMiningLQTYReward: remainingLiquidityMiningLQTYReward } = useLiquitySelector(selector);
 
   return (
     <Flex sx={{ mr: 2, fontSize: 2, fontWeight: "medium" }}>

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { Heading, Box, Flex, Card, Button } from "theme-ui";
 import { Decimal, LiquityStoreState } from "@liquity/lib-base";
-import { LP } from "../../../../strings";
+import { POOL2LP } from "../../../../strings";
 import { Icon } from "../../../Icon";
 import { EditableRow, StaticRow } from "../../../Trove/Editor";
 import { LoadingOverlay } from "../../../LoadingOverlay";
@@ -15,11 +15,11 @@ import { useValidationState } from "../../context/useValidationState";
 import { useLiquitySelector } from "@liquity/lib-react";
 
 const transactionId = /farm-/;
-const selector = ({ totalStakedUniTokens }: LiquityStoreState) => ({ totalStakedUniTokens });
+const selector = ({ pngTotalStakedUniTokens }: LiquityStoreState) => ({ pngTotalStakedUniTokens });
 
 export const Staking: React.FC = () => {
   const { dispatchEvent } = useFarmView();
-  const { totalStakedUniTokens } = useLiquitySelector(selector);
+  const { pngTotalStakedUniTokens: totalStakedUniTokens } = useLiquitySelector(selector);
 
   const [amount, setAmount] = useState<Decimal>(Decimal.from(0));
   const editingState = useState<string>();
@@ -43,7 +43,7 @@ export const Staking: React.FC = () => {
   return (
     <Card>
       <Heading>
-        Pangolin Liquidity Farm
+        Pangolin AVAX/TEDDY Liquidity Farm
         {isDirty && !isTransactionPending && (
           <Button
             variant="titleIcon"
@@ -60,7 +60,7 @@ export const Staking: React.FC = () => {
           label="Stake"
           inputId="amount-lp"
           amount={amount.prettify(4)}
-          unit={LP}
+          unit={POOL2LP}
           editingState={editingState}
           editedAmount={amount.toString(4)}
           setEditedAmount={amount => setAmount(Decimal.from(amount))}

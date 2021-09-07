@@ -2,13 +2,13 @@ import { Decimal, LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
 
 const selector = ({
-  uniTokenBalance,
-  uniTokenAllowance,
-  liquidityMiningStake
+  pngTokenBalance,
+  pngTokenAllowance,
+  pngLiquidityMiningStake
 }: LiquityStoreState) => ({
-  uniTokenBalance,
-  uniTokenAllowance,
-  liquidityMiningStake
+  pngTokenBalance,
+  pngTokenAllowance,
+  pngLiquidityMiningStake
 });
 
 type FarmStakeValidation = {
@@ -22,7 +22,11 @@ type FarmStakeValidation = {
 };
 
 export const useValidationState = (amount: Decimal): FarmStakeValidation => {
-  const { uniTokenBalance, uniTokenAllowance, liquidityMiningStake } = useLiquitySelector(selector);
+  const {
+    pngTokenBalance: uniTokenBalance,
+    pngTokenAllowance: uniTokenAllowance,
+    pngLiquidityMiningStake: liquidityMiningStake
+  } = useLiquitySelector(selector);
   const isWithdrawing = liquidityMiningStake.gt(amount);
   const amountChanged = isWithdrawing
     ? liquidityMiningStake.sub(amount)

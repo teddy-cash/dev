@@ -20,7 +20,8 @@ async function setReward(configParams) {
 
   const pngPool2Unipool = await mdh.loadOrDeploy(factory, 'pngPool2Unipool', deploymentState);
   console.log(`pngPool2Unipool address ${pngPool2Unipool.address}`);
-  const pools = {pngPool2Unipool: pngPool2Unipool, tjPool2Unipool: tjPool2Unipool}
+  //const pools = {pngPool2Unipool: pngPool2Unipool, tjPool2Unipool: tjPool2Unipool}
+  const pools = {pngPool2Unipool: pngPool2Unipool};
   for (const [name, pool] of Object.entries(pools)) {
     const teddy = await mdh.loadOrDeploy(factory, 'lqtyToken', deploymentState);
     const balance = await teddy.balanceOf(pool.address);

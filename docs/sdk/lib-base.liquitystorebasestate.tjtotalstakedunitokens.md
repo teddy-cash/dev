@@ -4,7 +4,7 @@
 
 ## LiquityStoreBaseState.tjTotalStakedUniTokens property
 
-Total amount of Uniswap ETH/LUSD LP tokens currently staked in liquidity mining on Trader Joe.
+Total amount of Trader Joe ETH/LUSD LP tokens currently staked in liquidity mining on Trader Joe.
 
 <b>Signature:</b>
 

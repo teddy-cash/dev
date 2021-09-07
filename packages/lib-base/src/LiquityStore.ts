@@ -37,11 +37,17 @@ export interface LiquityStoreBaseState {
   /** user's balance on Trader Joe Pool2 */
   tjTokenBalance: Decimal;
 
+  /** User's Pangolin AVAX/TEDDY LP token balance. */
+  pngTokenBalance: Decimal;
+
   /** The liquidity mining contract's allowance of user's Uniswap ETH/LUSD LP tokens. */
   uniTokenAllowance: Decimal;
 
   /** The liquidity mining contract's allowance of user's Trader Joe Pool2 LP tokens. */
   tjTokenAllowance: Decimal;
+
+  /** The liquidity mining contract's allowance of user's Pangolin AVAX/TEDDY LP tokens. */
+  pngTokenAllowance: Decimal;
 
   /** Remaining LQTY that will be collectively rewarded to liquidity miners. */
   remainingLiquidityMiningLQTYReward: Decimal;
@@ -49,23 +55,35 @@ export interface LiquityStoreBaseState {
   /** Remaining LQTY that will be collectively rewarded to liquidity miners on Trader Joe Pool2. */
   tjRemainingLiquidityMiningLQTYReward: Decimal;
 
+  /** Remaining LQTY that will be collectively rewarded to liquidity miners on Pangolin pool2. */
+  pngRemainingLiquidityMiningLQTYReward: Decimal;
+
   /** Amount of Uniswap ETH/LUSD LP tokens the user has staked in liquidity mining. */
   liquidityMiningStake: Decimal;
 
   /** Amount of LQTY the user has earned through mining liquidity on Trader Joe. */
   tjLiquidityMiningStake: Decimal;
 
+  /** Amount of Uniswap Pool2 LP tokens the user has staked in liquidity mining on Pangolin. */
+  pngLiquidityMiningStake: Decimal;
+
   /** Total amount of Uniswap ETH/LUSD LP tokens currently staked in liquidity mining. */
   totalStakedUniTokens: Decimal;
 
-  /** Total amount of Uniswap ETH/LUSD LP tokens currently staked in liquidity mining on Trader Joe. */
+  /** Total amount of Trader Joe ETH/LUSD LP tokens currently staked in liquidity mining on Trader Joe. */
   tjTotalStakedUniTokens: Decimal;
+
+  /** Total amount of Pangolin Pool2 LP tokens currently staked in liquidity mining. */
+  pngTotalStakedUniTokens: Decimal;
 
   /** Amount of LQTY the user has earned through mining liquidity. */
   liquidityMiningLQTYReward: Decimal;
 
   /** Amount of LQTY the user has earned through mining liquidity on Trader Joe. */
   tjLiquidityMiningLQTYReward: Decimal;
+
+  /** Amount of LQTY the user has earned through mining liquidity on Pangolin Pool2. */
+  pngLiquidityMiningLQTYReward: Decimal;
 
   /**
    * Amount of leftover collateral available for withdrawal to the user.
@@ -398,6 +416,13 @@ export abstract class LiquityStore<T = unknown> {
         baseStateUpdate.tjTokenBalance
       ),
 
+      pngTokenBalance: this._updateIfChanged(
+        eq,
+        "pngTokenBalance",
+        baseState.pngTokenBalance,
+        baseStateUpdate.pngTokenBalance
+      ),
+
       uniTokenAllowance: this._updateIfChanged(
         eq,
         "uniTokenAllowance",
@@ -412,6 +437,13 @@ export abstract class LiquityStore<T = unknown> {
         baseStateUpdate.tjTokenAllowance
       ),
 
+      pngTokenAllowance: this._updateIfChanged(
+        eq,
+        "pngTokenAllowance",
+        baseState.pngTokenAllowance,
+        baseStateUpdate.pngTokenAllowance
+      ),
+
       remainingLiquidityMiningLQTYReward: this._silentlyUpdateIfChanged(
         eq,
         baseState.remainingLiquidityMiningLQTYReward,
@@ -422,6 +454,12 @@ export abstract class LiquityStore<T = unknown> {
         eq,
         baseState.tjRemainingLiquidityMiningLQTYReward,
         baseStateUpdate.tjRemainingLiquidityMiningLQTYReward
+      ),
+
+      pngRemainingLiquidityMiningLQTYReward: this._silentlyUpdateIfChanged(
+        eq,
+        baseState.pngRemainingLiquidityMiningLQTYReward,
+        baseStateUpdate.pngRemainingLiquidityMiningLQTYReward
       ),
 
       liquidityMiningStake: this._updateIfChanged(
@@ -438,6 +476,13 @@ export abstract class LiquityStore<T = unknown> {
         baseStateUpdate.tjLiquidityMiningStake
       ),
 
+      pngLiquidityMiningStake: this._updateIfChanged(
+        eq,
+        "pngLiquidityMiningStake",
+        baseState.pngLiquidityMiningStake,
+        baseStateUpdate.pngLiquidityMiningStake
+      ),
+
       totalStakedUniTokens: this._updateIfChanged(
         eq,
         "totalStakedUniTokens",
@@ -452,6 +497,13 @@ export abstract class LiquityStore<T = unknown> {
         baseStateUpdate.tjTotalStakedUniTokens
       ),
 
+      pngTotalStakedUniTokens: this._updateIfChanged(
+        eq,
+        "pngTotalStakedUniTokens",
+        baseState.pngTotalStakedUniTokens,
+        baseStateUpdate.pngTotalStakedUniTokens
+      ),
+
       liquidityMiningLQTYReward: this._silentlyUpdateIfChanged(
         eq,
         baseState.liquidityMiningLQTYReward,
@@ -462,6 +514,12 @@ export abstract class LiquityStore<T = unknown> {
         eq,
         baseState.tjLiquidityMiningLQTYReward,
         baseStateUpdate.tjLiquidityMiningLQTYReward
+      ),
+
+      pngLiquidityMiningLQTYReward: this._silentlyUpdateIfChanged(
+        eq,
+        baseState.pngLiquidityMiningLQTYReward,
+        baseStateUpdate.pngLiquidityMiningLQTYReward
       ),
 
       collateralSurplusBalance: this._updateIfChanged(

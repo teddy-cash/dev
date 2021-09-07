@@ -21,21 +21,21 @@ const getInitialView = (
 };
 
 const selector = ({
-  liquidityMiningStake,
-  remainingLiquidityMiningLQTYReward,
-  liquidityMiningLQTYReward
+  pngLiquidityMiningStake,
+  pngRemainingLiquidityMiningLQTYReward,
+  pngLiquidityMiningLQTYReward
 }: LiquityStoreState) => ({
-  liquidityMiningStake,
-  remainingLiquidityMiningLQTYReward,
-  liquidityMiningLQTYReward
+  pngLiquidityMiningStake,
+  pngRemainingLiquidityMiningLQTYReward,
+  pngLiquidityMiningLQTYReward
 });
 
 export const FarmViewProvider: React.FC = props => {
   const { children } = props;
   const {
-    liquidityMiningStake,
-    remainingLiquidityMiningLQTYReward,
-    liquidityMiningLQTYReward
+    pngLiquidityMiningStake: liquidityMiningStake,
+    pngRemainingLiquidityMiningLQTYReward: remainingLiquidityMiningLQTYReward,
+    pngLiquidityMiningLQTYReward: liquidityMiningLQTYReward
   } = useLiquitySelector(selector);
 
   const [view, setView] = useState<FarmView>(

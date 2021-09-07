@@ -140,6 +140,13 @@ export interface ReadableLiquity {
   tjGetUniTokenBalance(address?: string): Promise<Decimal>;
 
   /**
+   * Get the amount of Png Pool2 LP tokens held by an address.
+   *
+   * @param address - Address whose balance should be retrieved.
+   */
+  pngGetUniTokenBalance(address?: string): Promise<Decimal>;
+
+  /**
    * Get the liquidity mining contract's allowance of a holder's Uniswap ETH/LUSD LP tokens.
    *
    * @param address - Address holding the Uniswap ETH/LUSD LP tokens.
@@ -154,6 +161,13 @@ export interface ReadableLiquity {
   tjGetUniTokenAllowance(address?: string): Promise<Decimal>;
 
   /**
+   * Get the liquidity mining contract's allowance of a holder's PNG Pool2 LP tokens.
+   *
+   * @param address - Address holding the Uniswap ETH/LUSD LP tokens.
+   */
+  pngGetUniTokenAllowance(address?: string): Promise<Decimal>;
+
+  /**
    * Get the remaining LQTY that will be collectively rewarded to liquidity miners.
    */
   getRemainingLiquidityMiningLQTYReward(): Promise<Decimal>;
@@ -162,6 +176,11 @@ export interface ReadableLiquity {
    * Get the remaining LQTY that will be collectively rewarded to liquidity miners on TJ Pool2.
    */
   tjGetRemainingLiquidityMiningLQTYReward(): Promise<Decimal>;
+
+  /**
+   * Get the remaining LQTY that will be collectively rewarded to liquidity miners on PNG pool2.
+   */
+  pngGetRemainingLiquidityMiningLQTYReward(): Promise<Decimal>;
 
   /**
    * Get the amount of Uniswap ETH/LUSD LP tokens currently staked by an address in liquidity mining.
@@ -178,6 +197,13 @@ export interface ReadableLiquity {
   tjGetLiquidityMiningStake(address?: string): Promise<Decimal>;
 
   /**
+   * Get the amount of PNG Pool2 LP tokens currently staked by an address in liquidity mining.
+   *
+   * @param address - Address whose LP stake should be retrieved.
+   */
+  pngGetLiquidityMiningStake(address?: string): Promise<Decimal>;
+
+  /**
    * Get the total amount of Uniswap ETH/LUSD LP tokens currently staked in liquidity mining.
    */
   getTotalStakedUniTokens(): Promise<Decimal>;
@@ -186,6 +212,11 @@ export interface ReadableLiquity {
    * Get the total amount of Uniswap ETH/LUSD LP tokens currently staked in liquidity mining on TJ.
    */
   tjGetTotalStakedUniTokens(): Promise<Decimal>;
+
+  /**
+   * Get the total amount of PNG Pool2 LP tokens currently staked in liquidity mining.
+   */
+  pngGetTotalStakedUniTokens(): Promise<Decimal>;
 
   /**
    * Get the amount of LQTY earned by an address through mining liquidity.
@@ -200,6 +231,13 @@ export interface ReadableLiquity {
    * @param address - Address whose LQTY reward should be retrieved.
    */
   tjGetLiquidityMiningLQTYReward(address?: string): Promise<Decimal>;
+
+  /**
+   * Get the amount of LQTY earned by an address through mining liquidity on PNG pool2.
+   *
+   * @param address - Address whose LQTY reward should be retrieved.
+   */
+  pngGetLiquidityMiningLQTYReward(address?: string): Promise<Decimal>;
 
   /**
    * Get the amount of leftover collateral available for withdrawal by an address.

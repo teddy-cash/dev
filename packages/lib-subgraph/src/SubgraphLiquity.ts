@@ -344,11 +344,19 @@ export class SubgraphLiquity implements ReadableLiquity, ObservableLiquity {
     throw new Error("Method not implemented.");
   }
 
+  pngGetUniTokenBalance(address?: string): Promise<Decimal> {
+    throw new Error("Method not implemented.");
+  }
+
   tjGetUniTokenBalance(address?: string): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }
 
   getUniTokenAllowance(address?: string): Promise<Decimal> {
+    throw new Error("Method not implemented.");
+  }
+
+  pngGetUniTokenAllowance(address?: string): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }
 
@@ -360,11 +368,19 @@ export class SubgraphLiquity implements ReadableLiquity, ObservableLiquity {
     throw new Error("Method not implemented.");
   }
 
+  pngGetRemainingLiquidityMiningLQTYReward(): Promise<Decimal> {
+    throw new Error("Method not implemented.");
+  }
+
   tjGetRemainingLiquidityMiningLQTYReward(): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }
 
   getLiquidityMiningStake(address?: string): Promise<Decimal> {
+    throw new Error("Method not implemented.");
+  }
+
+  pngGetLiquidityMiningStake(address?: string): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }
 
@@ -376,6 +392,10 @@ export class SubgraphLiquity implements ReadableLiquity, ObservableLiquity {
     throw new Error("Method not implemented.");
   }
 
+  pngGetLiquidityMiningLQTYReward(address?: string): Promise<Decimal> {
+    throw new Error("Method not implemented.");
+  }
+
   tjGetLiquidityMiningLQTYReward(address?: string): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }
@@ -384,9 +404,14 @@ export class SubgraphLiquity implements ReadableLiquity, ObservableLiquity {
     throw new Error("Method not implemented.");
   }
 
+  pngGetTotalStakedUniTokens(): Promise<Decimal> {
+    throw new Error("Method not implemented.");
+  }
+
   tjGetTotalStakedUniTokens(): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }
+
   getRemainingStabilityPoolLQTYReward(): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }

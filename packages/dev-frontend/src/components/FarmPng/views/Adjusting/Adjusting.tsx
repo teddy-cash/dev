@@ -3,7 +3,7 @@ import { Heading, Box, Flex, Card, Button } from "theme-ui";
 import { Decimal, Difference, LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
 
-import { LP, GT } from "../../../../strings";
+import { POOL2LP, GT } from "../../../../strings";
 import { Icon } from "../../../Icon";
 import { EditableRow, StaticRow } from "../../../Trove/Editor";
 import { LoadingOverlay } from "../../../LoadingOverlay";
@@ -15,15 +15,15 @@ import { Approve } from "../Approve";
 import { Validation } from "../Validation";
 
 const selector = ({
-  liquidityMiningStake,
-  liquidityMiningLQTYReward,
-  uniTokenBalance,
-  totalStakedUniTokens
+  pngLiquidityMiningStake,
+  pngLiquidityMiningLQTYReward,
+  pngTokenBalance,
+  pngTotalStakedUniTokens
 }: LiquityStoreState) => ({
-  liquidityMiningStake,
-  liquidityMiningLQTYReward,
-  uniTokenBalance,
-  totalStakedUniTokens
+  pngLiquidityMiningStake,
+  pngLiquidityMiningLQTYReward,
+  pngTokenBalance,
+  pngTotalStakedUniTokens
 });
 
 const transactionId = /farm-/;
@@ -31,10 +31,10 @@ const transactionId = /farm-/;
 export const Adjusting: React.FC = () => {
   const { dispatchEvent } = useFarmView();
   const {
-    liquidityMiningStake,
-    liquidityMiningLQTYReward,
-    uniTokenBalance,
-    totalStakedUniTokens
+    pngLiquidityMiningStake: liquidityMiningStake,
+    pngLiquidityMiningLQTYReward: liquidityMiningLQTYReward,
+    pngTokenBalance: uniTokenBalance,
+    pngTotalStakedUniTokens: totalStakedUniTokens
   } = useLiquitySelector(selector);
   const [amount, setAmount] = useState<Decimal>(liquidityMiningStake);
   const editingState = useState<string>();
@@ -64,7 +64,7 @@ export const Adjusting: React.FC = () => {
   return (
     <Card>
       <Heading>
-        Pangolin Liquidity Farm
+        Pangoling {POOL2LP} Liquidity Farm
         {isDirty && !isTransactionPending && (
           <Button
             variant="titleIcon"
@@ -81,7 +81,7 @@ export const Adjusting: React.FC = () => {
           label="Stake"
           inputId="farm-stake-amount"
           amount={isDirty ? amount.prettify(4) : liquidityMiningStake.prettify(4)}
-          unit={LP}
+          unit={POOL2LP}
           editingState={editingState}
           editedAmount={amount.toString(4)}
           setEditedAmount={amount => setAmount(Decimal.from(amount))}

@@ -58,6 +58,18 @@ export class _CachedReadableLiquity<T extends unknown[]> implements _ReadableLiq
     // (undocumented)
     getUniTokenBalance(address?: string, ...extraParams: T): Promise<Decimal>;
     // (undocumented)
+    pngGetLiquidityMiningLQTYReward(address?: string, ...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    pngGetLiquidityMiningStake(address?: string, ...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    pngGetRemainingLiquidityMiningLQTYReward(...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    pngGetTotalStakedUniTokens(...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    pngGetUniTokenAllowance(address?: string, ...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    pngGetUniTokenBalance(address?: string, ...extraParams: T): Promise<Decimal>;
+    // (undocumented)
     tjGetLiquidityMiningLQTYReward(address?: string, ...extraParams: T): Promise<Decimal>;
     // (undocumented)
     tjGetLiquidityMiningStake(address?: string, ...extraParams: T): Promise<Decimal>;
@@ -283,6 +295,12 @@ export interface LiquityStoreBaseState {
     lusdInStabilityPool: Decimal;
     numberOfTroves: number;
     ownFrontend: FrontendStatus;
+    pngLiquidityMiningLQTYReward: Decimal;
+    pngLiquidityMiningStake: Decimal;
+    pngRemainingLiquidityMiningLQTYReward: Decimal;
+    pngTokenAllowance: Decimal;
+    pngTokenBalance: Decimal;
+    pngTotalStakedUniTokens: Decimal;
     price: Decimal;
     remainingLiquidityMiningLQTYReward: Decimal;
     remainingStabilityPoolLQTYReward: Decimal;
@@ -473,6 +491,14 @@ export interface PopulatableLiquity<R = unknown, S = unknown, P = unknown> exten
     liquidate(address: string | string[]): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, LiquidationDetails>>>>;
     liquidateUpTo(maximumNumberOfTrovesToLiquidate: number): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, LiquidationDetails>>>>;
     openTrove(params: TroveCreationParams<Decimalish>, maxBorrowingRate?: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, TroveCreationDetails>>>>;
+    pngApproveUniTokens(allowance?: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: No member was found with name "pngExitLiquidityMining"
+    //
+    // (undocumented)
+    pngExitLiquidityMining(): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    pngStakeUniTokens(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    pngUnstakeUniTokens(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    pngWithdrawLQTYRewardFromLiquidityMining(): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
     redeemLUSD(amount: Decimalish, maxRedemptionRate?: Decimalish): Promise<PopulatedRedemption<P, S, R>>;
     registerFrontend(kickbackRate: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
     repayLUSD(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, TroveAdjustmentDetails>>>>;
@@ -540,6 +566,12 @@ export interface ReadableLiquity {
     getTroves(params: TroveListingParams): Promise<UserTrove[]>;
     getUniTokenAllowance(address?: string): Promise<Decimal>;
     getUniTokenBalance(address?: string): Promise<Decimal>;
+    pngGetLiquidityMiningLQTYReward(address?: string): Promise<Decimal>;
+    pngGetLiquidityMiningStake(address?: string): Promise<Decimal>;
+    pngGetRemainingLiquidityMiningLQTYReward(): Promise<Decimal>;
+    pngGetTotalStakedUniTokens(): Promise<Decimal>;
+    pngGetUniTokenAllowance(address?: string): Promise<Decimal>;
+    pngGetUniTokenBalance(address?: string): Promise<Decimal>;
     tjGetLiquidityMiningLQTYReward(address?: string): Promise<Decimal>;
     tjGetLiquidityMiningStake(address?: string): Promise<Decimal>;
     tjGetRemainingLiquidityMiningLQTYReward(): Promise<Decimal>;
@@ -587,9 +619,18 @@ export interface SendableLiquity<R = unknown, S = unknown> extends _SendableFrom
     closeTrove(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, TroveClosureDetails>>>;
     depositCollateral(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, TroveAdjustmentDetails>>>;
     depositLUSDInStabilityPool(amount: Decimalish, frontendTag?: string): Promise<SentLiquityTransaction<S, LiquityReceipt<R, StabilityDepositChangeDetails>>>;
+    exitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     liquidate(address: string | string[]): Promise<SentLiquityTransaction<S, LiquityReceipt<R, LiquidationDetails>>>;
     liquidateUpTo(maximumNumberOfTrovesToLiquidate: number): Promise<SentLiquityTransaction<S, LiquityReceipt<R, LiquidationDetails>>>;
     openTrove(params: TroveCreationParams<Decimalish>, maxBorrowingRate?: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, TroveCreationDetails>>>;
+    pngApproveUniTokens(allowance?: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: No member was found with name "pngExitLiquidityMining"
+    //
+    // (undocumented)
+    pngExitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    pngStakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    pngUnstakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    pngWithdrawLQTYRewardFromLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     redeemLUSD(amount: Decimalish, maxRedemptionRate?: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, RedemptionDetails>>>;
     registerFrontend(kickbackRate: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     repayLUSD(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, TroveAdjustmentDetails>>>;
@@ -685,6 +726,10 @@ export interface TransactableLiquity {
     liquidate(address: string | string[]): Promise<LiquidationDetails>;
     liquidateUpTo(maximumNumberOfTrovesToLiquidate: number): Promise<LiquidationDetails>;
     openTrove(params: TroveCreationParams<Decimalish>, maxBorrowingRate?: Decimalish): Promise<TroveCreationDetails>;
+    pngApproveUniTokens(allowance?: Decimalish): Promise<void>;
+    pngStakeUniTokens(amount: Decimalish): Promise<void>;
+    pngUnstakeUniTokens(amount: Decimalish): Promise<void>;
+    pngWithdrawLQTYRewardFromLiquidityMining(): Promise<void>;
     redeemLUSD(amount: Decimalish, maxRedemptionRate?: Decimalish): Promise<RedemptionDetails>;
     registerFrontend(kickbackRate: Decimalish): Promise<void>;
     repayLUSD(amount: Decimalish): Promise<TroveAdjustmentDetails>;

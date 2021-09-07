@@ -248,6 +248,7 @@ export interface _LiquityDeploymentJSON {
   readonly bootstrapPeriod: number;
   readonly totalStabilityPoolLQTYReward: string;
   readonly liquidityMiningLQTYRewardRate: string;
+  readonly pngLiquidityMiningLQTYRewardRate: string;
   readonly tjLiquidityMiningLQTYRewardRate: string;
   readonly _priceFeedIsTestnet: boolean;
   readonly _uniTokenIsMock: boolean;
