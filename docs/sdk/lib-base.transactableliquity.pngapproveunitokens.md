@@ -28,5 +28,5 @@ Throws [TransactionFailedError](./lib-base.transactionfailederror.md) in case of
 
 ## Remarks
 
-Must be performed before calling [stakeUniTokens()](./lib-base.transactableliquity.pngstakeunitokens.md)<!-- -->.
+Must be performed before calling [pngStakeUniTokens()](./lib-base.transactableliquity.pngstakeunitokens.md)<!-- -->.
 

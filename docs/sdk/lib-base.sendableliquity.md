@@ -35,7 +35,7 @@ Implemented by [SendableEthersLiquity](./lib-ethers.sendableethersliquity.md)<!-
 |  [liquidateUpTo(maximumNumberOfTrovesToLiquidate)](./lib-base.sendableliquity.liquidateupto.md) | Liquidate the least collateralized Troves up to a maximum number. |
 |  [openTrove(params, maxBorrowingRate)](./lib-base.sendableliquity.opentrove.md) | Open a new Trove by depositing collateral and borrowing LUSD. |
 |  [pngApproveUniTokens(allowance)](./lib-base.sendableliquity.pngapproveunitokens.md) | Allow the liquidity mining contract to use Png Pool2 LP tokens for [staking](./lib-base.transactableliquity.pngstakeunitokens.md)<!-- -->. |
-|  [pngExitLiquidityMining()](./lib-base.sendableliquity.pngexitliquiditymining.md) |  |
+|  [pngExitLiquidityMining()](./lib-base.sendableliquity.pngexitliquiditymining.md) | Withdraw all staked LP tokens from liquidity mining and claim reward. |
 |  [pngStakeUniTokens(amount)](./lib-base.sendableliquity.pngstakeunitokens.md) | Stake Png Pool2 LP tokens to participate in liquidity mining and earn LQTY. |
 |  [pngUnstakeUniTokens(amount)](./lib-base.sendableliquity.pngunstakeunitokens.md) | Withdraw Png Pool2 LP tokens from liquidity mining. |
 |  [pngWithdrawLQTYRewardFromLiquidityMining()](./lib-base.sendableliquity.pngwithdrawlqtyrewardfromliquiditymining.md) | Withdraw LQTY that has been earned by mining liquidity on Png Pool2. |

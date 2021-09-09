@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Heading, Box, Flex } from "theme-ui";
 import { LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
@@ -8,26 +8,54 @@ import { RemainingLQTY } from "../RemainingLQTY";
 import { StaticRow } from "../../../Trove/Editor";
 import { GT, POOL2LP } from "../../../../strings";
 
+const unlockFarming = Date.UTC(2021, 8, 10, 16, 0);
+const localUnlockTime = new Date(unlockFarming);
+
 const selector = ({ pngLiquidityMiningStake, pngLiquidityMiningLQTYReward }: LiquityStoreState) => ({
   pngLiquidityMiningStake, pngLiquidityMiningLQTYReward 
 });
 
 export const Disabled: React.FC = () => {
+  const currentTimestamp = Date.parse(new Date(Date.now()).toUTCString());
+  const [isFarmStarted, setFarmReady] = useState(currentTimestamp > unlockFarming);
+  const secondsToUnlock = unlockFarming - currentTimestamp;
+  
+  useEffect(() => {
+    if (!isFarmStarted) {
+      console.log(`Will unlock Farm in ${secondsToUnlock} seconds`);
+      const timeout = setTimeout(() => {
+        console.log(`Unlocking farm`);
+        setFarmReady(true);
+      }, secondsToUnlock)
+      return () => clearTimeout(timeout);
+    } else {
+      console.log(`Farm already unlocked`);
+      return ;
+    }
+  }, [])
+
   const { pngLiquidityMiningStake: liquidityMiningStake, pngLiquidityMiningLQTYReward: liquidityMiningLQTYReward } = useLiquitySelector(selector);
+  
   const hasStake = !liquidityMiningStake.isZero;
 
   return (
     <Card>
       <Heading>
-        Pangolin Liquidity Farm
+        {POOL2LP} on Pangolin
         <Flex sx={{ justifyContent: "flex-end" }}>
-          <RemainingLQTY />
+          {isFarmStarted && <RemainingLQTY />}
         </Flex>
       </Heading>
       <Box sx={{ p: [2, 3] }}>
+        {isFarmStarted ?
         <InfoMessage title="Liquidity farming period has finished">
           <Flex>There are no more TEDDY rewards left to farm</Flex>
         </InfoMessage>
+        :
+        <InfoMessage title="Liquidity farming period has not started yet">
+          <Flex>Rewards period for TEDDY will start at {localUnlockTime.toLocaleTimeString()} {localUnlockTime.toDateString()} local time</Flex>
+        </InfoMessage>
+        }
         {hasStake && (
           <>
             <Box sx={{ border: 1, pt: 3, borderRadius: 3 }}>

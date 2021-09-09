@@ -492,9 +492,6 @@ export interface PopulatableLiquity<R = unknown, S = unknown, P = unknown> exten
     liquidateUpTo(maximumNumberOfTrovesToLiquidate: number): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, LiquidationDetails>>>>;
     openTrove(params: TroveCreationParams<Decimalish>, maxBorrowingRate?: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, TroveCreationDetails>>>>;
     pngApproveUniTokens(allowance?: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: No member was found with name "pngExitLiquidityMining"
-    //
-    // (undocumented)
     pngExitLiquidityMining(): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
     pngStakeUniTokens(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
     pngUnstakeUniTokens(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
@@ -624,9 +621,6 @@ export interface SendableLiquity<R = unknown, S = unknown> extends _SendableFrom
     liquidateUpTo(maximumNumberOfTrovesToLiquidate: number): Promise<SentLiquityTransaction<S, LiquityReceipt<R, LiquidationDetails>>>;
     openTrove(params: TroveCreationParams<Decimalish>, maxBorrowingRate?: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, TroveCreationDetails>>>;
     pngApproveUniTokens(allowance?: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
-    // Warning: (ae-unresolved-inheritdoc-reference) The @inheritDoc reference could not be resolved: No member was found with name "pngExitLiquidityMining"
-    //
-    // (undocumented)
     pngExitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     pngStakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     pngUnstakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
@@ -727,6 +721,7 @@ export interface TransactableLiquity {
     liquidateUpTo(maximumNumberOfTrovesToLiquidate: number): Promise<LiquidationDetails>;
     openTrove(params: TroveCreationParams<Decimalish>, maxBorrowingRate?: Decimalish): Promise<TroveCreationDetails>;
     pngApproveUniTokens(allowance?: Decimalish): Promise<void>;
+    pngExitLiquidityMining(): Promise<void>;
     pngStakeUniTokens(amount: Decimalish): Promise<void>;
     pngUnstakeUniTokens(amount: Decimalish): Promise<void>;
     pngWithdrawLQTYRewardFromLiquidityMining(): Promise<void>;

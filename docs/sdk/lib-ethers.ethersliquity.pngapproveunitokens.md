@@ -29,5 +29,5 @@ Throws [EthersTransactionFailedError](./lib-ethers.etherstransactionfailederror.
 
 ## Remarks
 
-Must be performed before calling [stakeUniTokens()](./lib-base.transactableliquity.pngstakeunitokens.md)<!-- -->.
+Must be performed before calling [pngStakeUniTokens()](./lib-base.transactableliquity.pngstakeunitokens.md)<!-- -->.
 

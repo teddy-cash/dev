@@ -24,5 +24,5 @@ Promise&lt;[PopulatedLiquityTransaction](./lib-base.populatedliquitytransaction.
 
 ## Remarks
 
-Must be performed before calling [stakeUniTokens()](./lib-base.transactableliquity.pngstakeunitokens.md)<!-- -->.
+Must be performed before calling [pngStakeUniTokens()](./lib-base.transactableliquity.pngstakeunitokens.md)<!-- -->.
 

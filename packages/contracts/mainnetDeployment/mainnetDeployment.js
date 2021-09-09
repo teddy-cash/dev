@@ -126,6 +126,12 @@ async function mainnetDeploy(configParams) {
       console.log(`${dex} LQTY-WETH pair contract address after Uniswap pair creation: ${LQTYWETHPairAddr}`)
       assert.equal(WETHLQTYPairAddr, LQTYWETHPairAddr)
       deploymentState[pool2Name] = {address: LQTYWETHPairAddr, txHash: pairTx.transactionHash};  
+    } else if (!deploymentState[pool2Name]) {
+      // Check Uniswap Pair LUSD-WETH pair after pair creation (forwards and backwards should have same address)
+      LQTYWETHPairAddr = await factory.getPair(LQTYContracts.lqtyToken.address, configParams.externalAddrs.WETH_ERC20)
+      assert.notEqual(LQTYWETHPairAddr, th.ZERO_ADDRESS)
+      console.log(`${dex} LQTY-WETH pair contract address after Uniswap pair creation: ${LQTYWETHPairAddr}`)
+      deploymentState[pool2Name] = {address: LQTYWETHPairAddr};  
     }
 
     // create rewards unipools

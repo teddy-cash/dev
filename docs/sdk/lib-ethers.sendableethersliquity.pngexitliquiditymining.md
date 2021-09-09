@@ -4,6 +4,7 @@
 
 ## SendableEthersLiquity.pngExitLiquidityMining() method
 
+Withdraw all staked LP tokens from liquidity mining and claim reward.
 
 <b>Signature:</b>
 
