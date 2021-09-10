@@ -3,7 +3,7 @@
     "totalStabilityPoolLQTYReward": "50000000",
     "liquidityMiningLQTYRewardRate": "0.257201646090534979",
     "tjLiquidityMiningLQTYRewardRate": "0",
-    "pngLiquidityMiningLQTYRewardRate": "0.46296296296296297",
+    "pngLiquidityMiningLQTYRewardRate": "0.41335978835978837",
     "_priceFeedIsTestnet": false,
     "_uniTokenIsMock": false,
     "_isDev": false,
@@ -34,5 +34,5 @@
     "chainId": 43114,
     "startBlock": 3415967,
     "deploymentDate": 1629989893000,
-    "version": "ee66731536da11b560365295ec475825a1482c62"
+    "version": "db7c16a2682ec3d940ff598c912de994b61c5921"
 }
