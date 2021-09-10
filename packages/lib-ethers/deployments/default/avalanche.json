@@ -2,6 +2,8 @@
     "bootstrapPeriod": 1209600,
     "totalStabilityPoolLQTYReward": "50000000",
     "liquidityMiningLQTYRewardRate": "0.257201646090534979",
+    "tjLiquidityMiningLQTYRewardRate": "0",
+    "pngLiquidityMiningLQTYRewardRate": "0.46296296296296297",
     "_priceFeedIsTestnet": false,
     "_uniTokenIsMock": false,
     "_isDev": false,
@@ -23,10 +25,14 @@
         "lockupContractFactory": "0xdD6e1b601A2D86264d62D6ca85Ce2bC944981106",
         "communityIssuance": "0xb4Fbc7839ce88029c8c1c6274660118e27B6f982",
         "lqtyToken": "0x094bd7B2D99711A1486FB94d4395801C6d0fdDcC",
-        "multiTroveGetter": "0x6cf187ADa698F3bD01A4931D6ce4cD053Fce294e"
+        "multiTroveGetter": "0x6cf187ADa698F3bD01A4931D6ce4cD053Fce294e",
+        "tjToken": "0x91f0963873bbcA2e58d21bB0941c0D859Db3ca31",
+        "tjUnipool": "0xb4230db9E8566234FDbfC4280387bbeA145AAF4a",
+        "pngUnipool": "0x686FBbef0AA5Fc8E976f637dB54B3a4f5fB972d1",
+        "pngToken": "0x4F20E367B10674cB45Eb7ede68c33B702E1Be655"
     },
     "chainId": 43114,
     "startBlock": 3415967,
     "deploymentDate": 1629989893000,
-    "version": "9a92073e8ce2b74ddb6da488663a4cf6a64f2a69"
+    "version": "ee66731536da11b560365295ec475825a1482c62"
 }

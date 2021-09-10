@@ -475,6 +475,38 @@ export interface TransactableLiquity {
   approveUniTokens(allowance?: Decimalish): Promise<void>;
 
   /**
+   * Allow the liquidity mining contract to use Png Pool2 LP tokens for
+   * {@link @liquity/lib-base#TransactableLiquity.pngStakeUniTokens | staking}.
+   *
+   * @param allowance - Maximum amount of LP tokens that will be transferrable to liquidity mining
+   *                    (`2^256 - 1` by default).
+   *
+   * @remarks
+   * Must be performed before calling
+   * {@link @liquity/lib-base#TransactableLiquity.pngStakeUniTokens | pngStakeUniTokens()}.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  pngApproveUniTokens(allowance?: Decimalish): Promise<void>;
+
+  /**
+   * Allow the liquidity mining contract to use TJ Pool2 LP tokens for
+   * {@link @liquity/lib-base#TransactableLiquity.stakeUniTokens | staking}.
+   *
+   * @param allowance - Maximum amount of LP tokens that will be transferrable to liquidity mining
+   *                    (`2^256 - 1` by default).
+   *
+   * @remarks
+   * Must be performed before calling
+   * {@link @liquity/lib-base#TransactableLiquity.tjStakeUniTokens | tjStakeUniTokens()}.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  tjApproveUniTokens(allowance?: Decimalish): Promise<void>;
+
+  /**
    * Stake Uniswap ETH/LUSD LP tokens to participate in liquidity mining and earn LQTY.
    *
    * @param amount - Amount of LP tokens to add to new or existing stake.
@@ -483,6 +515,26 @@ export interface TransactableLiquity {
    * Throws {@link TransactionFailedError} in case of transaction failure.
    */
   stakeUniTokens(amount: Decimalish): Promise<void>;
+
+  /**
+   * Stake Png Pool2 LP tokens to participate in liquidity mining and earn LQTY.
+   *
+   * @param amount - Amount of LP tokens to add to new or existing stake.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  pngStakeUniTokens(amount: Decimalish): Promise<void>;
+
+  /**
+   * Stake TJ Pool2 LP tokens to participate in liquidity mining and earn LQTY.
+   *
+   * @param amount - Amount of LP tokens to add to new or existing stake.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  tjStakeUniTokens(amount: Decimalish): Promise<void>;
 
   /**
    * Withdraw Uniswap ETH/LUSD LP tokens from liquidity mining.
@@ -495,6 +547,26 @@ export interface TransactableLiquity {
   unstakeUniTokens(amount: Decimalish): Promise<void>;
 
   /**
+   * Withdraw Png Pool2 LP tokens from liquidity mining.
+   *
+   * @param amount - Amount of LP tokens to withdraw.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  pngUnstakeUniTokens(amount: Decimalish): Promise<void>;
+
+  /**
+   * Withdraw TJ Pool2 LP tokens from liquidity mining.
+   *
+   * @param amount - Amount of LP tokens to withdraw.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  tjUnstakeUniTokens(amount: Decimalish): Promise<void>;
+
+  /**
    * Withdraw LQTY that has been earned by mining liquidity.
    *
    * @throws
@@ -503,12 +575,44 @@ export interface TransactableLiquity {
   withdrawLQTYRewardFromLiquidityMining(): Promise<void>;
 
   /**
+   * Withdraw LQTY that has been earned by mining liquidity on Png Pool2.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  pngWithdrawLQTYRewardFromLiquidityMining(): Promise<void>;
+
+  /**
+   * Withdraw LQTY that has been earned by mining liquidity.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  tjWithdrawLQTYRewardFromLiquidityMining(): Promise<void>;
+
+  /**
    * Withdraw all staked LP tokens from liquidity mining and claim reward.
    *
    * @throws
    * Throws {@link TransactionFailedError} in case of transaction failure.
    */
   exitLiquidityMining(): Promise<void>;
+
+  /**
+   * Withdraw all staked LP tokens from liquidity mining and claim reward.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  pngExitLiquidityMining(): Promise<void>;
+
+  /**
+   * Withdraw all staked TJ Pool2 LP tokens from liquidity mining and claim reward.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  tjExitLiquidityMining(): Promise<void>;
 
   /**
    * Register current wallet address as a Liquity frontend.

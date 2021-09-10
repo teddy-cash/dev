@@ -278,8 +278,28 @@ export interface PopulatableLiquity<R = unknown, S = unknown, P = unknown>
     allowance?: Decimalish
   ): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
 
+  /** {@inheritDoc TransactableLiquity.tjApproveUniTokens} */
+  tjApproveUniTokens(
+    allowance?: Decimalish
+  ): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+
+  /** {@inheritDoc TransactableLiquity.pngApproveUniTokens} */
+  pngApproveUniTokens(
+    allowance?: Decimalish
+  ): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+
   /** {@inheritDoc TransactableLiquity.stakeUniTokens} */
   stakeUniTokens(
+    amount: Decimalish
+  ): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+
+  /** {@inheritDoc TransactableLiquity.tjStakeUniTokens} */
+  tjStakeUniTokens(
+    amount: Decimalish
+  ): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+
+  /** {@inheritDoc TransactableLiquity.pngStakeUniTokens} */
+  pngStakeUniTokens(
     amount: Decimalish
   ): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
 
@@ -288,13 +308,43 @@ export interface PopulatableLiquity<R = unknown, S = unknown, P = unknown>
     amount: Decimalish
   ): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
 
+  /** {@inheritDoc TransactableLiquity.tjUnstakeUniTokens} */
+  tjUnstakeUniTokens(
+    amount: Decimalish
+  ): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+
+  /** {@inheritDoc TransactableLiquity.pngUnstakeUniTokens} */
+  pngUnstakeUniTokens(
+    amount: Decimalish
+  ): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+
   /** {@inheritDoc TransactableLiquity.withdrawLQTYRewardFromLiquidityMining} */
   withdrawLQTYRewardFromLiquidityMining(): Promise<
     PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>
   >;
 
+  /** {@inheritDoc TransactableLiquity.tjWithdrawLQTYRewardFromLiquidityMining} */
+  tjWithdrawLQTYRewardFromLiquidityMining(): Promise<
+    PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>
+  >;
+
+  /** {@inheritDoc TransactableLiquity.pngWithdrawLQTYRewardFromLiquidityMining} */
+  pngWithdrawLQTYRewardFromLiquidityMining(): Promise<
+    PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>
+  >;
+
   /** {@inheritDoc TransactableLiquity.exitLiquidityMining} */
   exitLiquidityMining(): Promise<
+    PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>
+  >;
+
+  /** {@inheritDoc TransactableLiquity.tjExitLiquidityMining} */
+  tjExitLiquidityMining(): Promise<
+    PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>
+  >;
+
+  /** {@inheritDoc TransactableLiquity.pngExitLiquidityMining} */
+  pngExitLiquidityMining(): Promise<
     PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>
   >;
 

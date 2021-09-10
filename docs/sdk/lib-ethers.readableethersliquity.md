@@ -53,4 +53,16 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [getUniTokenBalance(address, overrides)](./lib-ethers.readableethersliquity.getunitokenbalance.md) |  | Get the amount of Uniswap ETH/LUSD LP tokens held by an address. |
 |  [hasStore()](./lib-ethers.readableethersliquity.hasstore.md) |  | Check whether this <code>ReadableEthersLiquity</code> is a [ReadableEthersLiquityWithStore](./lib-ethers.readableethersliquitywithstore.md)<!-- -->. |
 |  [hasStore(store)](./lib-ethers.readableethersliquity.hasstore_1.md) |  | Check whether this <code>ReadableEthersLiquity</code> is a [ReadableEthersLiquityWithStore](./lib-ethers.readableethersliquitywithstore.md)<!-- -->&lt;[BlockPolledLiquityStore](./lib-ethers.blockpolledliquitystore.md)<!-- -->&gt;<!-- -->. |
+|  [pngGetLiquidityMiningLQTYReward(address, overrides)](./lib-ethers.readableethersliquity.pnggetliquiditymininglqtyreward.md) |  | Get the amount of LQTY earned by an address through mining liquidity on PNG pool2. |
+|  [pngGetLiquidityMiningStake(address, overrides)](./lib-ethers.readableethersliquity.pnggetliquidityminingstake.md) |  | Get the amount of PNG Pool2 LP tokens currently staked by an address in liquidity mining. |
+|  [pngGetRemainingLiquidityMiningLQTYReward(overrides)](./lib-ethers.readableethersliquity.pnggetremainingliquiditymininglqtyreward.md) |  | Get the remaining LQTY that will be collectively rewarded to liquidity miners on PNG pool2. |
+|  [pngGetTotalStakedUniTokens(overrides)](./lib-ethers.readableethersliquity.pnggettotalstakedunitokens.md) |  | Get the total amount of PNG Pool2 LP tokens currently staked in liquidity mining. |
+|  [pngGetUniTokenAllowance(address, overrides)](./lib-ethers.readableethersliquity.pnggetunitokenallowance.md) |  | Get the liquidity mining contract's allowance of a holder's PNG Pool2 LP tokens. |
+|  [pngGetUniTokenBalance(address, overrides)](./lib-ethers.readableethersliquity.pnggetunitokenbalance.md) |  | Get the amount of Png Pool2 LP tokens held by an address. |
+|  [tjGetLiquidityMiningLQTYReward(address, overrides)](./lib-ethers.readableethersliquity.tjgetliquiditymininglqtyreward.md) |  | Get the amount of LQTY earned by an address through mining liquidity. |
+|  [tjGetLiquidityMiningStake(address, overrides)](./lib-ethers.readableethersliquity.tjgetliquidityminingstake.md) |  | Get the amount of Uniswap ETH/LUSD LP tokens currently staked by an address in liquidity mining on TJ. |
+|  [tjGetRemainingLiquidityMiningLQTYReward(overrides)](./lib-ethers.readableethersliquity.tjgetremainingliquiditymininglqtyreward.md) |  | Get the remaining LQTY that will be collectively rewarded to liquidity miners. |
+|  [tjGetTotalStakedUniTokens(overrides)](./lib-ethers.readableethersliquity.tjgettotalstakedunitokens.md) |  | Get the total amount of Uniswap ETH/LUSD LP tokens currently staked in liquidity mining on TJ. |
+|  [tjGetUniTokenAllowance(address, overrides)](./lib-ethers.readableethersliquity.tjgetunitokenallowance.md) |  | Get the amount of TJ Pool2 LP tokens held by an address. |
+|  [tjGetUniTokenBalance(address, overrides)](./lib-ethers.readableethersliquity.tjgetunitokenbalance.md) |  | Get the amount of TJ Pool2 LP tokens held by an address. |
 

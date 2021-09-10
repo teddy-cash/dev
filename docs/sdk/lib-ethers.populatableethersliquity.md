@@ -34,6 +34,11 @@ export declare class PopulatableEthersLiquity implements PopulatableLiquity<Ethe
 |  [liquidate(address, overrides)](./lib-ethers.populatableethersliquity.liquidate.md) |  | Liquidate one or more undercollateralized Troves. |
 |  [liquidateUpTo(maximumNumberOfTrovesToLiquidate, overrides)](./lib-ethers.populatableethersliquity.liquidateupto.md) |  | Liquidate the least collateralized Troves up to a maximum number. |
 |  [openTrove(params, maxBorrowingRateOrOptionalParams, overrides)](./lib-ethers.populatableethersliquity.opentrove.md) |  | Open a new Trove by depositing collateral and borrowing LUSD. |
+|  [pngApproveUniTokens(allowance, overrides)](./lib-ethers.populatableethersliquity.pngapproveunitokens.md) |  | Allow the liquidity mining contract to use Png Pool2 LP tokens for [staking](./lib-base.transactableliquity.pngstakeunitokens.md)<!-- -->. |
+|  [pngExitLiquidityMining(overrides)](./lib-ethers.populatableethersliquity.pngexitliquiditymining.md) |  | Withdraw all staked LP tokens from liquidity mining and claim reward. |
+|  [pngStakeUniTokens(amount, overrides)](./lib-ethers.populatableethersliquity.pngstakeunitokens.md) |  | Stake Png Pool2 LP tokens to participate in liquidity mining and earn LQTY. |
+|  [pngUnstakeUniTokens(amount, overrides)](./lib-ethers.populatableethersliquity.pngunstakeunitokens.md) |  | Withdraw Png Pool2 LP tokens from liquidity mining. |
+|  [pngWithdrawLQTYRewardFromLiquidityMining(overrides)](./lib-ethers.populatableethersliquity.pngwithdrawlqtyrewardfromliquiditymining.md) |  | Withdraw LQTY that has been earned by mining liquidity on Png Pool2. |
 |  [redeemLUSD(amount, maxRedemptionRate, overrides)](./lib-ethers.populatableethersliquity.redeemlusd.md) |  | Redeem LUSD to native currency (e.g. Ether) at face value. |
 |  [registerFrontend(kickbackRate, overrides)](./lib-ethers.populatableethersliquity.registerfrontend.md) |  | Register current wallet address as a Liquity frontend. |
 |  [repayLUSD(amount, overrides)](./lib-ethers.populatableethersliquity.repaylusd.md) |  | Adjust existing Trove by repaying some of its debt. |
@@ -41,6 +46,11 @@ export declare class PopulatableEthersLiquity implements PopulatableLiquity<Ethe
 |  [sendLUSD(toAddress, amount, overrides)](./lib-ethers.populatableethersliquity.sendlusd.md) |  | Send LUSD tokens to an address. |
 |  [stakeLQTY(amount, overrides)](./lib-ethers.populatableethersliquity.stakelqty.md) |  | Stake LQTY to start earning fee revenue or increase existing stake. |
 |  [stakeUniTokens(amount, overrides)](./lib-ethers.populatableethersliquity.stakeunitokens.md) |  | Stake Uniswap ETH/LUSD LP tokens to participate in liquidity mining and earn LQTY. |
+|  [tjApproveUniTokens(allowance, overrides)](./lib-ethers.populatableethersliquity.tjapproveunitokens.md) |  | Allow the liquidity mining contract to use TJ Pool2 LP tokens for [staking](./lib-base.transactableliquity.stakeunitokens.md)<!-- -->. |
+|  [tjExitLiquidityMining(overrides)](./lib-ethers.populatableethersliquity.tjexitliquiditymining.md) |  | Withdraw all staked TJ Pool2 LP tokens from liquidity mining and claim reward. |
+|  [tjStakeUniTokens(amount, overrides)](./lib-ethers.populatableethersliquity.tjstakeunitokens.md) |  | Stake TJ Pool2 LP tokens to participate in liquidity mining and earn LQTY. |
+|  [tjUnstakeUniTokens(amount, overrides)](./lib-ethers.populatableethersliquity.tjunstakeunitokens.md) |  | Withdraw TJ Pool2 LP tokens from liquidity mining. |
+|  [tjWithdrawLQTYRewardFromLiquidityMining(overrides)](./lib-ethers.populatableethersliquity.tjwithdrawlqtyrewardfromliquiditymining.md) |  | Withdraw LQTY that has been earned by mining liquidity. |
 |  [transferCollateralGainToTrove(overrides)](./lib-ethers.populatableethersliquity.transfercollateralgaintotrove.md) |  | Transfer [collateral gain](./lib-base.stabilitydeposit.collateralgain.md) from Stability Deposit to Trove. |
 |  [unstakeLQTY(amount, overrides)](./lib-ethers.populatableethersliquity.unstakelqty.md) |  | Withdraw LQTY from staking. |
 |  [unstakeUniTokens(amount, overrides)](./lib-ethers.populatableethersliquity.unstakeunitokens.md) |  | Withdraw Uniswap ETH/LUSD LP tokens from liquidity mining. |

@@ -27,10 +27,22 @@ export interface LiquityStoreBaseState
 |  [lusdInStabilityPool](./lib-base.liquitystorebasestate.lusdinstabilitypool.md) | [Decimal](./lib-base.decimal.md) | Total amount of LUSD currently deposited in the Stability Pool. |
 |  [numberOfTroves](./lib-base.liquitystorebasestate.numberoftroves.md) | number | Number of Troves that are currently open. |
 |  [ownFrontend](./lib-base.liquitystorebasestate.ownfrontend.md) | [FrontendStatus](./lib-base.frontendstatus.md) | Status of user's own frontend. |
+|  [pngLiquidityMiningLQTYReward](./lib-base.liquitystorebasestate.pngliquiditymininglqtyreward.md) | [Decimal](./lib-base.decimal.md) | Amount of LQTY the user has earned through mining liquidity on Pangolin Pool2. |
+|  [pngLiquidityMiningStake](./lib-base.liquitystorebasestate.pngliquidityminingstake.md) | [Decimal](./lib-base.decimal.md) | Amount of Uniswap Pool2 LP tokens the user has staked in liquidity mining on Pangolin. |
+|  [pngRemainingLiquidityMiningLQTYReward](./lib-base.liquitystorebasestate.pngremainingliquiditymininglqtyreward.md) | [Decimal](./lib-base.decimal.md) | Remaining LQTY that will be collectively rewarded to liquidity miners on Pangolin pool2. |
+|  [pngTokenAllowance](./lib-base.liquitystorebasestate.pngtokenallowance.md) | [Decimal](./lib-base.decimal.md) | The liquidity mining contract's allowance of user's Pangolin AVAX/TEDDY LP tokens. |
+|  [pngTokenBalance](./lib-base.liquitystorebasestate.pngtokenbalance.md) | [Decimal](./lib-base.decimal.md) | User's Pangolin AVAX/TEDDY LP token balance. |
+|  [pngTotalStakedUniTokens](./lib-base.liquitystorebasestate.pngtotalstakedunitokens.md) | [Decimal](./lib-base.decimal.md) | Total amount of Pangolin Pool2 LP tokens currently staked in liquidity mining. |
 |  [price](./lib-base.liquitystorebasestate.price.md) | [Decimal](./lib-base.decimal.md) | Current price of the native currency (e.g. Ether) in USD. |
 |  [remainingLiquidityMiningLQTYReward](./lib-base.liquitystorebasestate.remainingliquiditymininglqtyreward.md) | [Decimal](./lib-base.decimal.md) | Remaining LQTY that will be collectively rewarded to liquidity miners. |
 |  [remainingStabilityPoolLQTYReward](./lib-base.liquitystorebasestate.remainingstabilitypoollqtyreward.md) | [Decimal](./lib-base.decimal.md) | Remaining LQTY that will be collectively rewarded to stability depositors. |
 |  [stabilityDeposit](./lib-base.liquitystorebasestate.stabilitydeposit.md) | [StabilityDeposit](./lib-base.stabilitydeposit.md) | User's stability deposit. |
+|  [tjLiquidityMiningLQTYReward](./lib-base.liquitystorebasestate.tjliquiditymininglqtyreward.md) | [Decimal](./lib-base.decimal.md) | Amount of LQTY the user has earned through mining liquidity on Trader Joe. |
+|  [tjLiquidityMiningStake](./lib-base.liquitystorebasestate.tjliquidityminingstake.md) | [Decimal](./lib-base.decimal.md) | Amount of LQTY the user has earned through mining liquidity on Trader Joe. |
+|  [tjRemainingLiquidityMiningLQTYReward](./lib-base.liquitystorebasestate.tjremainingliquiditymininglqtyreward.md) | [Decimal](./lib-base.decimal.md) | Remaining LQTY that will be collectively rewarded to liquidity miners on Trader Joe Pool2. |
+|  [tjTokenAllowance](./lib-base.liquitystorebasestate.tjtokenallowance.md) | [Decimal](./lib-base.decimal.md) | The liquidity mining contract's allowance of user's Trader Joe Pool2 LP tokens. |
+|  [tjTokenBalance](./lib-base.liquitystorebasestate.tjtokenbalance.md) | [Decimal](./lib-base.decimal.md) | user's balance on Trader Joe Pool2 |
+|  [tjTotalStakedUniTokens](./lib-base.liquitystorebasestate.tjtotalstakedunitokens.md) | [Decimal](./lib-base.decimal.md) | Total amount of Trader Joe ETH/LUSD LP tokens currently staked in liquidity mining on Trader Joe. |
 |  [total](./lib-base.liquitystorebasestate.total.md) | [Trove](./lib-base.trove.md) | Total collateral and debt in the Liquity system. |
 |  [totalRedistributed](./lib-base.liquitystorebasestate.totalredistributed.md) | [Trove](./lib-base.trove.md) | Total collateral and debt per stake that has been liquidated through redistribution. |
 |  [totalStakedLQTY](./lib-base.liquitystorebasestate.totalstakedlqty.md) | [Decimal](./lib-base.decimal.md) | Total amount of LQTY currently staked. |

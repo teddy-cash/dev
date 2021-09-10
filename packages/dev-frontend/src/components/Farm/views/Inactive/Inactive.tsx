@@ -25,7 +25,7 @@ export const Inactive: React.FC = () => {
   return (
     <Card>
       <Heading>
-        Pangolin Liquidity Farm
+        AVAX/TSD on Pangolin
         <Flex sx={{ justifyContent: "flex-end" }}>
           <RemainingLQTY />
         </Flex>

@@ -66,10 +66,10 @@ async function mainnetDeploy(configParams) {
   }
 
   deploymentState['uniToken'] = {address: LUSDWETHPairAddr};
-
   // Deploy Unipool
   const unipool = await mdh.deployUnipoolMainnet(deploymentState);
 
+  
   // Deploy LQTY Contracts
   const LQTYContracts = await mdh.deployLQTYContractsMainnet(
     configParams.liquityAddrs.GENERAL_SAFE, // bounty address
@@ -89,6 +89,58 @@ async function mainnetDeploy(configParams) {
   // Connect Unipool to LQTYToken and the LUSD-WETH pair address, with a 6 week duration
   const LPRewardsDuration = timeVals.SECONDS_IN_SIX_WEEKS
   await mdh.connectUnipoolMainnet(unipool, LQTYContracts, LUSDWETHPairAddr, LPRewardsDuration)
+
+
+  // deploy pool2
+  const pool2Factories = {
+    'tj': new ethers.Contract(
+    configParams.externalAddrs.TJ_FACTORY,
+    UniswapV2Factory.abi,
+    deployerWallet
+    ),
+    'png': new ethers.Contract(
+    configParams.externalAddrs.UNISWAP_V2_FACTORY,
+    UniswapV2Factory.abi,
+    deployerWallet
+    )
+  };
+  
+      
+  for (const [dex, factory] of Object.entries(pool2Factories)) {
+    let LQTYWETHPairAddr = await factory.getPair(LQTYContracts.lqtyToken.address, configParams.externalAddrs.WETH_ERC20)
+    let WETHLQTYPairAddr = await factory.getPair(configParams.externalAddrs.WETH_ERC20, LQTYContracts.lqtyToken.address)
+    assert.equal(LQTYWETHPairAddr, WETHLQTYPairAddr)
+    const pool2Name = `${dex}Token`;
+    if (LQTYWETHPairAddr == th.ZERO_ADDRESS) {
+      // Deploy Unipool for LQTY-WETH
+      const pairTx = await mdh.sendAndWaitForTransaction(factory.createPair(
+        configParams.externalAddrs.WETH_ERC20,
+        LQTYContracts.lqtyToken.address,
+        { gasPrice }
+      ))
+
+      // Check Uniswap Pair LUSD-WETH pair after pair creation (forwards and backwards should have same address)
+      LQTYWETHPairAddr = await factory.getPair(LQTYContracts.lqtyToken.address, configParams.externalAddrs.WETH_ERC20)
+      assert.notEqual(LQTYWETHPairAddr, th.ZERO_ADDRESS)
+      WETHLQTYPairAddr = await factory.getPair(configParams.externalAddrs.WETH_ERC20, LQTYContracts.lqtyToken.address)
+      console.log(`${dex} LQTY-WETH pair contract address after Uniswap pair creation: ${LQTYWETHPairAddr}`)
+      assert.equal(WETHLQTYPairAddr, LQTYWETHPairAddr)
+      deploymentState[pool2Name] = {address: LQTYWETHPairAddr, txHash: pairTx.transactionHash};  
+    } else if (!deploymentState[pool2Name]) {
+      // Check Uniswap Pair LUSD-WETH pair after pair creation (forwards and backwards should have same address)
+      LQTYWETHPairAddr = await factory.getPair(LQTYContracts.lqtyToken.address, configParams.externalAddrs.WETH_ERC20)
+      assert.notEqual(LQTYWETHPairAddr, th.ZERO_ADDRESS)
+      console.log(`${dex} LQTY-WETH pair contract address after Uniswap pair creation: ${LQTYWETHPairAddr}`)
+      deploymentState[pool2Name] = {address: LQTYWETHPairAddr};  
+    }
+
+    // create rewards unipools
+    const pool2Unipool = await mdh.deployPool2UnipoolMainnet(deploymentState, dex);
+    console.log(`${dex} pool2Unipool address: ${pool2Unipool.address}`)
+    // duration is 4 weeks
+    await mdh.connectUnipoolMainnet(pool2Unipool, LQTYContracts, LQTYWETHPairAddr, timeVals.SECONDS_IN_ONE_MONTH);
+    console.log(`Successfully connected${pool2Name}`);
+  }
 
   // Log LQTY and Unipool addresses
   await mdh.logContractObjects(LQTYContracts)

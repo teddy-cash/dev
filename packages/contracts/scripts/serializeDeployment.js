@@ -6,8 +6,10 @@ const USAGE = "USAGE: serializeDeployment.js NETWORK_OUTPUT.json"
 
 const deployment = {
   "bootstrapPeriod": 1209600,
-  "totalStabilityPoolLQTYReward": "32000000",
+  "totalStabilityPoolLQTYReward": "50000000",
   "liquidityMiningLQTYRewardRate": "0.257201646090534979",
+  "tjLiquidityMiningLQTYRewardRate": "0",
+  "pngLiquidityMiningLQTYRewardRate": "0.46296296296296297",
   "_priceFeedIsTestnet": false,
   "_uniTokenIsMock": false,
   "_isDev": false,

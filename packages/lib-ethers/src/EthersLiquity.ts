@@ -230,9 +230,29 @@ export class EthersLiquity implements ReadableEthersLiquity, TransactableLiquity
     return this._readable.getUniTokenBalance(address, overrides);
   }
 
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.pngGetUniTokenBalance} */
+  pngGetUniTokenBalance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._readable.pngGetUniTokenBalance(address, overrides);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.tjGetUniTokenBalance} */
+  tjGetUniTokenBalance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._readable.tjGetUniTokenBalance(address, overrides);
+  }
+
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getUniTokenAllowance} */
   getUniTokenAllowance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
     return this._readable.getUniTokenAllowance(address, overrides);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.pngGetUniTokenAllowance} */
+  pngGetUniTokenAllowance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._readable.pngGetUniTokenAllowance(address, overrides);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.tjGetUniTokenAllowance} */
+  tjGetUniTokenAllowance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._readable.tjGetUniTokenAllowance(address, overrides);
   }
 
   /** @internal */
@@ -242,9 +262,33 @@ export class EthersLiquity implements ReadableEthersLiquity, TransactableLiquity
     return this._readable._getRemainingLiquidityMiningLQTYRewardCalculator(overrides);
   }
 
+  /** @internal */
+  _pngGetRemainingLiquidityMiningLQTYRewardCalculator(
+    overrides?: EthersCallOverrides
+  ): Promise<(blockTimestamp: number) => Decimal> {
+    return this._readable._pngGetRemainingLiquidityMiningLQTYRewardCalculator(overrides);
+  }
+
+  /** @internal */
+  _tjGetRemainingLiquidityMiningLQTYRewardCalculator(
+    overrides?: EthersCallOverrides
+  ): Promise<(blockTimestamp: number) => Decimal> {
+    return this._readable._tjGetRemainingLiquidityMiningLQTYRewardCalculator(overrides);
+  }
+
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getRemainingLiquidityMiningLQTYReward} */
   getRemainingLiquidityMiningLQTYReward(overrides?: EthersCallOverrides): Promise<Decimal> {
     return this._readable.getRemainingLiquidityMiningLQTYReward(overrides);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.pngGetRemainingLiquidityMiningLQTYReward} */
+  pngGetRemainingLiquidityMiningLQTYReward(overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._readable.pngGetRemainingLiquidityMiningLQTYReward(overrides);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.tjGetRemainingLiquidityMiningLQTYReward} */
+  tjGetRemainingLiquidityMiningLQTYReward(overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._readable.tjGetRemainingLiquidityMiningLQTYReward(overrides);
   }
 
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getLiquidityMiningStake} */
@@ -252,14 +296,50 @@ export class EthersLiquity implements ReadableEthersLiquity, TransactableLiquity
     return this._readable.getLiquidityMiningStake(address, overrides);
   }
 
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.pngGetLiquidityMiningStake} */
+  pngGetLiquidityMiningStake(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._readable.pngGetLiquidityMiningStake(address, overrides);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getLiquidityMiningStake} */
+  tjGetLiquidityMiningStake(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._readable.tjGetLiquidityMiningStake(address, overrides);
+  }
+
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getTotalStakedUniTokens} */
   getTotalStakedUniTokens(overrides?: EthersCallOverrides): Promise<Decimal> {
     return this._readable.getTotalStakedUniTokens(overrides);
   }
 
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.pngGetTotalStakedUniTokens} */
+  pngGetTotalStakedUniTokens(overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._readable.pngGetTotalStakedUniTokens(overrides);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.tjGetTotalStakedUniTokens} */
+  tjGetTotalStakedUniTokens(overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._readable.tjGetTotalStakedUniTokens(overrides);
+  }
+
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getLiquidityMiningLQTYReward} */
   getLiquidityMiningLQTYReward(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
     return this._readable.getLiquidityMiningLQTYReward(address, overrides);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.pngGetLiquidityMiningLQTYReward} */
+  pngGetLiquidityMiningLQTYReward(
+    address?: string,
+    overrides?: EthersCallOverrides
+  ): Promise<Decimal> {
+    return this._readable.pngGetLiquidityMiningLQTYReward(address, overrides);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.tjGetLiquidityMiningLQTYReward} */
+  tjGetLiquidityMiningLQTYReward(
+    address?: string,
+    overrides?: EthersCallOverrides
+  ): Promise<Decimal> {
+    return this._readable.tjGetLiquidityMiningLQTYReward(address, overrides);
   }
 
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getCollateralSurplusBalance} */
@@ -623,6 +703,31 @@ export class EthersLiquity implements ReadableEthersLiquity, TransactableLiquity
   }
 
   /**
+   * {@inheritDoc @liquity/lib-base#TransactableLiquity.pngApproveUniTokens}
+   *
+   * @throws
+   * Throws {@link EthersTransactionFailedError} in case of transaction failure.
+   * Throws {@link EthersTransactionCancelledError} if the transaction is cancelled or replaced.
+   */
+  pngApproveUniTokens(
+    allowance?: Decimalish,
+    overrides?: EthersTransactionOverrides
+  ): Promise<void> {
+    return this.send.pngApproveUniTokens(allowance, overrides).then(waitForSuccess);
+  }
+
+  /**
+   * {@inheritDoc @liquity/lib-base#TransactableLiquity.tjApproveUniTokens}
+   *
+   * @throws
+   * Throws {@link EthersTransactionFailedError} in case of transaction failure.
+   * Throws {@link EthersTransactionCancelledError} if the transaction is cancelled or replaced.
+   */
+  tjApproveUniTokens(allowance?: Decimalish, overrides?: EthersTransactionOverrides): Promise<void> {
+    return this.send.tjApproveUniTokens(allowance, overrides).then(waitForSuccess);
+  }
+
+  /**
    * {@inheritDoc @liquity/lib-base#TransactableLiquity.stakeUniTokens}
    *
    * @throws
@@ -631,6 +736,28 @@ export class EthersLiquity implements ReadableEthersLiquity, TransactableLiquity
    */
   stakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<void> {
     return this.send.stakeUniTokens(amount, overrides).then(waitForSuccess);
+  }
+
+  /**
+   * {@inheritDoc @liquity/lib-base#TransactableLiquity.pngStakeUniTokens}
+   *
+   * @throws
+   * Throws {@link EthersTransactionFailedError} in case of transaction failure.
+   * Throws {@link EthersTransactionCancelledError} if the transaction is cancelled or replaced.
+   */
+  pngStakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<void> {
+    return this.send.pngStakeUniTokens(amount, overrides).then(waitForSuccess);
+  }
+
+  /**
+   * {@inheritDoc @liquity/lib-base#TransactableLiquity.tjStakeUniTokens}
+   *
+   * @throws
+   * Throws {@link EthersTransactionFailedError} in case of transaction failure.
+   * Throws {@link EthersTransactionCancelledError} if the transaction is cancelled or replaced.
+   */
+  tjStakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<void> {
+    return this.send.tjStakeUniTokens(amount, overrides).then(waitForSuccess);
   }
 
   /**
@@ -645,6 +772,28 @@ export class EthersLiquity implements ReadableEthersLiquity, TransactableLiquity
   }
 
   /**
+   * {@inheritDoc @liquity/lib-base#TransactableLiquity.pngUnstakeUniTokens}
+   *
+   * @throws
+   * Throws {@link EthersTransactionFailedError} in case of transaction failure.
+   * Throws {@link EthersTransactionCancelledError} if the transaction is cancelled or replaced.
+   */
+  pngUnstakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<void> {
+    return this.send.pngUnstakeUniTokens(amount, overrides).then(waitForSuccess);
+  }
+
+  /**
+   * {@inheritDoc @liquity/lib-base#TransactableLiquity.tjUnstakeUniTokens}
+   *
+   * @throws
+   * Throws {@link EthersTransactionFailedError} in case of transaction failure.
+   * Throws {@link EthersTransactionCancelledError} if the transaction is cancelled or replaced.
+   */
+  tjUnstakeUniTokens(amount: Decimalish, overrides?: EthersTransactionOverrides): Promise<void> {
+    return this.send.tjUnstakeUniTokens(amount, overrides).then(waitForSuccess);
+  }
+
+  /**
    * {@inheritDoc @liquity/lib-base#TransactableLiquity.withdrawLQTYRewardFromLiquidityMining}
    *
    * @throws
@@ -656,6 +805,28 @@ export class EthersLiquity implements ReadableEthersLiquity, TransactableLiquity
   }
 
   /**
+   * {@inheritDoc @liquity/lib-base#TransactableLiquity.pngWithdrawLQTYRewardFromLiquidityMining}
+   *
+   * @throws
+   * Throws {@link EthersTransactionFailedError} in case of transaction failure.
+   * Throws {@link EthersTransactionCancelledError} if the transaction is cancelled or replaced.
+   */
+  pngWithdrawLQTYRewardFromLiquidityMining(overrides?: EthersTransactionOverrides): Promise<void> {
+    return this.send.pngWithdrawLQTYRewardFromLiquidityMining(overrides).then(waitForSuccess);
+  }
+
+  /**
+   * {@inheritDoc @liquity/lib-base#TransactableLiquity.tjWithdrawLQTYRewardFromLiquidityMining}
+   *
+   * @throws
+   * Throws {@link EthersTransactionFailedError} in case of transaction failure.
+   * Throws {@link EthersTransactionCancelledError} if the transaction is cancelled or replaced.
+   */
+  tjWithdrawLQTYRewardFromLiquidityMining(overrides?: EthersTransactionOverrides): Promise<void> {
+    return this.send.tjWithdrawLQTYRewardFromLiquidityMining(overrides).then(waitForSuccess);
+  }
+
+  /**
    * {@inheritDoc @liquity/lib-base#TransactableLiquity.exitLiquidityMining}
    *
    * @throws
@@ -664,6 +835,28 @@ export class EthersLiquity implements ReadableEthersLiquity, TransactableLiquity
    */
   exitLiquidityMining(overrides?: EthersTransactionOverrides): Promise<void> {
     return this.send.exitLiquidityMining(overrides).then(waitForSuccess);
+  }
+
+  /**
+   * {@inheritDoc @liquity/lib-base#TransactableLiquity.pngExitLiquidityMining}
+   *
+   * @throws
+   * Throws {@link EthersTransactionFailedError} in case of transaction failure.
+   * Throws {@link EthersTransactionCancelledError} if the transaction is cancelled or replaced.
+   */
+  pngExitLiquidityMining(overrides?: EthersTransactionOverrides): Promise<void> {
+    return this.send.pngExitLiquidityMining(overrides).then(waitForSuccess);
+  }
+
+  /**
+   * {@inheritDoc @liquity/lib-base#TransactableLiquity.tjExitLiquidityMining}
+   *
+   * @throws
+   * Throws {@link EthersTransactionFailedError} in case of transaction failure.
+   * Throws {@link EthersTransactionCancelledError} if the transaction is cancelled or replaced.
+   */
+  tjExitLiquidityMining(overrides?: EthersTransactionOverrides): Promise<void> {
+    return this.send.tjExitLiquidityMining(overrides).then(waitForSuccess);
   }
 }
 

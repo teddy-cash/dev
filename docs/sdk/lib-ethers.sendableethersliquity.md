@@ -34,6 +34,11 @@ export declare class SendableEthersLiquity implements SendableLiquity<EthersTran
 |  [liquidate(address, overrides)](./lib-ethers.sendableethersliquity.liquidate.md) |  | Liquidate one or more undercollateralized Troves. |
 |  [liquidateUpTo(maximumNumberOfTrovesToLiquidate, overrides)](./lib-ethers.sendableethersliquity.liquidateupto.md) |  | Liquidate the least collateralized Troves up to a maximum number. |
 |  [openTrove(params, maxBorrowingRateOrOptionalParams, overrides)](./lib-ethers.sendableethersliquity.opentrove.md) |  | Open a new Trove by depositing collateral and borrowing LUSD. |
+|  [pngApproveUniTokens(allowance, overrides)](./lib-ethers.sendableethersliquity.pngapproveunitokens.md) |  | Allow the liquidity mining contract to use Png Pool2 LP tokens for [staking](./lib-base.transactableliquity.pngstakeunitokens.md)<!-- -->. |
+|  [pngExitLiquidityMining(overrides)](./lib-ethers.sendableethersliquity.pngexitliquiditymining.md) |  | Withdraw all staked LP tokens from liquidity mining and claim reward. |
+|  [pngStakeUniTokens(amount, overrides)](./lib-ethers.sendableethersliquity.pngstakeunitokens.md) |  | Stake Png Pool2 LP tokens to participate in liquidity mining and earn LQTY. |
+|  [pngUnstakeUniTokens(amount, overrides)](./lib-ethers.sendableethersliquity.pngunstakeunitokens.md) |  | Withdraw Png Pool2 LP tokens from liquidity mining. |
+|  [pngWithdrawLQTYRewardFromLiquidityMining(overrides)](./lib-ethers.sendableethersliquity.pngwithdrawlqtyrewardfromliquiditymining.md) |  | Withdraw LQTY that has been earned by mining liquidity on Png Pool2. |
 |  [redeemLUSD(amount, maxRedemptionRate, overrides)](./lib-ethers.sendableethersliquity.redeemlusd.md) |  | Redeem LUSD to native currency (e.g. Ether) at face value. |
 |  [registerFrontend(kickbackRate, overrides)](./lib-ethers.sendableethersliquity.registerfrontend.md) |  | Register current wallet address as a Liquity frontend. |
 |  [repayLUSD(amount, overrides)](./lib-ethers.sendableethersliquity.repaylusd.md) |  | Adjust existing Trove by repaying some of its debt. |
@@ -41,6 +46,11 @@ export declare class SendableEthersLiquity implements SendableLiquity<EthersTran
 |  [sendLUSD(toAddress, amount, overrides)](./lib-ethers.sendableethersliquity.sendlusd.md) |  | Send LUSD tokens to an address. |
 |  [stakeLQTY(amount, overrides)](./lib-ethers.sendableethersliquity.stakelqty.md) |  | Stake LQTY to start earning fee revenue or increase existing stake. |
 |  [stakeUniTokens(amount, overrides)](./lib-ethers.sendableethersliquity.stakeunitokens.md) |  | Stake Uniswap ETH/LUSD LP tokens to participate in liquidity mining and earn LQTY. |
+|  [tjApproveUniTokens(allowance, overrides)](./lib-ethers.sendableethersliquity.tjapproveunitokens.md) |  | Allow the liquidity mining contract to use TJ Pool2 LP tokens for [staking](./lib-base.transactableliquity.stakeunitokens.md)<!-- -->. |
+|  [tjExitLiquidityMining(overrides)](./lib-ethers.sendableethersliquity.tjexitliquiditymining.md) |  | Withdraw all staked TJ Pool2 LP tokens from liquidity mining and claim reward. |
+|  [tjStakeUniTokens(amount, overrides)](./lib-ethers.sendableethersliquity.tjstakeunitokens.md) |  | Stake TJ Pool2 LP tokens to participate in liquidity mining and earn LQTY. |
+|  [tjUnstakeUniTokens(amount, overrides)](./lib-ethers.sendableethersliquity.tjunstakeunitokens.md) |  | Withdraw TJ Pool2 LP tokens from liquidity mining. |
+|  [tjWithdrawLQTYRewardFromLiquidityMining(overrides)](./lib-ethers.sendableethersliquity.tjwithdrawlqtyrewardfromliquiditymining.md) |  | Withdraw LQTY that has been earned by mining liquidity. |
 |  [transferCollateralGainToTrove(overrides)](./lib-ethers.sendableethersliquity.transfercollateralgaintotrove.md) |  | Transfer [collateral gain](./lib-base.stabilitydeposit.collateralgain.md) from Stability Deposit to Trove. |
 |  [unstakeLQTY(amount, overrides)](./lib-ethers.sendableethersliquity.unstakelqty.md) |  | Withdraw LQTY from staking. |
 |  [unstakeUniTokens(amount, overrides)](./lib-ethers.sendableethersliquity.unstakeunitokens.md) |  | Withdraw Uniswap ETH/LUSD LP tokens from liquidity mining. |

@@ -66,6 +66,17 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [liquidate(address, overrides)](./lib-ethers.ethersliquity.liquidate.md) |  | Liquidate one or more undercollateralized Troves. |
 |  [liquidateUpTo(maximumNumberOfTrovesToLiquidate, overrides)](./lib-ethers.ethersliquity.liquidateupto.md) |  | Liquidate the least collateralized Troves up to a maximum number. |
 |  [openTrove(params, maxBorrowingRateOrOptionalParams, overrides)](./lib-ethers.ethersliquity.opentrove.md) |  | Open a new Trove by depositing collateral and borrowing LUSD. |
+|  [pngApproveUniTokens(allowance, overrides)](./lib-ethers.ethersliquity.pngapproveunitokens.md) |  | Allow the liquidity mining contract to use Png Pool2 LP tokens for [staking](./lib-base.transactableliquity.pngstakeunitokens.md)<!-- -->. |
+|  [pngExitLiquidityMining(overrides)](./lib-ethers.ethersliquity.pngexitliquiditymining.md) |  | Withdraw all staked LP tokens from liquidity mining and claim reward. |
+|  [pngGetLiquidityMiningLQTYReward(address, overrides)](./lib-ethers.ethersliquity.pnggetliquiditymininglqtyreward.md) |  | Get the amount of LQTY earned by an address through mining liquidity on PNG pool2. |
+|  [pngGetLiquidityMiningStake(address, overrides)](./lib-ethers.ethersliquity.pnggetliquidityminingstake.md) |  | Get the amount of PNG Pool2 LP tokens currently staked by an address in liquidity mining. |
+|  [pngGetRemainingLiquidityMiningLQTYReward(overrides)](./lib-ethers.ethersliquity.pnggetremainingliquiditymininglqtyreward.md) |  | Get the remaining LQTY that will be collectively rewarded to liquidity miners on PNG pool2. |
+|  [pngGetTotalStakedUniTokens(overrides)](./lib-ethers.ethersliquity.pnggettotalstakedunitokens.md) |  | Get the total amount of PNG Pool2 LP tokens currently staked in liquidity mining. |
+|  [pngGetUniTokenAllowance(address, overrides)](./lib-ethers.ethersliquity.pnggetunitokenallowance.md) |  | Get the liquidity mining contract's allowance of a holder's PNG Pool2 LP tokens. |
+|  [pngGetUniTokenBalance(address, overrides)](./lib-ethers.ethersliquity.pnggetunitokenbalance.md) |  | Get the amount of Png Pool2 LP tokens held by an address. |
+|  [pngStakeUniTokens(amount, overrides)](./lib-ethers.ethersliquity.pngstakeunitokens.md) |  | Stake Png Pool2 LP tokens to participate in liquidity mining and earn LQTY. |
+|  [pngUnstakeUniTokens(amount, overrides)](./lib-ethers.ethersliquity.pngunstakeunitokens.md) |  | Withdraw Png Pool2 LP tokens from liquidity mining. |
+|  [pngWithdrawLQTYRewardFromLiquidityMining(overrides)](./lib-ethers.ethersliquity.pngwithdrawlqtyrewardfromliquiditymining.md) |  | Withdraw LQTY that has been earned by mining liquidity on Png Pool2. |
 |  [redeemLUSD(amount, maxRedemptionRate, overrides)](./lib-ethers.ethersliquity.redeemlusd.md) |  | Redeem LUSD to native currency (e.g. Ether) at face value. |
 |  [registerFrontend(kickbackRate, overrides)](./lib-ethers.ethersliquity.registerfrontend.md) |  | Register current wallet address as a Liquity frontend. |
 |  [repayLUSD(amount, overrides)](./lib-ethers.ethersliquity.repaylusd.md) |  | Adjust existing Trove by repaying some of its debt. |
@@ -73,6 +84,17 @@ The constructor for this class is marked as internal. Third-party code should no
 |  [sendLUSD(toAddress, amount, overrides)](./lib-ethers.ethersliquity.sendlusd.md) |  | Send LUSD tokens to an address. |
 |  [stakeLQTY(amount, overrides)](./lib-ethers.ethersliquity.stakelqty.md) |  | Stake LQTY to start earning fee revenue or increase existing stake. |
 |  [stakeUniTokens(amount, overrides)](./lib-ethers.ethersliquity.stakeunitokens.md) |  | Stake Uniswap ETH/LUSD LP tokens to participate in liquidity mining and earn LQTY. |
+|  [tjApproveUniTokens(allowance, overrides)](./lib-ethers.ethersliquity.tjapproveunitokens.md) |  | Allow the liquidity mining contract to use TJ Pool2 LP tokens for [staking](./lib-base.transactableliquity.stakeunitokens.md)<!-- -->. |
+|  [tjExitLiquidityMining(overrides)](./lib-ethers.ethersliquity.tjexitliquiditymining.md) |  | Withdraw all staked TJ Pool2 LP tokens from liquidity mining and claim reward. |
+|  [tjGetLiquidityMiningLQTYReward(address, overrides)](./lib-ethers.ethersliquity.tjgetliquiditymininglqtyreward.md) |  | Get the amount of LQTY earned by an address through mining liquidity on TJ. |
+|  [tjGetLiquidityMiningStake(address, overrides)](./lib-ethers.ethersliquity.tjgetliquidityminingstake.md) |  | Get the amount of Uniswap ETH/LUSD LP tokens currently staked by an address in liquidity mining. |
+|  [tjGetRemainingLiquidityMiningLQTYReward(overrides)](./lib-ethers.ethersliquity.tjgetremainingliquiditymininglqtyreward.md) |  | Get the remaining LQTY that will be collectively rewarded to liquidity miners on TJ Pool2. |
+|  [tjGetTotalStakedUniTokens(overrides)](./lib-ethers.ethersliquity.tjgettotalstakedunitokens.md) |  | Get the total amount of Uniswap ETH/LUSD LP tokens currently staked in liquidity mining on TJ. |
+|  [tjGetUniTokenAllowance(address, overrides)](./lib-ethers.ethersliquity.tjgetunitokenallowance.md) |  | Get the liquidity mining contract's allowance of a holder's Uniswap ETH/LUSD LP tokens. |
+|  [tjGetUniTokenBalance(address, overrides)](./lib-ethers.ethersliquity.tjgetunitokenbalance.md) |  | Get the amount of TJ Pool2 LP tokens held by an address. |
+|  [tjStakeUniTokens(amount, overrides)](./lib-ethers.ethersliquity.tjstakeunitokens.md) |  | Stake TJ Pool2 LP tokens to participate in liquidity mining and earn LQTY. |
+|  [tjUnstakeUniTokens(amount, overrides)](./lib-ethers.ethersliquity.tjunstakeunitokens.md) |  | Withdraw TJ Pool2 LP tokens from liquidity mining. |
+|  [tjWithdrawLQTYRewardFromLiquidityMining(overrides)](./lib-ethers.ethersliquity.tjwithdrawlqtyrewardfromliquiditymining.md) |  | Withdraw LQTY that has been earned by mining liquidity. |
 |  [transferCollateralGainToTrove(overrides)](./lib-ethers.ethersliquity.transfercollateralgaintotrove.md) |  | Transfer [collateral gain](./lib-base.stabilitydeposit.collateralgain.md) from Stability Deposit to Trove. |
 |  [unstakeLQTY(amount, overrides)](./lib-ethers.ethersliquity.unstakelqty.md) |  | Withdraw LQTY from staking. |
 |  [unstakeUniTokens(amount, overrides)](./lib-ethers.ethersliquity.unstakeunitokens.md) |  | Withdraw Uniswap ETH/LUSD LP tokens from liquidity mining. |

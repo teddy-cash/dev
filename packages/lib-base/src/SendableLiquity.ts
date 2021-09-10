@@ -249,19 +249,61 @@ export interface SendableLiquity<R = unknown, S = unknown>
     allowance?: Decimalish
   ): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
 
+  /** {@inheritDoc TransactableLiquity.tjApproveUniTokens} */
+  tjApproveUniTokens(
+    allowance?: Decimalish
+  ): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+
+  /** {@inheritDoc TransactableLiquity.pngApproveUniTokens} */
+  pngApproveUniTokens(
+    allowance?: Decimalish
+  ): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+
   /** {@inheritDoc TransactableLiquity.stakeUniTokens} */
   stakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
 
+  /** {@inheritDoc TransactableLiquity.pngStakeUniTokens} */
+  pngStakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+
+  /** {@inheritDoc TransactableLiquity.tjStakeUniTokens} */
+  tjStakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+
   /** {@inheritDoc TransactableLiquity.unstakeUniTokens} */
   unstakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+
+  /** {@inheritDoc TransactableLiquity.pngUnstakeUniTokens} */
+  pngUnstakeUniTokens(
+    amount: Decimalish
+  ): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+
+  /** {@inheritDoc TransactableLiquity.tjUnstakeUniTokens} */
+  tjUnstakeUniTokens(
+    amount: Decimalish
+  ): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
 
   /** {@inheritDoc TransactableLiquity.withdrawLQTYRewardFromLiquidityMining} */
   withdrawLQTYRewardFromLiquidityMining(): Promise<
     SentLiquityTransaction<S, LiquityReceipt<R, void>>
   >;
 
+  /** {@inheritDoc TransactableLiquity.pngWithdrawLQTYRewardFromLiquidityMining} */
+  pngWithdrawLQTYRewardFromLiquidityMining(): Promise<
+    SentLiquityTransaction<S, LiquityReceipt<R, void>>
+  >;
+
+  /** {@inheritDoc TransactableLiquity.tjWithdrawLQTYRewardFromLiquidityMining} */
+  tjWithdrawLQTYRewardFromLiquidityMining(): Promise<
+    SentLiquityTransaction<S, LiquityReceipt<R, void>>
+  >;
+
   /** {@inheritDoc TransactableLiquity.exitLiquidityMining} */
   exitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+
+  /** {@inheritDoc TransactableLiquity.pngExitLiquidityMining} */
+  pngExitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+
+  /** {@inheritDoc TransactableLiquity.tjExitLiquidityMining} */
+  tjExitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
 
   /** {@inheritDoc TransactableLiquity.registerFrontend} */
   registerFrontend(

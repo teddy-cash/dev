@@ -81,5 +81,20 @@
       "name": "avalanche",
       "chainId": 43114
     }
+  },
+  "tjToken": {
+    "address": "0x91f0963873bbcA2e58d21bB0941c0D859Db3ca31",
+    "txHash": "0xf03c4f3e169fd1b69ba0472aa25ee74225721c4b7bd92c585431d6345d537e1f"
+  },
+  "tjUnipool": {
+    "address": "0xb4230db9E8566234FDbfC4280387bbeA145AAF4a",
+    "txHash": "0xb106b8c4183db0d9c484a6d1e059e76bc310443f736ecfd8c6425cae83233805"
+  },
+  "pngUnipool": {
+    "address": "0x686FBbef0AA5Fc8E976f637dB54B3a4f5fB972d1",
+    "txHash": "0x87543f4f2ae2c1b9ddfe81ef564a2480a44cc13faedcf2bb10502fd62e12f458"
+  },
+  "pngToken": {
+    "address": "0x4F20E367B10674cB45Eb7ede68c33B702E1Be655"
   }
 }

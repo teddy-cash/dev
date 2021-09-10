@@ -183,6 +183,10 @@ export interface _LiquityContracts {
   gasPool: GasPool;
   unipool: Unipool;
   uniToken: IERC20 | ERC20Mock;
+  tjUnipool: Unipool;
+  tjToken: IERC20 | ERC20Mock;
+  pngUnipool: Unipool;
+  pngToken: IERC20 | ERC20Mock;
 }
 
 /** @internal */
@@ -219,7 +223,11 @@ const getAbi = (priceFeedIsTestnet: boolean, uniTokenIsMock: boolean): LiquityCo
   gasPool: gasPoolAbi,
   collSurplusPool: collSurplusPoolAbi,
   unipool: unipoolAbi,
-  uniToken: uniTokenIsMock ? erc20MockAbi : iERC20Abi
+  uniToken: uniTokenIsMock ? erc20MockAbi : iERC20Abi,
+  tjToken: uniTokenIsMock ? erc20MockAbi : iERC20Abi,
+  tjUnipool: unipoolAbi,
+  pngToken: uniTokenIsMock ? erc20MockAbi : iERC20Abi,
+  pngUnipool: unipoolAbi
 });
 
 const mapLiquityContracts = <T, U>(
@@ -240,6 +248,8 @@ export interface _LiquityDeploymentJSON {
   readonly bootstrapPeriod: number;
   readonly totalStabilityPoolLQTYReward: string;
   readonly liquidityMiningLQTYRewardRate: string;
+  readonly pngLiquidityMiningLQTYRewardRate: string;
+  readonly tjLiquidityMiningLQTYRewardRate: string;
   readonly _priceFeedIsTestnet: boolean;
   readonly _uniTokenIsMock: boolean;
   readonly _isDev: boolean;
@@ -251,10 +261,7 @@ export const _connectToContracts = (
   { addresses, _priceFeedIsTestnet, _uniTokenIsMock }: _LiquityDeploymentJSON
 ): _LiquityContracts => {
   const abi = getAbi(_priceFeedIsTestnet, _uniTokenIsMock);
-
-  return mapLiquityContracts(
-    addresses,
-    (address, key) =>
-      new _LiquityContract(address, abi[key], signerOrProvider) as _TypedLiquityContract
-  ) as _LiquityContracts;
+  return mapLiquityContracts(addresses, (address, key) => {
+    return new _LiquityContract(address, abi[key], signerOrProvider) as _TypedLiquityContract;
+  }) as _LiquityContracts;
 };

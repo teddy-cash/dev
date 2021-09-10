@@ -34,6 +34,11 @@ Implemented by [PopulatableEthersLiquity](./lib-ethers.populatableethersliquity.
 |  [liquidate(address)](./lib-base.populatableliquity.liquidate.md) | Liquidate one or more undercollateralized Troves. |
 |  [liquidateUpTo(maximumNumberOfTrovesToLiquidate)](./lib-base.populatableliquity.liquidateupto.md) | Liquidate the least collateralized Troves up to a maximum number. |
 |  [openTrove(params, maxBorrowingRate)](./lib-base.populatableliquity.opentrove.md) | Open a new Trove by depositing collateral and borrowing LUSD. |
+|  [pngApproveUniTokens(allowance)](./lib-base.populatableliquity.pngapproveunitokens.md) | Allow the liquidity mining contract to use Png Pool2 LP tokens for [staking](./lib-base.transactableliquity.pngstakeunitokens.md)<!-- -->. |
+|  [pngExitLiquidityMining()](./lib-base.populatableliquity.pngexitliquiditymining.md) | Withdraw all staked LP tokens from liquidity mining and claim reward. |
+|  [pngStakeUniTokens(amount)](./lib-base.populatableliquity.pngstakeunitokens.md) | Stake Png Pool2 LP tokens to participate in liquidity mining and earn LQTY. |
+|  [pngUnstakeUniTokens(amount)](./lib-base.populatableliquity.pngunstakeunitokens.md) | Withdraw Png Pool2 LP tokens from liquidity mining. |
+|  [pngWithdrawLQTYRewardFromLiquidityMining()](./lib-base.populatableliquity.pngwithdrawlqtyrewardfromliquiditymining.md) | Withdraw LQTY that has been earned by mining liquidity on Png Pool2. |
 |  [redeemLUSD(amount, maxRedemptionRate)](./lib-base.populatableliquity.redeemlusd.md) | Redeem LUSD to native currency (e.g. Ether) at face value. |
 |  [registerFrontend(kickbackRate)](./lib-base.populatableliquity.registerfrontend.md) | Register current wallet address as a Liquity frontend. |
 |  [repayLUSD(amount)](./lib-base.populatableliquity.repaylusd.md) | Adjust existing Trove by repaying some of its debt. |
@@ -41,6 +46,11 @@ Implemented by [PopulatableEthersLiquity](./lib-ethers.populatableethersliquity.
 |  [sendLUSD(toAddress, amount)](./lib-base.populatableliquity.sendlusd.md) | Send LUSD tokens to an address. |
 |  [stakeLQTY(amount)](./lib-base.populatableliquity.stakelqty.md) | Stake LQTY to start earning fee revenue or increase existing stake. |
 |  [stakeUniTokens(amount)](./lib-base.populatableliquity.stakeunitokens.md) | Stake Uniswap ETH/LUSD LP tokens to participate in liquidity mining and earn LQTY. |
+|  [tjApproveUniTokens(allowance)](./lib-base.populatableliquity.tjapproveunitokens.md) | Allow the liquidity mining contract to use TJ Pool2 LP tokens for [staking](./lib-base.transactableliquity.stakeunitokens.md)<!-- -->. |
+|  [tjExitLiquidityMining()](./lib-base.populatableliquity.tjexitliquiditymining.md) | Withdraw all staked TJ Pool2 LP tokens from liquidity mining and claim reward. |
+|  [tjStakeUniTokens(amount)](./lib-base.populatableliquity.tjstakeunitokens.md) | Stake TJ Pool2 LP tokens to participate in liquidity mining and earn LQTY. |
+|  [tjUnstakeUniTokens(amount)](./lib-base.populatableliquity.tjunstakeunitokens.md) | Withdraw TJ Pool2 LP tokens from liquidity mining. |
+|  [tjWithdrawLQTYRewardFromLiquidityMining()](./lib-base.populatableliquity.tjwithdrawlqtyrewardfromliquiditymining.md) | Withdraw LQTY that has been earned by mining liquidity. |
 |  [transferCollateralGainToTrove()](./lib-base.populatableliquity.transfercollateralgaintotrove.md) | Transfer [collateral gain](./lib-base.stabilitydeposit.collateralgain.md) from Stability Deposit to Trove. |
 |  [unstakeLQTY(amount)](./lib-base.populatableliquity.unstakelqty.md) | Withdraw LQTY from staking. |
 |  [unstakeUniTokens(amount)](./lib-base.populatableliquity.unstakeunitokens.md) | Withdraw Uniswap ETH/LUSD LP tokens from liquidity mining. |
