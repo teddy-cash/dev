@@ -32,7 +32,7 @@ export const Disabled: React.FC = () => {
       console.log(`Farm already unlocked`);
       return ;
     }
-  }, [])
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { pngLiquidityMiningStake: liquidityMiningStake, pngLiquidityMiningLQTYReward: liquidityMiningLQTYReward } = useLiquitySelector(selector);
   
