@@ -38,7 +38,7 @@ export const Approve: React.FC<ApproveProps> = ({ amount }) => {
       showFailure="asTooltip"
       tooltipPlacement="bottom"
     >
-      <Button sx={{ width: "60%" }}>Approve UNI LP</Button>
+      <Button sx={{ width: "60%" }}>Approve LP</Button>
     </Transaction>
   );
 };
