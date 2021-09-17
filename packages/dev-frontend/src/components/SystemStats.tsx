@@ -87,11 +87,7 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
     <Card {...{ variant }}>
       {showBalances && <Balances />}
 
-      <Heading>Teddy Cash Statistics</Heading>
-
-      <Heading as="h2" sx={{ mt: 3, fontWeight: "body" }}>
-        Protocol
-      </Heading>
+      <Heading>Teddy Cash Stats</Heading>
 
       <Statistic
         name="Borrowing Fee"
@@ -144,31 +140,9 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
         {total.collateralRatioIsBelowCritical(price) ? <Box color="danger">Yes</Box> : "No"}
       </Statistic>
       { }
-
-      <Heading as="h2" sx={{ mt: 3, fontWeight: "body" }}>
-        Frontend
-      </Heading>
-      {kickbackRatePct && (
-        <Statistic
-          name="Kickback Rate"
-          tooltip="A rate between 0 and 100% set by the Frontend Operator that determines the fraction of TEDDY that will be paid out as a kickback to the Stability Providers using the frontend."
-        >
-          {kickbackRatePct}%
-        </Statistic>
-      )}
-
       <Box sx={{ mt: 3, opacity: 0.66 }}>
         <Box sx={{ fontSize: 0 }}>
-          Contracts version: <GitHubCommit>{contractsVersion}</GitHubCommit>
-        </Box>
-        <Box sx={{ fontSize: 0 }}>Deployed: {deploymentDate.toLocaleString()}</Box>
-        <Box sx={{ fontSize: 0 }}>
-          Frontend version:{" "}
-          {process.env.NODE_ENV === "development" ? (
-            "development"
-          ) : (
-            <GitHubCommit>{process.env.REACT_APP_VERSION}</GitHubCommit>
-          )}
+          Deployed: {deploymentDate.toLocaleDateString()}, <GitHubCommit>{contractsVersion}</GitHubCommit>
         </Box>
       </Box>
     </Card>
