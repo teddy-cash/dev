@@ -7,7 +7,9 @@ async function setReward(configParams) {
   console.log(date.toUTCString())
   const deployerWallet = (await ethers.getSigners())[0]
   // const account2Wallet = (await ethers.getSigners())[1]
+  console.log('BWB b4 get gas');
   const basefee = await ethers.provider.getGasPrice();
+  console.log('BWB after get gas');
   const gasPrice = toBigNum(basefee).add(toBigNum('10000000000')) // add tip
   configParams.GAS_PRICE = gasPrice;
 
@@ -15,25 +17,19 @@ async function setReward(configParams) {
   const deploymentState = mdh.loadPreviousDeployment()
 
   const factory = await ethers.getContractFactory("Pool2Unipool", deployerWallet)
-  const tjPool2Unipool = await mdh.loadOrDeploy(factory, 'tjPool2Unipool', deploymentState);
-  console.log(`tjPool2Unipool address ${tjPool2Unipool.address}`);
 
-  const pngPool2Unipool = await mdh.loadOrDeploy(factory, 'pngPool2Unipool', deploymentState);
+  const pngPool2Unipool = await mdh.loadOrDeploy(factory, 'pngUnipool', deploymentState);
   console.log(`pngPool2Unipool address ${pngPool2Unipool.address}`);
   //const pools = {pngPool2Unipool: pngPool2Unipool, tjPool2Unipool: tjPool2Unipool}
-  const pools = {pngPool2Unipool: pngPool2Unipool};
-  for (const [name, pool] of Object.entries(pools)) {
-    const teddy = await mdh.loadOrDeploy(factory, 'lqtyToken', deploymentState);
-    const balance = await teddy.balanceOf(pool.address);
-    assert.notEqual(balance, 0)
-    const isRenounced = await mdh.isOwnershipRenounced(pool);
+  const pool = pngPool2Unipool;
+
+   const isRenounced = await mdh.isOwnershipRenounced(pool);
     if (!isRenounced) {
       const tx = await mdh.sendAndWaitForTransaction(pool.setReward(timeVals.SECONDS_IN_ONE_WEEK * 4, {gasPrice}));
       console.log(`Rewards set for ${name} in ${tx.transactionHash}`);
     } else {
       console.log(`Rewards already set for ${name}`);
     }
-  }
 }
 
 module.exports = {

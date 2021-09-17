@@ -14,6 +14,7 @@
     "deploy:avalanche": "npx hardhat --network avalanche run mainnetDeployment/avalancheDeployment.js && node scripts/serializeDeployment.js mainnetDeployment/avalancheDeploymentOutput.json",
     "deploy:fuji": "npx hardhat --network fuji run mainnetDeployment/fujiDeployment.js && node scripts/serializeDeployment.js mainnetDeployment/fujiDeploymentOutput.json",
     "deploy:fuji-setreward": "npx hardhat --network fuji run mainnetDeployment/setPool2RewardFuji.js",
+    "deploy:avalanche-setreward": "npx hardhat --network mainnet run mainnetDeployment/setPool2RewardAvalanche.js",
     "test": "hardhat test",
     "coverage": "hardhat coverage",
     "coveralls": "cat coverage/lcov.info | coveralls"
