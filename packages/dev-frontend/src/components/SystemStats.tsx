@@ -61,7 +61,7 @@ const select = ({
 export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", showBalances }) => {
   const {
     liquity: {
-      connection: { version: contractsVersion, deploymentDate, frontendTag }
+      connection: { version: contractsVersion, deploymentDate }
     }
   } = useLiquity();
 
