@@ -11,6 +11,7 @@ import { TransactionMonitor } from "./components/Transaction";
 import { UserAccount } from "./components/UserAccount";
 import { SystemStatsPopup } from "./components/SystemStatsPopup";
 import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 
 import { PageSwitcher } from "./pages/PageSwitcher";
 import { Farm } from "./pages/Farm";
@@ -79,6 +80,7 @@ export const LiquityFrontend: React.FC<LiquityFrontendProps> = ({ loader }) => {
                               <RedemptionPage />
                             </Route>
                           </Switch>
+                          <Footer /> 
                         </Container>
                     </Flex>
                   </PngFarmViewProvider>

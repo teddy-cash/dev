@@ -11,19 +11,17 @@ import { shortenAddress } from "../utils/shortenAddress";
 import { Icon } from "./Icon";
 
 const select = ({ accountBalance, lusdBalance, lqtyBalance }: LiquityStoreState) => ({
-  accountBalance,
   lusdBalance,
   lqtyBalance
 });
 
 export const UserAccount: React.FC = () => {
   const { account } = useLiquity();
-  const { accountBalance, lusdBalance, lqtyBalance } = useLiquitySelector(select);
+  const { lusdBalance, lqtyBalance } = useLiquitySelector(select);
 
   return (
     <Box sx={{ display: ["none", "flex"] }}>
       <Flex sx={{ alignItems: "center" }}>
-        <Icon name="user-circle" size="lg" />
         <Flex sx={{ ml: 3, mr: 4, flexDirection: "column" }}>
           <Heading sx={{ fontSize: 1 }}>Connected as</Heading>
           <Text as="span" sx={{ fontSize: 1 }}>
@@ -33,18 +31,18 @@ export const UserAccount: React.FC = () => {
       </Flex>
 
       <Flex sx={{ alignItems: "center" }}>
-        <Icon name="wallet" size="lg" />
+        
 
         {([
-          ["AVAX", accountBalance],
           [COIN, lusdBalance],
           [GT, lqtyBalance]
         ] as const).map(([currency, balance], i) => (
-          <Flex key={i} sx={{ ml: 3, flexDirection: "column" }}>
+          <Flex key={i} sx={{ ml: 2, flexDirection: "column" }}>
             <Heading sx={{ fontSize: 1 }}>{currency}</Heading>
             <Text sx={{ fontSize: 1 }}>{balance.prettify()}</Text>
           </Flex>
         ))}
+        <Icon name="wallet" size="lg" style={{marginLeft: "15px"}} />
       </Flex>
     </Box>
   );
