@@ -96,5 +96,13 @@
   },
   "pngToken": {
     "address": "0x4F20E367B10674cB45Eb7ede68c33B702E1Be655"
+  },
+  "ADVISOR_A": {
+    "address": "0x3ccE73abb49C1B7820678EB396bF78Ec3E62500B",
+    "txHash": "0x2e0125d130e005e6616a82b75d67a6a7f82bc7ffdf01ad714bb076386c1dff56"
+  },
+  "ADVISOR_B": {
+    "address": "0x2E93b567261e8c173cc37E5C8898a290b659da67",
+    "txHash": "0xaf7ed12ae995dd102f776a6bb7a862b4772802df859355b5438e50fa7b389279"
   }
 }

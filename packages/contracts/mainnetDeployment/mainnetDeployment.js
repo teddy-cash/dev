@@ -13,7 +13,7 @@ async function mainnetDeploy(configParams) {
   const deployerWallet = (await ethers.getSigners())[0]
   // const account2Wallet = (await ethers.getSigners())[1]
   const basefee = await ethers.provider.getGasPrice();
-  const gasPrice = toBigNum(basefee).add(toBigNum('10000000000')) // add tip
+  const gasPrice = toBigNum(basefee).add(toBigNum('20000000000')) // add tip
   configParams.GAS_PRICE = gasPrice;
   console.log(`BWB gasPrice is ${configParams.GAS_PRICE}`)
 

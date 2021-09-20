@@ -1,9 +1,9 @@
 {
     "bootstrapPeriod": 1209600,
     "totalStabilityPoolLQTYReward": "50000000",
-  "liquidityMiningLQTYRewardRate": "0.257201646090534979",
-  "tjLiquidityMiningLQTYRewardRate": "0.46296296296296297",
-  "pngLiquidityMiningLQTYRewardRate": "0.46296296296296297",
+    "liquidityMiningLQTYRewardRate": "0.257201646090534979",
+    "tjLiquidityMiningLQTYRewardRate": "0",
+    "pngLiquidityMiningLQTYRewardRate": "0.41335978835978837",
     "_priceFeedIsTestnet": false,
     "_uniTokenIsMock": false,
     "_isDev": false,
@@ -34,5 +34,5 @@
     "chainId": 43113,
     "startBlock": 983777,
     "deploymentDate": 1630432924000,
-    "version": "5b13c451dc6ee5ac749785d83c2e026f63dd64e9"
+    "version": "56c5af534f4279dfe41ff27a58f98b294a536139"
 }

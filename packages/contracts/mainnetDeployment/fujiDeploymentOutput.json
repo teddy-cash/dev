@@ -90,18 +90,6 @@
       "chainId": 43113
     }
   },
-  "TEST_INVESTOR_A": {
-    "address": "0xEBD4D75DAB1D556cF9d0F7A960A7852FAEb3f1A3",
-    "txHash": "0xb023c563390977f7b634f9a7b60474acd303cfe452658840dd9efcd3fe2c776b"
-  },
-  "TEST_INVESTOR_B": {
-    "address": "0xc858e6c5639666afDD5062c981DCc753b67AF1E7",
-    "txHash": "0xfd47a6881a098bb74bc748cfecb3346ece01c4a4c08ec25ed9cc9e20a6410a69"
-  },
-  "TEST_INVESTOR_C": {
-    "address": "0x0beEf4f62cFA4613695c03B152C41408A3a92203",
-    "txHash": "0x0b80cff0677fe307aedf13465dc18feed556f6d81f88a9ee63b1b0edf46ba38b"
-  },
   "tjUnipool": {
     "address": "0xca99d790F0DB93BFc8cdF8576FED0E3ac45EdfAd",
     "txHash": "0x792e8759838f8536bea9f334ff10a3e1c2d2bd3138997e1db5f801f096cb551f"
@@ -109,5 +97,13 @@
   "pngUnipool": {
     "address": "0x58705A172ED52B6EBeB7e2166B047Cb1f0DC8fF1",
     "txHash": "0xc7d6a62104f1cf6ff4122acdd68b98951b0f4d63f0558a9396b098d5a834123e"
+  },
+  "ADVISOR_A": {
+    "address": "0x5a8303960DF47b2Bd914F3C23fa1B9cbF8EbEdb9",
+    "txHash": "0x32025c457e36a9ffbfaa01b050dc3af985e7a9d0a344ec97e0b23609692a9412"
+  },
+  "ADVISOR_B": {
+    "address": "0x8f87975BE2146E9328a1f6e55eCcb552E687070c",
+    "txHash": "0xe7b8f5a0ac23e87813b0f70b131943e704ffdb6912b16485bbd1827f952ae6d6"
   }
 }

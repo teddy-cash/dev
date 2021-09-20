@@ -34,7 +34,10 @@ const beneficiaries = {
   TEST_INVESTOR_C: ""
 }
 */
-const beneficiaries = [];
+const beneficiaries = {
+  ADVISOR_A: "0x96AC61b54cDB56fA7f1E30E6065E9fDFaB779dfF",
+  ADVISOR_B: "0xeD9b765D6638BEfF21c12F595A1AE60d3830C07c"
+}
 
 const OUTPUT_FILE = './mainnetDeployment/avalancheDeploymentOutput.json'
 
