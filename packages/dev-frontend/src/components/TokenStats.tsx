@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Heading, Link, Box, Flex, Image } from "theme-ui";
 import { Icon } from "./Icon";
 
@@ -19,6 +19,40 @@ export const TokenStats: React.FC = () => {
 
   const { price } = useLiquitySelector(select);
   
+  // code for how to add token copied from here https://github.com/rsksmart/metamask-rsk-custom-network/blob/main/src/App.tsx
+  const [log, setLog] = useState<string[]>([])
+
+  const addToken = (params: any) => {
+    //@ts-ignore
+    window.ethereum.request({ method: 'wallet_watchAsset', params })
+      .then(() => setLog([...log, 'Success, Token added!']))
+      .catch((error: Error) => setLog([...log, `Error: ${error.message}`]));
+  }
+
+  const addTsdToken = () => {
+    addToken({
+      type: 'ERC20',
+      options: {
+        address: addresses['lusdToken'],
+        symbol: 'TSD',
+        decimals: 18,
+        image: 'https://assets.coingecko.com/coins/images/18303/small/logo_-_2021-09-13T111436.680.png'
+      }
+    });
+  }
+
+  const addTeddyToken = () => {
+    addToken({
+      type: 'ERC20',
+      options: {
+        address: addresses['lqtyToken'],
+        symbol: 'TEDDY',
+        decimals: 18,
+        image: 'https://assets.coingecko.com/coins/images/18303/small/logo_-_2021-09-13T111436.680.png'
+      }
+    });
+  }
+
   // eslint-disable-next-line
   const { isLoading, error, data } = useQuery('teddyPriceData', () =>
      fetch('https://api.coingecko.com/api/v3/simple/price?ids=teddy-cash&vs_currencies=usd').then(res =>
@@ -73,21 +107,22 @@ export const TokenStats: React.FC = () => {
             <Box sx={{mb: 1, mt: 1}}>
             <Flex sx={{ alignItems: "center"}}>
                 <Box sx={{margin: 'auto'}}>
-                <Box><Image src="./icons/avalanche-avax-logo.svg" width="16" height="16" sx={{marginRight: 2}} />AVAX</Box>
-                <Box sx={{margin: 'auto'}}>${Decimal.from(price).toString(2)}</Box>
-                <Box  sx={{ml: '10px'}}>
+                <Flex style={{justifyContent: 'center'}}><Image src="./icons/avalanche-avax-logo.svg" width="16" height="16" sx={{marginRight: 2}} />AVAX</Flex>
+                <Flex style={{justifyContent: 'center'}}>${Decimal.from(price).toString(2)}</Flex>
+                <Flex style={{justifyContent: 'center'}}>
                     <Link href="https://www.coingecko.com/en/coins/avalanche" target="_blank">
                     <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
                     </Link>
-                    <Link href="https://data.chain.link/avalanche/mainnet/crypto-usd/avax-usd">
+                    <Link href="https://data.chain.link/avalanche/mainnet/crypto-usd/avax-usd" target="_blank">
                     <Icon name="satellite-dish" style={{marginLeft: "4px"}} size="xs" />
                     </Link>
-                </Box>
+                </Flex>
+                <Box><Image src="./icons/metamask.svg" style={{maxHeight: '30px', visibility: 'hidden'}}/></Box>
                 </Box>
                 <Box sx={{margin: 'auto'}}>
-                <Box><Image src="./teddy-cash-final-unicorn.png" width="20" height="20" sx={{marginRight: 2}} />TSD</Box>
-                <Box>{tsdValue}</Box>
-                <Box>
+                <Flex style={{justifyContent: 'center'}}><Image src="./teddy-cash-final-unicorn.png" width="20" height="20" sx={{marginRight: 2}} />TSD</Flex>
+                <Flex style={{justifyContent: 'center'}}>{tsdValue}</Flex>
+                <Flex style={{justifyContent: 'center'}}>
                     <Link href={`https://info.pangolin.exchange/#/token/${addresses['lusdToken']}`} target="_blank">
                     <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
                     </Link>
@@ -97,12 +132,13 @@ export const TokenStats: React.FC = () => {
                     <Link href={`https://app.pangolin.exchange/#/swap?outputCurrency=${addresses['lusdToken']}`} target="_blank">
                     <Icon name="exchange-alt" style={{marginLeft: "4px"}} size="xs" />
                     </Link>
-                </Box>
+                </Flex>
+                <Flex style={{justifyContent: 'center', cursor: 'pointer'}} onClick={addTsdToken}><Image src="./icons/metamask.svg" style={{maxHeight: '30px'}}/></Flex>
                 </Box>
                 <Box sx={{margin: 'auto'}}>
-                <Box><Image src="./teddy-cash-icon.png" width="20" height="20" sx={{marginRight: 2}} />TEDDY</Box>
-                <Box>{isLoading ? '...' : '$' + Decimal.from(data['teddy-cash']['usd']).toString(2)}</Box>
-                <Box>
+                <Flex style={{justifyContent: 'center'}}><Image src="./teddy-cash-icon.png" width="20" height="20" sx={{marginRight: 2}} />TEDDY</Flex>
+                <Flex style={{justifyContent: 'center'}}>{isLoading ? '...' : '$' + Decimal.from(data['teddy-cash']['usd']).toString(2)}</Flex>
+                <Flex style={{justifyContent: 'center'}}>
                     <Link href="https://www.coingecko.com/en/coins/teddy-cash" target="_blank">
                     <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
                     </Link>
@@ -112,7 +148,8 @@ export const TokenStats: React.FC = () => {
                     <Link href={`https://app.pangolin.exchange/#/swap?outputCurrency=${addresses['lqtyToken']}`} target="_blank">
                     <Icon name="exchange-alt" style={{marginLeft: "4px"}} size="xs" />
                     </Link>
-                </Box>
+                </Flex>
+                <Flex style={{justifyContent: 'center', cursor: 'pointer'}} onClick={addTeddyToken}><Image src="./icons/metamask.svg" style={{maxHeight: '30px'}}/></Flex>
                 </Box>
             </Flex>      
             </Box>

@@ -6,6 +6,7 @@ import { SystemStats } from "../components/SystemStats";
 import { PriceManager } from "../components/PriceManager";
 import { Staking } from "../components/Staking/Staking";
 import { Help } from '../components/Help';
+
 export const Dashboard: React.FC = () => (
   <Container variant="columns">
     <Container variant="left">
