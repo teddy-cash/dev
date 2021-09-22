@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Heading, Link, Box, Flex, Image } from "theme-ui";
 import { Icon } from "./Icon";
 
@@ -19,40 +19,6 @@ export const TokenStats: React.FC = () => {
 
   const { price } = useLiquitySelector(select);
   
-  // code for how to add token copied from here https://github.com/rsksmart/metamask-rsk-custom-network/blob/main/src/App.tsx
-  const [log, setLog] = useState<string[]>([])
-
-  const addToken = (params: any) => {
-    //@ts-ignore
-    window.ethereum.request({ method: 'wallet_watchAsset', params })
-      .then(() => setLog([...log, 'Success, Token added!']))
-      .catch((error: Error) => setLog([...log, `Error: ${error.message}`]));
-  }
-
-  const addTsdToken = () => {
-    addToken({
-      type: 'ERC20',
-      options: {
-        address: addresses['lusdToken'],
-        symbol: 'TSD',
-        decimals: 18,
-        image: 'https://assets.coingecko.com/coins/images/18303/small/logo_-_2021-09-13T111436.680.png'
-      }
-    });
-  }
-
-  const addTeddyToken = () => {
-    addToken({
-      type: 'ERC20',
-      options: {
-        address: addresses['lqtyToken'],
-        symbol: 'TEDDY',
-        decimals: 18,
-        image: 'https://assets.coingecko.com/coins/images/18303/small/logo_-_2021-09-13T111436.680.png'
-      }
-    });
-  }
-
   // eslint-disable-next-line
   const { isLoading, error, data } = useQuery('teddyPriceData', () =>
      fetch('https://api.coingecko.com/api/v3/simple/price?ids=teddy-cash&vs_currencies=usd').then(res =>
@@ -117,7 +83,6 @@ export const TokenStats: React.FC = () => {
                     <Icon name="satellite-dish" style={{marginLeft: "4px"}} size="xs" />
                     </Link>
                 </Flex>
-                <Box><Image src="./icons/metamask.svg" style={{maxHeight: '30px', visibility: 'hidden'}}/></Box>
                 </Box>
                 <Box sx={{margin: 'auto'}}>
                 <Flex style={{justifyContent: 'center'}}><Image src="./teddy-cash-final-unicorn.png" width="20" height="20" sx={{marginRight: 2}} />TSD</Flex>
@@ -133,7 +98,6 @@ export const TokenStats: React.FC = () => {
                     <Icon name="exchange-alt" style={{marginLeft: "4px"}} size="xs" />
                     </Link>
                 </Flex>
-                <Flex style={{justifyContent: 'center', cursor: 'pointer'}} onClick={addTsdToken}><Image src="./icons/metamask.svg" style={{maxHeight: '30px'}}/></Flex>
                 </Box>
                 <Box sx={{margin: 'auto'}}>
                 <Flex style={{justifyContent: 'center'}}><Image src="./teddy-cash-icon.png" width="20" height="20" sx={{marginRight: 2}} />TEDDY</Flex>
@@ -149,7 +113,6 @@ export const TokenStats: React.FC = () => {
                     <Icon name="exchange-alt" style={{marginLeft: "4px"}} size="xs" />
                     </Link>
                 </Flex>
-                <Flex style={{justifyContent: 'center', cursor: 'pointer'}} onClick={addTeddyToken}><Image src="./icons/metamask.svg" style={{maxHeight: '30px'}}/></Flex>
                 </Box>
 
             </Flex>      
