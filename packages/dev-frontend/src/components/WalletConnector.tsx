@@ -189,7 +189,7 @@ export const WalletConnector: React.FC<WalletConnectorProps> = ({ children, load
               activate(connectionState.connector);
             }}
           >
-            <Text>To use Liquity, you need to connect your Avalanche account.</Text>
+            <Text>To use Teddy Cash, you need to connect your Avalanche account.</Text>
           </RetryDialog>
         </Modal>
       )}

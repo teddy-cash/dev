@@ -27,7 +27,13 @@ import {
   faPen,
   faHandPaper,
   faHeartbeat,
-  faBars
+  faBars,
+  faSatelliteDish,
+  faFileContract,
+  faExchangeAlt,
+  faPiggyBank,
+  faSwimmingPool,
+  faCoins
 } from "@fortawesome/free-solid-svg-icons";
 import { faClipboard, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon, FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
@@ -61,7 +67,13 @@ library.add(
   faHandPaper,
   faHeartbeat,
   faBars,
-  faQuestionCircle
+  faQuestionCircle,
+  faSatelliteDish,
+  faFileContract,
+  faExchangeAlt,
+  faPiggyBank,
+  faSwimmingPool,
+  faCoins
 );
 
 const getIcon = (name: IconName): IconProp => {

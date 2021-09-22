@@ -1,11 +1,14 @@
 import React from "react";
 import { Card, Heading, Link, Box, Text } from "theme-ui";
+
+
 import { Decimal, Percent, LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
 
 import { useLiquity } from "../hooks/LiquityContext";
 import { COIN, GT } from "../strings";
 import { Statistic } from "./Statistic";
+import { TokenStats } from "./TokenStats";
 
 const selectBalances = ({ accountBalance, lusdBalance, lqtyBalance }: LiquityStoreState) => ({
   accountBalance,
@@ -65,6 +68,7 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
     }
   } = useLiquity();
 
+
   const {
     numberOfTroves,
     price,
@@ -83,8 +87,9 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
     <Card {...{ variant }}>
       {showBalances && <Balances />}
 
-      <Heading>Teddy Cash Stats</Heading>
-
+      <TokenStats />
+      
+      <Heading>Protocol</Heading>
       <Statistic
         name="Borrowing Fee"
         tooltip="The Borrowing Fee is a one-off fee charged as a percentage of the borrowed amount (in TSD) and is part of a Trove's debt. The fee varies between 0.5% and 5% depending on TSD redemption volumes."
@@ -104,7 +109,7 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
       <Statistic name="Troves" tooltip="The total number of active Troves in the system.">
         {Decimal.from(numberOfTroves).prettify(0)}
       </Statistic>
-      <Statistic name="TSD supply" tooltip="The total TSD minted by the Liquity Protocol.">
+      <Statistic name="TSD supply" tooltip="The total TSD minted by Teddy Cash.">
         {total.debt.shorten()}
       </Statistic>
       {lusdInStabilityPoolPct && (

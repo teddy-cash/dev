@@ -26,6 +26,11 @@ export const PriceManager: React.FC = () => {
     setEditedPrice(price.toString(2));
   }, [price]);
 
+  // if not on the testnet, show nothing at all
+  if (!canSetPrice) {
+    return <></>;
+  }
+
   return (
     <Card>
       <Heading>Price feed</Heading>
