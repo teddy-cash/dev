@@ -61,8 +61,8 @@ const UnsupportedMainnetFallback: React.FC = () => (
     </Paragraph>
 
     <Paragraph>
-      If you'd like to use the Liquity Protocol on mainnet, please pick a frontend{" "}
-      <Link href="https://teddy.cash/frontend">
+      If you'd like to use Teddy Cash on mainnet, please pick a frontend{" "}
+      <Link href="https://app.teddy.cash">
         here <Icon name="external-link-alt" size="xs" />
       </Link>
       .
