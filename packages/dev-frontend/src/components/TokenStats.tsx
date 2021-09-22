@@ -151,6 +151,7 @@ export const TokenStats: React.FC = () => {
                 </Flex>
                 <Flex style={{justifyContent: 'center', cursor: 'pointer'}} onClick={addTeddyToken}><Image src="./icons/metamask.svg" style={{maxHeight: '30px'}}/></Flex>
                 </Box>
+                
             </Flex>      
             </Box>
         </>
