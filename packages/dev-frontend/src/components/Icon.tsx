@@ -30,7 +30,10 @@ import {
   faBars,
   faSatelliteDish,
   faFileContract,
-  faExchangeAlt
+  faExchangeAlt,
+  faPiggyBank,
+  faSwimmingPool,
+  faCoins
 } from "@fortawesome/free-solid-svg-icons";
 import { faClipboard, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon, FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
@@ -67,7 +70,10 @@ library.add(
   faQuestionCircle,
   faSatelliteDish,
   faFileContract,
-  faExchangeAlt
+  faExchangeAlt,
+  faPiggyBank,
+  faSwimmingPool,
+  faCoins
 );
 
 const getIcon = (name: IconName): IconProp => {

@@ -4,13 +4,14 @@ import { GT } from "../../strings";
 
 import { InfoMessage } from "../InfoMessage";
 import { useStakingView } from "./context/StakingViewContext";
+import { Icon } from "../Icon";
 
 export const NoStake: React.FC = () => {
   const { dispatch } = useStakingView();
 
   return (
     <Card>
-      <Heading>Staking</Heading>
+      <Heading><p><Icon name="coins" style={{marginRight: "6px"}}/>Staking</p></Heading>
       <Box sx={{ p: [2, 3] }}>
         <InfoMessage title={`You haven't staked ${GT} yet.`}>
           Stake {GT} to earn a share of borrowing and redemption fees.

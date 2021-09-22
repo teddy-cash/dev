@@ -25,6 +25,8 @@ import { FarmViewProvider } from "./components/Farm/context/FarmViewProvider";
 import { FarmViewProvider as TjFarmViewProvider } from "./components/FarmTj/context/FarmViewProvider";
 import { FarmViewProvider as PngFarmViewProvider } from "./components/FarmPng/context/FarmViewProvider";
 
+import {QueryClient, QueryClientProvider } from 'react-query'
+
 type LiquityFrontendProps = {
   loader?: React.ReactNode;
 };
@@ -42,54 +44,57 @@ export const LiquityFrontend: React.FC<LiquityFrontendProps> = ({ loader }) => {
     Wallet
   });
 
+  const queryClient = new QueryClient()
   return (
     <LiquityStoreProvider {...{ loader }} store={liquity.store}>
-      <Router>
-        <TroveViewProvider>
-          <StabilityViewProvider>
-            <StakingViewProvider>
-              <FarmViewProvider>
-                <TjFarmViewProvider>
-                  <PngFarmViewProvider>
-                    <Flex sx={{ flexDirection: "column", minHeight: "100%" }}>
-                        <Header>
-                          <UserAccount />
-                          <SystemStatsPopup />
-                        </Header>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <TroveViewProvider>
+            <StabilityViewProvider>
+              <StakingViewProvider>
+                <FarmViewProvider>
+                  <TjFarmViewProvider>
+                    <PngFarmViewProvider>
+                      <Flex sx={{ flexDirection: "column", minHeight: "100%" }}>
+                          <Header>
+                            <UserAccount />
+                            <SystemStatsPopup />
+                          </Header>
 
-                        <Container
-                          variant="main"
-                          sx={{
-                            display: "flex",
-                            flexGrow: 1,
-                            flexDirection: "column",
-                            alignItems: "center"
-                          }}
-                        >
-                          <Switch>
-                            <Route path="/" exact>
-                              <PageSwitcher />
-                            </Route>
-                            <Route path="/farm">
-                              <Farm />
-                            </Route>
-                            <Route path="/risky-troves">
-                              <RiskyTrovesPage />
-                            </Route>
-                            <Route path="/redemption">
-                              <RedemptionPage />
-                            </Route>
-                          </Switch>
-                          <Footer /> 
-                        </Container>
-                    </Flex>
-                  </PngFarmViewProvider>
-                </TjFarmViewProvider>
-              </FarmViewProvider>
-            </StakingViewProvider>
-          </StabilityViewProvider>
-        </TroveViewProvider>
-      </Router>
+                          <Container
+                            variant="main"
+                            sx={{
+                              display: "flex",
+                              flexGrow: 1,
+                              flexDirection: "column",
+                              alignItems: "center"
+                            }}
+                          >
+                            <Switch>
+                              <Route path="/" exact>
+                                <PageSwitcher />
+                              </Route>
+                              <Route path="/farm">
+                                <Farm />
+                              </Route>
+                              <Route path="/risky-troves">
+                                <RiskyTrovesPage />
+                              </Route>
+                              <Route path="/redemption">
+                                <RedemptionPage />
+                              </Route>
+                            </Switch>
+                            <Footer /> 
+                          </Container>
+                      </Flex>
+                    </PngFarmViewProvider>
+                  </TjFarmViewProvider>
+                </FarmViewProvider>
+              </StakingViewProvider>
+            </StabilityViewProvider>
+          </TroveViewProvider>
+        </Router>
+      </QueryClientProvider>
       <TransactionMonitor />
     </LiquityStoreProvider>
   );

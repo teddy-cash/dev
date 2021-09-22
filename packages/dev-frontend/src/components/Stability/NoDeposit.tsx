@@ -4,7 +4,7 @@ import { InfoMessage } from "../InfoMessage";
 import { useStabilityView } from "./context/StabilityViewContext";
 import { RemainingLQTY } from "./RemainingLQTY";
 import { Yield } from "./Yield";
-
+import { Icon } from "../Icon";
 export const NoDeposit: React.FC = props => {
   const { dispatchEvent } = useStabilityView();
 
@@ -15,7 +15,10 @@ export const NoDeposit: React.FC = props => {
   return (
     <Card>
       <Heading>
-        Stability Pool
+        <p>
+          <Icon name='swimming-pool' style={{marginRight: '6px'}}/>
+          Stability Pool
+        </p>
         <Flex sx={{ justifyContent: "flex-end" }}>
           <RemainingLQTY />
         </Flex>

@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { Card, Heading, Box, Flex, Button } from "theme-ui";
 import { InfoMessage } from "../InfoMessage";
+import { Icon } from "../Icon";
 import { useTroveView } from "./context/TroveViewContext";
 
 export const NoTrove: React.FC = props => {
@@ -12,7 +13,7 @@ export const NoTrove: React.FC = props => {
 
   return (
     <Card>
-      <Heading>Trove</Heading>
+      <Heading><p><Icon name="piggy-bank" style={{marginRight: '6px'}}/>Trove</p></Heading>
       <Box sx={{ p: [2, 3] }}>
         <InfoMessage title="You haven't borrowed any TSD yet.">
           You can borrow TSD by opening a Trove.
