@@ -1,5 +1,7 @@
 import React from "react";
-import { Card, Heading, Link, Box, Text } from "theme-ui";
+import { Card, Heading, Link, Box, Flex, Text, Image } from "theme-ui";
+
+import { Icon } from "./Icon";
 import { Decimal, Percent, LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
 
@@ -61,9 +63,11 @@ const select = ({
 export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", showBalances }) => {
   const {
     liquity: {
-      connection: { version: contractsVersion, deploymentDate }
+      connection: { version: contractsVersion, deploymentDate, addresses, chainId }
     }
   } = useLiquity();
+
+  const explorerUrl = chainId === 43114 ? "https://cchain.explorer.avax.network/address/" : "https://cchain.explorer.avax-test.network/address/"
 
   const {
     numberOfTroves,
@@ -84,7 +88,54 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
       {showBalances && <Balances />}
 
       <Heading>Teddy Cash Stats</Heading>
-
+      <Box sx={{mb: 1, mt: 1}}>
+      <Flex sx={{ alignItems: "center"}}>
+        <Box sx={{margin: 'auto'}}>
+          <Box><Image src="./icons/avalanche-avax-logo.svg" width="16" height="16" sx={{marginRight: 2}} />AVAX</Box>
+          <Box sx={{margin: 'auto'}}>${Decimal.from(price).toString(2)}</Box>
+          <Box  sx={{ml: '10px'}}>
+            <Link href="https://www.coingecko.com/en/coins/avalanche" target="_blank">
+              <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href="https://data.chain.link/avalanche/mainnet/crypto-usd/avax-usd">
+              <Icon name="satellite-dish" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+          </Box>
+        </Box>
+        <Box sx={{margin: 'auto'}}>
+          <Box><Image src="./teddy-cash-final-unicorn.png" width="20" height="20" sx={{marginRight: 2}} />TSD</Box>
+          <Box>$1.00</Box>
+          <Box>
+            <Link href="" target="_blank">
+              <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href={`${explorerUrl}${addresses['lusdToken']}`} target="_blank">
+              <Icon name="file-contract" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href={`https://app.pangolin.exchange/#/swap?outputCurrency=${addresses['lusdToken']}`} target="_blank">
+              <Icon name="exchange-alt" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+          </Box>
+        </Box>
+        <Box sx={{margin: 'auto'}}>
+          <Box><Image src="./teddy-cash-icon.png" width="20" height="20" sx={{marginRight: 2}} /> TEDDY</Box>
+          <Box>$0.45</Box>
+          <Box>
+            <Link href="https://www.coingecko.com/en/coins/teddy-cash" target="_blank">
+              <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href={`${explorerUrl}${addresses['lqtyToken']}`} target="_blank">
+              <Icon name="file-contract" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href={`https://app.pangolin.exchange/#/swap?outputCurrency=${addresses['lqtyToken']}`} target="_blank">
+              <Icon name="exchange-alt" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+          </Box>
+        </Box>
+      </Flex>      
+      </Box>
+      
+      <Heading>Protocol</Heading>
       <Statistic
         name="Borrowing Fee"
         tooltip="The Borrowing Fee is a one-off fee charged as a percentage of the borrowed amount (in TSD) and is part of a Trove's debt. The fee varies between 0.5% and 5% depending on TSD redemption volumes."
