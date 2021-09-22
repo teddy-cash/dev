@@ -103,7 +103,7 @@ export const TokenStats: React.FC = () => {
 
     return (
         <>
-         <Heading><Icon name="chart-line" style={{marginRight: "6px"}}/>Teddy Cash Stats</Heading>
+         <Heading>Teddy Cash Stats</Heading>
             <Box sx={{mb: 1, mt: 1}}>
             <Flex sx={{ alignItems: "center"}}>
                 <Box sx={{margin: 'auto'}}>
@@ -151,7 +151,7 @@ export const TokenStats: React.FC = () => {
                 </Flex>
                 <Flex style={{justifyContent: 'center', cursor: 'pointer'}} onClick={addTeddyToken}><Image src="./icons/metamask.svg" style={{maxHeight: '30px'}}/></Flex>
                 </Box>
-                
+
             </Flex>      
             </Box>
         </>
