@@ -45,7 +45,7 @@ export const TokenStats: React.FC = () => {
      )
    );
 
-   const pngQuery = (tsdTokenAddress: string) => `{
+    const pngQuery = (tsdTokenAddress: string) => `{
         token(id: "${tsdTokenAddress.toLowerCase()}") {
             derivedETH
         },
@@ -86,6 +86,10 @@ export const TokenStats: React.FC = () => {
 
    const explorerUrl = chainId === 43114 ? "https://cchain.explorer.avax.network/address/" : "https://cchain.explorer.avax-test.network/address/"
 
+   // hard-coded for current week. needs to be adapted to consume
+   // circulating supply API feed.
+   const circSupply = 5; // millions
+
     return (
         <>
          <Heading>Teddy Cash Stats</Heading>
@@ -122,6 +126,15 @@ export const TokenStats: React.FC = () => {
                 <Icon name="exchange-alt" style={{marginLeft: "4px"}} size="xs" />
             </Link>
         </TokenRow>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex>TEDDY Market Cap</Flex>
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">Circulating Supply * Price</Card>} />
+          </Flex>
+          <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : '~ $' + Decimal.from(data['teddy-cash']['usd']).mul(circSupply).toString(1)}M
+          </Flex>
+        </Flex>
 {/*             <Box sx={{mb: 1, mt: 1}}>
             <Flex sx={{ alignItems: "center"}}>
                 <Box sx={{margin: 'auto'}}>
