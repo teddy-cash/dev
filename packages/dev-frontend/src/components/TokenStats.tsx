@@ -28,7 +28,7 @@ export const TokenRow: React.FC<TokenRowProps> = ({ name, image, tooltip, childr
 
 export const TokenStats: React.FC = () => {
 
-  const select = ({ price }: LiquityStoreState) => ({ price });
+  const select = ({ price, lusdInStabilityPool }: LiquityStoreState) => ({ price, lusdInStabilityPool });
 
   const {
     liquity: {
@@ -36,8 +36,7 @@ export const TokenStats: React.FC = () => {
     }
   } = useLiquity();
 
-  const { price } = useLiquitySelector(select);
-
+  const { price, lusdInStabilityPool } = useLiquitySelector(select);
   // code for how to add token copied from here https://github.com/rsksmart/metamask-rsk-custom-network/blob/main/src/App.tsx
   const [log, setLog] = useState<string[]>([])
 
@@ -71,6 +70,7 @@ export const TokenStats: React.FC = () => {
       }
     });
   }
+
 
   // eslint-disable-next-line
   const { isLoading, error, data } = useQuery('teddyPriceData', () =>
@@ -123,6 +123,15 @@ export const TokenStats: React.FC = () => {
    // hard-coded for current week. needs to be adapted to consume
    // circulating supply API feed.
    const circSupply = 5; // millions
+   const teddyRewardsYear1 = 25000000;
+   let apr: Decimal = Decimal.from(0);
+   if (!isLoading) {
+    const teddyPrice = Decimal.from(data['teddy-cash']['usd']);
+    const teddyRewardsUSD = teddyPrice.mul(teddyRewardsYear1);
+    apr = teddyRewardsUSD.div(lusdInStabilityPool).mul(100);
+   } 
+
+  //  const apr = .mul(circSupply).toString(1);
 
     return (
         <>
@@ -171,7 +180,14 @@ export const TokenStats: React.FC = () => {
             {isLoading ? '...' : '~ $' + Decimal.from(data['teddy-cash']['usd']).mul(circSupply).toString(1)}M
           </Flex>
         </Flex>
-
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex>Stability Pool APR</Flex>
+          </Flex>
+          <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : apr.prettify(2)}%
+          </Flex>
+        </Flex>
         </>
     );
 }
