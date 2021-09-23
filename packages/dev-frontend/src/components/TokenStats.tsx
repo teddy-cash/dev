@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Card, Link, Box, Flex, Image } from "theme-ui";
+import { Heading, Card, Link, Flex, Image } from "theme-ui";
 import { Icon } from "./Icon";
 import { InfoIcon } from './InfoIcon';
 import { Decimal, LiquityStoreState } from "@liquity/lib-base";
