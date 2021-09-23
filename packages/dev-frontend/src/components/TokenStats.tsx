@@ -1,11 +1,30 @@
 import React from 'react';
-import { Heading, Link, Box, Flex, Image } from "theme-ui";
+import { Heading, Card, Link, Box, Flex, Image } from "theme-ui";
 import { Icon } from "./Icon";
-
+import { InfoIcon } from './InfoIcon';
 import { Decimal, LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
 import { useLiquity } from "../hooks/LiquityContext";
 import { useQuery } from 'react-query'
+
+type TokenRowProps = {
+  name: React.ReactNode;
+  image: string;
+  tooltip?: React.ReactNode;
+};
+
+export const TokenRow: React.FC<TokenRowProps> = ({ name, image, tooltip, children }) => {
+  return (
+    <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+      <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+        <Flex> <Image src={image} width="25" height="25" sx={{marginRight: 2}}/> {name}</Flex>
+        {tooltip && <InfoIcon size="xs" tooltip={<Card variant="tooltip">{tooltip}</Card>} />}
+      </Flex>
+      <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>{children}</Flex>
+    </Flex>
+  );
+};
+
 
 export const TokenStats: React.FC = () => {
 
@@ -70,7 +89,40 @@ export const TokenStats: React.FC = () => {
     return (
         <>
          <Heading>Teddy Cash Stats</Heading>
-            <Box sx={{mb: 1, mt: 1}}>
+         <TokenRow name="AVAX" image="./icons/avalanche-avax-logo.svg">
+             ${Decimal.from(price).toString(2)}
+             <Link href="https://www.coingecko.com/en/coins/avalanche" target="_blank">
+                <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
+             </Link>
+             <Link href="https://data.chain.link/avalanche/mainnet/crypto-usd/avax-usd" target="_blank">
+                <Icon name="satellite-dish" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+        </TokenRow>
+        <TokenRow name="TSD" image="./teddy-cash-final-unicorn.png">
+            {tsdValue}
+            <Link href={`https://info.pangolin.exchange/#/token/${addresses['lusdToken']}`} target="_blank">
+               <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href={`${explorerUrl}${addresses['lusdToken']}`} target="_blank">
+               <Icon name="file-contract" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href={`https://app.pangolin.exchange/#/swap?outputCurrency=${addresses['lusdToken']}`} target="_blank">
+              <Icon name="exchange-alt" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+        </TokenRow>
+        <TokenRow name="TEDDY" image="./teddy-cash-icon.png">
+            {isLoading ? '...' : '$' + Decimal.from(data['teddy-cash']['usd']).toString(2)}
+            <Link href="https://www.coingecko.com/en/coins/teddy-cash" target="_blank">
+                <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href={`${explorerUrl}${addresses['lqtyToken']}`} target="_blank">
+               <Icon name="file-contract" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href={`https://app.pangolin.exchange/#/swap?outputCurrency=${addresses['lqtyToken']}`} target="_blank">
+                <Icon name="exchange-alt" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+        </TokenRow>
+{/*             <Box sx={{mb: 1, mt: 1}}>
             <Flex sx={{ alignItems: "center"}}>
                 <Box sx={{margin: 'auto'}}>
                 <Flex style={{justifyContent: 'center'}}><Image src="./icons/avalanche-avax-logo.svg" width="16" height="16" sx={{marginRight: 2}} />AVAX</Flex>
@@ -116,7 +168,7 @@ export const TokenStats: React.FC = () => {
                 </Box>
 
             </Flex>      
-            </Box>
+            </Box> */}
         </>
     );
 }
