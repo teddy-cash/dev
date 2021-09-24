@@ -197,7 +197,7 @@ export const TokenStats: React.FC = () => {
             <InfoIcon size="xs" tooltip={<Card variant="tooltip">TVL Stability Pool + TEDDY Staking</Card>} />
           </Flex>
           <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
-            {isLoading ? '...' : tvl.shorten()}
+            {isLoading ? '...' : '$' + tvl.shorten()}
           </Flex>
         </Flex>
         </>
