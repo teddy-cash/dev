@@ -5,7 +5,7 @@ import { InfoIcon } from './InfoIcon';
 import { Decimal, LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
 import { useLiquity } from "../hooks/LiquityContext";
-import { useQuery } from 'react-query'
+import { useQueries } from 'react-query'
 
 type TokenRowProps = {
   name: React.ReactNode;
@@ -71,16 +71,8 @@ export const TokenStats: React.FC = () => {
     });
   }
 
-
-  // eslint-disable-next-line
-  const { isLoading, error, data } = useQuery('teddyPriceData', () =>
-     fetch('https://api.coingecko.com/api/v3/simple/price?ids=teddy-cash&vs_currencies=usd').then(res =>
-       res.json()
-     )
-   );
-
-    const pngQuery = (tsdTokenAddress: string) => `{
-        token(id: "${tsdTokenAddress.toLowerCase()}") {
+  const pngQuery = (address: string) => `{
+        token(id: "${address.toLowerCase()}") {
             derivedETH
         },
         bundle(id: 1) {
@@ -88,7 +80,7 @@ export const TokenStats: React.FC = () => {
         }
     }`;
 
-    const fetchTSD = () => fetch(
+    const fetchPrice = (address: string) => fetch(
         "https://api.thegraph.com/subgraphs/name/dasconnor/pangolin-dex",
         {
         method: "POST",
@@ -96,28 +88,35 @@ export const TokenStats: React.FC = () => {
             "content-type": "application/json"
         },
         body: JSON.stringify({
-            query: pngQuery(addresses['lusdToken']),
+            query: pngQuery(address),
             variables: null
         })
         }
     );
 
-  const { isLoading: tsdIsLoading, error: tsdError, data: tsdData } = useQuery('tsdPriceData', () =>
-     fetchTSD().then(res =>
-       res.json()
-     )
+   const [{isLoading, error, data}, { isLoading: tsdIsLoading, error: tsdError, data: tsdData }] = useQueries(
+     [addresses['lqtyToken'], addresses['lusdToken']].map(address => {
+     return {
+        queryKey: ['address', address],
+        queryFn: () => fetchPrice(address).then(res => res.json())
+      }
+    }
+    )
    );
-   const computeTsdVal = (tsdData: any, tsdError: any) => {
-    if (tsdError) {
-        throw new Error(tsdError);
+
+   const computeVal = (data: any, error: any) => {
+    if (error) {
+        throw new Error(error);
     }
     
-    const d = tsdData['data'];
-    return Decimal.from(d['token']['derivedETH']).mul(Decimal.from(d['bundle']['ethPrice'])).toString(2);
+    const d = data['data'];
+    //return Decimal.from(d['token']['derivedETH']).mul(Decimal.from(d['bundle']['ethPrice'])).toString(2);
+    return Decimal.from(d['token']['derivedETH']).mul(Decimal.from(d['bundle']['ethPrice']))
    }
 
-   const tsdValue = tsdIsLoading ? '...' : '$' + computeTsdVal(tsdData, tsdError);
-
+   const teddyValue = isLoading ? Decimal.from(0) : computeVal(data, error);
+   const tsdValue = tsdIsLoading ? Decimal.from(0) : computeVal(tsdData, tsdError);
+   
    const explorerUrl = chainId === 43114 ? "https://cchain.explorer.avax.network/address/" : "https://cchain.explorer.avax-test.network/address/"
 
    // hard-coded for current week. needs to be adapted to consume
@@ -127,14 +126,12 @@ export const TokenStats: React.FC = () => {
    let apr: Decimal = Decimal.from(0);
    let tvl: Decimal = Decimal.from(0);
    if (!isLoading) {
-    const teddyPrice = Decimal.from(data['teddy-cash']['usd']);
-    const teddyRewardsUSD = teddyPrice.mul(teddyRewardsYear1);
+    
+    const teddyRewardsUSD = teddyValue.mul(teddyRewardsYear1);
     apr = teddyRewardsUSD.div(lusdInStabilityPool).mul(100);
       
-    tvl = totalStakedLQTY.mul(teddyPrice).add(total.collateral.mul(price));
+    tvl = totalStakedLQTY.mul(teddyValue).add(total.collateral.mul(price));
   } 
-
-  //  const apr = .mul(circSupply).toString(1);
 
     return (
         <>
@@ -149,7 +146,7 @@ export const TokenStats: React.FC = () => {
             </Link>
         </TokenRow>
         <TokenRow name="TSD" image="./teddy-cash-final-unicorn.png">
-            <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>{tsdValue}</Flex>
+            <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>{tsdIsLoading ? '...' : '$' + tsdValue.prettify(2)}</Flex>
             <Link href={`https://info.pangolin.exchange/#/token/${addresses['lusdToken']}`} target="_blank">
                <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
             </Link>
@@ -162,7 +159,7 @@ export const TokenStats: React.FC = () => {
             <Flex style={{cursor: 'pointer'}} onClick={addTsdToken}><Image src="./icons/metamask.svg" style={{marginLeft: '5px', minWidth: '25px'}}/></Flex>
         </TokenRow>
         <TokenRow name="TEDDY" image="./teddy-cash-icon.png">
-            <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>{isLoading ? '...' : '$' + Decimal.from(data['teddy-cash']['usd']).toString(2)}</Flex>
+            <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>{isLoading ? '...' : '$' + teddyValue.prettify(2)}</Flex>
             <Link href="https://www.coingecko.com/en/coins/teddy-cash" target="_blank">
                 <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
             </Link>
@@ -180,15 +177,22 @@ export const TokenStats: React.FC = () => {
             <InfoIcon size="xs" tooltip={<Card variant="tooltip">Circulating Supply * Price</Card>} />
           </Flex>
           <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
-            {isLoading ? '...' : '~ $' + Decimal.from(data['teddy-cash']['usd']).mul(circSupply).toString(1)}M
+            {isLoading ? '...' : '~ $' + (teddyValue).mul(circSupply).toString(1)}M
           </Flex>
         </Flex>
         <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
           <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
-            <Flex>Stability Pool APR</Flex>
+            <Flex>Stability Pool APR
+              <InfoIcon size="xs" tooltip={<Card variant="tooltip">
+                <Flex style={{marginBottom: '4px'}}>An estimate of the TEDDY returns on the TSD deposited to the Stability Pool over the next year, not including your AVAX gains from liquidations.</Flex>
+
+                (($TEDDY_REWARDS * YEARLY_DISTRIBUTION) / DEPOSITED_TSD) * 100 = APR
+                </Card>} />
+            </Flex>
           </Flex>
           <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
             {isLoading ? '...' : apr.prettify(2)}%
+            
           </Flex>
         </Flex>
         <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
