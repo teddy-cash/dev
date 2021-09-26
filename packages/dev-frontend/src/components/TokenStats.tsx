@@ -121,7 +121,8 @@ export const TokenStats: React.FC = () => {
 
    // hard-coded for current week. needs to be adapted to consume
    // circulating supply API feed.
-   const circSupply = 5; // millions
+   const circSupply = 5753340; 
+   
    const teddyRewardsYear1 = 25000000;
    let apr: Decimal = Decimal.from(0);
    let tvl: Decimal = Decimal.from(0);
@@ -177,7 +178,7 @@ export const TokenStats: React.FC = () => {
             <InfoIcon size="xs" tooltip={<Card variant="tooltip">Circulating Supply * Price</Card>} />
           </Flex>
           <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
-            {isLoading ? '...' : '~ $' + (teddyValue).mul(circSupply).toString(1)}M
+            {isLoading ? '...' : '~ $' + (teddyValue).mul(circSupply).div(1_000_000).toString(1)}M
           </Flex>
         </Flex>
         <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
