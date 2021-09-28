@@ -151,7 +151,7 @@ export const TokenStats: React.FC = () => {
                 <Icon name="satellite-dish" style={{marginLeft: "4px"}} size="xs" />
             </Link>
         </TokenRow>
-        <TokenRow name="TSD" image="./teddy-cash-final-unicorn.png" addToken={addTsdToken}>
+        <TokenRow name="TSD" image="./tsd.png" addToken={addTsdToken}>
             <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>{tsdIsLoading ? '...' : '$' + tsdValue.prettify(2)}</Flex>
             <Link href={`https://info.pangolin.exchange/#/token/${addresses['lusdToken']}`} target="_blank">
                <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
