@@ -22,7 +22,7 @@ export const Footer = () => {
               <Link href="https://github.com/teddy-cash" target="_blank">Github</Link>
             </Text>
             <Text sx={textStyle}>
-              <Link href="https://discord.gg/cHfE2EZE" target="_blank">Discord</Link>
+              <Link href="https://discord.gg/TJXnyPXQxf" target="_blank">Discord</Link>
             </Text>
             <Text sx={textStyle}>
               <Link href="https://t.me/teddycashofficial" target="_blank">Telegram</Link>

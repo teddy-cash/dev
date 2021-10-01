@@ -10,14 +10,19 @@ import { useQueries } from 'react-query'
 type TokenRowProps = {
   name: React.ReactNode;
   image: string;
+  addToken?: any;
   tooltip?: React.ReactNode;
 };
 
-export const TokenRow: React.FC<TokenRowProps> = ({ name, image, tooltip, children }) => {
+export const TokenRow: React.FC<TokenRowProps> = ({ name, image, addToken, tooltip, children }) => {
+  // awful CSS hack
+  const marginLeft = name === 'TSD' ? "20px" : "0px";
+
   return (
     <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
       <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
         <Flex> <Image src={image} width="25" height="25" sx={{marginRight: 2}}/> {name}</Flex>
+        {addToken && <Flex style={{cursor: 'pointer', marginLeft: marginLeft}} onClick={addToken}><Image src="./icons/metamask.svg" style={{marginLeft: '5px', minWidth: '25px'}}/></Flex>}
         {tooltip && <InfoIcon size="xs" tooltip={<Card variant="tooltip">{tooltip}</Card>} />}
       </Flex>
       <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>{children}</Flex>
@@ -153,7 +158,7 @@ export const TokenStats: React.FC = () => {
                 <Icon name="satellite-dish" style={{marginLeft: "4px"}} size="xs" />
             </Link>
         </TokenRow>
-        <TokenRow name="TSD" image="./teddy-cash-final-unicorn.png">
+        <TokenRow name="TSD" image="./tsd.png" addToken={addTsdToken}>
             <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>{tsdIsLoading ? '...' : '$' + tsdValue.prettify(2)}</Flex>
             <Link href={`https://info.pangolin.exchange/#/token/${addresses['lusdToken']}`} target="_blank">
                <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
@@ -162,11 +167,13 @@ export const TokenStats: React.FC = () => {
                <Icon name="file-contract" style={{marginLeft: "4px"}} size="xs" />
             </Link>
             <Link href={`https://app.pangolin.exchange/#/swap?outputCurrency=${addresses['lusdToken']}`} target="_blank">
-              <Icon name="exchange-alt" style={{marginLeft: "4px"}} size="xs" />
+              <Image src="./pangolin.svg" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
             </Link>
-            <Flex style={{cursor: 'pointer'}} onClick={addTsdToken}><Image src="./icons/metamask.svg" style={{marginLeft: '5px', minWidth: '25px'}}/></Flex>
+            <Link href={`https://www.traderjoexyz.com/#/trade?outputCurrency=${addresses['lusdToken']}`} target="_blank">
+                <Image src="./joe.png" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
+            </Link>
         </TokenRow>
-        <TokenRow name="TEDDY" image="./teddy-cash-icon.png">
+        <TokenRow name="TEDDY" image="./teddy-cash-icon.png" addToken={addTeddyToken}>
             <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>{isLoading ? '...' : '$' + teddyValue.prettify(2)}</Flex>
             <Link href="https://www.coingecko.com/en/coins/teddy-cash" target="_blank">
                 <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
@@ -175,9 +182,11 @@ export const TokenStats: React.FC = () => {
                <Icon name="file-contract" style={{marginLeft: "4px"}} size="xs" />
             </Link>
             <Link href={`https://app.pangolin.exchange/#/swap?outputCurrency=${addresses['lqtyToken']}`} target="_blank">
-                <Icon name="exchange-alt" style={{marginLeft: "4px"}} size="xs" />
+                <Image src="./pangolin.svg" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
             </Link>
-            <Flex style={{cursor: 'pointer'}} onClick={addTeddyToken}><Image src="./icons/metamask.svg" style={{marginLeft: '5px', minWidth: '25px'}}/></Flex>
+            <Link href={`https://www.traderjoexyz.com/#/trade?outputCurrency=${addresses['lqtyToken']}`} target="_blank">
+                <Image src="./joe.png" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
+            </Link>
         </TokenRow>
         <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
           <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
