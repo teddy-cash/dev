@@ -188,12 +188,12 @@ export const TokenStats: React.FC = () => {
                 <Image src="./joe.png" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
             </Link>
         </TokenRow>
-        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mt: 3, mb: 1 }}>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
           <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
             <Flex>TEDDY Market Cap</Flex>
             <InfoIcon size="xs" tooltip={<Card variant="tooltip">Circulating Supply * Price</Card>} />
           </Flex>
-          <Flex sx={{fontVariantNumeric: "tabular-nums",  justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
+          <Flex sx={{ justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
             {isLoading ? '...' : '~ $' + (teddyValue).mul(circSupply).div(1_000_000).toString(1)}M
           </Flex>
         </Flex>
