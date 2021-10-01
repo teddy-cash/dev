@@ -127,9 +127,7 @@ export const TokenStats: React.FC = () => {
    // hard-coded for current week. needs to be adapted to consume
    // circulating supply API feed.
    const circSupply = 5753340; 
-   
-   const teddyRewardsYear1 = 16000000;
-   let apr: Decimal = Decimal.from(0);
+   const marketCapEstimate = teddyValue.mul(circSupply);
    
    let tvlSP = lusdInStabilityPool;
    let tvlTeddy = totalStakedLQTY.mul(teddyValue);
@@ -206,6 +204,15 @@ export const TokenStats: React.FC = () => {
                 <Image src="./joe.png" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
             </Link>
         </TokenRow>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex> TEDDY Market Cap
+            </Flex>
+          </Flex>
+          <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8,alignItems: "center" }}>
+            {isLoading ? '...' : "~$" + marketCapEstimate.div(1_000_000).prettify(1)}M
+          </Flex>
+        </Flex>
 
         <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mt:3, mb: 1 }}>
           <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
