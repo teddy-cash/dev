@@ -98,13 +98,10 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
       </Statistic>
 
       <Statistic
-        name="TVL Collateral"
+        name="AVAX Collateral"
         tooltip="The Total Value Locked (TVL) is the total value of AVAX locked as collateral in the system, given in AVAX and USD."
       >
-        {total.collateral.shorten()} <Text sx={{ fontSize: 1 }}>&nbsp;AVAX</Text>
-        <Text sx={{ fontSize: 1 }}>
-          &nbsp;(${Decimal.from(total.collateral.mul(price)).shorten()})
-        </Text>
+        {total.collateral.shorten()} 
       </Statistic>
       <Statistic name="Troves" tooltip="The total number of active Troves in the system.">
         {Decimal.from(numberOfTroves).prettify(0)}
@@ -118,8 +115,8 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
           tooltip="The total TSD currently held in the Stability Pool, expressed as an amount and a fraction of the TSD supply.
         "
         >
+          <Text sx={{ fontSize: 0 }}>({lusdInStabilityPoolPct.toString(1)})&nbsp;</Text>
           {lusdInStabilityPool.shorten()}
-          <Text sx={{ fontSize: 1 }}>&nbsp;({lusdInStabilityPoolPct.toString(1)})</Text>
         </Statistic>
       )}
       <Statistic
@@ -128,6 +125,7 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
       >
         {totalStakedLQTY.shorten()}
       </Statistic>
+      
       <Statistic
         name="Total Collateral Ratio"
         tooltip="The ratio of the Dollar value of the entire system collateral at the current AVAX:USD price, to the entire system debt."
@@ -141,11 +139,6 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
         {total.collateralRatioIsBelowCritical(price) ? <Box color="danger">Yes</Box> : "No"}
       </Statistic>
       { }
-      <Box sx={{ mt: 3, opacity: 0.66 }}>
-        <Box sx={{ fontSize: 0 }}>
-          Deployed: {deploymentDate.toLocaleDateString()}, <GitHubCommit>{contractsVersion}</GitHubCommit>
-        </Box>
-      </Box>
     </Card>
   );
 };
