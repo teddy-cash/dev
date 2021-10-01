@@ -1,11 +1,10 @@
 import React from "react";
-import { Card, Heading, Link, Box, Text } from "theme-ui";
+import { Card, Heading, Box, Text } from "theme-ui";
 
 
 import { Decimal, Percent, LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
 
-import { useLiquity } from "../hooks/LiquityContext";
 import { COIN, GT } from "../strings";
 import { Statistic } from "./Statistic";
 import { TokenStats } from "./TokenStats";
@@ -27,14 +26,6 @@ const Balances: React.FC = () => {
       <Statistic name={GT}>{lqtyBalance.prettify()}</Statistic>
     </Box>
   );
-};
-
-const GitHubCommit: React.FC<{ children?: string }> = ({ children }) => {
-  return children?.match(/[0-9a-f]{40}/) ? (
-    <Link href={`https://github.com/teddy-cash/dev/commit/${children}`}>{children.substr(0, 7)}</Link>
-  ) : (
-    <>unknown</>
-  )
 };
 
 type SystemStatsProps = {
@@ -62,12 +53,6 @@ const select = ({
 });
 
 export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", showBalances }) => {
-  const {
-    liquity: {
-      connection: { version: contractsVersion, deploymentDate }
-    }
-  } = useLiquity();
-
 
   const {
     numberOfTroves,
