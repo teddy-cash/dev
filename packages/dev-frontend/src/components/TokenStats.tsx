@@ -128,16 +128,41 @@ export const TokenStats: React.FC = () => {
    // circulating supply API feed.
    const circSupply = 5753340; 
    
-   const teddyRewardsYear1 = 25000000;
+   const teddyRewardsYear1 = 16000000;
    let apr: Decimal = Decimal.from(0);
-   let tvl: Decimal = Decimal.from(0);
-   if (!isLoading) {
-    
-    const teddyRewardsUSD = teddyValue.mul(teddyRewardsYear1);
-    apr = teddyRewardsUSD.div(lusdInStabilityPool).mul(100);
+   
+   let tvlSP = lusdInStabilityPool;
+   let tvlTeddy = totalStakedLQTY.mul(teddyValue);
+   
+   let tvlTotal: Decimal = Decimal.from(0);
+   let tvlCollateral: Decimal = Decimal.from(0);
+   
+    let aprDaily: Decimal = Decimal.from(0);
+    let aprWeekly: Decimal = Decimal.from(0);
+    let aprYearly: Decimal = Decimal.from(0);
+     
+    if (!isLoading) {     
+      // Stability APR calculation
+      const deploymentTime = 1629989860;
+      const now = new Date().getTime() / 1000      
+      const timePassedInMinutes = Math.round((now - deploymentTime) / 60);
+
+      const ISSUANCE_FACTOR = 0.999998681227695000;      
+      const shareNow = Math.pow(ISSUANCE_FACTOR, timePassedInMinutes);
       
-    tvl = totalStakedLQTY.mul(teddyValue).add(total.collateral.mul(price));
-  } 
+      const rewardsDay = 32_000_000 * (shareNow - Math.pow(ISSUANCE_FACTOR, timePassedInMinutes + 60*24))
+      const rewardsWeek = 32_000_000 * (shareNow -  Math.pow(ISSUANCE_FACTOR, timePassedInMinutes + 60*24*7));
+      const rewardsYear = 32_000_000 * (shareNow - Math.pow(ISSUANCE_FACTOR, timePassedInMinutes + 60*24*365));
+            
+      aprDaily = teddyValue.mul(rewardsDay).div(lusdInStabilityPool).mul(100);
+      aprWeekly = teddyValue.mul(rewardsWeek).div(lusdInStabilityPool).mul(100);
+      aprYearly = teddyValue.mul(rewardsYear).div(lusdInStabilityPool).mul(100);
+
+      tvlCollateral = total.collateral.mul(price)
+      tvlTotal = tvlTeddy
+        .add(tvlSP)
+        .add(tvlCollateral);
+    } 
 
     return (
         <>
@@ -181,37 +206,72 @@ export const TokenStats: React.FC = () => {
                 <Image src="./joe.png" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
             </Link>
         </TokenRow>
-        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mt:3, mb: 1 }}>
           <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
-            <Flex>TEDDY Market Cap</Flex>
-            <InfoIcon size="xs" tooltip={<Card variant="tooltip">Circulating Supply * Price</Card>} />
-          </Flex>
-          <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
-            {isLoading ? '...' : '~ $' + (teddyValue).mul(circSupply).div(1_000_000).toString(1)}M
+            <Flex sx={{ fontWeight: "bold"}}>Stability Pool Yields</Flex>
           </Flex>
         </Flex>
         <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
           <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
-            <Flex>Stability Pool APR
-              <InfoIcon size="xs" tooltip={<Card variant="tooltip">
-                <Flex style={{marginBottom: '4px'}}>An estimate of the TEDDY returns on the TSD deposited to the Stability Pool over the next year, not including your AVAX gains from liquidations.</Flex>
-
-                (($TEDDY_REWARDS * YEARLY_DISTRIBUTION) / DEPOSITED_TSD) * 100 = APR
-                </Card>} />
+            <Flex> &middot; Day
             </Flex>
           </Flex>
-          <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
-            {isLoading ? '...' : apr.prettify(2)}%
-            
+          <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : aprDaily.prettify(3)}%          
           </Flex>
         </Flex>
         <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
           <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
-            <Flex>TVL</Flex>
-            <InfoIcon size="xs" tooltip={<Card variant="tooltip">TVL Stability Pool + TEDDY Staking</Card>} />
+            <Flex> &middot; Week
+            </Flex>
           </Flex>
-          <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
-            {isLoading ? '...' : '$' + tvl.shorten()}
+          <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : aprWeekly.prettify(1)}%          
+          </Flex>
+        </Flex>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex> &middot; Year (APR)</Flex>
+          </Flex>
+          <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : aprYearly.prettify(1)}%            
+          </Flex>
+        </Flex>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mt: 3, mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex sx={{fontWeight: "bold"}}>TVL Total</Flex>
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">TVL AVAX collateral + TSD in Stability Pool + TEDDY Staking</Card>} />
+          </Flex>
+          <Flex sx={{ fontVariantNumeric: "tabular-nums", fontWeight: "bold", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : '$' + tvlTotal.shorten()}
+          </Flex>
+        </Flex>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex> &middot; in Troves</Flex>
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">AVAX collateralized in troves.</Card>} />
+          </Flex>
+          <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : '$' + tvlCollateral.shorten()}
+          </Flex>
+        </Flex>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex> &middot; Stability Pool</Flex>
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">TVL in Stability Pool</Card>} />
+          </Flex>
+          <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : '$' + tvlSP.shorten()}
+          </Flex>
+        </Flex>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex> &middot; Teddy Staking</Flex>
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">TEDDY Staking</Card>} />
+          </Flex>
+          <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : '$' + tvlTeddy.shorten()}
           </Flex>
         </Flex>
         </>

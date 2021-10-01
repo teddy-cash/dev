@@ -283,8 +283,9 @@ export class ReadableEthersLiquity implements ReadableLiquity {
     const issuanceCap = this.connection.totalStabilityPoolLQTYReward;
     const totalLQTYIssued = decimalify(await communityIssuance.totalLQTYIssued({ ...overrides }));
 
+    const burnedRewards = 18000000;
     // totalLQTYIssued approaches but never reaches issuanceCap
-    return issuanceCap.sub(totalLQTYIssued);
+    return issuanceCap.sub(totalLQTYIssued).sub(burnedRewards);
   }
 
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getLUSDInStabilityPool} */
