@@ -125,13 +125,20 @@ export const TokenStats: React.FC = () => {
    
    const teddyRewardsYear1 = 25000000;
    let apr: Decimal = Decimal.from(0);
-   let tvl: Decimal = Decimal.from(0);
-   if (!isLoading) {
-    
+   
+   let tvlSP = lusdInStabilityPool;
+   let tvlTeddy = totalStakedLQTY.mul(teddyValue);
+   
+   let tvlTotal: Decimal = Decimal.from(0);
+   let tvlCollateral: Decimal = Decimal.from(0);
+   
+   if (!isLoading) {     
     const teddyRewardsUSD = teddyValue.mul(teddyRewardsYear1);
     apr = teddyRewardsUSD.div(lusdInStabilityPool).mul(100);
-      
-    tvl = totalStakedLQTY.mul(teddyValue).add(total.collateral.mul(price));
+    tvlCollateral = total.collateral.mul(price)
+    tvlTotal = tvlTeddy
+      .add(tvlSP)
+      .add(tvlCollateral);
   } 
 
     return (
@@ -198,11 +205,38 @@ export const TokenStats: React.FC = () => {
         </Flex>
         <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
           <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
-            <Flex>TVL</Flex>
-            <InfoIcon size="xs" tooltip={<Card variant="tooltip">TVL Stability Pool + TEDDY Staking</Card>} />
+            <Flex sx={{fontWeight: "bold"}}>TVL Total</Flex>
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">TVL AVAX collateral + TSD in Stability Pool + TEDDY Staking</Card>} />
+          </Flex>
+          <Flex sx={{ fontWeight: "bold", justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : '$' + tvlTotal.shorten()}
+          </Flex>
+        </Flex>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex> &middot; in Troves</Flex>
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">AVAX collateralized in troves.</Card>} />
           </Flex>
           <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
-            {isLoading ? '...' : '$' + tvl.shorten()}
+            {isLoading ? '...' : '$' + tvlCollateral.shorten()}
+          </Flex>
+        </Flex>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex> &middot; Stability Pool</Flex>
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">TVL in Stability Pool</Card>} />
+          </Flex>
+          <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : '$' + tvlSP.shorten()}
+          </Flex>
+        </Flex>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex> &middot; Teddy Staking</Flex>
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">TEDDY Staking</Card>} />
+          </Flex>
+          <Flex sx={{ justifyContent: "flex-start", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : '$' + tvlTeddy.shorten()}
           </Flex>
         </Flex>
         </>
