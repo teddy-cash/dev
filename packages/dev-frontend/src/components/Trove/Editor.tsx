@@ -155,7 +155,9 @@ const editableStyle: ThemeUICSSProperties = {
 
   boxShadow: [1, 2],
   border: 1,
-  borderColor: "muted"
+  borderColor: "muted",
+
+  borderRadius: "4px"
 };
 
 type StaticRowProps = RowProps & StaticAmountsProps;
