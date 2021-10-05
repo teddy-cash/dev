@@ -198,6 +198,7 @@ export const Adjusting: React.FC = () => {
           inputId="trove-liquidation-reserve"
           amount={`${LUSD_LIQUIDATION_RESERVE}`}
           unit={COIN}
+          color={"white"}
           infoIcon={
             <InfoIcon
               tooltip={
@@ -217,6 +218,7 @@ export const Adjusting: React.FC = () => {
           amount={fee.prettify(2)}
           pendingAmount={feePct.toString(2)}
           unit={COIN}
+          color={"white"}
           infoIcon={
             <InfoIcon
               tooltip={
@@ -234,6 +236,7 @@ export const Adjusting: React.FC = () => {
           inputId="trove-total-debt"
           amount={totalDebt.prettify(2)}
           unit={COIN}
+          color={"white"}
           infoIcon={
             <InfoIcon
               tooltip={

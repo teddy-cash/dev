@@ -4,8 +4,8 @@ const baseColors = {
   blue: "#1542cd",
   purple: "#745ddf",
   cyan: "#2eb6ea",
-  green: "#28c081",
-  yellow: "#fd9d28",
+  green: "#50cf3c",
+  yellow: "#ffe27a",
   red: "#dc2c10",
   lightRed: "#ff755f"
 };
@@ -98,8 +98,10 @@ const infoCard: ThemeUIStyleObject = {
   borderRadius: "16px",
 
   h2: {
-    mb: 2,
+    mt: 2,
+    mb: 3,
     fontSize: cardHeadingFontSize,
+    textTransform: "uppercase",
     bg: "#1d1e23",
     color: "#62c5e1"
   }
@@ -270,6 +272,7 @@ const theme: Theme = {
         py: 2,
         pr: 2,
 
+        mt: 2,
         bg: "#1d1e23",
         color: "#62c5e1",
 

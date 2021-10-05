@@ -74,7 +74,7 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
 
       <TokenStats />
       
-      <Heading style={{marginTop: "10px"}}>Protocol</Heading>
+      <Heading  sx={{pt: 3, mt: 3}} >Protocol</Heading>
       <Statistic
         name="Borrowing Fee"
         tooltip="The Borrowing Fee is a one-off fee charged as a percentage of the borrowed amount (in TSD) and is part of a Trove's debt. The fee varies between 0.5% and 5% depending on TSD redemption volumes."
