@@ -100,10 +100,35 @@ export const TokenStats: React.FC = () => {
     );
 
    const [{isLoading, error, data}, { isLoading: tsdIsLoading, error: tsdError, data: tsdData }] = useQueries(
-     [addresses['lqtyToken'], addresses['lusdToken']].map(address => {
+     [{address: addresses['lqtyToken'], name: 'lqty'}, {address: addresses['lusdToken'], name: 'lusd'}].map((token: any) => {
      return {
-        queryKey: ['address', address],
-        queryFn: () => fetchPrice(address).then(res => res.json())
+        queryKey: ['token', token],
+        queryFn: () => {
+          // return dummy data if on testnet
+          if (chainId === 43113) {
+            const tokenData = token.name === 'lqty' ? 
+              {
+                token: {
+                  derivedETH: '67.000000000000000000'
+                },
+                bundle: {
+                  ethPrice: '0.000432858000000000',
+                }
+              }
+            :
+            {
+              token: {
+                derivedETH: '67.000000000000000000'
+              },
+               bundle: {
+                ethPrice: '0.015835300000000000',
+              }
+            }
+            return {isLoading: true, error: undefined,  data: tokenData}
+          } else {
+            return fetchPrice(token.address).then(res => res.json())
+          }
+        }
       }
     }
     )
@@ -161,6 +186,17 @@ export const TokenStats: React.FC = () => {
         .add(tvlSP)
         .add(tvlCollateral);
     } 
+
+    // this function is a hack to make the UI readable in testnet where the APR is super high
+    const prettifyDecimal = (dec: Decimal, precision: number) => {
+      const prettyVal = dec.prettify(precision)
+      // on the testnet, if no TSD in stability pool, this number is close to infinite
+      if (prettyVal.length > 10) {
+        return '\u221E';
+      } else {
+        return prettyVal;
+      }
+    }
 
     return (
         <>
@@ -225,7 +261,7 @@ export const TokenStats: React.FC = () => {
             </Flex>
           </Flex>
           <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
-            {isLoading ? '...' : aprDaily.prettify(3)}%          
+            {isLoading ? '...' : prettifyDecimal(aprDaily, 3)}%          
           </Flex>
         </Flex>
         <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
@@ -234,7 +270,7 @@ export const TokenStats: React.FC = () => {
             </Flex>
           </Flex>
           <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
-            {isLoading ? '...' : aprWeekly.prettify(1)}%          
+            {isLoading ? '...' : prettifyDecimal(aprWeekly, 1)}%          
           </Flex>
         </Flex>
         <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
@@ -242,7 +278,7 @@ export const TokenStats: React.FC = () => {
             <Flex> &middot; Year (APR)</Flex>
           </Flex>
           <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
-            {isLoading ? '...' : aprYearly.prettify(1)}%            
+            {isLoading ? '...' : prettifyDecimal(aprYearly, 1)}%            
           </Flex>
         </Flex>
         <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mt: 3, mb: 1 }}>

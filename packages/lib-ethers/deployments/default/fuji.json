@@ -4,9 +4,9 @@
     "liquidityMiningLQTYRewardRate": "0.257201646090534979",
     "tjLiquidityMiningLQTYRewardRate": "0",
     "pngLiquidityMiningLQTYRewardRate": "0.41335978835978837",
-    "_priceFeedIsTestnet": false,
+    "_priceFeedIsTestnet": true,
     "_uniTokenIsMock": false,
-    "_isDev": false,
+    "_isDev": true,
     "addresses": {
         "priceFeed": "0x8ae0c85A65702B71f8A01D541C3EA3F3bB0a9302",
         "sortedTroves": "0x4777c69baB7643E875ac77869720EcAeCD3a4e5B",
