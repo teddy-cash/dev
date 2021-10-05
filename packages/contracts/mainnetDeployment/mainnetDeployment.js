@@ -163,7 +163,8 @@ async function mainnetDeploy(configParams) {
   // Deploy LockupContracts - one for each beneficiary
   const lockupContracts = {}
 
-  for (const [investor, investorAddr] of Object.entries(configParams.beneficiaries)) {
+  for (const [investor, investorObj] of Object.entries(configParams.beneficiaries)) {
+    investorAddr = investorObj.address
     const lockupContractEthersFactory = await ethers.getContractFactory("LockupContract", deployerWallet)
     if (deploymentState[investor] && deploymentState[investor].address) {
       console.log(`Using previously deployed ${investor} lockup contract at address ${deploymentState[investor].address}`)
@@ -173,7 +174,9 @@ async function mainnetDeploy(configParams) {
         deployerWallet
       )
     } else {
-      const txReceipt = await mdh.sendAndWaitForTransaction(LQTYContracts.lockupContractFactory.deployLockupContract(investorAddr, oneYearFromDeployment, { gasPrice }))
+      console.log(`Deploying lockup for ${investor}`)
+      let unlockTime = investorObj.unlockTime ? investorObj.unlockTime : oneYearFromDeployment;
+      const txReceipt = await mdh.sendAndWaitForTransaction(LQTYContracts.lockupContractFactory.deployLockupContract(investorAddr, unlockTime, { gasPrice }))
 
       const address = await txReceipt.logs[0].address // The deployment event emitted from the LC itself is is the first of two events, so this is its address 
       lockupContracts[investor] = new ethers.Contract(
@@ -236,16 +239,16 @@ async function mainnetDeploy(configParams) {
     assert.equal(LQTYContracts.lqtyToken.address, storedLQTYTokenAddr)
     // Check contract has stored correct beneficary
     const onChainBeneficiary = await lockupContract.beneficiary()
-    assert.equal(configParams.beneficiaries[investor].toLowerCase(), onChainBeneficiary.toLowerCase())
+    assert.equal(configParams.beneficiaries[investor].address.toLowerCase(), onChainBeneficiary.toLowerCase())
     // Check correct unlock time (1 yr from deployment)
     const unlockTime = await lockupContract.unlockTime()
-    assert.equal(oneYearFromDeployment, unlockTime)
+    assert(toBigNum(unlockTime).gte(oneYearFromDeployment))
 
     console.log(
       `lockupContract addr: ${lockupContract.address},
             stored LQTYToken addr: ${storedLQTYTokenAddr}
             beneficiary: ${investor},
-            beneficiary addr: ${configParams.beneficiaries[investor]},
+            beneficiary addr: ${configParams.beneficiaries[investor].address},
             on-chain beneficiary addr: ${onChainBeneficiary},
             unlockTime: ${unlockTime}
             `
