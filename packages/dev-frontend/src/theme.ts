@@ -11,7 +11,7 @@ const baseColors = {
 };
 
 const colors = {
-  primary: baseColors.blue,
+  primary: "#ffffff",
   secondary: baseColors.purple,
   accent: baseColors.cyan,
 
@@ -22,8 +22,8 @@ const colors = {
   info: baseColors.blue,
   invalid: "pink",
 
-  text: "#293147",
-  background: "white",
+  text: "white",
+  background: "#151517",
   muted: "#eaebed"
 };
 
@@ -57,9 +57,7 @@ const buttonOutline = (color: string, hoverColor: string): ThemeUIStyleObject =>
   background: "none",
 
   ":enabled:hover": {
-    color: "background",
-    bg: hoverColor,
-    borderColor: hoverColor
+    opacity: 0.8
   }
 });
 
@@ -95,12 +93,15 @@ const infoCard: ThemeUIStyleObject = {
 
   padding: 3,
 
-  borderColor: "rgba(122,199,240,0.4)",
-  background: "linear-gradient(200deg, #d4d9fc, #cae9f9)",
+  borderColor: "#23252c",
+  bg: "#1d1e23",
+  borderRadius: "16px",
 
   h2: {
     mb: 2,
-    fontSize: cardHeadingFontSize
+    fontSize: cardHeadingFontSize,
+    bg: "#1d1e23",
+    color: "#62c5e1"
   }
 };
 
@@ -118,7 +119,7 @@ const formCell: ThemeUIStyleObject = {
   bg: "background",
   border: 1,
   borderColor: "muted",
-  borderRadius: 0,
+  borderRadius: "4px",
   boxShadow: [1, 2]
 };
 
@@ -141,7 +142,7 @@ const modalOverlay: ThemeUIStyleObject = {
 };
 
 const headerGradient: ThemeUIStyleObject = {
-  background: `linear-gradient(90deg, ${colors.background}, ${colors.muted})`
+  background: colors.background
 };
 
 const theme: Theme = {
@@ -196,25 +197,23 @@ const theme: Theme = {
     primary: {
       ...button,
 
-      bg: "primary",
-      borderColor: "primary",
+      bg: "#ffe27a",
+      color: "black",
+      borderColor: "#ffe27a",
 
       ":enabled:hover": {
-        bg: "secondary",
-        borderColor: "secondary"
+        opacity: 0.8
       }
     },
 
     outline: {
       ...button,
-      ...buttonOutline("primary", "secondary")
+      ...buttonOutline("#ffe27a", "black")
     },
 
     cancel: {
       ...button,
-      ...buttonOutline("text", "text"),
-
-      opacity: 0.8
+      ...buttonOutline("#white", "black")
     },
 
     danger: {
@@ -254,8 +253,10 @@ const theme: Theme = {
 
       padding: 0,
 
-      borderColor: "muted",
-      bg: "background",
+      borderColor: "#23252c",
+      bg: "#1d1e23",
+      borderRadius: "16px",
+      color: "#9fa3b4",
 
       "> h2": {
         display: "flex",
@@ -264,11 +265,13 @@ const theme: Theme = {
 
         height: "56px",
 
+        textTransform: "uppercase",
         pl: 3,
         py: 2,
         pr: 2,
 
-        bg: "muted",
+        bg: "#1d1e23",
+        color: "#62c5e1",
 
         fontSize: cardHeadingFontSize
       }
@@ -283,6 +286,7 @@ const theme: Theme = {
     infoPopup: {
       ...infoCard,
 
+      color: "white",
       position: "fixed",
       top: 0,
       right: 3,
@@ -384,7 +388,7 @@ const theme: Theme = {
     },
 
     actions: {
-      justifyContent: "flex-end",
+      justifyContent: "flex-start",
       mt: 2,
 
       button: {
