@@ -90,6 +90,7 @@ export const StabilityDepositEditor: React.FC<StabilityDepositEditorProps> = ({
             label="Pool share"
             inputId="deposit-share"
             amount={newPoolShare.prettify(4)}
+            color={"white"}
             pendingAmount={poolShareChange?.prettify(4).concat("%")}
             pendingColor={poolShareChange?.positive ? "success" : "danger"}
             unit="%"
@@ -102,7 +103,7 @@ export const StabilityDepositEditor: React.FC<StabilityDepositEditorProps> = ({
               label="Liquidation gain"
               inputId="deposit-gain"
               amount={originalDeposit.collateralGain.prettify(4)}
-              color={originalDeposit.collateralGain.nonZero && "success"}
+              color={ "success"}
               unit="AVAX"
             />
 
