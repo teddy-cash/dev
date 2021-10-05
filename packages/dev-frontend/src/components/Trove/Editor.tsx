@@ -151,11 +151,12 @@ const editableStyle: ThemeUICSSProperties = {
   pb: 2,
   pt: "28px",
 
+  color: "#ffffff",
   fontSize: 4,
 
-  boxShadow: [1, 2],
+  boxShadow: "1px 1px 3px 3px rgba(255,255,255, 0.1)",
   border: 1,
-  borderColor: "muted",
+  borderColor: "#666",
 
   borderRadius: "4px"
 };

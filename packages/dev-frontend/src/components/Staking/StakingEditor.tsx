@@ -82,6 +82,7 @@ export const StakingEditor: React.FC<StakingEditorProps> = ({
             label="Pool share"
             inputId="stake-share"
             amount={newPoolShare.prettify(4)}
+            color={"white"}
             pendingAmount={poolShareChange?.prettify(4).concat("%")}
             pendingColor={poolShareChange?.positive ? "success" : "danger"}
             unit="%"

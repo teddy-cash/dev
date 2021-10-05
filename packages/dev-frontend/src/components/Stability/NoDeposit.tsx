@@ -16,7 +16,6 @@ export const NoDeposit: React.FC = props => {
     <Card>
       <Heading>
         <p>
-          <Icon name='swimming-pool' style={{marginRight: '6px'}}/>
           Stability Pool
         </p>
         <Flex sx={{ justifyContent: "flex-end" }}>
@@ -28,11 +27,11 @@ export const NoDeposit: React.FC = props => {
           You can earn AVAX and TEDDY rewards by depositing TSD. Learn more: <Link href="https://docs.teddy.cash/stability-pool-and-liquidations#what-is-the-stability-pool" target="_blank">What is the Stability Pool? <Icon name="external-link-alt" /></Link>
         </InfoMessage>
 
-        <Flex variant="layout.actions">
-          <Flex sx={{ justifyContent: "flex-start", flex: 1, alignItems: "center" }}>
+        <Flex variant="layout.actions">          
+          <Button  onClick={handleOpenTrove}>Deposit</Button>
+          <Flex sx={{ justifyContent: "flex-end", flex: 1, alignItems: "center" }}>
             <Yield />
           </Flex>
-          <Button onClick={handleOpenTrove}>Deposit</Button>
         </Flex>
       </Box>
     </Card>

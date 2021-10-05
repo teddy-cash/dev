@@ -13,7 +13,7 @@ export const NoTrove: React.FC = props => {
 
   return (
     <Card>
-      <Heading><p><Icon name="piggy-bank" style={{marginRight: '6px'}}/>Trove</p></Heading>
+      <Heading><p>Trove</p></Heading>
       <Box sx={{ p: [2, 3] }}>
         <InfoMessage title="You haven't borrowed any TSD yet.">
           You can borrow TSD by opening a Trove. Learn more: <Link href="https://docs.teddy.cash/borrowing#what-is-a-trove" target="_blank">What is a trove? <Icon name="external-link-alt" /></Link>
