@@ -35,8 +35,9 @@ const beneficiaries = {
 }
 */
 const beneficiaries = {
-  ADVISOR_A: "0x96AC61b54cDB56fA7f1E30E6065E9fDFaB779dfF",
-  ADVISOR_B: "0xeD9b765D6638BEfF21c12F595A1AE60d3830C07c"
+  ADVISOR_A: {address: "0x96AC61b54cDB56fA7f1E30E6065E9fDFaB779dfF"},
+  ADVISOR_B: {address: "0xeD9b765D6638BEfF21c12F595A1AE60d3830C07c"},
+  ADVISOR_C: {address: "0x5E2e604dB6965A51ed0e50F8C7Ec91820317b8C6", unlockTime: 1664769600}
 }
 
 const OUTPUT_FILE = './mainnetDeployment/avalancheDeploymentOutput.json'
