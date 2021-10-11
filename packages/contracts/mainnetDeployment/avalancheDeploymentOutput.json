@@ -108,5 +108,9 @@
   "ADVISOR_C": {
     "address": "0x14cF2ea2e82fB1e6f8e99c36124fb92CA4b9f98A",
     "txHash": "0x411b5ebc7687f6b2fc1d617f7383783bf9a57ac61ed04d9ed4a4d1f9e405286b"
+  },
+  "ADVISOR_D": {
+    "address": "0x014CD440997ed1A6994ee7cdFc20d3A02d89df2f",
+    "txHash": "0xc76fbfb237dd90db3db010b6475b43fb94e7a5bed8a83fb4f9287dd42db4200f"
   }
 }
