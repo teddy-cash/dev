@@ -507,6 +507,22 @@ export interface TransactableLiquity {
   tjApproveUniTokens(allowance?: Decimalish): Promise<void>;
 
   /**
+   * Allow the liquidity mining contract to use Pool3 LP tokens for
+   * {@link @liquity/lib-base#TransactableLiquity.p3StakeUniTokens | staking}.
+   *
+   * @param allowance - Maximum amount of LP tokens that will be transferrable to liquidity mining
+   *                    (`2^256 - 1` by default).
+   *
+   * @remarks
+   * Must be performed before calling
+   * {@link @liquity/lib-base#TransactableLiquity.p3StakeUniTokens | p3StakeUniTokens()}.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  p3ApproveUniTokens(allowance?: Decimalish): Promise<void>;
+
+  /**
    * Stake Uniswap ETH/LUSD LP tokens to participate in liquidity mining and earn LQTY.
    *
    * @param amount - Amount of LP tokens to add to new or existing stake.
@@ -535,6 +551,16 @@ export interface TransactableLiquity {
    * Throws {@link TransactionFailedError} in case of transaction failure.
    */
   tjStakeUniTokens(amount: Decimalish): Promise<void>;
+
+  /**
+   * Stake Pool3 LP tokens to participate in liquidity mining and earn LQTY.
+   *
+   * @param amount - Amount of LP tokens to add to new or existing stake.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  p3StakeUniTokens(amount: Decimalish): Promise<void>;
 
   /**
    * Withdraw Uniswap ETH/LUSD LP tokens from liquidity mining.
@@ -567,6 +593,16 @@ export interface TransactableLiquity {
   tjUnstakeUniTokens(amount: Decimalish): Promise<void>;
 
   /**
+   * Withdraw Pool3 LP tokens from liquidity mining.
+   *
+   * @param amount - Amount of LP tokens to withdraw.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  p3UnstakeUniTokens(amount: Decimalish): Promise<void>;
+
+  /**
    * Withdraw LQTY that has been earned by mining liquidity.
    *
    * @throws
@@ -591,6 +627,14 @@ export interface TransactableLiquity {
   tjWithdrawLQTYRewardFromLiquidityMining(): Promise<void>;
 
   /**
+   * Withdraw Pool3 rewards that has been earned by mining liquidity.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  p3WithdrawLQTYRewardFromLiquidityMining(): Promise<void>;
+
+  /**
    * Withdraw all staked LP tokens from liquidity mining and claim reward.
    *
    * @throws
@@ -613,6 +657,14 @@ export interface TransactableLiquity {
    * Throws {@link TransactionFailedError} in case of transaction failure.
    */
   tjExitLiquidityMining(): Promise<void>;
+
+  /**
+   * Withdraw all staked Pool3 LP tokens from liquidity mining and claim reward.
+   *
+   * @throws
+   * Throws {@link TransactionFailedError} in case of transaction failure.
+   */
+  p3ExitLiquidityMining(): Promise<void>;
 
   /**
    * Register current wallet address as a Liquity frontend.

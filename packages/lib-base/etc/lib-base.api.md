@@ -58,6 +58,18 @@ export class _CachedReadableLiquity<T extends unknown[]> implements _ReadableLiq
     // (undocumented)
     getUniTokenBalance(address?: string, ...extraParams: T): Promise<Decimal>;
     // (undocumented)
+    p3GetLiquidityMiningLQTYReward(address?: string, ...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    p3GetLiquidityMiningStake(address?: string, ...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    p3GetRemainingLiquidityMiningLQTYReward(...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    p3GetTotalStakedUniTokens(...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    p3GetUniTokenAllowance(address?: string, ...extraParams: T): Promise<Decimal>;
+    // (undocumented)
+    p3GetUniTokenBalance(address?: string, ...extraParams: T): Promise<Decimal>;
+    // (undocumented)
     pngGetLiquidityMiningLQTYReward(address?: string, ...extraParams: T): Promise<Decimal>;
     // (undocumented)
     pngGetLiquidityMiningStake(address?: string, ...extraParams: T): Promise<Decimal>;
@@ -295,6 +307,12 @@ export interface LiquityStoreBaseState {
     lusdInStabilityPool: Decimal;
     numberOfTroves: number;
     ownFrontend: FrontendStatus;
+    p3LiquidityMiningLQTYReward: Decimal;
+    p3LiquidityMiningStake: Decimal;
+    p3RemainingLiquidityMiningLQTYReward: Decimal;
+    p3TokenAllowance: Decimal;
+    p3TokenBalance: Decimal;
+    p3TotalStakedUniTokens: Decimal;
     pngLiquidityMiningLQTYReward: Decimal;
     pngLiquidityMiningStake: Decimal;
     pngRemainingLiquidityMiningLQTYReward: Decimal;
@@ -491,6 +509,11 @@ export interface PopulatableLiquity<R = unknown, S = unknown, P = unknown> exten
     liquidate(address: string | string[]): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, LiquidationDetails>>>>;
     liquidateUpTo(maximumNumberOfTrovesToLiquidate: number): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, LiquidationDetails>>>>;
     openTrove(params: TroveCreationParams<Decimalish>, maxBorrowingRate?: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, TroveCreationDetails>>>>;
+    p3ApproveUniTokens(allowance?: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    p3ExitLiquidityMining(): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    p3StakeUniTokens(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    p3UnstakeUniTokens(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
+    p3WithdrawLQTYRewardFromLiquidityMining(): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
     pngApproveUniTokens(allowance?: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
     pngExitLiquidityMining(): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
     pngStakeUniTokens(amount: Decimalish): Promise<PopulatedLiquityTransaction<P, SentLiquityTransaction<S, LiquityReceipt<R, void>>>>;
@@ -563,6 +586,12 @@ export interface ReadableLiquity {
     getTroves(params: TroveListingParams): Promise<UserTrove[]>;
     getUniTokenAllowance(address?: string): Promise<Decimal>;
     getUniTokenBalance(address?: string): Promise<Decimal>;
+    p3GetLiquidityMiningLQTYReward(address?: string): Promise<Decimal>;
+    p3GetLiquidityMiningStake(address?: string): Promise<Decimal>;
+    p3GetRemainingLiquidityMiningLQTYReward(): Promise<Decimal>;
+    p3GetTotalStakedUniTokens(): Promise<Decimal>;
+    p3GetUniTokenAllowance(address?: string): Promise<Decimal>;
+    p3GetUniTokenBalance(address?: string): Promise<Decimal>;
     pngGetLiquidityMiningLQTYReward(address?: string): Promise<Decimal>;
     pngGetLiquidityMiningStake(address?: string): Promise<Decimal>;
     pngGetRemainingLiquidityMiningLQTYReward(): Promise<Decimal>;
@@ -620,6 +649,11 @@ export interface SendableLiquity<R = unknown, S = unknown> extends _SendableFrom
     liquidate(address: string | string[]): Promise<SentLiquityTransaction<S, LiquityReceipt<R, LiquidationDetails>>>;
     liquidateUpTo(maximumNumberOfTrovesToLiquidate: number): Promise<SentLiquityTransaction<S, LiquityReceipt<R, LiquidationDetails>>>;
     openTrove(params: TroveCreationParams<Decimalish>, maxBorrowingRate?: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, TroveCreationDetails>>>;
+    p3ApproveUniTokens(allowance?: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    p3ExitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    p3StakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    p3UnstakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+    p3WithdrawLQTYRewardFromLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     pngApproveUniTokens(allowance?: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     pngExitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
     pngStakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
@@ -720,6 +754,11 @@ export interface TransactableLiquity {
     liquidate(address: string | string[]): Promise<LiquidationDetails>;
     liquidateUpTo(maximumNumberOfTrovesToLiquidate: number): Promise<LiquidationDetails>;
     openTrove(params: TroveCreationParams<Decimalish>, maxBorrowingRate?: Decimalish): Promise<TroveCreationDetails>;
+    p3ApproveUniTokens(allowance?: Decimalish): Promise<void>;
+    p3ExitLiquidityMining(): Promise<void>;
+    p3StakeUniTokens(amount: Decimalish): Promise<void>;
+    p3UnstakeUniTokens(amount: Decimalish): Promise<void>;
+    p3WithdrawLQTYRewardFromLiquidityMining(): Promise<void>;
     pngApproveUniTokens(allowance?: Decimalish): Promise<void>;
     pngExitLiquidityMining(): Promise<void>;
     pngStakeUniTokens(amount: Decimalish): Promise<void>;

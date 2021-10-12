@@ -1371,6 +1371,22 @@ export class PopulatableEthersLiquity
     );
   }
 
+  /** {@inheritDoc @liquity/lib-base#PopulatableLiquity.p3ApproveUniTokens} */
+  async p3ApproveUniTokens(
+    allowance?: Decimalish,
+    overrides?: EthersTransactionOverrides
+  ): Promise<PopulatedEthersLiquityTransaction<void>> {
+    const { p3Token, p3Unipool } = _getContracts(this._readable.connection);
+
+    return this._wrapSimpleTransaction(
+      await p3Token.estimateAndPopulate.approve(
+        { ...overrides },
+        id,
+        p3Unipool.address,
+        Decimal.from(allowance ?? Decimal.INFINITY).hex
+      )
+    );
+  }
   /** {@inheritDoc @liquity/lib-base#PopulatableLiquity.stakeUniTokens} */
   async stakeUniTokens(
     amount: Decimalish,
@@ -1412,6 +1428,22 @@ export class PopulatableEthersLiquity
 
     return this._wrapSimpleTransaction(
       await tjUnipool.estimateAndPopulate.stake(
+        { ...overrides },
+        addGasForUnipoolRewardUpdate,
+        Decimal.from(amount).hex
+      )
+    );
+  }
+
+  /** {@inheritDoc @liquity/lib-base#PopulatableLiquity.p3StakeUniTokens} */
+  async p3StakeUniTokens(
+    amount: Decimalish,
+    overrides?: EthersTransactionOverrides
+  ): Promise<PopulatedEthersLiquityTransaction<void>> {
+    const { p3Unipool } = _getContracts(this._readable.connection);
+
+    return this._wrapSimpleTransaction(
+      await p3Unipool.estimateAndPopulate.stake(
         { ...overrides },
         addGasForUnipoolRewardUpdate,
         Decimal.from(amount).hex
@@ -1467,6 +1499,22 @@ export class PopulatableEthersLiquity
     );
   }
 
+  /** {@inheritDoc @liquity/lib-base#PopulatableLiquity.p3UnstakeUniTokens} */
+  async p3UnstakeUniTokens(
+    amount: Decimalish,
+    overrides?: EthersTransactionOverrides
+  ): Promise<PopulatedEthersLiquityTransaction<void>> {
+    const { p3Unipool } = _getContracts(this._readable.connection);
+
+    return this._wrapSimpleTransaction(
+      await p3Unipool.estimateAndPopulate.withdraw(
+        { ...overrides },
+        addGasForUnipoolRewardUpdate,
+        Decimal.from(amount).hex
+      )
+    );
+  }
+
   /** {@inheritDoc @liquity/lib-base#PopulatableLiquity.withdrawLQTYRewardFromLiquidityMining} */
   async withdrawLQTYRewardFromLiquidityMining(
     overrides?: EthersTransactionOverrides
@@ -1500,6 +1548,17 @@ export class PopulatableEthersLiquity
 
     return this._wrapSimpleTransaction(
       await tjUnipool.estimateAndPopulate.claimReward({ ...overrides }, addGasForUnipoolRewardUpdate)
+    );
+  }
+
+  /** {@inheritDoc @liquity/lib-base#PopulatableLiquity.p3WithdrawLQTYRewardFromLiquidityMining} */
+  async p3WithdrawLQTYRewardFromLiquidityMining(
+    overrides?: EthersTransactionOverrides
+  ): Promise<PopulatedEthersLiquityTransaction<void>> {
+    const { p3Unipool } = _getContracts(this._readable.connection);
+
+    return this._wrapSimpleTransaction(
+      await p3Unipool.estimateAndPopulate.claimReward({ ...overrides }, addGasForUnipoolRewardUpdate)
     );
   }
 
@@ -1539,6 +1598,20 @@ export class PopulatableEthersLiquity
 
     return this._wrapSimpleTransaction(
       await tjUnipool.estimateAndPopulate.withdrawAndClaim(
+        { ...overrides },
+        addGasForUnipoolRewardUpdate
+      )
+    );
+  }
+
+  /** {@inheritDoc @liquity/lib-base#PopulatableLiquity.p3ExitLiquidityMining} */
+  async p3ExitLiquidityMining(
+    overrides?: EthersTransactionOverrides
+  ): Promise<PopulatedEthersLiquityTransaction<void>> {
+    const { p3Unipool } = _getContracts(this._readable.connection);
+
+    return this._wrapSimpleTransaction(
+      await p3Unipool.estimateAndPopulate.withdrawAndClaim(
         { ...overrides },
         addGasForUnipoolRewardUpdate
       )

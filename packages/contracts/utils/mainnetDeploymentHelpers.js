@@ -208,6 +208,20 @@ class MainnetDeploymentHelper {
     return pool2Unipool;
   }
 
+  async deployPool3UnipoolMainnet(deploymentState) {
+    const pool3Factory = await this.getFactory("Pool3Unipool")
+    const contractName = `p3Unipool`
+    const pool3Unipool = await this.loadOrDeploy(pool3Factory, contractName, deploymentState)
+
+    if (!this.configParams.ETHERSCAN_BASE_URL) {
+      console.log('No Etherscan Url defined, skipping verification')
+    } else {
+      await this.verifyContract(contractName, deploymentState)
+    }
+
+    return pool3Unipool;
+  }
+
   async deployMultiTroveGetterMainnet(liquityCore, deploymentState) {
     const multiTroveGetterFactory = await this.getFactory("MultiTroveGetter")
     const multiTroveGetterParams = [
