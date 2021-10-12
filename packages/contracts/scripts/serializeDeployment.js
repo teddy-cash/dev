@@ -10,6 +10,7 @@ const deployment = {
   "liquidityMiningLQTYRewardRate": "0.257201646090534979",
   "tjLiquidityMiningLQTYRewardRate": "0",
   "pngLiquidityMiningLQTYRewardRate": "0.41335978835978837",
+  "p3LiquidityMiningLQTYRewardRate": "0.46296296296296297",  
   "_priceFeedIsTestnet": false,
   "_uniTokenIsMock": false,
   "_isDev": false,

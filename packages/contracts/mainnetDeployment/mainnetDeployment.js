@@ -7,13 +7,19 @@ const { dec } = th
 const MainnetDeploymentHelper = require("../utils/mainnetDeploymentHelpers.js")
 const toBigNum = ethers.BigNumber.from
 
+async function getGasPrice() {
+  const basefee = await ethers.provider.getGasPrice();
+  return toBigNum(basefee).add(toBigNum('20000000000'));
+}
+
 async function mainnetDeploy(configParams) {
   const date = new Date()
   console.log(date.toUTCString())
   const deployerWallet = (await ethers.getSigners())[0]
   // const account2Wallet = (await ethers.getSigners())[1]
-  const basefee = await ethers.provider.getGasPrice();
-  const gasPrice = toBigNum(basefee).add(toBigNum('20000000000')) // add tip
+  //const basefee = await ethers.provider.getGasPrice();
+  //const gasPrice =  toBigNum(basefee).add(toBigNum('20000000000')) // add tip
+  const gasPrice = await getGasPrice();
   configParams.GAS_PRICE = gasPrice;
   console.log(`BWB gasPrice is ${configParams.GAS_PRICE}`)
 
@@ -142,6 +148,42 @@ async function mainnetDeploy(configParams) {
     console.log(`Successfully connected${pool2Name}`);
   }
 
+  // Pool3 TEDDY-TSD
+  const tjFactory = new ethers.Contract(configParams.externalAddrs.TJ_FACTORY, UniswapV2Factory.abi, deployerWallet);
+  let TsdTeddyPairAddr = await tjFactory.getPair(LQTYContracts.lqtyToken.address, liquityCore.lusdToken.address);
+  let TeddyTsdPairAddr = await tjFactory.getPair(liquityCore.lusdToken.address, LQTYContracts.lqtyToken.address)
+  assert.equal(TsdTeddyPairAddr, TeddyTsdPairAddr);
+  const pool3Name = 'p3Token';
+  if (TsdTeddyPairAddr == th.ZERO_ADDRESS) {
+    // Deploy Unipool for LQTY-WETH
+    const pairTx = await mdh.sendAndWaitForTransaction(tjFactory.createPair(
+      liquityCore.lusdToken.address,
+      LQTYContracts.lqtyToken.address, { gasPrice })
+    )
+
+    // Check Uniswap Pair Teddy-TSD pair after pair creation (forwards and backwards should have same address)
+    TsdTeddyPairAddr = await tjFactory.getPair(LQTYContracts.lqtyToken.address, liquityCore.lusdToken.address)
+    assert.notEqual(TsdTeddyPairAddr, th.ZERO_ADDRESS)
+    TeddyTsdPairAddr = await tjFactory.getPair(liquityCore.lusdToken.address, LQTYContracts.lqtyToken.address)
+    console.log(`TSD-TEDDY pair contract address after TJ pair creation: ${TeddyTsdPairAddr}`)
+    assert.equal(TsdTeddyPairAddr, TeddyTsdPairAddr)
+    deploymentState[pool3Name] = {address: TeddyTsdPairAddr, txHash: pairTx.transactionHash};  
+  } else if (!deploymentState[pool3Name]) {
+    TsdTeddyPairAddr = await tjFactory.getPair(LQTYContracts.lqtyToken.address, liquityCore.lusdToken.address)
+    assert.notEqual(TsdTeddyPairAddr, th.ZERO_ADDRESS)
+    console.log(`TSD-TEDDY pair contract address after TJ pair creation: ${TsdTeddyPairAddr}`)
+    deploymentState[pool3Name] = {address: TsdTeddyPairAddr};  
+  }
+
+  // create pool3 rewards unipool
+  const pool3Unipool = await mdh.deployPool3UnipoolMainnet(deploymentState);
+  console.log(`pool3Unipool address: ${pool3Unipool.address}`)
+  // duration is 4 weeks
+  await mdh.connectUnipoolMainnet(pool3Unipool, LQTYContracts, TsdTeddyPairAddr, timeVals.SECONDS_IN_ONE_MONTH);
+  console.log(`Successfully connected${pool3Name}`);
+  // End pool3
+
+
   // Log LQTY and Unipool addresses
   await mdh.logContractObjects(LQTYContracts)
   console.log(`Unipool address: ${unipool.address}`)
@@ -239,6 +281,7 @@ async function mainnetDeploy(configParams) {
     assert.equal(LQTYContracts.lqtyToken.address, storedLQTYTokenAddr)
     // Check contract has stored correct beneficary
     const onChainBeneficiary = await lockupContract.beneficiary()
+    console.log(`investor ${investor}, address ${configParams.beneficiaries[investor].address}, onchain beneficiary ${onChainBeneficiary}`)
     assert.equal(configParams.beneficiaries[investor].address.toLowerCase(), onChainBeneficiary.toLowerCase())
     // Check correct unlock time (1 yr from deployment)
     const unlockTime = await lockupContract.unlockTime()

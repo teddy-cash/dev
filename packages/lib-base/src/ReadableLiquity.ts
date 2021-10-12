@@ -147,6 +147,13 @@ export interface ReadableLiquity {
   pngGetUniTokenBalance(address?: string): Promise<Decimal>;
 
   /**
+   * Get the amount of Pool3 LP tokens held by an address.
+   *
+   * @param address - Address whose balance should be retrieved.
+   */
+  p3GetUniTokenBalance(address?: string): Promise<Decimal>;
+
+  /**
    * Get the liquidity mining contract's allowance of a holder's Uniswap ETH/LUSD LP tokens.
    *
    * @param address - Address holding the Uniswap ETH/LUSD LP tokens.
@@ -168,6 +175,13 @@ export interface ReadableLiquity {
   pngGetUniTokenAllowance(address?: string): Promise<Decimal>;
 
   /**
+   * Get the liquidity mining contract's allowance of a holder's Pool3 LP tokens.
+   *
+   * @param address - Address holding the Pool3 LP tokens.
+   */
+  p3GetUniTokenAllowance(address?: string): Promise<Decimal>;
+
+  /**
    * Get the remaining LQTY that will be collectively rewarded to liquidity miners.
    */
   getRemainingLiquidityMiningLQTYReward(): Promise<Decimal>;
@@ -181,6 +195,11 @@ export interface ReadableLiquity {
    * Get the remaining LQTY that will be collectively rewarded to liquidity miners on PNG pool2.
    */
   pngGetRemainingLiquidityMiningLQTYReward(): Promise<Decimal>;
+
+  /**
+   * Get the remaining LQTY that will be collectively rewarded to liquidity miners on PNG pool2.
+   */
+  p3GetRemainingLiquidityMiningLQTYReward(): Promise<Decimal>;
 
   /**
    * Get the amount of Uniswap ETH/LUSD LP tokens currently staked by an address in liquidity mining.
@@ -204,6 +223,13 @@ export interface ReadableLiquity {
   pngGetLiquidityMiningStake(address?: string): Promise<Decimal>;
 
   /**
+   * Get the amount of Pool3 LP tokens currently staked by an address in liquidity mining.
+   *
+   * @param address - Address whose LP stake should be retrieved.
+   */
+  p3GetLiquidityMiningStake(address?: string): Promise<Decimal>;
+
+  /**
    * Get the total amount of Uniswap ETH/LUSD LP tokens currently staked in liquidity mining.
    */
   getTotalStakedUniTokens(): Promise<Decimal>;
@@ -217,6 +243,11 @@ export interface ReadableLiquity {
    * Get the total amount of PNG Pool2 LP tokens currently staked in liquidity mining.
    */
   pngGetTotalStakedUniTokens(): Promise<Decimal>;
+
+  /**
+   * Get the total amount of Pool3 LP tokens currently staked in liquidity mining.
+   */
+  p3GetTotalStakedUniTokens(): Promise<Decimal>;
 
   /**
    * Get the amount of LQTY earned by an address through mining liquidity.
@@ -238,6 +269,13 @@ export interface ReadableLiquity {
    * @param address - Address whose LQTY reward should be retrieved.
    */
   pngGetLiquidityMiningLQTYReward(address?: string): Promise<Decimal>;
+
+  /**
+   * Get the amount of LQTY earned by an address through mining liquidity on pool3.
+   *
+   * @param address - Address whose LQTY reward should be retrieved.
+   */
+  p3GetLiquidityMiningLQTYReward(address?: string): Promise<Decimal>;
 
   /**
    * Get the amount of leftover collateral available for withdrawal by an address.

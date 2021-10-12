@@ -259,6 +259,11 @@ export interface SendableLiquity<R = unknown, S = unknown>
     allowance?: Decimalish
   ): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
 
+  /** {@inheritDoc TransactableLiquity.p3ApproveUniTokens} */
+  p3ApproveUniTokens(
+    allowance?: Decimalish
+  ): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+
   /** {@inheritDoc TransactableLiquity.stakeUniTokens} */
   stakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
 
@@ -267,6 +272,9 @@ export interface SendableLiquity<R = unknown, S = unknown>
 
   /** {@inheritDoc TransactableLiquity.tjStakeUniTokens} */
   tjStakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+
+  /** {@inheritDoc TransactableLiquity.p3StakeUniTokens} */
+  p3StakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
 
   /** {@inheritDoc TransactableLiquity.unstakeUniTokens} */
   unstakeUniTokens(amount: Decimalish): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
@@ -278,6 +286,11 @@ export interface SendableLiquity<R = unknown, S = unknown>
 
   /** {@inheritDoc TransactableLiquity.tjUnstakeUniTokens} */
   tjUnstakeUniTokens(
+    amount: Decimalish
+  ): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+
+  /** {@inheritDoc TransactableLiquity.p3UnstakeUniTokens} */
+  p3UnstakeUniTokens(
     amount: Decimalish
   ): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
 
@@ -296,6 +309,11 @@ export interface SendableLiquity<R = unknown, S = unknown>
     SentLiquityTransaction<S, LiquityReceipt<R, void>>
   >;
 
+  /** {@inheritDoc TransactableLiquity.p3WithdrawLQTYRewardFromLiquidityMining} */
+  p3WithdrawLQTYRewardFromLiquidityMining(): Promise<
+    SentLiquityTransaction<S, LiquityReceipt<R, void>>
+  >;
+
   /** {@inheritDoc TransactableLiquity.exitLiquidityMining} */
   exitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
 
@@ -304,6 +322,9 @@ export interface SendableLiquity<R = unknown, S = unknown>
 
   /** {@inheritDoc TransactableLiquity.tjExitLiquidityMining} */
   tjExitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
+
+  /** {@inheritDoc TransactableLiquity.p3ExitLiquidityMining} */
+  p3ExitLiquidityMining(): Promise<SentLiquityTransaction<S, LiquityReceipt<R, void>>>;
 
   /** {@inheritDoc TransactableLiquity.registerFrontend} */
   registerFrontend(

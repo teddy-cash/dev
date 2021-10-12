@@ -78,6 +78,9 @@ export interface EthersLiquityConnection extends EthersLiquityConnectionOptional
   /** Amount of LQTY collectively rewarded to stakers of the liquidity mining pool per second. */
   readonly tjLiquidityMiningLQTYRewardRate: Decimal;
 
+  /** Amount of LQTY collectively rewarded to stakers of the liquidity mining pool per second. */
+  readonly p3LiquidityMiningLQTYRewardRate: Decimal;
+
   /** A mapping of Liquity contracts' names to their addresses. */
   readonly addresses: Record<string, string>;
 
@@ -109,6 +112,7 @@ const connectionFrom = (
     liquidityMiningLQTYRewardRate,
     pngLiquidityMiningLQTYRewardRate,
     tjLiquidityMiningLQTYRewardRate,
+    p3LiquidityMiningLQTYRewardRate,
     ...deployment
   }: _LiquityDeploymentJSON,
   optionalParams?: EthersLiquityConnectionOptionalParams
@@ -131,6 +135,7 @@ const connectionFrom = (
     liquidityMiningLQTYRewardRate: Decimal.from(liquidityMiningLQTYRewardRate),
     pngLiquidityMiningLQTYRewardRate: Decimal.from(pngLiquidityMiningLQTYRewardRate),
     tjLiquidityMiningLQTYRewardRate: Decimal.from(tjLiquidityMiningLQTYRewardRate),
+    p3LiquidityMiningLQTYRewardRate: Decimal.from(p3LiquidityMiningLQTYRewardRate),
     ...deployment,
     ...optionalParams
   });

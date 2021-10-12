@@ -335,6 +335,14 @@ export class ReadableEthersLiquity implements ReadableLiquity {
     return tjToken.balanceOf(address, { ...overrides }).then(decimalify);
   }
 
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.p3GetUniTokenBalance} */
+  p3GetUniTokenBalance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
+    address ??= _requireAddress(this.connection);
+    const { p3Token } = _getContracts(this.connection);
+
+    return p3Token.balanceOf(address, { ...overrides }).then(decimalify);
+  }
+
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getUniTokenAllowance} */
   getUniTokenAllowance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
     address ??= _requireAddress(this.connection);
@@ -357,6 +365,14 @@ export class ReadableEthersLiquity implements ReadableLiquity {
     const { tjToken, tjUnipool } = _getContracts(this.connection);
 
     return tjToken.allowance(address, tjUnipool.address, { ...overrides }).then(decimalify);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.p3GetUniTokenBalance} */
+  p3GetUniTokenAllowance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
+    address ??= _requireAddress(this.connection);
+    const { p3Token, p3Unipool } = _getContracts(this.connection);
+
+    return p3Token.allowance(address, p3Unipool.address, { ...overrides }).then(decimalify);
   }
 
   /** @internal */
@@ -397,6 +413,25 @@ export class ReadableEthersLiquity implements ReadableLiquity {
     };
   }
 
+  /** @internal */
+  async _p3GetRemainingLiquidityMiningLQTYRewardCalculator(
+    overrides?: EthersCallOverrides
+  ): Promise<(blockTimestamp: number) => Decimal> {
+    const { p3Unipool: unipool } = _getContracts(this.connection);
+
+    const [totalSupply, rewardRate, periodFinish, lastUpdateTime] = await Promise.all([
+      unipool.totalSupply({ ...overrides }),
+      unipool.rewardRate({ ...overrides }).then(decimalify),
+      unipool.periodFinish({ ...overrides }).then(numberify),
+      unipool.lastUpdateTime({ ...overrides }).then(numberify)
+    ]);
+    return (blockTimestamp: number) => {
+      return rewardRate.mul(
+        Math.max(0, periodFinish - (totalSupply.isZero() ? lastUpdateTime : blockTimestamp))
+      );
+    };
+  }
+
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getRemainingLiquidityMiningLQTYReward} */
   async getRemainingLiquidityMiningLQTYReward(overrides?: EthersCallOverrides): Promise<Decimal> {
     const [calculateRemainingLQTY, blockTimestamp] = await Promise.all([
@@ -411,6 +446,16 @@ export class ReadableEthersLiquity implements ReadableLiquity {
   async pngGetRemainingLiquidityMiningLQTYReward(overrides?: EthersCallOverrides): Promise<Decimal> {
     const [calculateRemainingLQTY, blockTimestamp] = await Promise.all([
       this._pngGetRemainingLiquidityMiningLQTYRewardCalculator(overrides),
+      this._getBlockTimestamp(overrides?.blockTag)
+    ]);
+
+    return calculateRemainingLQTY(blockTimestamp);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.p3GetRemainingLiquidityMiningLQTYReward} */
+  async p3GetRemainingLiquidityMiningLQTYReward(overrides?: EthersCallOverrides): Promise<Decimal> {
+    const [calculateRemainingLQTY, blockTimestamp] = await Promise.all([
+      this._p3GetRemainingLiquidityMiningLQTYRewardCalculator(overrides),
       this._getBlockTimestamp(overrides?.blockTag)
     ]);
 
@@ -470,6 +515,14 @@ export class ReadableEthersLiquity implements ReadableLiquity {
     return tjUnipool.balanceOf(address, { ...overrides }).then(decimalify);
   }
 
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.p3GetLiquidityMiningStake} */
+  p3GetLiquidityMiningStake(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
+    address ??= _requireAddress(this.connection);
+    const { p3Unipool } = _getContracts(this.connection);
+
+    return p3Unipool.balanceOf(address, { ...overrides }).then(decimalify);
+  }
+
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getTotalStakedUniTokens} */
   getTotalStakedUniTokens(overrides?: EthersCallOverrides): Promise<Decimal> {
     const { unipool } = _getContracts(this.connection);
@@ -489,6 +542,13 @@ export class ReadableEthersLiquity implements ReadableLiquity {
     const { tjUnipool } = _getContracts(this.connection);
 
     return tjUnipool.totalSupply({ ...overrides }).then(decimalify);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.p3GetTotalStakedUniTokens} */
+  p3GetTotalStakedUniTokens(overrides?: EthersCallOverrides): Promise<Decimal> {
+    const { p3Unipool } = _getContracts(this.connection);
+
+    return p3Unipool.totalSupply({ ...overrides }).then(decimalify);
   }
 
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getLiquidityMiningLQTYReward} */
@@ -519,6 +579,17 @@ export class ReadableEthersLiquity implements ReadableLiquity {
     const { tjUnipool } = _getContracts(this.connection);
 
     return tjUnipool.earned(address, { ...overrides }).then(decimalify);
+  }
+
+  /** {@inheritDoc @liquity/lib-base#ReadableLiquity.p3GetLiquidityMiningLQTYReward} */
+  p3GetLiquidityMiningLQTYReward(
+    address?: string,
+    overrides?: EthersCallOverrides
+  ): Promise<Decimal> {
+    address ??= _requireAddress(this.connection);
+    const { p3Unipool } = _getContracts(this.connection);
+
+    return p3Unipool.earned(address, { ...overrides }).then(decimalify);
   }
 
   /** {@inheritDoc @liquity/lib-base#ReadableLiquity.getCollateralSurplusBalance} */
@@ -805,6 +876,12 @@ class _BlockPolledReadableEthersLiquity
       : this._readable.tjGetUniTokenBalance(address, overrides);
   }
 
+  async p3GetUniTokenBalance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._userHit(address, overrides)
+      ? this.store.state.p3TokenBalance
+      : this._readable.p3GetUniTokenBalance(address, overrides);
+  }
+
   async getUniTokenAllowance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
     return this._userHit(address, overrides)
       ? this.store.state.uniTokenAllowance
@@ -826,6 +903,12 @@ class _BlockPolledReadableEthersLiquity
       : this._readable.tjGetUniTokenAllowance(address, overrides);
   }
 
+  async p3GetUniTokenAllowance(address?: string, overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._userHit(address, overrides)
+      ? this.store.state.p3TokenAllowance
+      : this._readable.p3GetUniTokenAllowance(address, overrides);
+  }
+
   async getRemainingLiquidityMiningLQTYReward(overrides?: EthersCallOverrides): Promise<Decimal> {
     return this._blockHit(overrides)
       ? this.store.state.remainingLiquidityMiningLQTYReward
@@ -842,6 +925,12 @@ class _BlockPolledReadableEthersLiquity
     return this._blockHit(overrides)
       ? this.store.state.tjRemainingLiquidityMiningLQTYReward
       : this._readable.tjGetRemainingLiquidityMiningLQTYReward(overrides);
+  }
+
+  async p3GetRemainingLiquidityMiningLQTYReward(overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._blockHit(overrides)
+      ? this.store.state.p3RemainingLiquidityMiningLQTYReward
+      : this._readable.p3GetRemainingLiquidityMiningLQTYReward(overrides);
   }
 
   async getLiquidityMiningStake(
@@ -871,6 +960,15 @@ class _BlockPolledReadableEthersLiquity
       : this._readable.tjGetLiquidityMiningStake(address, overrides);
   }
 
+  async p3GetLiquidityMiningStake(
+    address?: string,
+    overrides?: EthersCallOverrides
+  ): Promise<Decimal> {
+    return this._userHit(address, overrides)
+      ? this.store.state.p3LiquidityMiningStake
+      : this._readable.p3GetLiquidityMiningStake(address, overrides);
+  }
+
   async getTotalStakedUniTokens(overrides?: EthersCallOverrides): Promise<Decimal> {
     return this._blockHit(overrides)
       ? this.store.state.totalStakedUniTokens
@@ -887,6 +985,12 @@ class _BlockPolledReadableEthersLiquity
     return this._blockHit(overrides)
       ? this.store.state.tjTotalStakedUniTokens
       : this._readable.tjGetTotalStakedUniTokens(overrides);
+  }
+
+  async p3GetTotalStakedUniTokens(overrides?: EthersCallOverrides): Promise<Decimal> {
+    return this._blockHit(overrides)
+      ? this.store.state.p3TotalStakedUniTokens
+      : this._readable.p3GetTotalStakedUniTokens(overrides);
   }
 
   async getLiquidityMiningLQTYReward(
@@ -914,6 +1018,15 @@ class _BlockPolledReadableEthersLiquity
     return this._userHit(address, overrides)
       ? this.store.state.tjLiquidityMiningLQTYReward
       : this._readable.tjGetLiquidityMiningLQTYReward(address, overrides);
+  }
+
+  async p3GetLiquidityMiningLQTYReward(
+    address?: string,
+    overrides?: EthersCallOverrides
+  ): Promise<Decimal> {
+    return this._userHit(address, overrides)
+      ? this.store.state.p3LiquidityMiningLQTYReward
+      : this._readable.p3GetLiquidityMiningLQTYReward(address, overrides);
   }
 
   async getCollateralSurplusBalance(
@@ -994,6 +1107,12 @@ class _BlockPolledReadableEthersLiquity
   }
 
   _tjGetRemainingLiquidityMiningLQTYRewardCalculator(): Promise<
+    (blockTimestamp: number) => Decimal
+  > {
+    throw new Error("Method not implemented.");
+  }
+
+  _p3GetRemainingLiquidityMiningLQTYRewardCalculator(): Promise<
     (blockTimestamp: number) => Decimal
   > {
     throw new Error("Method not implemented.");
