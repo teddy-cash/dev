@@ -352,6 +352,10 @@ export class SubgraphLiquity implements ReadableLiquity, ObservableLiquity {
     throw new Error("Method not implemented.");
   }
 
+  p3GetUniTokenBalance(address?: string): Promise<Decimal> {
+    throw new Error("Method not implemented.");
+  }
+
   getUniTokenAllowance(address?: string): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }
@@ -361,6 +365,10 @@ export class SubgraphLiquity implements ReadableLiquity, ObservableLiquity {
   }
 
   tjGetUniTokenAllowance(address?: string): Promise<Decimal> {
+    throw new Error("Method not implemented.");
+  }
+
+  p3GetUniTokenAllowance(address?: string): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }
 
@@ -376,6 +384,10 @@ export class SubgraphLiquity implements ReadableLiquity, ObservableLiquity {
     throw new Error("Method not implemented.");
   }
 
+  p3GetRemainingLiquidityMiningLQTYReward(): Promise<Decimal> {
+    throw new Error("Method not implemented.");
+  }
+
   getLiquidityMiningStake(address?: string): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }
@@ -385,6 +397,10 @@ export class SubgraphLiquity implements ReadableLiquity, ObservableLiquity {
   }
 
   tjGetLiquidityMiningStake(address?: string): Promise<Decimal> {
+    throw new Error("Method not implemented.");
+  }
+
+  p3GetLiquidityMiningStake(address?: string): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }
 
@@ -400,6 +416,10 @@ export class SubgraphLiquity implements ReadableLiquity, ObservableLiquity {
     throw new Error("Method not implemented.");
   }
 
+  p3GetLiquidityMiningLQTYReward(address?: string): Promise<Decimal> {
+    throw new Error("Method not implemented.");
+  }
+
   getTotalStakedUniTokens(): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }
@@ -409,6 +429,10 @@ export class SubgraphLiquity implements ReadableLiquity, ObservableLiquity {
   }
 
   tjGetTotalStakedUniTokens(): Promise<Decimal> {
+    throw new Error("Method not implemented.");
+  }
+
+  p3GetTotalStakedUniTokens(): Promise<Decimal> {
     throw new Error("Method not implemented.");
   }
 
