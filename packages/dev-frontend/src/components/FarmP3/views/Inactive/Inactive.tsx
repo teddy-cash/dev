@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Card, Heading, Box, Flex, Button, Link, Paragraph, Image } from "theme-ui";
+import { Card, Heading, Box, Flex, Button, Link, Paragraph } from "theme-ui";
 import { useLiquity } from "../../../../hooks/LiquityContext";
 import { POOL3, POOL3LP } from "../../../../strings";
 import { Icon } from "../../../Icon";
