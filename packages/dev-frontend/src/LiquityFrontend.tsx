@@ -23,7 +23,7 @@ import { TroveViewProvider } from "./components/Trove/context/TroveViewProvider"
 import { StabilityViewProvider } from "./components/Stability/context/StabilityViewProvider";
 import { StakingViewProvider } from "./components/Staking/context/StakingViewProvider";
 import { FarmViewProvider } from "./components/Farm/context/FarmViewProvider";
-import { FarmViewProvider as TjFarmViewProvider } from "./components/FarmTj/context/FarmViewProvider";
+import { FarmViewProvider as P3FarmViewProvider } from "./components/FarmP3/context/FarmViewProvider";
 import { FarmViewProvider as PngFarmViewProvider } from "./components/FarmPng/context/FarmViewProvider";
 
 import {QueryClient, QueryClientProvider } from 'react-query'
@@ -54,7 +54,7 @@ export const LiquityFrontend: React.FC<LiquityFrontendProps> = ({ loader }) => {
             <StabilityViewProvider>
               <StakingViewProvider>
                 <FarmViewProvider>
-                  <TjFarmViewProvider>
+                  <P3FarmViewProvider>
                     <PngFarmViewProvider>
                       <Flex sx={{ flexDirection: "column", minHeight: "100%" }}>
                           <Header>
@@ -92,7 +92,7 @@ export const LiquityFrontend: React.FC<LiquityFrontendProps> = ({ loader }) => {
                           </Container>
                       </Flex>
                     </PngFarmViewProvider>
-                  </TjFarmViewProvider>
+                  </P3FarmViewProvider>
                 </FarmViewProvider>
               </StakingViewProvider>
             </StabilityViewProvider>
