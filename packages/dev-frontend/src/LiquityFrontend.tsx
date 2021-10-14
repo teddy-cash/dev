@@ -15,6 +15,7 @@ import { Footer } from "./components/Footer";
 
 import { PageSwitcher } from "./pages/PageSwitcher";
 import { Farm } from "./pages/Farm";
+import { DisabledFarms } from "./pages/DisabledFarms";
 import { RiskyTrovesPage } from "./pages/RiskyTrovesPage";
 import { RedemptionPage } from "./pages/RedemptionPage";
 
@@ -76,6 +77,9 @@ export const LiquityFrontend: React.FC<LiquityFrontendProps> = ({ loader }) => {
                               </Route>
                               <Route path="/farm">
                                 <Farm />
+                              </Route>
+                              <Route path="/ended-farms">
+                                <DisabledFarms />
                               </Route>
                               <Route path="/risky-troves">
                                 <RiskyTrovesPage />
