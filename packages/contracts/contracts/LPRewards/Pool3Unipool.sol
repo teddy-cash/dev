@@ -130,7 +130,8 @@ contract Pool3Unipool is LPTokenWrapper, Ownable, CheckContract, IUnipool {
         require(lqtyToken.balanceOf(address(this)) > 0, "setReward can only be called once LQTY has been allocated to this contract");
         // This function must be commented out as it assumes an allocation already exists
         // for this pool immediately after creation. 
-        _notifyRewardAmount(lqtyToken.balanceOf(address(this)), duration);
+        _notifyRewardAmount(lqtyToken.balanceOf(address(this)), _duration);
+        _renounceOwnership();
     }
 
     // Returns current timestamp if the rewards program has not finished yet, end time otherwise
@@ -211,8 +212,8 @@ contract Pool3Unipool is LPTokenWrapper, Ownable, CheckContract, IUnipool {
     function _notifyRewardAmount(uint256 _reward, uint256 _duration) internal {
         assert(_reward > 0);
         assert(_reward == lqtyToken.balanceOf(address(this)));
-        //require(periodFinish == 0, "Period finish must be zero during initialization");
-        
+        assert(periodFinish == 0);
+
         _updateReward();
 
         rewardRate = _reward.div(_duration);
