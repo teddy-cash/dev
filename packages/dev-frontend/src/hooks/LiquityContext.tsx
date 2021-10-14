@@ -72,15 +72,19 @@ export const LiquityProvider: React.FC<LiquityProviderProps> = ({
 
       if (isWebSocketAugmentedProvider(provider)) {
         const network = getNetwork(chainId);
-
+        console.log(`BWB websocket network name ${network.name}`)
         if (network.name && supportedNetworks.includes(network.name) && config.infuraApiKey) {
           provider.openWebSocket(...wsParams(network.name, config.infuraApiKey)); 
-        } else if (network.name === 'fuji'){  
+        } else if (network.name === 'fuji'){
+          console.log('BWB websocket avax.brkhrd')
           provider.openWebSocket(`wss://avax.brkhrd.com/ext/bc/C/ws`, chainId);
-        } else if (connection._isDev) {
-          
-          provider.openWebSocket(`ws://${window.location.hostname}:8546`, chainId);
         }
+        console.log(`BWB connection is dev ${connection._isDev}`);
+        /*  else if (connection._isDev) {
+
+          console.log('BWB websocket local')
+          provider.openWebSocket(`ws://${window.location.hostname}:8546`, chainId);
+        } */
 
         return () => {
           provider.closeWebSocket();

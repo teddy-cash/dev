@@ -106,7 +106,7 @@ const App = () => {
             unsupportedMainnetFallback={<UnsupportedMainnetFallback />}
           >
             <TransactionProvider>
-              {/* <LiquityFrontend loader={loader} /> */}
+              <LiquityFrontend loader={loader} />
             </TransactionProvider>
           </LiquityProvider>
         </WalletConnector>
