@@ -16,7 +16,7 @@ export const Dashboard: React.FC = () => (
     </Container>
 
     <Container variant="right">
-      <SystemStats />
+      {/* <SystemStats /> */}
       <Help />
       <PriceManager />
     </Container>
