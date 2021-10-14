@@ -27,7 +27,9 @@ export const FarmsEnded: React.FC = () => {
       <Box sx={{ p: [2, 3] }}>
         <Box>
           <Box style={{marginBottom: 10}}>Our Liquidity Farms for AVAX/TSD and AVAX/TEDDY have ended!
+
           They can be accessed <NavLink exact to="/ended-farms" style={{textDecoration: 'none'}}>here</NavLink><br /><br />
+
           Please move your liquidity to these excellent farms</Box>
           <Flex sx={{paddingBottom: 2, marginBottom: 20, borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)"}}>
             <Image src="./pangolin.svg" width="20" height="20" sx={{marginRight: 2}}/>Pangolin<br />
