@@ -4,8 +4,9 @@ const baseColors = {
   blue: "#1542cd",
   purple: "#745ddf",
   cyan: "#2eb6ea",
+  lightBlue: "#84ddf6",
   green: "#50cf3c",
-  yellow: "#ffe27a",
+  yellow: "#FFD700", //"#ffe27a",
   red: "#dc2c10",
   lightRed: "#ff755f"
 };
@@ -102,8 +103,8 @@ const infoCard: ThemeUIStyleObject = {
     mb: 3,
     fontSize: cardHeadingFontSize,
     textTransform: "uppercase",
-    bg: "#1d1e23",
-    color: "#62c5e1"
+    color: baseColors.lightBlue, //"#62c5e1"
+    bg: "#1d1e23"
   }
 };
 
@@ -182,7 +183,19 @@ const theme: Theme = {
     heading: 1.25
   },
 
-  colors,
+  colors: {
+    config: {
+      initialColorModeName: "dark"
+    },
+    ...colors,
+    modes: {
+      light: {
+        color: "#000000",
+        borderColor: "muted"
+      }
+    }
+  },
+  /* colors, */
 
   borders: [0, "1px solid", "2px solid"],
 
@@ -199,9 +212,9 @@ const theme: Theme = {
     primary: {
       ...button,
 
-      bg: "#ffe27a",
+      bg: baseColors.yellow,
       color: "black",
-      borderColor: "#ffe27a",
+      borderColor: baseColors.yellow,
 
       ":enabled:hover": {
         opacity: 0.8
@@ -210,7 +223,7 @@ const theme: Theme = {
 
     outline: {
       ...button,
-      ...buttonOutline("#ffe27a", "black")
+      ...buttonOutline(baseColors.yellow, "black")
     },
 
     cancel: {
@@ -274,8 +287,7 @@ const theme: Theme = {
 
         mt: 2,
         bg: "#1d1e23",
-        color: "#62c5e1",
-
+        color: baseColors.lightBlue, //"#62c5e1",
         fontSize: cardHeadingFontSize
       }
     },

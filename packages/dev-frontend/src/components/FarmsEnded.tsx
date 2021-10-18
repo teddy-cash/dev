@@ -52,7 +52,7 @@ export const FarmsEnded: React.FC = () => {
             </Link>
           </Flex>
           <Flex sx={{marginBottom: 10, marginTop: 30, paddingBottom: 2, borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)"}}>
-            <Image src="./tj.jpg" width="20" height="20" sx={{marginRight: 2}}/>
+            <Image src="./joe.png" width="25" height="25" sx={{marginRight: 2}}/>
             Trader Joe
           </Flex>
           <Flex style={{marginBottom: 15}}>
