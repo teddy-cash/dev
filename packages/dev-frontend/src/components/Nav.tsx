@@ -1,4 +1,4 @@
-import { Flex, Box } from "theme-ui";
+import { Flex, Box, NavLink  } from "theme-ui";
 import { Link } from "./Link";
 
 export const Nav: React.FC = () => {
@@ -15,6 +15,7 @@ export const Nav: React.FC = () => {
         <Link sx={{ fontSize: 1 }} to="/redemption">
           Redeem
         </Link>
+        <NavLink sx={{ fontSize: 1 }} target="_blank" href="https://docs.teddy.cash/audits-and-risks">Audit</NavLink>
       </Flex>
     </Box>
   );
