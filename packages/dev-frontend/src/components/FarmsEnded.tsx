@@ -70,7 +70,7 @@ export const FarmsEnded: React.FC = () => {
             </Link>
           </Flex>
           <Box style={{marginTop: 10}}>
-            <Link href="https://app.snowball.network/compound-and-earn">Snowball</Link> and <Link href="https://www.cycle.finance/" target="_blank">Cycle Finance</Link> provide auto-compounding for select pools
+            <Link href="https://app.snowball.network/compound-and-earn" target="_blank">Snowball</Link>, <Link href="https://yieldyak.com/farms" target="_blank">Yield Yak</Link>, and <Link href="https://www.cycle.finance/" target="_blank">Cycle Finance</Link> provide auto-compounding for select pools
           </Box>
         </Box>
         <Flex variant="layout.actions">
