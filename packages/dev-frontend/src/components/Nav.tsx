@@ -13,7 +13,6 @@ export const Nav: React.FC = () => {
         <Link to="/redemption">
           Redeem
         </Link>
-        <NavLink sx={{ fontSize: 1 }} target="_blank" href="https://docs.teddy.cash/audits-and-risks">Audit</NavLink>
       </Flex>
     </Box>
   );
