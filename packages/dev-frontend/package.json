@@ -39,7 +39,7 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
     "source-map-explorer": "2.5.2",
-    "theme-ui": "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0",
+    "theme-ui": "^0.11.3",
     "typescript": "4.1.5"
   },
   "scripts": {

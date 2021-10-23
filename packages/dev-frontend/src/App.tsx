@@ -1,6 +1,6 @@
 import React from "react";
 import { Web3ReactProvider } from "@web3-react/core";
-import { Flex, Spinner, Heading, ThemeProvider, Paragraph, Link } from "theme-ui";
+import { Flex, Image, Heading, ThemeProvider, Paragraph, Link } from "theme-ui";
 
 import { BatchedWebSocketAugmentedWeb3Provider } from "@liquity/providers";
 import { LiquityProvider } from "./hooks/LiquityContext";
@@ -9,6 +9,7 @@ import { TransactionProvider } from "./components/Transaction";
 import { Icon } from "./components/Icon";
 import { getConfig } from "./config";
 import theme from "./theme";
+import { keyframes } from "@emotion/react";
 
 import { DisposableWalletProvider } from "./testUtils/DisposableWalletProvider";
 import { LiquityFrontend } from "./LiquityFrontend";
@@ -56,9 +57,7 @@ const UnsupportedMainnetFallback: React.FC = () => (
       <Icon name="exclamation-triangle" /> This app is for testing purposes only.
     </Heading>
 
-    <Paragraph sx={{ mb: 3 }}>
-      Please change your network to Avalanche C-Chain.
-    </Paragraph>
+    <Paragraph sx={{ mb: 3 }}>Please change your network to Avalanche C-Chain.</Paragraph>
 
     <Paragraph>
       If you'd like to use Teddy Cash on mainnet, please pick a frontend{" "}
@@ -71,9 +70,20 @@ const UnsupportedMainnetFallback: React.FC = () => (
 );
 
 const App = () => {
+  const bearSpinner = keyframes`
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  `;
   const loader = (
     <Flex sx={{ alignItems: "center", justifyContent: "center", height: "100vh" }}>
-      <Spinner sx={{ m: 2, color: "text" }} size="32px" />
+      <Image
+        src="./bear-wb.png"
+        sx={{ animation: `${bearSpinner} 2s linear infinite`, width: "120px" }}
+      />
       <Heading>Loading...</Heading>
     </Flex>
   );
