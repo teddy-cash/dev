@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Text, Flex, Label, Input, SxProp, Button, ThemeUICSSProperties } from "theme-ui";
-
 import { Icon } from "../Icon";
 
 type RowProps = SxProp & {
@@ -151,7 +150,7 @@ const editableStyle: ThemeUICSSProperties = {
   pb: 2,
   pt: "28px",
 
-  color: "#ffffff",
+  color: "editorText",
   fontSize: 4,
 
   boxShadow: "1px 1px 3px 3px rgba(255,255,255, 0.1)",
