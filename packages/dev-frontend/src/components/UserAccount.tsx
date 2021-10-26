@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Flex, Box, Heading } from "theme-ui";
+import { Text, Flex, Box, Heading, Button } from "theme-ui";
 
 import { LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
@@ -7,17 +7,38 @@ import { useLiquitySelector } from "@liquity/lib-react";
 import { COIN, GT } from "../strings";
 import { useLiquity } from "../hooks/LiquityContext";
 import { shortenAddress } from "../utils/shortenAddress";
-
+import { useColorMode } from "theme-ui";
 import { Icon } from "./Icon";
+import { getMode } from "../theme";
 
 const select = ({ accountBalance, lusdBalance, lqtyBalance }: LiquityStoreState) => ({
   lusdBalance,
   lqtyBalance
 });
 
+const toggleColors = (mode: string) => {
+  return getMode(mode) === "night"
+    ? {
+        color: "#ffffff",
+        bg: "#000000"
+      }
+    : {
+        color: "#000000",
+        bg: "#ffffff"
+      };
+};
+
 export const UserAccount: React.FC = () => {
   const { account } = useLiquity();
   const { lusdBalance, lqtyBalance } = useLiquitySelector(select);
+  const [mode, setMode] = useColorMode();
+
+  const modes = ["night", "day"];
+  const handleSetMode = (e: any) => {
+    const index = modes.indexOf(getMode(mode));
+    const next = modes[(index + 1) % modes.length];
+    setMode(next);
+  };
 
   return (
     <Box sx={{ display: ["none", "flex"] }}>
@@ -31,8 +52,6 @@ export const UserAccount: React.FC = () => {
       </Flex>
 
       <Flex sx={{ alignItems: "center" }}>
-        
-
         {([
           [COIN, lusdBalance],
           [GT, lqtyBalance]
@@ -42,7 +61,18 @@ export const UserAccount: React.FC = () => {
             <Text sx={{ fontSize: 1 }}>{balance.prettify()}</Text>
           </Flex>
         ))}
-        <Icon name="wallet" size="lg" style={{marginLeft: "15px"}} />
+        <Icon name="wallet" size="lg" style={{ marginLeft: "15px" }} />
+        <Button
+          sx={{
+            ...toggleColors(mode),
+            padding: "6px",
+            marginLeft: "8px",
+            border: "0px"
+          }}
+          onClick={handleSetMode}
+        >
+          <Icon name={getMode(mode) === "night" ? "sun" : "moon"} size="lg" />
+        </Button>
       </Flex>
     </Box>
   );

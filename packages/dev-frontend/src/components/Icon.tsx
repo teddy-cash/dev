@@ -33,7 +33,9 @@ import {
   faExchangeAlt,
   faPiggyBank,
   faSwimmingPool,
-  faCoins
+  faCoins,
+  faSun,
+  faMoon
 } from "@fortawesome/free-solid-svg-icons";
 import { faClipboard, faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon, FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
@@ -73,7 +75,9 @@ library.add(
   faExchangeAlt,
   faPiggyBank,
   faSwimmingPool,
-  faCoins
+  faCoins,
+  faSun,
+  faMoon
 );
 
 const getIcon = (name: IconName): IconProp => {

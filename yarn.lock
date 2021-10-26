@@ -3802,75 +3802,76 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-"@theme-ui/color-modes@0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0":
-  version "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-  resolved "https://registry.yarnpkg.com/@theme-ui/color-modes/-/color-modes-0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0.tgz#cf816a025a2b7b1ecfb5c163c96a44f54cec8729"
-  integrity sha512-7wKlpcKfbpT7omiVm7nc7fFES042wG7xrTpwQcIg6wa3MRl+ZXIE/27IHomzSacPafZUPfynsIOCGejC8ru+jw==
+"@theme-ui/color-modes@0.11.3":
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/@theme-ui/color-modes/-/color-modes-0.11.3.tgz#90cc524feebfeae5be3bf244944967b4f91aa7ca"
+  integrity sha512-CjMrbeIcgUdlw6Ks4vTJXpmoBGe7vjouBiYVWjcyQteb6pq/lP21XsSxqfpgW5GvahbXtDu8LXEbZqnDdSn4aQ==
   dependencies:
     "@emotion/react" "^11.1.1"
-    "@theme-ui/core" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-    "@theme-ui/css" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
+    "@theme-ui/core" "0.11.3"
+    "@theme-ui/css" "0.11.3"
     deepmerge "^4.2.2"
 
-"@theme-ui/components@0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0":
-  version "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-  resolved "https://registry.yarnpkg.com/@theme-ui/components/-/components-0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0.tgz#64121a1f3f542ddeb5ab66249d48db13e1fcea16"
-  integrity sha512-kLOVuq3QGn0i0kQSTJhhusdsa3Ky0NtLrrlOK0fQqY5eRyGxdOxT9Wkli7FS82yBYKgIAokBfN627p7QTOMXig==
+"@theme-ui/components@0.11.3":
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/@theme-ui/components/-/components-0.11.3.tgz#332dd382ddbfd60e7743d9eb0264ee51368d95b4"
+  integrity sha512-xCxaEN7QQO9Ky8lfIjb1QRGw9MTb0JwSgXW5d4vFQBz8kbp+xqznJCM22a/8qbw8/U3lmMWtYK7ZEigD6CfIeg==
   dependencies:
     "@emotion/react" "^11.1.1"
     "@emotion/styled" "^11.0.0"
     "@styled-system/color" "^5.1.2"
     "@styled-system/should-forward-prop" "^5.1.2"
     "@styled-system/space" "^5.1.2"
-    "@theme-ui/css" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
+    "@theme-ui/css" "0.11.3"
     "@types/styled-system" "^5.1.10"
 
-"@theme-ui/core@0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0":
-  version "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-  resolved "https://registry.yarnpkg.com/@theme-ui/core/-/core-0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0.tgz#6474409461fad6002c28a522b650a5d52a73a2dd"
-  integrity sha512-Xyd+CLSABQod+veLvY0XcvAXmtM7kwXyToC5+SnJf03EyoTYoiu/nW0fv9s9iBnCHPMMFYjsvP+BP/ISSaPQsQ==
+"@theme-ui/core@0.11.3":
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/@theme-ui/core/-/core-0.11.3.tgz#9327ea293bb172d684447e96b8ceea492c27a357"
+  integrity sha512-jnIIkhzlz2uZ7imOil3HoPinF20KkKpsanPFMnV+L0kKnmsPVRY+AvLaBnJFd1PJcHpufCeE9ekP81IyAv3vIg==
   dependencies:
     "@emotion/react" "^11.1.1"
-    "@theme-ui/css" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-    "@theme-ui/parse-props" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
+    "@theme-ui/css" "0.11.3"
+    "@theme-ui/parse-props" "0.11.3"
     deepmerge "^4.2.2"
 
-"@theme-ui/css@0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0":
-  version "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-  resolved "https://registry.yarnpkg.com/@theme-ui/css/-/css-0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0.tgz#eee5e51f1846283023db96a92d72c08de56b38c1"
-  integrity sha512-QHlhJSrw5TvclhzABf3XvmiMpkr8+V9P3IgwgbfOhBgBzMApy0lovg62mIpKSlTeoc+KIQvXcoRwAE7UmvVD/g==
+"@theme-ui/css@0.11.3":
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/@theme-ui/css/-/css-0.11.3.tgz#9962db78b9d60a96b2f6497f858e6baa7aa0f5c5"
+  integrity sha512-b2vRZEc6ZBMYCVFqvSSrWdVbKgSJHOOTMow1czApJjrmZBygkG9DN0/1hgO9spDkmfp/tmRmBzrTlgFlE6pybA==
   dependencies:
     "@emotion/react" "^11.1.1"
     csstype "^3.0.5"
 
-"@theme-ui/mdx@0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0":
-  version "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-  resolved "https://registry.yarnpkg.com/@theme-ui/mdx/-/mdx-0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0.tgz#0d747e582edab3345841f551b50d8f74622c2a78"
-  integrity sha512-7KWtUxd/9sxve5PZBm9rhnQKT0kVcNE6UnnRmDZTN2ik+nLItgFToKVKif5S32peESzWqlG9xoNgIyHT3jC9pA==
+"@theme-ui/mdx@0.11.3":
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/@theme-ui/mdx/-/mdx-0.11.3.tgz#650afe56acf399a42376303e3f7c38c9fd37401f"
+  integrity sha512-tfY0tnY4sb/xG4u0m06jEOt5Q6PAlCM2cdHMYy7HPxpmiB9HRzHz6fpqwL+52UfugOa2Im/KTKfZS87wREHWIw==
   dependencies:
     "@emotion/react" "^11.1.1"
     "@emotion/styled" "^11.0.0"
     "@mdx-js/react" "^1.6.22"
-    "@theme-ui/core" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-    "@theme-ui/css" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
+    "@theme-ui/core" "0.11.3"
+    "@theme-ui/css" "0.11.3"
 
-"@theme-ui/parse-props@0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0":
-  version "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-  resolved "https://registry.yarnpkg.com/@theme-ui/parse-props/-/parse-props-0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0.tgz#3dd295d3ce872e6203284b89df8744e0dadd934e"
-  integrity sha512-N0diIGPo26+OLDp5MPiQcDWtRd2tcNE1qWSQgIoBTRX4zvCXho4Xe8O+DZKHGtpm6QOs3rhmOE/sV8IniM0D9Q==
+"@theme-ui/parse-props@0.11.3":
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/@theme-ui/parse-props/-/parse-props-0.11.3.tgz#47e59546096444e80b187e8d69576fe4cf78cc25"
+  integrity sha512-xDgcKxdB0/B+dGfXYnlrwhYvAcX/yog7fG1R5htHiAYze9CGOrAZiqokXmt5wImo1Ij5ObIzOduGeGz7MFZz6Q==
   dependencies:
     "@emotion/react" "^11.1.1"
-    "@theme-ui/css" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
+    "@theme-ui/css" "0.11.3"
 
-"@theme-ui/theme-provider@0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0":
-  version "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-  resolved "https://registry.yarnpkg.com/@theme-ui/theme-provider/-/theme-provider-0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0.tgz#08a9f8558b31ece03a08a628dde5d5f1feeb0212"
-  integrity sha512-7/Xl4xkwSjRllwj5CZ075klClobxntv0UXjl9tpMCMAP9W/hVliAtSikGf4G6+nX+zp8z+izzDmFFCjFi4VXNg==
+"@theme-ui/theme-provider@0.11.3":
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/@theme-ui/theme-provider/-/theme-provider-0.11.3.tgz#7752ecc6d1898a1af6fac6947e3b0df9772db4bb"
+  integrity sha512-u6zlUeZF8CHlqxNsNurQa7ibpvhHVQg4i5DilCD6mwlpyv4efLKg9Us5HTz9eYkp7U+KerihOGKY4tbDWiLqHQ==
   dependencies:
     "@emotion/react" "^11.1.1"
-    "@theme-ui/color-modes" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-    "@theme-ui/core" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-    "@theme-ui/mdx" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
+    "@theme-ui/color-modes" "0.11.3"
+    "@theme-ui/core" "0.11.3"
+    "@theme-ui/css" "0.11.3"
+    "@theme-ui/mdx" "0.11.3"
 
 "@tippyjs/react@4.2.5":
   version "4.2.5"
@@ -20321,17 +20322,17 @@ text-table@0.2.0, text-table@^0.2.0, text-table@~0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-theme-ui@0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0:
-  version "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-  resolved "https://registry.yarnpkg.com/theme-ui/-/theme-ui-0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0.tgz#780479f0c8e5c492025af630fcee24040ce930b6"
-  integrity sha512-GeZjykGl7uJSURGMZNrYYdY3LWmfTBhHpPAAC7cjUNY5//w/EIiS1uwZPGm+TTX1sbY4Dj4oqz8wqNqotY/osg==
+theme-ui@^0.11.3:
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/theme-ui/-/theme-ui-0.11.3.tgz#b4941258fc02d6a4f0727f3ac7e709d1285f947c"
+  integrity sha512-F1pX2nSIimxey0EaNPhZgxcc8ZDF4kf6ncCz6pAQep0K+OyjlcWofEuMobqAWRh8gdv4/0b65bS615MJads0tg==
   dependencies:
-    "@theme-ui/color-modes" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-    "@theme-ui/components" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-    "@theme-ui/core" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-    "@theme-ui/css" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-    "@theme-ui/mdx" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
-    "@theme-ui/theme-provider" "0.6.0-canary.1544.5359f8a1e408a4dfeb74a9ae39688270286e534a.0"
+    "@theme-ui/color-modes" "0.11.3"
+    "@theme-ui/components" "0.11.3"
+    "@theme-ui/core" "0.11.3"
+    "@theme-ui/css" "0.11.3"
+    "@theme-ui/mdx" "0.11.3"
+    "@theme-ui/theme-provider" "0.11.3"
 
 then-request@^6.0.0:
   version "6.0.2"

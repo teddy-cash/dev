@@ -1,30 +1,75 @@
 import { Theme, ThemeUIStyleObject } from "theme-ui";
 
+// wyf does this exist? for some reason this library always sets
+// the default mode to 'light'
+export const getMode = (mode: string) => {
+  return mode === "night" || mode === "light" ? "night" : "day";
+};
+
 const baseColors = {
+  white: "#ffffff",
   blue: "#1542cd",
+  darkBlue: "#293147",
   purple: "#745ddf",
   cyan: "#2eb6ea",
-  green: "#28c081",
-  yellow: "#fd9d28",
+  lightBlue: "#84ddf6",
+  lightBlueSemiTransparent: "rgba(122,199,240,0.4)",
+  green: "#50cf3c",
+  yellow: "#FFD700", //"#ffe27a",
   red: "#dc2c10",
-  lightRed: "#ff755f"
+  lightRed: "#ff755f",
+  gray: "#9fa3b4",
+  lightGray: "#eaebed",
+  black: "#151517",
+  lightBlack: "#23252c"
 };
 
 const colors = {
-  primary: baseColors.blue,
+  primary: baseColors.white,
   secondary: baseColors.purple,
   accent: baseColors.cyan,
-
   success: baseColors.green,
   warning: baseColors.yellow,
   danger: baseColors.red,
   dangerHover: baseColors.lightRed,
   info: baseColors.blue,
   invalid: "pink",
-
-  text: "#293147",
-  background: "white",
-  muted: "#eaebed"
+  text: baseColors.gray,
+  background: baseColors.black,
+  muted: baseColors.lightGray,
+  cardBorder: baseColors.lightBlack,
+  cardHeader: baseColors.lightBlack,
+  cardHeaderText: baseColors.lightBlue,
+  button: baseColors.yellow,
+  buttonText: "black",
+  editorText: baseColors.white,
+  outlineButtonBorder: baseColors.white,
+  modes: {
+    day: {
+      color: baseColors.white,
+      borderColor: "muted",
+      primary: baseColors.blue,
+      secondary: baseColors.purple,
+      accent: baseColors.cyan,
+      success: baseColors.green,
+      warning: baseColors.yellow,
+      danger: baseColors.red,
+      dangerHover: baseColors.lightRed,
+      info: baseColors.blue,
+      invalid: "pink",
+      text: baseColors.darkBlue,
+      background: "white",
+      muted: baseColors.lightGray,
+      cardBorder: baseColors.lightGray,
+      cardHeader: baseColors.lightGray,
+      cardHeaderText: "black",
+      button: baseColors.blue,
+      buttonText: "white",
+      buttonBorder: baseColors.blue,
+      editorText: baseColors.black,
+      outlineButtonBorder: baseColors.black
+    }
+  }
 };
 
 const buttonBase: ThemeUIStyleObject = {
@@ -41,7 +86,7 @@ const button: ThemeUIStyleObject = {
   px: "32px",
   py: "12px",
 
-  color: "white",
+  color: "buttonText",
   border: 1,
 
   fontWeight: "bold",
@@ -57,9 +102,7 @@ const buttonOutline = (color: string, hoverColor: string): ThemeUIStyleObject =>
   background: "none",
 
   ":enabled:hover": {
-    color: "background",
-    bg: hoverColor,
-    borderColor: hoverColor
+    opacity: 0.8
   }
 });
 
@@ -95,12 +138,16 @@ const infoCard: ThemeUIStyleObject = {
 
   padding: 3,
 
-  borderColor: "rgba(122,199,240,0.4)",
-  background: "linear-gradient(200deg, #d4d9fc, #cae9f9)",
+  borderColor: "cardBorder",
+  bg: "background",
+  borderRadius: "16px",
 
   h2: {
-    mb: 2,
-    fontSize: cardHeadingFontSize
+    mt: 2,
+    mb: 3,
+    fontSize: cardHeadingFontSize,
+    color: "cardHeaderText",
+    bg: "none"
   }
 };
 
@@ -118,7 +165,7 @@ const formCell: ThemeUIStyleObject = {
   bg: "background",
   border: 1,
   borderColor: "muted",
-  borderRadius: 0,
+  borderRadius: "4px",
   boxShadow: [1, 2]
 };
 
@@ -140,10 +187,10 @@ const modalOverlay: ThemeUIStyleObject = {
   height: "100vh"
 };
 
-const headerGradient: ThemeUIStyleObject = {
-  background: `linear-gradient(90deg, ${colors.background}, ${colors.muted})`
+/* const headerGradient: ThemeUIStyleObject = {
+  background: colors.background
 };
-
+ */
 const theme: Theme = {
   breakpoints: ["48em", "52em", "64em"],
 
@@ -179,7 +226,12 @@ const theme: Theme = {
     heading: 1.25
   },
 
-  colors,
+  config: {
+    initialColorModeName: "night"
+  },
+
+  colors: colors,
+  /* colors, */
 
   borders: [0, "1px solid", "2px solid"],
 
@@ -196,25 +248,23 @@ const theme: Theme = {
     primary: {
       ...button,
 
-      bg: "primary",
-      borderColor: "primary",
+      bg: "button",
+      color: "buttonText",
+      borderColor: "buttonBorder",
 
       ":enabled:hover": {
-        bg: "secondary",
-        borderColor: "secondary"
+        opacity: 0.8
       }
     },
 
     outline: {
       ...button,
-      ...buttonOutline("primary", "secondary")
+      ...buttonOutline("outlineButtonBorder", "yellow")
     },
 
     cancel: {
       ...button,
-      ...buttonOutline("text", "text"),
-
-      opacity: 0.8
+      ...buttonOutline("outlineButtonBorder", "black")
     },
 
     danger: {
@@ -254,8 +304,10 @@ const theme: Theme = {
 
       padding: 0,
 
-      borderColor: "muted",
+      borderColor: "cardBorder",
       bg: "background",
+      borderRadius: "16px",
+      color: "text",
 
       "> h2": {
         display: "flex",
@@ -268,8 +320,10 @@ const theme: Theme = {
         py: 2,
         pr: 2,
 
-        bg: "muted",
-
+        mt: 0,
+        borderRadius: "16px 16px 0 0",
+        bg: "cardHeader",
+        color: "cardHeaderText", //"#62c5e1",
         fontSize: cardHeadingFontSize
       }
     },
@@ -283,6 +337,7 @@ const theme: Theme = {
     infoPopup: {
       ...infoCard,
 
+      color: "white",
       position: "fixed",
       top: 0,
       right: 3,
@@ -342,8 +397,8 @@ const theme: Theme = {
 
       px: [2, "12px", "12px", 5],
       py: [2, "12px", "12px"],
-
-      ...headerGradient,
+      bg: "background",
+      /* ...headerGradient, */
       boxShadow: [1, "none"]
     },
 
@@ -437,7 +492,8 @@ const theme: Theme = {
       borderColor: "muted",
       mr: "25vw",
       height: "100%",
-      ...headerGradient
+      background: "black",
+      text: "text"
     },
 
     badge: {
