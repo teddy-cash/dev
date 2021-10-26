@@ -25,7 +25,7 @@ export const DisabledRedemption: React.FC<DisabledRedemptionProps> = ({
         }
       >
         <Paragraph>
-          TSD redemption is disabled for the first {disabledDays} days after launch.
+          XLSD redemption is disabled for the first {disabledDays} days after launch.
         </Paragraph>
 
         <Paragraph sx={{ mt: 3 }}>

@@ -13,7 +13,10 @@ export const NoStake: React.FC = () => {
     <Card>
       <Heading><p>TEDDY Staking</p></Heading>
       <Box sx={{ p: [2, 3] }}>
-        Earn TSD borrowing fees and AVAX redemption fees. <Link style={{fontWeight: "normal"}} href="https://docs.teddy.cash/teddy-staking#how-does-staking-work-in-liquity" target="_blank">How does staking work? <Icon name="external-link-alt" /></Link>
+        <InfoMessage title={`You haven't staked ${GT} yet.`}>
+          Stake {GT} to earn a share of borrowing and redemption fees.
+          Learn more: <Link href="https://docs.extralong.one/teddy-staking#how-does-staking-work-in-liquity" target="_blank">How does staking work? <Icon name="external-link-alt" /></Link>
+        </InfoMessage>
 
         <Flex variant="layout.actions">
           <Button style={{margin: "10px 0 0"}} onClick={() => dispatch({ type: "startAdjusting" })}>Stake TEDDY</Button>

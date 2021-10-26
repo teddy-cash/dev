@@ -41,7 +41,7 @@ export const Disabled: React.FC = () => {
   return (
     <Card>
       <Heading>
-        {POOL2LP} on Pangolin
+        {POOL2LP} on ViperSwap
         <Flex sx={{ justifyContent: "flex-end" }}>
           {isFarmStarted && <RemainingLQTY />}
         </Flex>
@@ -49,11 +49,11 @@ export const Disabled: React.FC = () => {
       <Box sx={{ p: [2, 3] }}>
         {isFarmStarted ?
         <InfoMessage title="Liquidity farming period has finished">
-          <Flex>There are no more TEDDY rewards left to farm</Flex>
+          <Flex>There are no more XLONG rewards left to farm</Flex>
         </InfoMessage>
         :
         <InfoMessage title="Liquidity farming period has not started yet">
-          <Flex>Rewards period for TEDDY will start at {localUnlockTime.toLocaleTimeString()} {localUnlockTime.toDateString()} local time</Flex>
+          <Flex>Rewards period for XLONG will start at {localUnlockTime.toLocaleTimeString()} {localUnlockTime.toDateString()} local time</Flex>
         </InfoMessage>
         }
         {hasStake && (

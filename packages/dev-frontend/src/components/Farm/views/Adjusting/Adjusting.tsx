@@ -64,7 +64,7 @@ export const Adjusting: React.FC = () => {
   return (
     <Card>
       <Heading>
-        AVAX/TSD Liquidity Farm on Pangolin
+        ONE/XLSD Liquidity Farm on ViperSwap
         {isDirty && !isTransactionPending && (
           <Button
             variant="titleIcon"

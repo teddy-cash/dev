@@ -37,7 +37,7 @@ export const PriceManager: React.FC = () => {
 
       <Box sx={{ p: [2, 3] }}>
         <Flex sx={{ alignItems: "stretch" }}>
-          <Label>AVAX</Label>
+          <Label>ONE</Label>
 
           <Label variant="unit">$</Label>
 

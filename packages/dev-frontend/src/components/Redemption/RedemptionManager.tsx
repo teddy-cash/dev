@@ -60,7 +60,7 @@ export const RedemptionManager: React.FC = () => {
     ? [
       false,
       <ErrorDescription>
-        You can't redeem LUSD when the total collateral ratio is less than{" "}
+        You can't redeem XLSD when the total collateral ratio is less than{" "}
         <Amount>{mcrPercent}</Amount>. Please try again later.
       </ErrorDescription>
     ]
@@ -78,7 +78,7 @@ export const RedemptionManager: React.FC = () => {
     : [
         true,
         <ActionDescription>
-          You will receive <Amount>{ethAmount.sub(ethFee).prettify(4)} AVAX</Amount> in exchange for{" "}
+          You will receive <Amount>{ethAmount.sub(ethFee).prettify(4)} ONE</Amount> in exchange for{" "}
           <Amount>
             {lusdAmount.prettify()} {COIN}
           </Amount>
@@ -124,8 +124,8 @@ export const RedemptionManager: React.FC = () => {
             <InfoIcon
               tooltip={
                 <Card variant="tooltip" sx={{ minWidth: "240px" }}>
-                  The Redemption Fee is charged as a percentage of the redeemed AVAX. The Redemption
-                  Fee depends on TSD redemption volumes and is 0.5% at minimum.
+                  The Redemption Fee is charged as a percentage of the redeemed ONE. The Redemption
+                  Fee depends on XLSD redemption volumes and is 0.5% at minimum.
                 </Card>
               }
             />

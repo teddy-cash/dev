@@ -12,8 +12,8 @@ export const RemainingLQTY: React.FC = () => {
   const { remainingLiquidityMiningLQTYReward } = useLiquitySelector(selector);
 
   return (
-    <Flex sx={{ mr: 2, fontSize: 2, fontWeight: "medium", color: "#9fa3b4" }}>
-      {remainingLiquidityMiningLQTYReward.div(1_000_000).prettify(1)}M TEDDY remaining
+    <Flex sx={{ mr: 2, fontSize: 2, fontWeight: "medium" }}>
+      {remainingLiquidityMiningLQTYReward.prettify(0)} XLONG remaining
     </Flex>
   );
 };

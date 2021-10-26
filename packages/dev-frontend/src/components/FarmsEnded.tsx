@@ -26,11 +26,12 @@ export const FarmsEnded: React.FC = () => {
       </Heading>
       <Box sx={{ p: [2, 3] }}>
         <Box>
-          <Box style={{marginBottom: 10}}>Our Liquidity Farms for AVAX/TSD and AVAX/TEDDY have ended!
-          They can be accessed <NavLink exact to="/ended-farms" style={{textDecoration: 'none'}}>here</NavLink><br /><br />
+          <Box style={{marginBottom: 10}}>Our Liquidity Farms for ONE/XLSD and ONE/XLONG have ended!
+          They can be accessed <NavLink exact to="/ended-farms" style={{textDecoration: 'none'}}>here</NavLink>
+          /**<br /><br />
           Please move your liquidity to these excellent farms</Box>
           <Flex sx={{paddingBottom: 2, marginBottom: 20, borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)"}}>
-            <Image src="./pangolin.svg" width="20" height="20" sx={{marginRight: 2}}/>Pangolin<br />
+            <Image src="./pangolin.svg" width="20" height="20" sx={{marginRight: 2}}/>ViperSwap<br />
           </Flex>
           <Flex style={{marginBottom: 15, alignItems: 'center'}}>
             <Image src="./icons/avalanche-avax-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
@@ -73,6 +74,7 @@ export const FarmsEnded: React.FC = () => {
             <Link href="https://app.snowball.network/compound-and-earn" target="_blank">Snowball</Link>, <Link href="https://yieldyak.com/farms" target="_blank">Yield Yak</Link>, and <Link href="https://www.cycle.finance/" target="_blank">Cycle Finance</Link> provide auto-compounding for select pools
           </Box>
         </Box>
+        */
         <Flex variant="layout.actions">
         </Flex>
       </Box>

@@ -7,10 +7,10 @@ export const Help = () => {
             <Box>
                 <Box style={{margin: "12px"}}>
                 <Text>
-                <Link href="https://teddy.cash" target="_blank">Teddy Cash</Link> is a decentralized borrowing protocol and
-                &nbsp;<Link href="https://docs.teddy.cash/general#what-are-lusd-and-lqty" target="_blank">Teddy Dollar ($TSD)</Link> is the leading native stablecoin on Avalanche.
+                <Link href="https://extralong.one" target="_blank">Extra Long</Link> is a decentralized borrowing protocol and
+                &nbsp;<Link href="https://docs.extralong.one/general#what-are-lusd-and-lqty" target="_blank">XLSD</Link> is the leading native stablecoin on Harmony.
 
-                Watch this <Link href="https://youtu.be/0Rk1mszNWL8" target="_blank">video</Link> for a guided tour or explore our <Link href="https://docs.teddy.cash" target="_blank">documentation</Link>.
+                Watch this <Link href="https://youtu.be/0Rk1mszNWL8" target="_blank">video</Link> for a guided tour or explore our <Link href="https://docs.extralong.one" target="_blank">documentation</Link>.
                 </Text>
                 </Box>
             </Box>

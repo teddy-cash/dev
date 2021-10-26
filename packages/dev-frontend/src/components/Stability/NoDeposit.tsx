@@ -21,15 +21,10 @@ export const NoDeposit: React.FC = (props) => {
         </Flex>
       </Heading>
       <Box sx={{ p: [2, 3] }}>
-        
-        Earn TEDDY rewards and AVAX from liquidation fees. <Link
-          href="https://docs.teddy.cash/stability-pool-and-liquidations#what-is-the-stability-pool"
-          target="_blank"
-          style={{fontWeight: "normal"}}
-        >
-          What is the Stability Pool? <Icon name="external-link-alt" />
-        </Link>
-        
+        <InfoMessage title="You have no XLSD in the Stability Pool.">
+          You can earn ONE and XLONG rewards by depositing XLSD. Learn more: <Link href="https://docs.extralong.one/stability-pool-and-liquidations#what-is-the-stability-pool" target="_blank">What is the Stability Pool? <Icon name="external-link-alt" /></Link>
+        </InfoMessage>
+
         <Flex variant="layout.actions">
           <Flex
             sx={{ justifyContent: 'flex-end', flex: 1, alignItems: 'center' }}

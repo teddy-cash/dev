@@ -18,7 +18,7 @@ type TokenRowProps = {
 
 export const TokenRow: React.FC<TokenRowProps> = ({ name, image, addToken, tooltip, children }) => {
   // awful CSS hack
-  const marginLeft = name === "TSD" ? "20px" : "0px";
+  const marginLeft = name === 'XLSD' ? "20px" : "0px";
 
   return (
     <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
@@ -66,12 +66,12 @@ export const TokenStats: React.FC = () => {
       .catch((error: Error) => setLog([...log, `Error: ${error.message}`]));
   };
 
-  const addTsdToken = () => {
+  const addXlsdToken = () => {
     addToken({
       type: "ERC20",
       options: {
-        address: addresses["lusdToken"],
-        symbol: "TSD",
+        address: addresses['lusdToken'],
+        symbol: 'XLSD',
         decimals: 18,
         image:
           "https://assets.coingecko.com/coins/images/18303/small/logo_-_2021-09-13T111436.680.png"
@@ -79,12 +79,12 @@ export const TokenStats: React.FC = () => {
     });
   };
 
-  const addTeddyToken = () => {
+  const addXlongToken = () => {
     addToken({
       type: "ERC20",
       options: {
-        address: addresses["lqtyToken"],
-        symbol: "TEDDY",
+        address: addresses['lqtyToken'],
+        symbol: 'XLONG',
         decimals: 18,
         image:
           "https://assets.coingecko.com/coins/images/18303/small/logo_-_2021-09-13T111436.680.png"
@@ -101,17 +101,19 @@ export const TokenStats: React.FC = () => {
         }
     }`;
 
-  const fetchPrice = (address: string) =>
-    fetch("https://api.thegraph.com/subgraphs/name/dasconnor/pangolin-dex", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json"
-      },
-      body: JSON.stringify({
-        query: pngQuery(address),
-        variables: null
-      })
-    });
+    const fetchPrice = (address: string) => fetch(
+        "https://graph.defikingdoms.com/subgraphs/name/defikingdoms/dex/graphql",
+        {
+        method: "POST",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({
+            query: pngQuery(address),
+            variables: null
+        })
+        }
+    );
 
   const [
     { isLoading, error, data },
@@ -126,25 +128,25 @@ export const TokenStats: React.FC = () => {
         queryFn: () => {
           // return dummy data if on testnet
           if (chainId === 43113) {
-            const tokenData =
-              token.name === "lqty"
-                ? {
-                    token: {
-                      derivedETH: "67.000000000000000000"
-                    },
-                    bundle: {
-                      ethPrice: "0.000432858000000000"
-                    }
-                  }
-                : {
-                    token: {
-                      derivedETH: "67.000000000000000000"
-                    },
-                    bundle: {
-                      ethPrice: "0.015835300000000000"
-                    }
-                  };
-            return { isLoading: true, error: undefined, data: tokenData };
+            const tokenData = token.name === 'lqty' ? 
+              {
+                token: {
+                  derivedETH: '20.00000000000000000'
+                },
+                bundle: {
+                  ethPrice: '0.300000000000000000',
+                }
+              }
+            :
+            {
+              token: {
+                derivedETH: '20.000000000000000000'
+              },
+               bundle: {
+                ethPrice: '0.300000000000000000',
+              }
+            }
+            return {isLoading: true, error: undefined,  data: tokenData}
           } else {
             return fetchPrice(token.address).then(res => res.json());
           }
@@ -166,103 +168,111 @@ export const TokenStats: React.FC = () => {
 
     const d = data["data"];
     //return Decimal.from(d['token']['derivedETH']).mul(Decimal.from(d['bundle']['ethPrice'])).toString(2);
-    return Decimal.from(d["token"]["derivedETH"]).mul(Decimal.from(d["bundle"]["ethPrice"]));
-  };
+    return Decimal.from(d['token']['derivedETH']).mul(Decimal.from(d['bundle']['ethPrice']))
+   }
 
-  const teddyValue = isLoading ? Decimal.from(0) : computeVal(data, error);
-  const tsdValue = tsdIsLoading ? Decimal.from(0) : computeVal(tsdData, tsdError);
+   const xlongValue = isLoading ? Decimal.from(0) : computeVal(data, error);
+   const tsdValue = tsdIsLoading ? Decimal.from(0) : computeVal(tsdData, tsdError);
+   
+   const explorerUrl = chainId === 1666600000 ? "https://explorer.harmony.one/address/" : "https://explorer.testnet.harmony.one/address/"
 
-  let circulatingSupply: string = "...";
-  let marketCap: string = "...";
-  let teddy7Day = Decimal.from(0);
-  let teddyApr = Decimal.from(0);
+   // hard-coded for current week. needs to be adapted to consume
+   // circulating supply API feed.
+   const circSupply = 5753340; 
+   const marketCapEstimate = xlongValue.mul(circSupply);
+   
+   let tvlSP = lusdInStabilityPool;
+   let tvlXlong = totalStakedLQTY.mul(xlongValue);
+   
+   let tvlTotal: Decimal = Decimal.from(0);
+   let tvlCollateral: Decimal = Decimal.from(0);
+   
+    let aprDaily: Decimal = Decimal.from(0);
+    let aprWeekly: Decimal = Decimal.from(0);
+    let aprYearly: Decimal = Decimal.from(0);
+     
+    if (!isLoading) {     
+      // Stability APR calculation
+      const deploymentTime = 1629989860;
+      const now = new Date().getTime() / 1000      
+      const timePassedInMinutes = Math.round((now - deploymentTime) / 60);
 
-  if (!teddyDataIsLoading && !isLoading) {
-    if (!teddyDataError) {
-      circulatingSupply = Decimal.from(teddyData.supply.circulating).div(1_000_000).prettify(1) + "M";
-      //@ts-ignore
-      const avaxPrice = Decimal.from(data["data"]["bundle"]["ethPrice"]);
-      ({ sevenDay: teddy7Day, apr: teddyApr } = getYields(
-        teddyData,
-        totalStakedLQTY,
-        avaxPrice,
-        teddyValue
-      ));
+      const ISSUANCE_FACTOR = 0.999998681227695000;      
+      const shareNow = Math.pow(ISSUANCE_FACTOR, timePassedInMinutes);
+      
+      const rewardsDay = 32_000_000 * (shareNow - Math.pow(ISSUANCE_FACTOR, timePassedInMinutes + 60*24))
+      const rewardsWeek = 32_000_000 * (shareNow -  Math.pow(ISSUANCE_FACTOR, timePassedInMinutes + 60*24*7));
+      const rewardsYear = 32_000_000 * (shareNow - Math.pow(ISSUANCE_FACTOR, timePassedInMinutes + 60*24*365));
+            
+      aprDaily = xlongValue.mul(rewardsDay).div(lusdInStabilityPool).mul(100);
+      aprWeekly = xlongValue.mul(rewardsWeek).div(lusdInStabilityPool).mul(100);
+      aprYearly = xlongValue.mul(rewardsYear).div(lusdInStabilityPool).mul(100);
 
-      marketCap = "$" + teddyValue.mul(teddyData.supply.circulating).div(1_000_000).prettify(1) + "M";
+      tvlCollateral = total.collateral.mul(price)
+      tvlTotal = tvlXlong
+        .add(tvlSP)
+        .add(tvlCollateral);
+    } 
+
+    // this function is a hack to make the UI readable in testnet where the APR is super high
+    const prettifyDecimal = (dec: Decimal, precision: number) => {
+      const prettyVal = dec.prettify(precision)
+      // on the testnet, if no XLSD in stability pool, this number is close to infinite
+      if (prettyVal.length > 10) {
+        return '\u221E';
+      } else {
+        return prettyVal;
+      }
     }
   }
 
-  const explorerUrl =
-    chainId === 43114
-      ? "https://cchain.explorer.avax.network/address/"
-      : "https://cchain.explorer.avax-test.network/address/";
-
-  // hard-coded for current week. needs to be adapted to consume
-  // circulating supply API feed.
-  
-  let tvlSP = lusdInStabilityPool;
-  let tvlTeddy = totalStakedLQTY.mul(teddyValue);
-
-  let tvlTotal: Decimal = Decimal.from(0);
-  let tvlCollateral: Decimal = Decimal.from(0);
-
-  let aprDaily: Decimal = Decimal.from(0);
-  let aprWeekly: Decimal = Decimal.from(0);
-  let aprYearly: Decimal = Decimal.from(0);
-
-  if (!isLoading) {
-    // Stability APR calculation
-    const deploymentTime = 1629989860;
-    const now = new Date().getTime() / 1000;
-    const timePassedInMinutes = Math.round((now - deploymentTime) / 60);
-
-    const ISSUANCE_FACTOR = 0.999998681227695;
-    const shareNow = Math.pow(ISSUANCE_FACTOR, timePassedInMinutes);
-
-    const rewardsDay =
-      32_000_000 * (shareNow - Math.pow(ISSUANCE_FACTOR, timePassedInMinutes + 60 * 24));
-    const rewardsWeek =
-      32_000_000 * (shareNow - Math.pow(ISSUANCE_FACTOR, timePassedInMinutes + 60 * 24 * 7));
-    const rewardsYear =
-      32_000_000 * (shareNow - Math.pow(ISSUANCE_FACTOR, timePassedInMinutes + 60 * 24 * 365));
-
-    aprDaily = teddyValue.mul(rewardsDay).div(lusdInStabilityPool).mul(100);
-    aprWeekly = teddyValue.mul(rewardsWeek).div(lusdInStabilityPool).mul(100);
-    aprYearly = teddyValue.mul(rewardsYear).div(lusdInStabilityPool).mul(100);
-
-    tvlCollateral = total.collateral.mul(price);
-    tvlTotal = tvlTeddy.add(tvlSP).add(tvlCollateral);
-  }
-
-  // this function is a hack to make the UI readable in testnet where the APR is super high
-  const prettifyDecimal = (dec: Decimal, precision: number) => {
-    const prettyVal = dec.prettify(precision);
-    // on the testnet, if no TSD in stability pool, this number is close to infinite
-    if (prettyVal.length > 10) {
-      return "\u221E";
-    } else {
-      return prettyVal;
-    }
-  };
-
-  return (
-    <>
-      <Heading>Teddy Cash Stats</Heading>
-      <TokenRow name="AVAX" image="./icons/avalanche-avax-logo.svg">
-        <Flex sx={{ minWidth: "55px", justifyContent: "right", paddingRight: "2px" }}>
-          ${Decimal.from(price).toString(2)}
-        </Flex>
-        <Link href="https://www.coingecko.com/en/coins/avalanche" target="_blank">
-          <Icon name="info-circle" style={{ marginLeft: "4px" }} size="xs" />
-        </Link>
-        <Link href="https://data.chain.link/avalanche/mainnet/crypto-usd/avax-usd" target="_blank">
-          <Icon name="satellite-dish" style={{ marginLeft: "4px" }} size="xs" />
-        </Link>
-      </TokenRow>
-      <TokenRow name="TSD" image="./tsd.png" addToken={addTsdToken}>
-        <Flex sx={{ minWidth: "55px", justifyContent: "right", paddingRight: "2px" }}>
-          {tsdIsLoading ? "..." : "$" + tsdValue.prettify(2)}
+    return (
+        <>
+         <Heading>Extra Long Stats</Heading>
+         <TokenRow name="ONE" image="./icons/avalanche-avax-logo.svg">
+             <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>${Decimal.from(price).toString(2)}</Flex>
+             <Link href="https://www.coingecko.com/en/coins/harmony" target="_blank">
+                <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
+             </Link>
+        </TokenRow>
+        <TokenRow name="XLSD" image="./tsd.png" addToken={addXlsdToken}>
+            <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>{tsdIsLoading ? '...' : '$' + tsdValue.prettify(2)}</Flex>
+            <Link href={`https://info.pangolin.exchange/#/token/${addresses['lusdToken']}`} target="_blank">
+               <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href={`${explorerUrl}${addresses['lusdToken']}`} target="_blank">
+               <Icon name="file-contract" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href={`https://viperswap.one/#/swap?outputCurrency=${addresses['lusdToken']}`} target="_blank">
+              <Image src="./pangolin.svg" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
+            </Link>
+            <Link href={`https://game.defikingdoms.com/#/marketplace?outputCurrency=${addresses['lusdToken']}`} target="_blank">
+                <Image src="./joe.png" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
+            </Link>
+        </TokenRow>
+        <TokenRow name="TEDDY" image="./teddy-cash-icon.png" addToken={addXlongToken}>
+            <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>{isLoading ? '...' : '$' + xlongValue.prettify(2)}</Flex>
+            <Link href="https://www.coingecko.com/en/coins/teddy-cash" target="_blank">
+                <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href={`${explorerUrl}${addresses['lqtyToken']}`} target="_blank">
+               <Icon name="file-contract" style={{marginLeft: "4px"}} size="xs" />
+            </Link>
+            <Link href={`https://viperswap.one/#/swap?outputCurrency=${addresses['lqtyToken']}`} target="_blank">
+                <Image src="./pangolin.svg" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
+            </Link>
+            <Link href={`https://game.defikingdoms.com/#/marketplace?outputCurrency=${addresses['lqtyToken']}`} target="_blank">
+                <Image src="./joe.png" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
+            </Link>
+        </TokenRow>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex> XLONG Market Cap
+            </Flex>
+          </Flex>
+          <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8,alignItems: "center" }}>
+            {isLoading ? '...' : "~$" + marketCapEstimate.div(1_000_000).prettify(1)}M
+          </Flex>
         </Flex>
         <Link
           href={`https://www.coingecko.com/en/coins/teddy-dollar`}
@@ -364,24 +374,23 @@ export const TokenStats: React.FC = () => {
         >
           {circulatingSupply} / 82M
         </Flex>
-      </Flex>
-
-      <Heading sx={{ pt: 3 }}>Stability Pool Yields</Heading>
-      <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
-        <Flex
-          sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
-        >
-          <Flex> &middot; Day</Flex>
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mt: 3, mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex sx={{fontWeight: "bold"}}>TVL Total</Flex>
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">TVL ONE collateral + XLSD in Stability Pool + XLONG Staking</Card>} />
+          </Flex>
+          <Flex sx={{ fontVariantNumeric: "tabular-nums", fontWeight: "bold", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : '$' + tvlTotal.shorten()}
+          </Flex>
         </Flex>
-        <Flex
-          sx={{
-            fontVariantNumeric: "tabular-nums",
-            justifyContent: "flex-end",
-            flex: 0.8,
-            alignItems: "center"
-          }}
-        >
-          {isLoading ? "..." : prettifyDecimal(aprDaily, 3)}%
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex> &middot; in Troves</Flex>
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">ONE collateralized in troves.</Card>} />
+          </Flex>
+          <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : '$' + tvlCollateral.shorten()}
+          </Flex>
         </Flex>
       </Flex>
       <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
@@ -408,53 +417,13 @@ export const TokenStats: React.FC = () => {
           <Flex> &middot; Year (APR)
           </Flex>
         </Flex>
-        <Flex
-          sx={{
-            fontVariantNumeric: "tabular-nums",
-            justifyContent: "flex-end",
-            flex: 0.8,
-            alignItems: "center"
-          }}
-        >
-          {isLoading ? "..." : prettifyDecimal(aprYearly, 1)}%
-        </Flex>
-      </Flex>
-
-      <Heading sx={{ pt: 3 }}>Teddy Staking Yields</Heading>
-      <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
-        <Flex
-          sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
-        >
-          <Flex>
-            {" "}
-            &middot; Week
-            <InfoIcon size="xs" tooltip={<Card variant="tooltip">Based on last seven days</Card>} />
+        <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+          <Flex sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}>
+            <Flex> &middot; XLONG Staking</Flex>
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">XLONG Staking</Card>} />
           </Flex>
-        </Flex>
-        <Flex
-          sx={{
-            fontVariantNumeric: "tabular-nums",
-            justifyContent: "flex-end",
-            flex: 0.8,
-            alignItems: "center"
-          }}
-        >
-          {teddyDataIsLoading ? "..." : prettifyDecimal(teddy7Day, 2)}%
-        </Flex>
-      </Flex>
-      <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
-        <Flex
-          sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
-        >
-          <Flex>
-            {" "}
-            &middot; Year (APR)
-            <InfoIcon
-              size="xs"
-              tooltip={
-                <Card variant="tooltip">Expected annual return based on last seven days</Card>
-              }
-            />
+          <Flex sx={{ fontVariantNumeric: "tabular-nums", justifyContent: "flex-end", flex: 0.8, alignItems: "center" }}>
+            {isLoading ? '...' : '$' + tvlXlong.shorten()}
           </Flex>
         </Flex>
         <Flex

@@ -64,7 +64,7 @@ export const Adjusting: React.FC = () => {
   return (
     <Card>
       <Heading>
-        Trader Joe AVAX/TEDDY Liquidity Farm
+        DeFi Kingdoms ONE/XLONG Liquidity Farm
         {isDirty && !isTransactionPending && (
           <Button
             variant="titleIcon"

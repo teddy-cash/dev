@@ -25,19 +25,19 @@ export const Inactive: React.FC = () => {
   return (
     <Card>
       <Heading>
-        AVAX/TSD on Pangolin
+        ONE/XLSD on Pangolin
         <Flex sx={{ justifyContent: "flex-end" }}>
           <RemainingLQTY />
         </Flex>
       </Heading>
       <Box sx={{ p: [2, 3] }}>
         <InfoMessage title="You aren't farming TEDDY.">
-          <Paragraph>You can farm TEDDY by staking your Pangolin AVAX/TSD LP tokens.</Paragraph>
+          <Paragraph>You can farm XLONG by staking your ViperSwap ONE/XLSD LP tokens.</Paragraph>
 
           <Paragraph sx={{ mt: 2 }}>
             You can obtain LP tokens by adding liquidity to the{" "}
             <Link href={uniLink(addresses["lusdToken"])} target="_blank">
-              AVAX/TSD pool on Pangolin. <Icon name="external-link-alt" size="xs" />
+              ONE/XLSD pool on Pangolin. <Icon name="external-link-alt" size="xs" />
             </Link>
           </Paragraph>
         </InfoMessage>

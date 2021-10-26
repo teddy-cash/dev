@@ -8,7 +8,7 @@ import { useFarmView } from "../../context/FarmViewContext";
 import { RemainingLQTY } from "../RemainingLQTY";
 import { Yield } from "../Yield";
 
-const uniLink = (lqtyAddress: string) => `https://app.pangolin.exchange/#/add/AVAX/${lqtyAddress}`;
+const uniLink = (lqtyAddress: string) => `https://viperswap.one/#/add/ONE/${lqtyAddress}`;
 
 export const Inactive: React.FC = () => {
   const { dispatchEvent } = useFarmView();
@@ -26,19 +26,19 @@ export const Inactive: React.FC = () => {
   return (
     <Card>
       <Heading>
-        {POOL2LP} on Pangolin
+        {POOL2LP} on ViperSwap
         <Flex sx={{ justifyContent: "flex-end" }}>
           <RemainingLQTY />
         </Flex>
       </Heading>
       <Box sx={{ p: [2, 3] }}>
-        <InfoMessage title="You aren't farming TEDDY.">
-          <Paragraph>You can farm TEDDY by staking your Pangolin {POOL2LP} tokens.</Paragraph>
+        <InfoMessage title="You aren't farming XLONG.">
+          <Paragraph>You can farm XLONG by staking your ViperSwap {POOL2LP} tokens.</Paragraph>
 
           <Paragraph sx={{ mt: 2 }}>
             You can obtain LP tokens by adding liquidity to the{" "}
             <Link href={uniLink(addresses["lqtyToken"])} target="_blank">
-              {POOL2LP} on Pangolin. <Icon name="external-link-alt" size="xs" />
+              {POOL2LP} on ViperSwap. <Icon name="external-link-alt" size="xs" />
             </Link>
           </Paragraph>
         </InfoMessage>

@@ -7,7 +7,7 @@ import { useFarmView } from "../../context/FarmViewContext";
 import { RemainingLQTY } from "../RemainingLQTY";
 import { Yield } from "../Yield";
 
-const uniLink = (lqtyAddress: string) => `https://www.traderjoexyz.com/#/create/AVAX/${lqtyAddress}`;
+const uniLink = (lqtyAddress: string) => `https://game.defikingdoms.com/#/add/ONE/${lqtyAddress}`;
 
 export const Inactive: React.FC = () => {
   const { dispatchEvent } = useFarmView();
@@ -25,19 +25,19 @@ export const Inactive: React.FC = () => {
   return (
     <Card>
       <Heading>
-        AVAX/TEDDY on Trader Joe
+        ONE/XLONG on DeFi Kingdoms
         <Flex sx={{ justifyContent: "flex-end" }}>
           <RemainingLQTY />
         </Flex>
       </Heading>
       <Box sx={{ p: [2, 3] }}>
-        <InfoMessage title="You aren't farming TEDDY.">
-          <Paragraph>You can farm TEDDY by staking your Trader Joe AVAX/TEDDY LP tokens.</Paragraph>
+        <InfoMessage title="You aren't farming XLONG.">
+          <Paragraph>You can farm XLONG by staking your DeFi Kingdoms ONE/XLONG LP tokens.</Paragraph>
 
           <Paragraph sx={{ mt: 2 }}>
             You can obtain LP tokens by adding liquidity to the{" "}
             <Link href={uniLink(addresses["lqtyToken"])} target="_blank">
-              AVAX/TEDDY pool on Trader Joe. <Icon name="external-link-alt" size="xs" />
+              ONE/XLONG pool on DeFi Kingdoms. <Icon name="external-link-alt" size="xs" />
             </Link>
           </Paragraph>
         </InfoMessage>

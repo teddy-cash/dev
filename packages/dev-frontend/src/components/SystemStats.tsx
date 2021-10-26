@@ -21,7 +21,7 @@ const Balances: React.FC = () => {
   return (
     <Box sx={{ mb: 3 }}>
       <Heading>My Account Balances</Heading>
-      <Statistic name="AVAX"> {accountBalance.prettify(4)}</Statistic>
+      <Statistic name="ONE"> {accountBalance.prettify(4)}</Statistic>
       <Statistic name={COIN}> {lusdBalance.prettify()}</Statistic>
       <Statistic name={GT}>{lqtyBalance.prettify()}</Statistic>
     </Box>
@@ -77,27 +77,27 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
       <Heading  sx={{pt: 3, mt: 3}} >Protocol</Heading>
       <Statistic
         name="Borrowing Fee"
-        tooltip="The Borrowing Fee is a one-off fee charged as a percentage of the borrowed amount (in TSD) and is part of a Trove's debt. The fee varies between 0.5% and 5% depending on TSD redemption volumes."
+        tooltip="The Borrowing Fee is a one-off fee charged as a percentage of the borrowed amount (in XLSD) and is part of a Trove's debt. The fee varies between 0.5% and 5% depending on XLSD redemption volumes."
       >
         {borrowingFeePct.toString(2)}
       </Statistic>
 
       <Statistic
-        name="AVAX Collateral"
-        tooltip="The Total Value Locked (TVL) is the total value of AVAX locked as collateral in the system, given in AVAX and USD."
+        name="ONE Collateral"
+        tooltip="The Total Value Locked (TVL) is the total value of ONE locked as collateral in the system, given in ONE and USD."
       >
         {total.collateral.shorten()} 
       </Statistic>
       <Statistic name="Troves" tooltip="The total number of active Troves in the system.">
         {Decimal.from(numberOfTroves).prettify(0)}
       </Statistic>
-      <Statistic name="TSD supply" tooltip="The total TSD minted by Teddy Cash.">
+      <Statistic name="XLSD supply" tooltip="The total XLSD minted by Extra Long.">
         {total.debt.shorten()}
       </Statistic>
       {lusdInStabilityPoolPct && (
         <Statistic
-          name="TSD in Stability Pool"
-          tooltip="The total TSD currently held in the Stability Pool, expressed as an amount and a fraction of the TSD supply.
+          name="XLSD in Stability Pool"
+          tooltip="The total XLSD currently held in the Stability Pool, expressed as an amount and a fraction of the XLSD supply.
         "
         >
           <Text sx={{ fontSize: 0 }}>({lusdInStabilityPoolPct.toString(1)})&nbsp;</Text>
@@ -105,15 +105,15 @@ export const SystemStats: React.FC<SystemStatsProps> = ({ variant = "info", show
         </Statistic>
       )}
       <Statistic
-        name="Staked TEDDY"
-        tooltip="The total amount of TEDDY that is staked for earning fee revenue."
+        name="Staked XLONG"
+        tooltip="The total amount of XLONG that is staked for earning fee revenue."
       >
         {totalStakedLQTY.shorten()}
       </Statistic>
       
       <Statistic
         name="Total Collateral Ratio"
-        tooltip="The ratio of the Dollar value of the entire system collateral at the current AVAX:USD price, to the entire system debt."
+        tooltip="The ratio of the Dollar value of the entire system collateral at the current XLONG:USD price, to the entire system debt."
       >
         {totalCollateralRatioPct.prettify()}
       </Statistic>

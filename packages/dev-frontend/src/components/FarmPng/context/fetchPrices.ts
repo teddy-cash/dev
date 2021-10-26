@@ -30,9 +30,8 @@ const uniswapQuery = (lqtyTokenAddress: string, uniTokenAddress: string) => `{
 }`;
 
 export async function fetchPrices(lqtyTokenAddress: string, uniTokenAddress: string) {
-  //const response = await window.fetch("https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2", {
   const response = await window.fetch(
-    "https://api.thegraph.com/subgraphs/name/dasconnor/pangolin-dex",
+    "https://graph.defikingdoms.com/subgraphs/name/defikingdoms/dex/graphql",
     {
       method: "POST",
       headers: {

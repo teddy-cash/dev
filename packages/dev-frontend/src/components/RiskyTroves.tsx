@@ -38,7 +38,7 @@ const liquidatableInRecoveryMode = (
   if (collateralRatio.gte(MINIMUM_COLLATERAL_RATIO) && collateralRatio.lt(totalCollateralRatio)) {
     return [
       trove.debt.lte(lusdInStabilityPool),
-      "There's not enough TSD in the Stability pool to cover the debt"
+      "There's not enough XLSD in the Stability pool to cover the debt"
     ] as const;
   } else {
     return liquidatableInNormalMode(trove, price);
@@ -225,7 +225,7 @@ export const RiskyTroves: React.FC<RiskyTrovesProps> = ({ pageSize }) => {
                 <th>Owner</th>
                 <th>
                   <Abbreviation short="Coll.">Collateral</Abbreviation>
-                  <Box sx={{ fontSize: [0, 1], fontWeight: "body", opacity: 0.5 }}>AVAX</Box>
+                  <Box sx={{ fontSize: [0, 1], fontWeight: "body", opacity: 0.5 }}>ONE</Box>
                 </th>
                 <th>
                   Debt

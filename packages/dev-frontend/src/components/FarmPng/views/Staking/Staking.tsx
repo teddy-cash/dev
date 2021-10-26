@@ -43,7 +43,7 @@ export const Staking: React.FC = () => {
   return (
     <Card>
       <Heading>
-        Pangolin AVAX/TEDDY Liquidity Farm
+        ViperSwap ONE/XLONG Liquidity Farm
         {isDirty && !isTransactionPending && (
           <Button
             variant="titleIcon"

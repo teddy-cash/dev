@@ -1,5 +1,5 @@
-export const COIN = "TSD";
-export const GT = "TEDDY";
-export const LP = "AVAX/TSD LP";
-export const POOL2LP = "AVAX/TEDDY LP";
+export const COIN = "XLSD";
+export const GT = "XLONG";
+export const LP = "ONE/XLSD LP";
+export const POOL2LP = "ONE/XLONG LP";
 // export const LP = "ETH/LUSD LP";

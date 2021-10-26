@@ -189,7 +189,7 @@ export const WalletConnector: React.FC<WalletConnectorProps> = ({ children, load
               activate(connectionState.connector);
             }}
           >
-            <Text>To use Teddy Cash, you need to connect your Avalanche account.</Text>
+            <Text>To use Extra Long, you need to connect your Harmony account.</Text>
           </RetryDialog>
         </Modal>
       )}

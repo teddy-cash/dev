@@ -29,7 +29,7 @@ const TroveChangeDescription: React.FC<TroveAdjustmentDescriptionParams> = ({ pa
   <ActionDescription>
     {params.depositCollateral && params.borrowLUSD ? (
       <>
-        You will deposit <Amount>{params.depositCollateral.prettify()} AVAX</Amount> and receive{" "}
+        You will deposit <Amount>{params.depositCollateral.prettify()} ONE</Amount> and receive{" "}
         <Amount>
           {params.borrowLUSD.prettify()} {COIN}
         </Amount>
@@ -40,29 +40,29 @@ const TroveChangeDescription: React.FC<TroveAdjustmentDescriptionParams> = ({ pa
         <Amount>
           {params.repayLUSD.prettify()} {COIN}
         </Amount>{" "}
-        and receive <Amount>{params.withdrawCollateral.prettify()} AVAX</Amount>
+        and receive <Amount>{params.withdrawCollateral.prettify()} ONE</Amount>
       </>
     ) : params.depositCollateral && params.repayLUSD ? (
       <>
-        You will deposit <Amount>{params.depositCollateral.prettify()} AVAX</Amount> and pay{" "}
+        You will deposit <Amount>{params.depositCollateral.prettify()} ONE</Amount> and pay{" "}
         <Amount>
           {params.repayLUSD.prettify()} {COIN}
         </Amount>
       </>
     ) : params.borrowLUSD && params.withdrawCollateral ? (
       <>
-        You will receive <Amount>{params.withdrawCollateral.prettify()} AVAX</Amount> and{" "}
+        You will receive <Amount>{params.withdrawCollateral.prettify()} ONE</Amount> and{" "}
         <Amount>
           {params.borrowLUSD.prettify()} {COIN}
         </Amount>
       </>
     ) : params.depositCollateral ? (
       <>
-        You will deposit <Amount>{params.depositCollateral.prettify()} AVAX</Amount>
+        You will deposit <Amount>{params.depositCollateral.prettify()} ONE</Amount>
       </>
     ) : params.withdrawCollateral ? (
       <>
-        You will receive <Amount>{params.withdrawCollateral.prettify()} AVAX</Amount>
+        You will receive <Amount>{params.withdrawCollateral.prettify()} ONE</Amount>
       </>
     ) : params.borrowLUSD ? (
       <>
@@ -215,7 +215,7 @@ const validateTroveCreation = (
     return (
       <ErrorDescription>
         The amount you're trying to deposit exceeds your balance by{" "}
-        <Amount>{depositCollateral.sub(accountBalance).prettify()} AVAX</Amount>.
+        <Amount>{depositCollateral.sub(accountBalance).prettify()} ONE</Amount>.
       </ErrorDescription>
     );
   }
@@ -311,7 +311,7 @@ const validateTroveAdjustment = (
     return (
       <ErrorDescription>
         The amount you're trying to deposit exceeds your balance by{" "}
-        <Amount>{depositCollateral.sub(accountBalance).prettify()} AVAX</Amount>.
+        <Amount>{depositCollateral.sub(accountBalance).prettify()} ONE</Amount>.
       </ErrorDescription>
     );
   }

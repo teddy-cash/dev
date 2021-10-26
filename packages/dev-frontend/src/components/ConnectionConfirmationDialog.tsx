@@ -21,7 +21,7 @@ export const ConnectionConfirmationDialog: React.FC<ConnectionConfirmationDialog
     waitReason={
       <>
         <Text sx={{ fontWeight: "bold" }}>Waiting for connection confirmation...</Text>
-        <Text>This won’t cost you any AVAX</Text>
+        <Text>This won’t cost you any ONE</Text>
       </>
     }
     cancelLabel="Cancel connection"

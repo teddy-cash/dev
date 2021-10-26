@@ -173,11 +173,11 @@ export const Opening: React.FC = () => {
             <InfoIcon
               tooltip={
                 <Card variant="tooltip" sx={{ width: "240px" }}>
-                  The total amount of TSD your Trove will hold.{" "}
+                  The total amount of XLSD your Trove will hold.{" "}
                   {isDirty && (
                     <>
                       You will need to repay {totalDebt.sub(LUSD_LIQUIDATION_RESERVE).prettify(2)}{" "}
-                      TSD to reclaim your collateral ({LUSD_LIQUIDATION_RESERVE.toString()} TSD
+                      XLSD to reclaim your collateral ({LUSD_LIQUIDATION_RESERVE.toString()} XLSD
                       Liquidation Reserve excluded).
                     </>
                   )}
@@ -191,7 +191,7 @@ export const Opening: React.FC = () => {
 
         {description ?? (
           <ActionDescription>
-            Start by entering the amount of AVAX you'd like to deposit as collateral.
+            Start by entering the amount of ONE you'd like to deposit as collateral.
           </ActionDescription>
         )}
 

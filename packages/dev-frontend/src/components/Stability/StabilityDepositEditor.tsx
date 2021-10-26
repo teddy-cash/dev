@@ -103,8 +103,8 @@ export const StabilityDepositEditor: React.FC<StabilityDepositEditorProps> = ({
               label="Liquidation gain"
               inputId="deposit-gain"
               amount={originalDeposit.collateralGain.prettify(4)}
-              color={ "success"}
-              unit="AVAX"
+              color={originalDeposit.collateralGain.nonZero && "success"}
+              unit="ONE"
             />
 
             <StaticRow
@@ -117,7 +117,7 @@ export const StabilityDepositEditor: React.FC<StabilityDepositEditorProps> = ({
                 <InfoIcon
                   tooltip={
                     <Card variant="tooltip" sx={{ width: "240px" }}>
-                      Although the TEDDY rewards accrue every minute, the value on the UI only updates
+                      Although the XLONG rewards accrue every minute, the value on the UI only updates
                       when a user transacts with the Stability Pool. Therefore you may receive more
                       rewards than is displayed when you claim or adjust your deposit.
                     </Card>

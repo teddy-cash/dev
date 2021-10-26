@@ -7,7 +7,7 @@ import { useLiquity } from "../hooks/LiquityContext";
 import { Icon } from "../components/Icon";
 
 const uniLink = (lusdAddress: string) =>
-  `https://app.pangolin.exchange/#/swap?inputCurrency=${lusdAddress}&outputCurrency=AVAX`;
+  `https://viperswap.one/#/swap?inputCurrency=${lusdAddress}&outputCurrency=ONE`;
 
 export const RedemptionPage: React.FC = () => {
   const {
@@ -27,9 +27,9 @@ export const RedemptionPage: React.FC = () => {
                 emerge.
               </Paragraph>
               <Paragraph sx={{ mt: 2 }}>
-                Most of the time you will get a better rate for converting TSD to AVAX on{" "}
+                Most of the time you will get a better rate for converting XLSD to ONE on{" "}
                 <Link href={uniLink(addresses["lusdToken"])} target="_blank">
-                  Pangolin <Icon name="external-link-alt" size="xs" />
+                  ViperSwap <Icon name="external-link-alt" size="xs" />
                 </Link>{" "}
                 or other exchanges.
               </Paragraph>
