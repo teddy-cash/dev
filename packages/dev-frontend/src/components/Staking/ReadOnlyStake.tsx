@@ -39,7 +39,7 @@ export const ReadOnlyStake: React.FC = () => {
           label="Pool share"
           inputId="stake-share"
           amount={poolShare.prettify(4)}
-                      color={"white"}
+          sx={{ color: "editorText" }}
           unit="%"
         />
 
