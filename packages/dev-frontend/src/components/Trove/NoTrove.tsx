@@ -16,11 +16,11 @@ export const NoTrove: React.FC = props => {
       <Heading><p>Trove</p></Heading>
       <Box sx={{ p: [2, 3] }}>
         <InfoMessage title="You haven't borrowed any TSD yet.">
-          You can borrow TSD by opening a Trove. Learn more: <Link href="https://docs.teddy.cash/borrowing#what-is-a-trove" target="_blank">What is a trove? <Icon name="external-link-alt" /></Link>
+          You can borrow TSD by opening a Trove. <Link href="https://docs.teddy.cash/borrowing#what-is-a-trove" target="_blank">What is a trove? <Icon name="external-link-alt" /></Link>
         </InfoMessage>
 
         <Flex variant="layout.actions">
-          <Button onClick={handleOpenTrove}>Open Trove</Button>
+          <Button onClick={handleOpenTrove}>Borrow TSD</Button>
         </Flex>
       </Box>
     </Card>

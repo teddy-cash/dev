@@ -6,7 +6,8 @@ import { Decimal, LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
 import { useLiquity } from "../hooks/LiquityContext";
 import { useQueries } from "react-query";
-import { useTeddyData, TeddyDataStruct } from "../hooks/useTeddyData";
+import { useTeddyData } from "../hooks/useTeddyData";
+import { TeddyDataStruct, getYields } from "../teddyData";
 
 type TokenRowProps = {
   name: React.ReactNode;
@@ -28,7 +29,7 @@ export const TokenRow: React.FC<TokenRowProps> = ({ name, image, addToken, toolt
         </Flex>
         {addToken && (
           <Flex style={{ cursor: "pointer", marginLeft: marginLeft }} onClick={addToken}>
-            <Image src="./icons/metamask.svg" style={{ marginLeft: "5px", minWidth: "25px" }} />
+            <Image src="./icons/metamask.svg" style={{ marginLeft: "5px", minWidth: "16px" }} />
           </Flex>
         )}
         {tooltip && <InfoIcon size="xs" tooltip={<Card variant="tooltip">{tooltip}</Card>} />}
@@ -158,13 +159,6 @@ export const TokenStats: React.FC = () => {
     data: teddyData
   }: { isLoading: boolean; error: unknown; data: TeddyDataStruct } = useTeddyData();
 
-  let circulatingSupply: string = "...";
-  if (!teddyDataIsLoading) {
-    if (!teddyDataError) {
-      circulatingSupply = Decimal.from(teddyData.supply.circulating).prettify(0);
-    }
-  }
-
   const computeVal = (data: any, error: any) => {
     if (error) {
       throw new Error(error);
@@ -178,6 +172,27 @@ export const TokenStats: React.FC = () => {
   const teddyValue = isLoading ? Decimal.from(0) : computeVal(data, error);
   const tsdValue = tsdIsLoading ? Decimal.from(0) : computeVal(tsdData, tsdError);
 
+  let circulatingSupply: string = "...";
+  let marketCap: string = "...";
+  let teddy7Day = Decimal.from(0);
+  let teddyApr = Decimal.from(0);
+
+  if (!teddyDataIsLoading && !isLoading) {
+    if (!teddyDataError) {
+      circulatingSupply = Decimal.from(teddyData.supply.circulating).div(1_000_000).prettify(1) + "M";
+      //@ts-ignore
+      const avaxPrice = Decimal.from(data["data"]["bundle"]["ethPrice"]);
+      ({ sevenDay: teddy7Day, apr: teddyApr } = getYields(
+        teddyData,
+        totalStakedLQTY,
+        avaxPrice,
+        teddyValue
+      ));
+
+      marketCap = "$" + teddyValue.mul(teddyData.supply.circulating).div(1_000_000).prettify(1) + "M";
+    }
+  }
+
   const explorerUrl =
     chainId === 43114
       ? "https://cchain.explorer.avax.network/address/"
@@ -185,9 +200,7 @@ export const TokenStats: React.FC = () => {
 
   // hard-coded for current week. needs to be adapted to consume
   // circulating supply API feed.
-  const circSupply = 5753340;
-  const marketCapEstimate = teddyValue.mul(circSupply);
-
+  
   let tvlSP = lusdInStabilityPool;
   let tvlTeddy = totalStakedLQTY.mul(teddyValue);
 
@@ -252,7 +265,7 @@ export const TokenStats: React.FC = () => {
           {tsdIsLoading ? "..." : "$" + tsdValue.prettify(2)}
         </Flex>
         <Link
-          href={`https://info.pangolin.exchange/#/token/${addresses["lusdToken"]}`}
+          href={`https://www.coingecko.com/en/coins/teddy-dollar`}
           target="_blank"
         >
           <Icon name="info-circle" style={{ marginLeft: "4px" }} size="xs" />
@@ -317,7 +330,7 @@ export const TokenStats: React.FC = () => {
         </Link>
       </TokenRow>
 
-      <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+      <Flex sx={{ mt:2, paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
         <Flex
           sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
         >
@@ -331,7 +344,7 @@ export const TokenStats: React.FC = () => {
             alignItems: "center"
           }}
         >
-          {isLoading ? "..." : "~$" + marketCapEstimate.div(1_000_000).prettify(1)}M
+          {marketCap}
         </Flex>
       </Flex>
 
@@ -339,7 +352,7 @@ export const TokenStats: React.FC = () => {
         <Flex
           sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
         >
-          <Flex> TEDDY Circulating Supply</Flex>
+          <Flex>Circulating/Total Supply</Flex>
         </Flex>
         <Flex
           sx={{
@@ -349,7 +362,7 @@ export const TokenStats: React.FC = () => {
             alignItems: "center"
           }}
         >
-          {circulatingSupply}M
+          {circulatingSupply} / 82M
         </Flex>
       </Flex>
 
@@ -392,7 +405,8 @@ export const TokenStats: React.FC = () => {
         <Flex
           sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
         >
-          <Flex> &middot; Year (APR)</Flex>
+          <Flex> &middot; Year (APR)
+          </Flex>
         </Flex>
         <Flex
           sx={{
@@ -403,6 +417,55 @@ export const TokenStats: React.FC = () => {
           }}
         >
           {isLoading ? "..." : prettifyDecimal(aprYearly, 1)}%
+        </Flex>
+      </Flex>
+
+      <Heading sx={{ pt: 3 }}>Teddy Staking Yields</Heading>
+      <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+        <Flex
+          sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
+        >
+          <Flex>
+            {" "}
+            &middot; Week
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">Based on last seven days</Card>} />
+          </Flex>
+        </Flex>
+        <Flex
+          sx={{
+            fontVariantNumeric: "tabular-nums",
+            justifyContent: "flex-end",
+            flex: 0.8,
+            alignItems: "center"
+          }}
+        >
+          {teddyDataIsLoading ? "..." : prettifyDecimal(teddy7Day, 2)}%
+        </Flex>
+      </Flex>
+      <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+        <Flex
+          sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
+        >
+          <Flex>
+            {" "}
+            &middot; Year (APR)
+            <InfoIcon
+              size="xs"
+              tooltip={
+                <Card variant="tooltip">Expected annual return based on last seven days</Card>
+              }
+            />
+          </Flex>
+        </Flex>
+        <Flex
+          sx={{
+            fontVariantNumeric: "tabular-nums",
+            justifyContent: "flex-end",
+            flex: 0.8,
+            alignItems: "center"
+          }}
+        >
+          {teddyDataIsLoading ? "..." : prettifyDecimal(teddyApr, 1)}%
         </Flex>
       </Flex>
 

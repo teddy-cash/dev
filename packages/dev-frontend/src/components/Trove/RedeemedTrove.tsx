@@ -30,7 +30,7 @@ export const RedeemedTrove: React.FC = () => {
 
         <Flex variant="layout.actions">
           {hasSurplusCollateral && <CollateralSurplusAction />}
-          {!hasSurplusCollateral && <Button onClick={handleOpenTrove}>Open Trove</Button>}
+          {!hasSurplusCollateral && <Button onClick={handleOpenTrove}>Borrow TSD</Button>}
         </Flex>
       </Box>
     </Card>

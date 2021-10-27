@@ -44,6 +44,7 @@ const colors = {
   buttonText: "black",
   editorText: baseColors.white,
   outlineButtonBorder: baseColors.white,
+  sidenav: "rgba(0, 0, 0, 0.9)",
   modes: {
     day: {
       color: baseColors.white,
@@ -67,7 +68,8 @@ const colors = {
       buttonText: "white",
       buttonBorder: baseColors.blue,
       editorText: baseColors.black,
-      outlineButtonBorder: baseColors.black
+      outlineButtonBorder: baseColors.black,
+      sidenav: "rgba(255, 255, 255, 0.9)"
     }
   }
 };
@@ -473,7 +475,7 @@ const theme: Theme = {
 
       display: ["block", "none"],
 
-      bg: "rgba(255, 255, 255, 0.8)"
+      bg: "rgba(255, 255, 255, 0.9)"
     },
 
     infoMessage: {
@@ -492,7 +494,7 @@ const theme: Theme = {
       borderColor: "muted",
       mr: "25vw",
       height: "100%",
-      background: "black",
+      bg: "sidenav",
       text: "text"
     },
 

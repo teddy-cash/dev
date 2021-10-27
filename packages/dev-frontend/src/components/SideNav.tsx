@@ -3,8 +3,9 @@ import { Box, Button, Container, Flex } from "theme-ui";
 import { Icon } from "./Icon";
 import { LiquityLogo } from "./LiquityLogo";
 import { Link } from "./Link";
+import { ModeToggle } from "./ModeToggle";
 
-const logoHeight = "32px";
+const logoHeight = "48px";
 
 export const SideNav: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -41,6 +42,7 @@ export const SideNav: React.FC = () => {
           <Link to="/farm">Farm</Link>
           <Link to="/risky-troves">Liquidate</Link>
           <Link to="/redemption">Redeem</Link>
+          <ModeToggle />
         </Box>
       </Flex>
     </Container>
