@@ -405,7 +405,8 @@ export const TokenStats: React.FC = () => {
         <Flex
           sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
         >
-          <Flex> &middot; Year (APR)</Flex>
+          <Flex> &middot; Year (APR)
+          </Flex>
         </Flex>
         <Flex
           sx={{
@@ -419,14 +420,14 @@ export const TokenStats: React.FC = () => {
         </Flex>
       </Flex>
 
-      <Heading sx={{ pt: 3 }}>Teddy Staking Yield</Heading>
+      <Heading sx={{ pt: 3 }}>Teddy Staking Yields</Heading>
       <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
         <Flex
           sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
         >
           <Flex>
             {" "}
-            &middot; Weekly
+            &middot; Week
             <InfoIcon size="xs" tooltip={<Card variant="tooltip">Based on last seven days</Card>} />
           </Flex>
         </Flex>
@@ -447,7 +448,7 @@ export const TokenStats: React.FC = () => {
         >
           <Flex>
             {" "}
-            &middot; APR
+            &middot; Year (APR)
             <InfoIcon
               size="xs"
               tooltip={
