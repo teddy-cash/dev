@@ -173,12 +173,13 @@ export const TokenStats: React.FC = () => {
   const tsdValue = tsdIsLoading ? Decimal.from(0) : computeVal(tsdData, tsdError);
 
   let circulatingSupply: string = "...";
+  let marketCap: string = "...";
   let teddy7Day = Decimal.from(0);
   let teddyApr = Decimal.from(0);
 
   if (!teddyDataIsLoading && !isLoading) {
     if (!teddyDataError) {
-      circulatingSupply = Decimal.from(teddyData.supply.circulating).prettify(0);
+      circulatingSupply = Decimal.from(teddyData.supply.circulating).div(1_000_000).prettify(1) + "M";
       //@ts-ignore
       const avaxPrice = Decimal.from(data["data"]["bundle"]["ethPrice"]);
       ({ sevenDay: teddy7Day, apr: teddyApr } = getYields(
@@ -187,6 +188,8 @@ export const TokenStats: React.FC = () => {
         avaxPrice,
         teddyValue
       ));
+
+      marketCap = "$" + teddyValue.mul(teddyData.supply.circulating).div(1_000_000).prettify(1) + "M";
     }
   }
 
@@ -197,9 +200,7 @@ export const TokenStats: React.FC = () => {
 
   // hard-coded for current week. needs to be adapted to consume
   // circulating supply API feed.
-  const circSupply = 5753340;
-  const marketCapEstimate = teddyValue.mul(circSupply);
-
+  
   let tvlSP = lusdInStabilityPool;
   let tvlTeddy = totalStakedLQTY.mul(teddyValue);
 
@@ -264,7 +265,7 @@ export const TokenStats: React.FC = () => {
           {tsdIsLoading ? "..." : "$" + tsdValue.prettify(2)}
         </Flex>
         <Link
-          href={`https://info.pangolin.exchange/#/token/${addresses["lusdToken"]}`}
+          href={`https://www.coingecko.com/en/coins/teddy-dollar`}
           target="_blank"
         >
           <Icon name="info-circle" style={{ marginLeft: "4px" }} size="xs" />
@@ -329,7 +330,7 @@ export const TokenStats: React.FC = () => {
         </Link>
       </TokenRow>
 
-      <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+      <Flex sx={{ mt:2, paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
         <Flex
           sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
         >
@@ -343,7 +344,7 @@ export const TokenStats: React.FC = () => {
             alignItems: "center"
           }}
         >
-          {isLoading ? "..." : "~$" + marketCapEstimate.div(1_000_000).prettify(1)}M
+          {marketCap}
         </Flex>
       </Flex>
 
@@ -351,7 +352,7 @@ export const TokenStats: React.FC = () => {
         <Flex
           sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
         >
-          <Flex> TEDDY Circulating Supply</Flex>
+          <Flex>Circulating/Total Supply</Flex>
         </Flex>
         <Flex
           sx={{
@@ -361,7 +362,7 @@ export const TokenStats: React.FC = () => {
             alignItems: "center"
           }}
         >
-          {circulatingSupply}
+          {circulatingSupply} / 82M
         </Flex>
       </Flex>
 
