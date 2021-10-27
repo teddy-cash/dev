@@ -12,25 +12,7 @@
 }
 */
 import { useQuery } from "react-query";
-
-export type TeddyDataStruct = {
-  supply: {
-    circulating: number;
-    total: number;
-  };
-  borrowing_fee_tsd: {
-    last_7d: number;
-    since_inception: number;
-  };
-  redemption_fee_avax: {
-    last_7d: number;
-    since_inception: number;
-  };
-  sevenDayYield: number;
-  aPR: number;
-  updated_at: Date;
-  circulatingSupply: number;
-};
+import { TeddyDataStruct } from "../teddyData";
 
 type TeddyDataQuery = {
   isLoading: boolean;

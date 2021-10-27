@@ -6,7 +6,8 @@ import { Decimal, LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
 import { useLiquity } from "../hooks/LiquityContext";
 import { useQueries } from "react-query";
-import { useTeddyData, TeddyDataStruct } from "../hooks/useTeddyData";
+import { useTeddyData } from "../hooks/useTeddyData";
+import { TeddyDataStruct, getYields } from "../teddyData";
 
 type TokenRowProps = {
   name: React.ReactNode;
@@ -158,13 +159,6 @@ export const TokenStats: React.FC = () => {
     data: teddyData
   }: { isLoading: boolean; error: unknown; data: TeddyDataStruct } = useTeddyData();
 
-  let circulatingSupply: string = "...";
-  if (!teddyDataIsLoading) {
-    if (!teddyDataError) {
-      circulatingSupply = Decimal.from(teddyData.supply.circulating).prettify(0);
-    }
-  }
-
   const computeVal = (data: any, error: any) => {
     if (error) {
       throw new Error(error);
@@ -177,6 +171,24 @@ export const TokenStats: React.FC = () => {
 
   const teddyValue = isLoading ? Decimal.from(0) : computeVal(data, error);
   const tsdValue = tsdIsLoading ? Decimal.from(0) : computeVal(tsdData, tsdError);
+
+  let circulatingSupply: string = "...";
+  let teddy7Day = Decimal.from(0);
+  let teddyApr = Decimal.from(0);
+
+  if (!teddyDataIsLoading && !isLoading) {
+    if (!teddyDataError) {
+      circulatingSupply = Decimal.from(teddyData.supply.circulating).prettify(0);
+      //@ts-ignore
+      const avaxPrice = Decimal.from(data["data"]["bundle"]["ethPrice"]);
+      ({ sevenDay: teddy7Day, apr: teddyApr } = getYields(
+        teddyData,
+        totalStakedLQTY,
+        avaxPrice,
+        teddyValue
+      ));
+    }
+  }
 
   const explorerUrl =
     chainId === 43114
@@ -403,6 +415,55 @@ export const TokenStats: React.FC = () => {
           }}
         >
           {isLoading ? "..." : prettifyDecimal(aprYearly, 1)}%
+        </Flex>
+      </Flex>
+
+      <Heading sx={{ pt: 3 }}>Teddy Staking Yield</Heading>
+      <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+        <Flex
+          sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
+        >
+          <Flex>
+            {" "}
+            &middot; Weekly
+            <InfoIcon size="xs" tooltip={<Card variant="tooltip">Based on last seven days</Card>} />
+          </Flex>
+        </Flex>
+        <Flex
+          sx={{
+            fontVariantNumeric: "tabular-nums",
+            justifyContent: "flex-end",
+            flex: 0.8,
+            alignItems: "center"
+          }}
+        >
+          {teddyDataIsLoading ? "..." : prettifyDecimal(teddy7Day, 2)}%
+        </Flex>
+      </Flex>
+      <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+        <Flex
+          sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
+        >
+          <Flex>
+            {" "}
+            &middot; APR
+            <InfoIcon
+              size="xs"
+              tooltip={
+                <Card variant="tooltip">Expected annual return based on last seven days</Card>
+              }
+            />
+          </Flex>
+        </Flex>
+        <Flex
+          sx={{
+            fontVariantNumeric: "tabular-nums",
+            justifyContent: "flex-end",
+            flex: 0.8,
+            alignItems: "center"
+          }}
+        >
+          {teddyDataIsLoading ? "..." : prettifyDecimal(teddyApr, 1)}%
         </Flex>
       </Flex>
 
