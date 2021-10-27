@@ -20,7 +20,7 @@ export const NoTrove: React.FC = props => {
         </InfoMessage>
 
         <Flex variant="layout.actions">
-          <Button onClick={handleOpenTrove}>Open Trove</Button>
+          <Button onClick={handleOpenTrove}>Borrow TSD</Button>
         </Flex>
       </Box>
     </Card>
