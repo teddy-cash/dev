@@ -21,23 +21,22 @@ export const NoDeposit: React.FC = (props) => {
         </Flex>
       </Heading>
       <Box sx={{ p: [2, 3] }}>
-        <InfoMessage title="You have no TSD in the Stability Pool.">
-          You can earn AVAX and TEDDY rewards by depositing TSD. Learn more:{' '}
-          <Link
-            href="https://docs.teddy.cash/stability-pool-and-liquidations#what-is-the-stability-pool"
-            target="_blank"
-          >
-            What is the Stability Pool? <Icon name="external-link-alt" />
-          </Link>
-        </InfoMessage>
-
+        
+        Earn TEDDY rewards and AVAX from liquidation fees. <Link
+          href="https://docs.teddy.cash/stability-pool-and-liquidations#what-is-the-stability-pool"
+          target="_blank"
+          style={{fontWeight: "normal"}}
+        >
+          What is the Stability Pool? <Icon name="external-link-alt" />
+        </Link>
+        
         <Flex variant="layout.actions">
           <Flex
             sx={{ justifyContent: 'flex-end', flex: 1, alignItems: 'center' }}
           >
             <Yield />
           </Flex>
-          <Button onClick={handleOpenTrove}>Deposit</Button>
+          <Button style={{margin: "10px 0 0"}}  onClick={handleOpenTrove}>Stake TSD</Button>
         </Flex>
       </Box>
     </Card>
