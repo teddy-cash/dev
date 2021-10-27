@@ -29,7 +29,7 @@ export const TokenRow: React.FC<TokenRowProps> = ({ name, image, addToken, toolt
         </Flex>
         {addToken && (
           <Flex style={{ cursor: "pointer", marginLeft: marginLeft }} onClick={addToken}>
-            <Image src="./icons/metamask.svg" style={{ marginLeft: "5px", minWidth: "25px" }} />
+            <Image src="./icons/metamask.svg" style={{ marginLeft: "5px", minWidth: "16px" }} />
           </Flex>
         )}
         {tooltip && <InfoIcon size="xs" tooltip={<Card variant="tooltip">{tooltip}</Card>} />}
