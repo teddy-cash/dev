@@ -361,7 +361,7 @@ export const TokenStats: React.FC = () => {
             alignItems: "center"
           }}
         >
-          {circulatingSupply}M
+          {circulatingSupply}
         </Flex>
       </Flex>
 
