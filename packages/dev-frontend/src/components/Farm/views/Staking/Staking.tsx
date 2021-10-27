@@ -75,6 +75,7 @@ export const Staking: React.FC = () => {
             label="Pool share"
             inputId="farm-share"
             amount={poolShare.prettify(4)}
+            sx={{ color: "editorText" }}
             unit="%"
           />
         )}

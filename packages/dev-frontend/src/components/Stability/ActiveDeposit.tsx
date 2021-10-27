@@ -70,14 +70,14 @@ export const ActiveDeposit: React.FC = () => {
           <StaticRow
             label="Pool share"
             inputId="deposit-share"
-            color={"white"}
             amount={poolShare.prettify(4)}
             unit="%"
+            sx={{ color: "editorText" }}
           />
 
           <StaticRow
             label="Liquidation gain"
-            inputId="deposit-gain"            
+            inputId="deposit-gain"
             amount={stabilityDeposit.collateralGain.prettify(4)}
             color={"success"}
             unit="AVAX"
@@ -94,9 +94,9 @@ export const ActiveDeposit: React.FC = () => {
                 <InfoIcon
                   tooltip={
                     <Card variant="tooltip" sx={{ width: "240px" }}>
-                      Although the TEDDY rewards accrue every minute, the value on the UI only updates
-                      when a user transacts with the Stability Pool. Therefore you may receive more
-                      rewards than is displayed when you claim or adjust your deposit.
+                      Although the TEDDY rewards accrue every minute, the value on the UI only
+                      updates when a user transacts with the Stability Pool. Therefore you may
+                      receive more rewards than is displayed when you claim or adjust your deposit.
                     </Card>
                   }
                 />
