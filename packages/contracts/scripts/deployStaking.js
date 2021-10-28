@@ -48,6 +48,9 @@ async function deployPool() {
     mdh.saveDeployment(deployment);
   } else {
     console.log(`Pool3 pair contract address after TJ pair creation: ${pool3PairAddr}`);
+    if (!deployment["p3Token"]) {
+      deployment["p3Token"] = { address: pool3PairAddr };
+    }
   }
   return pool3PairAddr;
 }
@@ -63,8 +66,8 @@ async function deployStaking() {
   const teddyContract = deployment["lqtyToken"].address;
 
   const rewardsFactory = await mdh.getFactory("StakingRewards");
-  const rewardsParams = ["0x5604d5bf34e0347921264d5475c21e2beafbadf5", teddyContract, pool3PairAddr];
-  console.log(rewardsParams);
+  const rewardsParams = [deployerWallet.address, teddyContract, pool3PairAddr];
+
   const rewards = await mdh.loadOrDeploy(rewardsFactory, "p3Unipool", deployment, rewardsParams);
   console.log(`Rewards contract is ${rewards.address}`);
 }

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { Card, Heading, Box, Flex, Button } from "theme-ui";
-import { POOL2LP, GT } from "../../../../strings";
+import { POOL3LP, GT } from "../../../../strings";
 import { LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
 import { Icon } from "../../../Icon";
@@ -60,7 +60,7 @@ export const Active: React.FC = () => {
             label="Stake"
             inputId="farm-stake"
             amount={liquidityMiningStake.prettify(4)}
-            unit={POOL2LP}
+            unit={POOL3LP}
           />
           {poolShare.infinite ? (
             <StaticRow label="Pool share" inputId="farm-share" amount="N/A" />
@@ -80,9 +80,7 @@ export const Active: React.FC = () => {
               color={liquidityMiningLQTYReward.nonZero && "success"}
               unit={GT}
             />
-            <Flex sx={{ justifyContent: "flex-end", flex: 1 }}>
-              <Yield />
-            </Flex>
+            <Flex sx={{ justifyContent: "flex-end", flex: 1 }}>{/* <Yield /> */}</Flex>
           </Flex>
         </Box>
 

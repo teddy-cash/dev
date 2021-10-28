@@ -109,7 +109,23 @@ contract StakingRewards is IStakingRewards, ReentrancyGuard, Pausable {
         }
     }
 
+    /* added for compatibility w/ Unipool interface */
+    function claimReward() public nonReentrant updateReward(msg.sender) {
+        uint256 reward = rewards[msg.sender];
+        if (reward > 0) {
+            rewards[msg.sender] = 0;
+            rewardsToken.safeTransfer(msg.sender, reward);
+            emit RewardPaid(msg.sender, reward);
+        }
+    }
+
     function exit() external override {
+        withdraw(_balances[msg.sender]);
+        getReward();
+    }
+
+    /* added for compatibility w/ Unipool interface */
+    function withdrawAndClaim() external {
         withdraw(_balances[msg.sender]);
         getReward();
     }

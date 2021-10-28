@@ -4,7 +4,7 @@
     "liquidityMiningLQTYRewardRate": "0.257201646090534979",
     "tjLiquidityMiningLQTYRewardRate": "0",
     "pngLiquidityMiningLQTYRewardRate": "0.41335978835978837",
-    "p3LiquidityMiningLQTYRewardRate": "0.46296296296296297",
+    "p3LiquidityMiningLQTYRewardRate": "0.016666666666666666",
     "_priceFeedIsTestnet": false,
     "_uniTokenIsMock": false,
     "_isDev": false,
@@ -32,10 +32,10 @@
         "tjUnipool": "0xca99d790F0DB93BFc8cdF8576FED0E3ac45EdfAd",
         "pngUnipool": "0x58705A172ED52B6EBeB7e2166B047Cb1f0DC8fF1",
         "p3Token": "0x49bCe82dDc365f6BAe11774C4835ba611933Acf8",
-        "p3Unipool": "0x493a5b36549Ea9ed6ecad5a62220BdbEbdAFA122"
+        "p3Unipool": "0x428770af9F3252853913165cD0CA890eC0671f34"
     },
     "chainId": 43113,
     "startBlock": 983777,
     "deploymentDate": 1630432924000,
-    "version": "9273084475acb3a862fddaf18daf5156db9936cc"
+    "version": "40a1ed2fae6dcc2c935b6a475aa4321c2a5b68fa"
 }

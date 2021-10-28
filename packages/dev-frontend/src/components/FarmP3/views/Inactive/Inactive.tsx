@@ -38,14 +38,14 @@ export const Inactive: React.FC = () => {
           <Paragraph sx={{ mt: 2 }}>
             You can obtain LP tokens by adding liquidity to the{" "}
             <Link href={uniLink(addresses["lqtyToken"])} target="_blank">
-              {POOL3LP} on Trader Joe. <Icon name="external-link-alt" size="xs" /> 
+              {POOL3LP} on Trader Joe. <Icon name="external-link-alt" size="xs" />
             </Link>
           </Paragraph>
         </InfoMessage>
 
         <Flex variant="layout.actions">
           <Flex sx={{ justifyContent: "flex-start", alignItems: "center", flex: 1 }}>
-            <Yield />
+            {/* <Yield /> */}
           </Flex>
           <Button onClick={handleStakePressed}>Stake</Button>
         </Flex>

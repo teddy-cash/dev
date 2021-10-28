@@ -426,9 +426,9 @@ export class ReadableEthersLiquity implements ReadableLiquity {
       unipool.lastUpdateTime({ ...overrides }).then(numberify)
     ]);
     return (blockTimestamp: number) => {
-      return rewardRate.mul(
-        Math.max(0, periodFinish - (totalSupply.isZero() ? lastUpdateTime : blockTimestamp))
-      );
+      const remaining = rewardRate.mul(Math.max(0, periodFinish - blockTimestamp));
+
+      return remaining;
     };
   }
 
