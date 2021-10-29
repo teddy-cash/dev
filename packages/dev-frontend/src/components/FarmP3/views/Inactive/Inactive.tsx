@@ -8,7 +8,8 @@ import { useFarmView } from "../../context/FarmViewContext";
 import { RemainingLQTY } from "../RemainingLQTY";
 import { Yield } from "../Yield";
 
-const uniLink = (lqtyAddress: string) => `https://app.pangolin.exchange/#/add/AVAX/${lqtyAddress}`;
+const uniLink = (teddyAddress: string, tsdAddress: string) =>
+  `https://www.traderjoexyz.com/#/pool/${teddyAddress}/${tsdAddress}`;
 
 export const Inactive: React.FC = () => {
   const { dispatchEvent } = useFarmView();
@@ -37,7 +38,7 @@ export const Inactive: React.FC = () => {
 
           <Paragraph sx={{ mt: 2 }}>
             You can obtain LP tokens by adding liquidity to the{" "}
-            <Link href={uniLink(addresses["lqtyToken"])} target="_blank">
+            <Link href={uniLink(addresses["lqtyToken"], addresses["lusdToken"])} target="_blank">
               {POOL3LP} on Trader Joe. <Icon name="external-link-alt" size="xs" />
             </Link>
           </Paragraph>
