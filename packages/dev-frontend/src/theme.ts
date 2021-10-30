@@ -8,11 +8,11 @@ export const getMode = (mode: string) => {
 
 const baseColors = {
   white: "#ffffff",
-  blue: "#1542cd",
-  darkBlue: "#293147",
+  darkBlue: "#1b295e",
   purple: "#745ddf",
   cyan: "#2eb6ea",
-  lightBlue: "#84ddf6",
+  lightGreen: "#68f9be",
+  lightBlue: "84ddf6",
   lightBlueSemiTransparent: "rgba(122,199,240,0.4)",
   green: "#50cf3c",
   yellow: "#FFD700", //"#ffe27a",
@@ -20,27 +20,28 @@ const baseColors = {
   lightRed: "#ff755f",
   gray: "#9fa3b4",
   lightGray: "#eaebed",
-  black: "#151517",
-  lightBlack: "#23252c"
+  black: "#000000",
 };
 
 const colors = {
   primary: baseColors.white,
   secondary: baseColors.purple,
   accent: baseColors.cyan,
-  success: baseColors.green,
+  accentText: baseColors.lightGreen,
+  accentHover: baseColors.lightGreen,
+  success: baseColors.lightGreen,
   warning: baseColors.yellow,
   danger: baseColors.red,
   dangerHover: baseColors.lightRed,
-  info: baseColors.blue,
+  info: baseColors.darkBlue,
   invalid: "pink",
-  text: baseColors.gray,
+  text: baseColors.lightGray,
   background: baseColors.black,
   muted: baseColors.lightGray,
-  cardBorder: baseColors.lightBlack,
-  cardHeader: baseColors.lightBlack,
-  cardHeaderText: baseColors.lightBlue,
-  button: baseColors.yellow,
+  cardBorder: baseColors.darkBlue,
+  cardHeader: baseColors.darkBlue,
+  cardHeaderText: baseColors.lightGreen,
+  button: baseColors.lightGreen,
   buttonText: "black",
   editorText: baseColors.white,
   outlineButtonBorder: baseColors.white,
@@ -49,24 +50,26 @@ const colors = {
     day: {
       color: baseColors.white,
       borderColor: "muted",
-      primary: baseColors.blue,
+      primary: baseColors.darkBlue,
       secondary: baseColors.purple,
       accent: baseColors.cyan,
-      success: baseColors.green,
+      accentText: baseColors.darkBlue,
+      accentHover: baseColors.darkBlue,
+      success: baseColors.lightGreen,
       warning: baseColors.yellow,
       danger: baseColors.red,
       dangerHover: baseColors.lightRed,
-      info: baseColors.blue,
+      info: baseColors.darkBlue,
       invalid: "pink",
       text: baseColors.darkBlue,
       background: "white",
       muted: baseColors.lightGray,
       cardBorder: baseColors.lightGray,
       cardHeader: baseColors.lightGray,
-      cardHeaderText: "black",
-      button: baseColors.blue,
-      buttonText: "white",
-      buttonBorder: baseColors.blue,
+      cardHeaderText: baseColors.darkBlue,
+      button: baseColors.lightGreen,
+      buttonText: "black",
+      buttonBorder: baseColors.black,
       editorText: baseColors.black,
       outlineButtonBorder: baseColors.black,
       sidenav: "rgba(255, 255, 255, 0.9)"
@@ -87,7 +90,7 @@ const button: ThemeUIStyleObject = {
 
   px: "32px",
   py: "12px",
-
+  background: "linear-gradient(90deg, rgba(17,179,230,1) 0%, rgba(104,249,190,1) 100%)",
   color: "buttonText",
   border: 1,
 
@@ -228,9 +231,6 @@ const theme: Theme = {
     heading: 1.25
   },
 
-  config: {
-    initialColorModeName: "night"
-  },
 
   colors: colors,
   /* colors, */
@@ -261,7 +261,7 @@ const theme: Theme = {
 
     outline: {
       ...button,
-      ...buttonOutline("outlineButtonBorder", "yellow")
+      ...buttonOutline("outlineButtonBorder", "lightBlueSemiTransparent")
     },
 
     cancel: {
@@ -524,8 +524,8 @@ const theme: Theme = {
     },
 
     a: {
-      color: "primary",
-      ":hover": { color: "accent" },
+      color: "accentText",
+      ":hover": { color: "accentHover" },
       textDecoration: "none",
       fontWeight: "bold"
     }

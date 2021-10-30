@@ -19,8 +19,8 @@ export const FarmsEnded: React.FC = () => {
     <Card>
       <Heading>
         <Flex><Image src="./icons/avalanche-avax-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
-        <Image src="./tsd.png" width="25" height="25" sx={{marginRight: 1}}/>
-        <Image src="./teddy-cash-icon.png" width="25" height="25" sx={{marginRight: 2}}/>
+        <Image src="./xlongDogo.png" width="25" height="25" sx={{marginRight: 1}}/>
+        <Image src="./xlongLogo.png" width="25" height="25" sx={{marginRight: 2}}/>
         Liquidity Farms
         </Flex>
       </Heading>
@@ -35,7 +35,7 @@ export const FarmsEnded: React.FC = () => {
           </Flex>
           <Flex style={{marginBottom: 15, alignItems: 'center'}}>
             <Image src="./icons/avalanche-avax-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
-            <Image src="./tsd.png" width="25" height="20" sx={{marginRight: 1}}/>
+            <Image src="./xlongDogo.png" width="25" height="20" sx={{marginRight: 1}}/>
 
             AVAX-TSD
             <Link href={`https://app.pangolin.exchange/#/png/AVAX/${addresses['lusdToken']}/1`} target="_blank">
@@ -44,7 +44,7 @@ export const FarmsEnded: React.FC = () => {
           </Flex>
           <Flex>
             <Image src="./icons/avalanche-avax-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
-            <Image src="./teddy-cash-icon.png" width="25" height="20" sx={{marginRight: 1}}/>
+            <Image src="./xlongLogo.png" width="25" height="20" sx={{marginRight: 1}}/>
             AVAX-TEDDY
             <Link href={`https://app.pangolin.exchange/#/png/AVAX/${addresses['lqtyToken']}/1`} target="_blank">
               <Icon name="external-link-alt" style={{marginLeft: 10, marginTop: 5}}/>
@@ -56,7 +56,7 @@ export const FarmsEnded: React.FC = () => {
           </Flex>
           <Flex style={{marginBottom: 15}}>
             <Image src="./icons/avalanche-avax-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
-            <Image src="./tsd.png" width="25" height="25" sx={{marginRight: 1}}/>
+            <Image src="./xlongDogo.png" width="25" height="25" sx={{marginRight: 1}}/>
             AVAX-TSD
             <Link href={`https://www.traderjoexyz.com/#/farm/${TJ_POOlS['TSD']}`} target="_blank">
               <Icon name="external-link-alt" style={{marginLeft: 10, marginTop: 5}}/>
@@ -64,7 +64,7 @@ export const FarmsEnded: React.FC = () => {
           </Flex>
           <Flex>
             <Image src="./icons/avalanche-avax-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
-            <Image src="./teddy-cash-icon.png" width="25" height="25" sx={{marginRight: 1}}/>
+            <Image src="./xlongLogo.png" width="25" height="25" sx={{marginRight: 1}}/>
             AVAX-TEDDY
             <Link href={`https://www.traderjoexyz.com/#/farm/${TJ_POOlS['TEDDY']}`} target="_blank">
               <Icon name="external-link-alt" style={{marginLeft: 10, marginTop: 5}}/>

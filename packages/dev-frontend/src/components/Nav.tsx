@@ -1,4 +1,4 @@
-import { Flex, Box } from 'theme-ui';
+import { Flex, Box, NavLink } from 'theme-ui';
 import { Link } from './Link';
 
 export const Nav: React.FC = () => {
