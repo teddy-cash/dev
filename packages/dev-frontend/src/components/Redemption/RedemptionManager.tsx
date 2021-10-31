@@ -119,7 +119,7 @@ export const RedemptionManager: React.FC = () => {
           inputId="redeem-fee"
           amount={ethFee.toString(4)}
           pendingAmount={feePct.toString(2)}
-          unit="AVAX"
+          unit="ONE"
           infoIcon={
             <InfoIcon
               tooltip={

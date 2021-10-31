@@ -83,8 +83,8 @@ const App = () => {
   const loader = (
     <Flex sx={{ alignItems: "center", justifyContent: "center", height: "100vh" }}>
       <Image
-        src="./xlongDogo.png"
-        sx={{ animation: `${bearSpinner} 2s linear infinite`, width: "120px" }}
+        src="./xlongLogo.png"
+        sx={{ animation: `${bearSpinner} 2s linear infinite`, width: "120px", marginRight: "25px" }}
       />
       <Heading>Loading...</Heading>
     </Flex>

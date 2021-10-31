@@ -52,12 +52,12 @@ export const Yield: React.FC = () => {
         tooltip={
           <Card variant="tooltip" sx={{ width: ["220px", "518px"] }}>
             <Paragraph>
-              An <Text sx={{ fontWeight: "bold" }}>estimate</Text> of the XLONG return on the TSD
-              deposited to the Stability Pool over the next year, not including your AVAX gains from
+              An <Text sx={{ fontWeight: "bold" }}>estimate</Text> of the XLONG return on the XLSD
+              deposited to the Stability Pool over the next year, not including your ONE gains from
               liquidations.
             </Paragraph>
             <Paragraph sx={{ fontSize: "12px", fontFamily: "monospace", mt: 2 }}>
-              (($$XLONG_REWARDS * YEARLY_DISTRIBUTION%) / DEPOSITED_XLSD) * 100 ={" "}
+              (($XLONG_REWARDS * YEARLY_DISTRIBUTION%) / DEPOSITED_XLSD) * 100 ={" "}
               <Text sx={{ fontWeight: "bold" }}> APR</Text>
             </Paragraph>
             <Paragraph sx={{ fontSize: "12px", fontFamily: "monospace" }}>

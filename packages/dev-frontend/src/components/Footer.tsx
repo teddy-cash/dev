@@ -7,11 +7,11 @@ export const Footer = () => {
     <div>
       <Box sx={{ mt: 4, fontSize: 1, fontWeight: 'normal', display: 'flex' }}>
         <Text sx={textStyle}>
-          <Link href="https://teddy.cash" target="_blank">
+          <Link href="https://extralong.one" target="_blank">
             Website
           </Link>
           &nbsp;&middot;&nbsp;
-          <Link href="https://docs.teddy.cash" target="_blank">
+          <Link href="https://docs.extralong.one" target="_blank">
             Docs
           </Link>
           &nbsp;&middot;&nbsp;{' '}

@@ -18,10 +18,10 @@ type UniswapResponse = {
 
 const uniswapQuery = (lqtyTokenAddress: string, uniTokenAddress: string) => `{
   token(id: "${lqtyTokenAddress.toLowerCase()}") {
-    derivedAVAX
+    derivedETH
   },
   bundle(id: 1) {
-    avaxPrice
+    ethPrice
   },
   pair(id: "${uniTokenAddress.toLowerCase()}") {
     totalSupply

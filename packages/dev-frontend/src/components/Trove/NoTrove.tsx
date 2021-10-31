@@ -13,14 +13,14 @@ export const NoTrove: React.FC = props => {
 
   return (
     <Card>
-      <Heading><p>Trove</p></Heading>
+      <Heading><p><Icon name="piggy-bank" style={{marginRight: '6px'}}/>Trove</p></Heading>
       <Box sx={{ p: [2, 3] }}>
-        <InfoMessage title="You haven't borrowed any TSD yet.">
-          You can borrow TSD by opening a Trove. <Link href="https://docs.teddy.cash/borrowing#what-is-a-trove" target="_blank">What is a trove? <Icon name="external-link-alt" /></Link>
+        <InfoMessage title="You haven't borrowed any XLSD yet.">
+          You can borrow XLSD by opening a Trove. Learn more: <Link href="https://docs.teddy.cash/borrowing#what-is-a-trove" target="_blank">What is a trove? <Icon name="external-link-alt" /></Link>
         </InfoMessage>
 
         <Flex variant="layout.actions">
-          <Button onClick={handleOpenTrove}>Borrow TSD</Button>
+          <Button onClick={handleOpenTrove}>Open Trove</Button>
         </Flex>
       </Box>
     </Card>

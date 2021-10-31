@@ -31,7 +31,7 @@ export const NoDeposit: React.FC = (props) => {
           >
             <Yield />
           </Flex>
-          <Button style={{margin: "10px 0 0"}}  onClick={handleOpenTrove}>Stake TSD</Button>
+          <Button style={{margin: "10px 0 0"}}  onClick={handleOpenTrove}>Stake XLSD</Button>
         </Flex>
       </Box>
     </Card>

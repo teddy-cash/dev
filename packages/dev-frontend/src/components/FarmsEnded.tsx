@@ -18,8 +18,8 @@ export const FarmsEnded: React.FC = () => {
   return  (
     <Card>
       <Heading>
-        <Flex><Image src="./icons/avalanche-avax-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
-        <Image src="./xlongDogo.png" width="25" height="25" sx={{marginRight: 1}}/>
+        <Flex><Image src="./icons/harmony-one-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
+        <Image src="./xlsd.png" width="25" height="25" sx={{marginRight: 1}}/>
         <Image src="./xlongLogo.png" width="25" height="25" sx={{marginRight: 2}}/>
         Liquidity Farms
         </Flex>
@@ -31,11 +31,11 @@ export const FarmsEnded: React.FC = () => {
           /**<br /><br />
           Please move your liquidity to these excellent farms</Box>
           <Flex sx={{paddingBottom: 2, marginBottom: 20, borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)"}}>
-            <Image src="./pangolin.svg" width="20" height="20" sx={{marginRight: 2}}/>ViperSwap<br />
+            <Image src="./viperswap.svg" width="20" height="20" sx={{marginRight: 2}}/>ViperSwap<br />
           </Flex>
           <Flex style={{marginBottom: 15, alignItems: 'center'}}>
-            <Image src="./icons/avalanche-avax-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
-            <Image src="./xlongDogo.png" width="25" height="20" sx={{marginRight: 1}}/>
+            <Image src="./icons/harmony-one-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
+            <Image src="./xlsd.png" width="25" height="20" sx={{marginRight: 1}}/>
 
             AVAX-TSD
             <Link href={`https://app.pangolin.exchange/#/png/AVAX/${addresses['lusdToken']}/1`} target="_blank">
@@ -43,7 +43,7 @@ export const FarmsEnded: React.FC = () => {
             </Link>
           </Flex>
           <Flex>
-            <Image src="./icons/avalanche-avax-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
+            <Image src="./icons/harmony-one-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
             <Image src="./xlongLogo.png" width="25" height="20" sx={{marginRight: 1}}/>
             AVAX-TEDDY
             <Link href={`https://app.pangolin.exchange/#/png/AVAX/${addresses['lqtyToken']}/1`} target="_blank">
@@ -51,19 +51,19 @@ export const FarmsEnded: React.FC = () => {
             </Link>
           </Flex>
           <Flex sx={{marginBottom: 10, marginTop: 30, paddingBottom: 2, borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)"}}>
-            <Image src="./joe.png" width="25" height="25" sx={{marginRight: 2}}/>
+            <Image src="./defikingdoms.png" width="25" height="25" sx={{marginRight: 2}}/>
             Trader Joe
           </Flex>
           <Flex style={{marginBottom: 15}}>
-            <Image src="./icons/avalanche-avax-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
-            <Image src="./xlongDogo.png" width="25" height="25" sx={{marginRight: 1}}/>
+            <Image src="./icons/harmony-one-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
+            <Image src="./xlsd.png" width="25" height="25" sx={{marginRight: 1}}/>
             AVAX-TSD
             <Link href={`https://www.traderjoexyz.com/#/farm/${TJ_POOlS['TSD']}`} target="_blank">
               <Icon name="external-link-alt" style={{marginLeft: 10, marginTop: 5}}/>
             </Link>
           </Flex>
           <Flex>
-            <Image src="./icons/avalanche-avax-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
+            <Image src="./icons/harmony-one-logo.svg" width="20" height="20" sx={{marginRight: 1}}/>
             <Image src="./xlongLogo.png" width="25" height="25" sx={{marginRight: 1}}/>
             AVAX-TEDDY
             <Link href={`https://www.traderjoexyz.com/#/farm/${TJ_POOlS['TEDDY']}`} target="_blank">

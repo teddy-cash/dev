@@ -7,7 +7,7 @@ import { useFarmView } from "../../context/FarmViewContext";
 import { RemainingLQTY } from "../RemainingLQTY";
 import { Yield } from "../Yield";
 
-const uniLink = (lusdAddress: string) => `https://app.pangolin.exchange/#/add/AVAX/${lusdAddress}`;
+const uniLink = (lusdAddress: string) => `https://viperswap.one/#/add/ONE/${lusdAddress}`;
 
 export const Inactive: React.FC = () => {
   const { dispatchEvent } = useFarmView();
@@ -31,7 +31,7 @@ export const Inactive: React.FC = () => {
         </Flex>
       </Heading>
       <Box sx={{ p: [2, 3] }}>
-        <InfoMessage title="You aren't farming TEDDY.">
+        <InfoMessage title="You aren't farming XLONG.">
           <Paragraph>You can farm XLONG by staking your ViperSwap ONE/XLSD LP tokens.</Paragraph>
 
           <Paragraph sx={{ mt: 2 }}>

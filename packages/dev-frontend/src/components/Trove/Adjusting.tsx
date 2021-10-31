@@ -245,7 +245,7 @@ export const Adjusting: React.FC = () => {
                   {isDirty && (
                     <>
                       You will need to repay {totalDebt.sub(LUSD_LIQUIDATION_RESERVE).prettify(2)}{" "}
-                      TSD to reclaim your collateral ({LUSD_LIQUIDATION_RESERVE.toString()} TSD
+                      XLSD to reclaim your collateral ({LUSD_LIQUIDATION_RESERVE.toString()} XLSD
                       Liquidation Reserve excluded).
                     </>
                   )}

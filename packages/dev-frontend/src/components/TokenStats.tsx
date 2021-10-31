@@ -16,7 +16,7 @@ type TokenRowProps = {
 
 export const TokenRow: React.FC<TokenRowProps> = ({ name, image, addToken, tooltip, children }) => {
   // awful CSS hack
-  const marginLeft = name === 'XLSD' ? "20px" : "0px";
+  const marginLeft = name === 'XLSD' ? "13px" : "0px";
 
   return (
     <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
@@ -201,13 +201,13 @@ export const TokenStats: React.FC = () => {
     return (
         <>
          <Heading>Extra Long Stats</Heading>
-         <TokenRow name="ONE" image="./icons/avalanche-avax-logo.svg">
+         <TokenRow name="ONE" image="./icons/harmony-one-logo.svg">
              <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>${Decimal.from(price).toString(2)}</Flex>
              <Link href="https://www.coingecko.com/en/coins/harmony" target="_blank">
                 <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
              </Link>
         </TokenRow>
-        <TokenRow name="XLSD" image="./xlongLogo.png" addToken={addXlsdToken}>
+        <TokenRow name="XLSD" image="./xlsd.png" addToken={addXlsdToken}>
             <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>{tsdIsLoading ? '...' : '$' + tsdValue.prettify(2)}</Flex>
             <Link href={`https://info.pangolin.exchange/#/token/${addresses['lusdToken']}`} target="_blank">
                <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
@@ -216,13 +216,13 @@ export const TokenStats: React.FC = () => {
                <Icon name="file-contract" style={{marginLeft: "4px"}} size="xs" />
             </Link>
             <Link href={`https://viperswap.one/#/swap?outputCurrency=${addresses['lusdToken']}`} target="_blank">
-              <Image src="./pangolin.svg" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
+              <Image src="./viperswap.svg" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
             </Link>
             <Link href={`https://game.defikingdoms.com/#/marketplace?outputCurrency=${addresses['lusdToken']}`} target="_blank">
-                <Image src="./joe.png" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
+                <Image src="./defikingdoms.png" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
             </Link>
         </TokenRow>
-        <TokenRow name="XLONG" image="./xlongDogo.png" addToken={addXlongToken}>
+        <TokenRow name="XLONG" image="./xlongLogo.png" addToken={addXlongToken}>
             <Flex sx={{minWidth: '55px', justifyContent: 'right', paddingRight: '2px'}}>{isLoading ? '...' : '$' + xlongValue.prettify(2)}</Flex>
             <Link href="https://www.coingecko.com/en/coins/teddy-cash" target="_blank">
                 <Icon name="info-circle" style={{marginLeft: "4px"}} size="xs" />
@@ -231,10 +231,10 @@ export const TokenStats: React.FC = () => {
                <Icon name="file-contract" style={{marginLeft: "4px"}} size="xs" />
             </Link>
             <Link href={`https://viperswap.one/#/swap?outputCurrency=${addresses['lqtyToken']}`} target="_blank">
-                <Image src="./pangolin.svg" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
+                <Image src="./viperswap.svg" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
             </Link>
             <Link href={`https://game.defikingdoms.com/#/marketplace?outputCurrency=${addresses['lqtyToken']}`} target="_blank">
-                <Image src="./joe.png" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
+                <Image src="./defikingdoms.png" width="15px" height="15px" style={{paddingTop: '8px', marginLeft: '3px'}}/>
             </Link>
         </TokenRow>
         <Flex sx={{ paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>

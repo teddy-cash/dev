@@ -11,7 +11,7 @@ export const NoStake: React.FC = () => {
 
   return (
     <Card>
-      <Heading><p>TEDDY Staking</p></Heading>
+      <Heading><p>XLONG Staking</p></Heading>
       <Box sx={{ p: [2, 3] }}>
         <InfoMessage title={`You haven't staked ${GT} yet.`}>
           Stake {GT} to earn a share of borrowing and redemption fees.
@@ -19,7 +19,7 @@ export const NoStake: React.FC = () => {
         </InfoMessage>
 
         <Flex variant="layout.actions">
-          <Button style={{margin: "10px 0 0"}} onClick={() => dispatch({ type: "startAdjusting" })}>Stake TEDDY</Button>
+          <Button style={{margin: "10px 0 0"}} onClick={() => dispatch({ type: "startAdjusting" })}>Stake XLONG</Button>
         </Flex>
       </Box>
     </Card>

@@ -90,9 +90,9 @@ const button: ThemeUIStyleObject = {
 
   px: "32px",
   py: "12px",
-  background: "linear-gradient(90deg, rgba(17,179,230,1) 0%, rgba(104,249,190,1) 100%)",
+  background: "linear-gradient(45deg, #00AEE9 0%, #69FABD80 100%)",
   color: "buttonText",
-  border: 1,
+  border: 0,
 
   fontWeight: "bold",
 
