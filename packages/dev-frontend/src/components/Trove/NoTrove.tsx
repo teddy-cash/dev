@@ -16,7 +16,7 @@ export const NoTrove: React.FC = props => {
       <Heading><p><Icon name="piggy-bank" style={{marginRight: '6px'}}/>Trove</p></Heading>
       <Box sx={{ p: [2, 3] }}>
         <InfoMessage title="You haven't borrowed any XLSD yet.">
-          You can borrow XLSD by opening a Trove. Learn more: <Link href="https://docs.teddy.cash/borrowing#what-is-a-trove" target="_blank">What is a trove? <Icon name="external-link-alt" /></Link>
+          You can borrow XLSD by opening a Trove. Learn more: <Link href="https://docs.extralong.one/borrowing-on-extra-long#what-is-a-trove" target="_blank">What is a trove? <Icon name="external-link-alt" /></Link>
         </InfoMessage>
 
         <Flex variant="layout.actions">

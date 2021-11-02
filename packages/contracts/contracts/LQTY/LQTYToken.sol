@@ -28,13 +28,13 @@ import "../Dependencies/console.sol";
 *
 * 4) CommunityIssuance and LockupContractFactory addresses are set at deployment
 *
-* 5) The bug bounties / hackathons allocation of 2 million tokens is minted at deployment to an EOA
+* 5) The bug bounties / hackathons allocation of 27 million tokens is minted at deployment to an EOA
 
-* 6) 32 million tokens are minted at deployment to the CommunityIssuance contract
+* 6) 50 million tokens are minted at deployment to the CommunityIssuance contract
 *
-* 7) The LP rewards allocation of (1 + 1/3) million tokens is minted at deployent to a Staking contract
+* 7) The LP rewards allocation of 3 million tokens is minted at deployent to a Staking contract
 *
-* 8) (64 + 2/3) million tokens are minted at deployment to the Liquity multisig
+* 8) 20 million tokens are minted at deployment to the Liquity multisig
 *
 * 9) Until one year from deployment:
 * -Liquity multisig may only transfer() tokens to LockupContracts that have been deployed via & registered in the 

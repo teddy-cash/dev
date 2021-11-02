@@ -19,30 +19,11 @@ export const Footer = () => {
             Twitter
           </Link>
           &nbsp;&middot;&nbsp;{' '}
-          <Link href="https://medium.com/@teddy.cash" target="_blank">
-            Medium
-          </Link>
-          &nbsp;&middot;&nbsp;{' '}
-          <Link href="https://github.com/teddy-cash" target="_blank">
-            Github
-          </Link>
-          &nbsp;&middot;&nbsp;{' '}
           <Link href="https://discord.gg/TJXnyPXQxf" target="_blank">
             Discord
           </Link>
           &nbsp;&middot;&nbsp;{' '}
-          <Link href="https://t.me/teddycashofficial" target="_blank">
-            Telegram
-          </Link>
-          &nbsp;&middot;&nbsp;{' '}
-          <Link
-            href="https://defillama.com/protocol/teddy-cash"
-            target="_blank"
-          >
-            DeFiLlama
-          </Link>
-          &nbsp;&middot;&nbsp;{' '}
-          <Link href="https://docs.teddy.cash/audits-and-risks" target="_blank">
+          <Link href="https://docs.extralong.one/audits-and-risks" target="_blank">
             Audit
           </Link>
         </Text>

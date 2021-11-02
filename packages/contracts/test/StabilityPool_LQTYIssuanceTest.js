@@ -73,9 +73,9 @@ contract('StabilityPool - LQTY Rewards', async accounts => {
       await deploymentHelper.connectCoreContracts(contracts, LQTYContracts)
       await deploymentHelper.connectLQTYContractsToCore(LQTYContracts, contracts)
 
-      // Check community issuance starts with 32 million LQTY
+      // Check community issuance starts with 50 million LQTY
       communityLQTYSupply = toBN(await lqtyToken.balanceOf(communityIssuanceTester.address))
-      assert.isAtMost(getDifference(communityLQTYSupply, '32000000000000000000000000'), 1000)
+      assert.isAtMost(getDifference(communityLQTYSupply, '50000000000000000000000000'), 1000)
 
       /* Monthly LQTY issuance
   
