@@ -15,11 +15,11 @@ export const Footer = () => {
             Docs
           </Link>
           &nbsp;&middot;&nbsp;{' '}
-          <Link href="https://twitter.com/TeddyCashLive" target="_blank">
+          <Link href="https://twitter.com/ExtraLong_ONE" target="_blank">
             Twitter
           </Link>
           &nbsp;&middot;&nbsp;{' '}
-          <Link href="https://discord.gg/TJXnyPXQxf" target="_blank">
+          <Link href="https://discord.gg/UqAnbF2wyz" target="_blank">
             Discord
           </Link>
           &nbsp;&middot;&nbsp;{' '}
