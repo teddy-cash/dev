@@ -49,9 +49,12 @@ class MainnetDeploymentHelper {
       );
     }
 
+    console.log(`before deploy for contract factory: ${factory}, name: ${name}, params: ${params}`)
     const contract = await factory.deploy(...params, {gasPrice: this.configParams.GAS_PRICE})
+    console.log(`after deploy, waitForTransaction ${contract.deployTransaction.hash}`)
     await this.deployerWallet.provider.waitForTransaction(contract.deployTransaction.hash, this.configParams.TX_CONFIRMATIONS)
-    
+    console.log(`after waitForTransaction`)
+
     deploymentState[name] = {
       address: contract.address,
       txHash: contract.deployTransaction.hash
@@ -103,22 +106,24 @@ class MainnetDeploymentHelper {
       lusdTokenParams
     )
 
-    if (!this.configParams.ETHERSCAN_BASE_URL) {
-      console.log('No Etherscan Url defined, skipping verification')
-    } else {
-      await this.verifyContract('priceFeed', deploymentState)
-      await this.verifyContract('sortedTroves', deploymentState)
-      await this.verifyContract('troveManager', deploymentState)
-      await this.verifyContract('activePool', deploymentState)
-      await this.verifyContract('stabilityPool', deploymentState)
-      await this.verifyContract('gasPool', deploymentState)
-      await this.verifyContract('defaultPool', deploymentState)
-      await this.verifyContract('collSurplusPool', deploymentState)
-      await this.verifyContract('borrowerOperations', deploymentState)
-      await this.verifyContract('hintHelpers', deploymentState)
-      await this.verifyContract('tellorCaller', deploymentState, [tellorMasterAddr])
-      await this.verifyContract('lusdToken', deploymentState, lusdTokenParams)
-    }
+    // if (!this.configParams.ETHERSCAN_BASE_URL) {
+    //   console.log('No Etherscan Url defined, skipping verification')
+    // } else {
+    //   await this.verifyContract('priceFeed', deploymentState)
+    //   await this.verifyContract('sortedTroves', deploymentState)
+    //   await this.verifyContract('troveManager', deploymentState)
+    //   await this.verifyContract('activePool', deploymentState)
+    //   await this.verifyContract('stabilityPool', deploymentState)
+    //   await this.verifyContract('gasPool', deploymentState)
+    //   await this.verifyContract('defaultPool', deploymentState)
+    //   await this.verifyContract('collSurplusPool', deploymentState)
+    //   await this.verifyContract('borrowerOperations', deploymentState)
+    //   await this.verifyContract('hintHelpers', deploymentState)
+    //   await this.verifyContract('tellorCaller', deploymentState, [tellorMasterAddr])
+    //   await this.verifyContract('lusdToken', deploymentState, lusdTokenParams)
+    // }
+
+    console.log(`before coreContracts`)
 
     const coreContracts = {
       priceFeed,
@@ -365,32 +370,33 @@ class MainnetDeploymentHelper {
 
   // --- Verify on Ethrescan ---
   async verifyContract(name, deploymentState, constructorArguments=[]) {
-    if (!deploymentState[name] || !deploymentState[name].address) {
-      console.error(`  --> No deployment state for contract ${name}!!`)
-      return
-    }
-    if (deploymentState[name].verification) {
-      console.log(`Contract ${name} already verified`)
-      return
-    }
+    console.log(`not verifying contract ${name}`)
+    // if (!deploymentState[name] || !deploymentState[name].address) {
+    //   console.error(`  --> No deployment state for contract ${name}!!`)
+    //   return
+    // }
+    // if (deploymentState[name].verification) {
+    //   console.log(`Contract ${name} already verified`)
+    //   return
+    // }
 
-    try {
-      await this.hre.run("verify:verify", {
-        address: deploymentState[name].address,
-        constructorArguments,
-      })
-    } catch (error) {
-      // if it was already verified, it’s like a success, so let’s move forward and save it
-      if (error.name != 'NomicLabsHardhatPluginError') {
-        console.error(`Error verifying: ${error.name}`)
-        console.error(error)
-        return
-      }
-    }
+    // try {
+    //   await this.hre.run("verify:verify", {
+    //     address: deploymentState[name].address,
+    //     constructorArguments,
+    //   })
+    // } catch (error) {
+    //   // if it was already verified, it’s like a success, so let’s move forward and save it
+    //   if (error.name != 'NomicLabsHardhatPluginError') {
+    //     console.error(`Error verifying: ${error.name}`)
+    //     console.error(error)
+    //     return
+    //   }
+    // }
 
-    deploymentState[name].verification = `${this.configParams.ETHERSCAN_BASE_URL}/${deploymentState[name].address}#code`
+    // deploymentState[name].verification = `${this.configParams.ETHERSCAN_BASE_URL}/${deploymentState[name].address}#code`
 
-    this.saveDeployment(deploymentState)
+    // this.saveDeployment(deploymentState)
   }
 
   // --- Helpers ---

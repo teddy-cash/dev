@@ -20,6 +20,8 @@ async function mainnetDeploy(configParams) {
   const mdh = new MainnetDeploymentHelper(configParams, deployerWallet)
   
   const deploymentState = mdh.loadPreviousDeployment()
+  // const deploymentState = {}
+
   console.log(`deployer address: ${deployerWallet.address}`)
   assert.equal(deployerWallet.address, configParams.liquityAddrs.DEPLOYER)
   // assert.equal(account2Wallet.address, configParams.beneficiaries.ACCOUNT_2)
@@ -49,6 +51,8 @@ async function mainnetDeploy(configParams) {
   let WETHLUSDPairAddr = await uniswapV2Factory.getPair(configParams.externalAddrs.WETH_ERC20, liquityCore.lusdToken.address)
   assert.equal(LUSDWETHPairAddr, WETHLUSDPairAddr)
 
+  console.log(`After LUSD-WETH pair assert, LUSDWETHPairAddr: ${LUSDWETHPairAddr}`)
+
   if (LUSDWETHPairAddr == th.ZERO_ADDRESS) {
     // Deploy Unipool for LUSD-WETH
     const pairTx = await mdh.sendAndWaitForTransaction(uniswapV2Factory.createPair(
@@ -65,11 +69,14 @@ async function mainnetDeploy(configParams) {
     assert.equal(WETHLUSDPairAddr, LUSDWETHPairAddr)
   }
 
+  console.log(`Before deployUnipoolMainnet`)
+
   deploymentState['uniToken'] = {address: LUSDWETHPairAddr};
   // Deploy Unipool
   const unipool = await mdh.deployUnipoolMainnet(deploymentState);
 
-  
+  console.log(`Before deployLQTYContractsMainnet`)
+
   // Deploy LQTY Contracts
   const LQTYContracts = await mdh.deployLQTYContractsMainnet(
     configParams.liquityAddrs.GENERAL_SAFE, // bounty address
@@ -77,27 +84,32 @@ async function mainnetDeploy(configParams) {
     configParams.liquityAddrs.LQTY_SAFE, // multisig LQTY endowment address
     deploymentState,
   );
-
+  
   // Connect all core contracts up
+  console.log(`Before connectCoreContractsMainnet`)
   await mdh.connectCoreContractsMainnet(liquityCore, LQTYContracts, configParams.externalAddrs.CHAINLINK_ETHUSD_PROXY)
+  console.log(`Before connectLQTYContractsMainnet`)
   await mdh.connectLQTYContractsMainnet(LQTYContracts)
+  console.log(`Before connectLQTYContractsToCoreMainnet`)
   await mdh.connectLQTYContractsToCoreMainnet(LQTYContracts, liquityCore)
 
   // Deploy a read-only multi-trove getter
+  console.log(`Before deployMultiTroveGetterMainnet`)
   const multiTroveGetter = await mdh.deployMultiTroveGetterMainnet(liquityCore, deploymentState)
 
   // Connect Unipool to LQTYToken and the LUSD-WETH pair address, with a 6 week duration
   const LPRewardsDuration = timeVals.SECONDS_IN_SIX_WEEKS
+  console.log(`Before connectUnipoolMainnet`)
   await mdh.connectUnipoolMainnet(unipool, LQTYContracts, LUSDWETHPairAddr, LPRewardsDuration)
 
-
+  console.log(`Before pool2Factories`)
   // deploy pool2
   const pool2Factories = {
-    'tj': new ethers.Contract(
-    configParams.externalAddrs.TJ_FACTORY,
-    UniswapV2Factory.abi,
-    deployerWallet
-    ),
+    // 'tj': new ethers.Contract(
+    // configParams.externalAddrs.TJ_FACTORY,
+    // UniswapV2Factory.abi,
+    // deployerWallet
+    // ),
     'png': new ethers.Contract(
     configParams.externalAddrs.UNISWAP_V2_FACTORY,
     UniswapV2Factory.abi,
@@ -105,11 +117,13 @@ async function mainnetDeploy(configParams) {
     )
   };
   
-      
+  console.log(`Before Object.entries(pool2Factories))`)
   for (const [dex, factory] of Object.entries(pool2Factories)) {
+    console.log(`In loop dex: ${dex}, factory: ${factory}`)
     let LQTYWETHPairAddr = await factory.getPair(LQTYContracts.lqtyToken.address, configParams.externalAddrs.WETH_ERC20)
     let WETHLQTYPairAddr = await factory.getPair(configParams.externalAddrs.WETH_ERC20, LQTYContracts.lqtyToken.address)
     assert.equal(LQTYWETHPairAddr, WETHLQTYPairAddr)
+    console.log(`After assert LQTYWETHPairAddr: ${LQTYWETHPairAddr}`)
     const pool2Name = `${dex}Token`;
     if (LQTYWETHPairAddr == th.ZERO_ADDRESS) {
       // Deploy Unipool for LQTY-WETH
@@ -148,6 +162,8 @@ async function mainnetDeploy(configParams) {
   
   const deployTx = await ethers.provider.getTransaction(deploymentState['lqtyToken'].txHash)
   const startBlock = deployTx.blockNumber;
+
+  console.log(`before deploymentStartTime`)
   
   let deploymentStartTime = await LQTYContracts.lqtyToken.getDeploymentStartTime()
   //let deploymentStartTime = (await ethers.provider.getBlock(latestBlock)).timestamp
@@ -164,8 +180,10 @@ async function mainnetDeploy(configParams) {
   const lockupContracts = {}
 
   for (const [investor, investorObj] of Object.entries(configParams.beneficiaries)) {
+    console.log(`investor: ${investor}, investorObj: ${JSON.stringify(investorObj)}`)
     investorAddr = investorObj.address
     const lockupContractEthersFactory = await ethers.getContractFactory("LockupContract", deployerWallet)
+    console.log(`after lockupContractEthersFactory`)
     if (deploymentState[investor] && deploymentState[investor].address) {
       console.log(`Using previously deployed ${investor} lockup contract at address ${deploymentState[investor].address}`)
       lockupContracts[investor] = new ethers.Contract(
@@ -175,7 +193,8 @@ async function mainnetDeploy(configParams) {
       )
     } else {
       console.log(`Deploying lockup for ${investor}`)
-      let unlockTime = investorObj.unlockTime ? investorObj.unlockTime : oneYearFromDeployment;
+      // let unlockTime = investorObj.unlockTime ? investorObj.unlockTime : oneYearFromDeployment;
+      let unlockTime = oneYearFromDeployment;
       const txReceipt = await mdh.sendAndWaitForTransaction(LQTYContracts.lockupContractFactory.deployLockupContract(investorAddr, unlockTime, { gasPrice }))
 
       const address = await txReceipt.logs[0].address // The deployment event emitted from the LC itself is is the first of two events, so this is its address 
@@ -195,9 +214,9 @@ async function mainnetDeploy(configParams) {
 
     const lqtyTokenAddr = LQTYContracts.lqtyToken.address
     // verify
-    if (configParams.ETHERSCAN_BASE_URL) {
-      await mdh.verifyContract(investor, deploymentState, [lqtyTokenAddr, investorAddr, oneYearFromDeployment])
-    }
+    // if (configParams.ETHERSCAN_BASE_URL) {
+    //   await mdh.verifyContract(investor, deploymentState, [lqtyTokenAddr, investorAddr, oneYearFromDeployment])
+    // }
   }
   mdh.saveDeployment(deploymentState)
   // // --- TESTS AND CHECKS  ---
@@ -213,6 +232,8 @@ async function mainnetDeploy(configParams) {
   // console.log(`deployer trove coll after addingColl: ${await liquityCore.troveManager.getTroveColl(deployerWallet.address)}`)
   
   // Check chainlink proxy price ---
+
+  console.log(`before chainlinkProxy`)
 
   const chainlinkProxy = new ethers.Contract(
     configParams.externalAddrs.CHAINLINK_ETHUSD_PROXY,
