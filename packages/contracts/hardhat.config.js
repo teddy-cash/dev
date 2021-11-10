@@ -99,6 +99,12 @@ module.exports = {
           gasPrice: 225000000000,
           chainId: 43114,
           accounts: [getSecret('RINKEBY_DEPLOYER_PRIVATEKEY', '0x60ddfe7f579ab6867cbe7a2dc03853dc141d7a4ab6dbefc0dae2d2b1bd4e487f')]
+        },
+        onetestnet: {
+            url: `https://api.s0.b.hmny.io`,
+            gasPrice: 225000000000,
+            chainId: 1666700000,
+            accounts: [getSecret("HARMONY_PRIVATE_KEY", "0x...")]
         }
     },
     etherscan: {
