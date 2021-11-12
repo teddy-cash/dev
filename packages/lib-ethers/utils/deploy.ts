@@ -108,10 +108,10 @@ const deployContracts = async (
       ...overrides
     }),
     unipool: await deployContract(deployer, getContractFactory, "Unipool", { ...overrides }),
-    traderjoePool2: "",
-    traderjoePool2Unipool: "",
-    pangolinPool2: "",
-    pangolinPool2Unipool: ""
+    tjUnipool: "",
+    tjToken: "",
+    pngUnipool: "",
+    pngToken: ""
   };
 
   return [
@@ -343,6 +343,8 @@ export const deployAndSetupContracts = async (
     bootstrapPeriod: 0,
     totalStabilityPoolLQTYReward: "0",
     liquidityMiningLQTYRewardRate: "0",
+    pngLiquidityMiningLQTYRewardRate: "0",
+    tjLiquidityMiningLQTYRewardRate: "0",
     _priceFeedIsTestnet,
     _uniTokenIsMock: !wethAddress,
     _isDev,
