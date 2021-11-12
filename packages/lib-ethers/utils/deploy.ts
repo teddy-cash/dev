@@ -108,10 +108,10 @@ const deployContracts = async (
       ...overrides
     }),
     unipool: await deployContract(deployer, getContractFactory, "Unipool", { ...overrides }),
-    tjUnipool: "",
-    tjToken: "",
-    pngUnipool: "",
-    pngToken: ""
+    tjUnipool: await deployContract(deployer, getContractFactory, "Unipool", { ...overrides }),
+    tjToken: await deployMockUniToken(deployer, getContractFactory, overrides),
+    pngUnipool: await deployContract(deployer, getContractFactory, "Unipool", { ...overrides }),
+    pngToken: await deployMockUniToken(deployer, getContractFactory, overrides)
   };
 
   return [
