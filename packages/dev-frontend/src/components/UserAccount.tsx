@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Flex, Box, Heading, Button } from "theme-ui";
+import { Text, Flex, Box, Heading } from "theme-ui";
 
 import { LiquityStoreState } from "@liquity/lib-base";
 import { useLiquitySelector } from "@liquity/lib-react";
