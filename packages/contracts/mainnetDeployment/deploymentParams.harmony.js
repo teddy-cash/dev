@@ -1,6 +1,14 @@
 const externalAddrs = {
     // https://docs.harmony.one/home/developers/tools/oracles/chainlink
+    // Not used with ExtraLongPriceFeed
     CHAINLINK_ETHUSD_PROXY: "0x4f11696cE92D78165E1F8A9a4192444087a45b64", // changed
+
+    // For ExtraLongPriceFeed:
+    // Tranquil Finance WONE/USD price oracle
+    WONE_USD_ORACLE: "0x5Aaa4233a27CD10E8c31dE34E25dB7Ee2b976C5a",
+    // WONE token address
+    WONE_TOKEN: "one1eanyppa9hvpr0g966e6zs5hvdjxkngn6jtulua",
+
     // https://github.com/harmony-one/swoop-core/pull/6
     UNISWAP_V2_FACTORY: "0x8194c29c4a66753ae9b96bce11d371ca1a3e678f", // changed
 

@@ -67,7 +67,7 @@ class MainnetDeploymentHelper {
 
   async deployLiquityCoreMainnet(tellorMasterAddr, deploymentState) {
     // Get contract factories
-    const priceFeedFactory = await this.getFactory("PriceFeed")
+    const priceFeedFactory = await this.getFactory("ExtraLongPriceFeed")
     const sortedTrovesFactory = await this.getFactory("SortedTroves")
     const troveManagerFactory = await this.getFactory("TroveManager")
     const activePoolFactory = await this.getFactory("ActivePool")
@@ -245,7 +245,9 @@ class MainnetDeploymentHelper {
     const gasPrice = this.configParams.GAS_PRICE
     // Set ChainlinkAggregatorProxy and TellorCaller in the PriceFeed
     await this.isOwnershipRenounced(contracts.priceFeed) ||
-      await this.sendAndWaitForTransaction(contracts.priceFeed.setAddresses(chainlinkProxyAddress, contracts.tellorCaller.address, {gasPrice}))
+
+      // Extra Long: Set token addresses on ExtraLongPriceFeed
+      await this.sendAndWaitForTransaction(contracts.priceFeed.setAddresses(this.configParams.WONE_USD_ORACLE, this.configParams.WONE_TOKEN, {gasPrice}))
 
     // set TroveManager addr in SortedTroves
     await this.isOwnershipRenounced(contracts.sortedTroves) ||
