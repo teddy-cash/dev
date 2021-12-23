@@ -17,6 +17,7 @@ import { Icon } from "../Icon";
 import { EditableRow, StaticRow } from "../Trove/Editor";
 import { LoadingOverlay } from "../LoadingOverlay";
 import { InfoIcon } from "../InfoIcon";
+import { spTeddyRewards } from "../../utils/spTeddyRewards";
 
 const select = ({ lusdBalance, lusdInStabilityPool }: LiquityStoreState) => ({
   lusdBalance,
@@ -86,15 +87,24 @@ export const StabilityDepositEditor: React.FC<StabilityDepositEditorProps> = ({
         {newPoolShare.infinite ? (
           <StaticRow label="Pool share" inputId="deposit-share" amount="N/A" />
         ) : (
-          <StaticRow
-            label="Pool share"
-            inputId="deposit-share"
-            amount={newPoolShare.prettify(4)}
-            sx={{color: 'editorText'}}
-            pendingAmount={poolShareChange?.prettify(4).concat("%")}
-            pendingColor={poolShareChange?.positive ? "success" : "danger"}
-            unit="%"
-          />
+          <>
+            <StaticRow
+              label="Pool share"
+              inputId="deposit-share"
+              amount={newPoolShare.prettify(4)}
+              sx={{color: 'editorText'}}
+              pendingAmount={poolShareChange?.prettify(4).concat("%")}
+              pendingColor={poolShareChange?.positive ? "success" : "danger"}
+              unit="%"
+            />
+            <StaticRow
+              label="Daily rewards"
+              inputId="deposit-share"
+              amount={newPoolShare.div(100).mul(spTeddyRewards(1)).prettify(0)}
+              sx={{color: 'editorText'}}
+              unit="TEDDY"
+            />
+          </>
         )}
 
         {!originalDeposit.isEmpty && (
