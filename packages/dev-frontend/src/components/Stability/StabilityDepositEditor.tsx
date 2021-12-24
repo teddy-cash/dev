@@ -103,6 +103,15 @@ export const StabilityDepositEditor: React.FC<StabilityDepositEditorProps> = ({
               amount={newPoolShare.div(100).mul(spTeddyRewards(1)).prettify(0)}
               sx={{color: 'editorText'}}
               unit="TEDDY"
+              infoIcon={
+                <InfoIcon
+                  tooltip={
+                    <Card variant="tooltip" sx={{ width: "240px" }}>
+                      The amount of TEDDYs you will earn with your current pool share in the next 24h. 
+                    </Card>
+                  }
+                />
+              }
             />
           </>
         )}
