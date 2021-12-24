@@ -15,6 +15,7 @@ import { useStabilityView } from "./context/StabilityViewContext";
 import { RemainingLQTY } from "./RemainingLQTY";
 import { Yield } from "./Yield";
 import { InfoIcon } from "../InfoIcon";
+import { spTeddyRewards } from "../../utils/spTeddyRewards";
 
 const selector = ({ stabilityDeposit, trove, lusdInStabilityPool }: LiquityStoreState) => ({
   stabilityDeposit,
@@ -74,6 +75,23 @@ export const ActiveDeposit: React.FC = () => {
             unit="%"
             sx={{ color: "editorText" }}
           />
+
+            <StaticRow
+              label="Daily rewards"
+              inputId="deposit-share"
+              amount={poolShare.div(100).mul(spTeddyRewards(1)).prettify(0)}
+              sx={{color: 'editorText'}}
+              unit="TEDDY"
+              infoIcon={
+                <InfoIcon
+                  tooltip={
+                    <Card variant="tooltip" sx={{ width: "240px" }}>
+                      The amount of TEDDYs you will earn with your current pool share in the next 24h. 
+                    </Card>
+                  }
+                />
+              }
+            />
 
           <StaticRow
             label="Liquidation gain"

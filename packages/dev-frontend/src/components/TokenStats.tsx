@@ -8,6 +8,7 @@ import { useLiquity } from "../hooks/LiquityContext";
 import { useQueries } from "react-query";
 import { useTeddyData } from "../hooks/useTeddyData";
 import { TeddyDataStruct, getYields } from "../teddyData";
+import { spTeddyRewards } from "../utils/spTeddyRewards";
 
 type TokenRowProps = {
   name: React.ReactNode;
@@ -212,20 +213,9 @@ export const TokenStats: React.FC = () => {
   let aprYearly: Decimal = Decimal.from(0);
 
   if (!isLoading) {
-    // Stability APR calculation
-    const deploymentTime = 1629989860;
-    const now = new Date().getTime() / 1000;
-    const timePassedInMinutes = Math.round((now - deploymentTime) / 60);
-
-    const ISSUANCE_FACTOR = 0.999998681227695;
-    const shareNow = Math.pow(ISSUANCE_FACTOR, timePassedInMinutes);
-
-    const rewardsDay =
-      32_000_000 * (shareNow - Math.pow(ISSUANCE_FACTOR, timePassedInMinutes + 60 * 24));
-    const rewardsWeek =
-      32_000_000 * (shareNow - Math.pow(ISSUANCE_FACTOR, timePassedInMinutes + 60 * 24 * 7));
-    const rewardsYear =
-      32_000_000 * (shareNow - Math.pow(ISSUANCE_FACTOR, timePassedInMinutes + 60 * 24 * 365));
+    const rewardsDay = spTeddyRewards(1);
+    const rewardsWeek = spTeddyRewards(7);
+    const rewardsYear = spTeddyRewards(365);
 
     aprDaily = teddyValue.mul(rewardsDay).div(lusdInStabilityPool).mul(100);
     aprWeekly = teddyValue.mul(rewardsWeek).div(lusdInStabilityPool).mul(100);
