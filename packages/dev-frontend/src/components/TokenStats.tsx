@@ -166,6 +166,7 @@ export const TokenStats: React.FC = () => {
     }
 
     const d = data["data"];
+    if (!d["token"]) return Decimal.from(0);
     //return Decimal.from(d['token']['derivedETH']).mul(Decimal.from(d['bundle']['ethPrice'])).toString(2);
     return Decimal.from(d["token"]["derivedETH"]).mul(Decimal.from(d["bundle"]["ethPrice"]));
   };
