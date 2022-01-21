@@ -180,7 +180,8 @@ export const TokenStats: React.FC = () => {
 
   if (!teddyDataIsLoading && !isLoading) {
     if (!teddyDataError) {
-      circulatingSupply = Decimal.from(teddyData.supply.circulating).div(1_000_000).prettify(1) + "M";
+      circulatingSupply =
+        Decimal.from(teddyData.supply.circulating).div(1_000_000).prettify(1) + "M";
       //@ts-ignore
       const avaxPrice = Decimal.from(data["data"]["bundle"]["ethPrice"]);
       ({ sevenDay: teddy7Day, apr: teddyApr } = getYields(
@@ -190,7 +191,8 @@ export const TokenStats: React.FC = () => {
         teddyValue
       ));
 
-      marketCap = "$" + teddyValue.mul(teddyData.supply.circulating).div(1_000_000).prettify(1) + "M";
+      marketCap =
+        "$" + teddyValue.mul(teddyData.supply.circulating).div(1_000_000).prettify(1) + "M";
     }
   }
 
@@ -201,7 +203,7 @@ export const TokenStats: React.FC = () => {
 
   // hard-coded for current week. needs to be adapted to consume
   // circulating supply API feed.
-  
+
   let tvlSP = lusdInStabilityPool;
   let tvlTeddy = totalStakedLQTY.mul(teddyValue);
 
@@ -254,10 +256,7 @@ export const TokenStats: React.FC = () => {
         <Flex sx={{ minWidth: "55px", justifyContent: "right", paddingRight: "2px" }}>
           {tsdIsLoading ? "..." : "$" + tsdValue.prettify(2)}
         </Flex>
-        <Link
-          href={`https://www.coingecko.com/en/coins/teddy-dollar`}
-          target="_blank"
-        >
+        <Link href={`https://www.coingecko.com/en/coins/teddy-dollar`} target="_blank">
           <Icon name="info-circle" style={{ marginLeft: "4px" }} size="xs" />
         </Link>
         <Link href={`${explorerUrl}${addresses["lusdToken"]}`} target="_blank">
@@ -288,7 +287,7 @@ export const TokenStats: React.FC = () => {
       </TokenRow>
       <TokenRow name="TEDDY" image="./teddy-cash-icon.png" addToken={addTeddyToken}>
         <Flex sx={{ minWidth: "55px", justifyContent: "right", paddingRight: "2px" }}>
-          {isLoading ? "..." : "$" + teddyValue.prettify(2)}
+          {isLoading ? "..." : "$" + teddyValue.prettify(3)}
         </Flex>
         <Link href="https://www.coingecko.com/en/coins/teddy-cash" target="_blank">
           <Icon name="info-circle" style={{ marginLeft: "4px" }} size="xs" />
@@ -320,7 +319,15 @@ export const TokenStats: React.FC = () => {
         </Link>
       </TokenRow>
 
-      <Flex sx={{ mt:2, paddingBottom: "4px", borderBottom: 1, borderColor: "rgba(0, 0, 0, 0.1)", mb: 1 }}>
+      <Flex
+        sx={{
+          mt: 2,
+          paddingBottom: "4px",
+          borderBottom: 1,
+          borderColor: "rgba(0, 0, 0, 0.1)",
+          mb: 1
+        }}
+      >
         <Flex
           sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
         >
@@ -395,8 +402,7 @@ export const TokenStats: React.FC = () => {
         <Flex
           sx={{ alignItems: "center", justifyContent: "flex-start", flex: 1.2, fontWeight: 200 }}
         >
-          <Flex> &middot; Year (APR)
-          </Flex>
+          <Flex> &middot; Year (APR)</Flex>
         </Flex>
         <Flex
           sx={{
