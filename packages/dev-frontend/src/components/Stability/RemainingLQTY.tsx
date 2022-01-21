@@ -1,15 +1,9 @@
 import React from "react";
 import { Flex } from "theme-ui";
 
-import { Decimal, LiquityStoreState } from "@liquity/lib-base";
-import { useLiquitySelector } from "@liquity/lib-react";
 import { spTeddyRewards } from "../../utils/spTeddyRewards";
 
-const selector = ({ remainingStabilityPoolLQTYReward }: LiquityStoreState) => ({
-  remainingStabilityPoolLQTYReward
-});
-
-export const RemainingLQTY: React.FC = () => {  
+export const RemainingLQTY: React.FC = () => {
   const rewardsDay = spTeddyRewards(1);
 
   return (
