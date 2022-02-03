@@ -278,7 +278,7 @@ export const TokenStats: React.FC = () => {
         </Link>
         <Link href="https://app.axial.exchange/#" target="_blank">
           <Image
-            src={colorMode === "night" ? "./Axial_Token.svg" : "./Axial_Token.png"}
+            src={colorMode === "night" ? "./Axial_Token.svg" : "./Axial_Token.svg"}
             width="15px"
             height="15px"
             alt="Buy on Axial"
