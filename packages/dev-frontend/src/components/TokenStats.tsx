@@ -9,6 +9,7 @@ import { useQueries } from "react-query";
 import { useTeddyData } from "../hooks/useTeddyData";
 import { TeddyDataStruct, getYields } from "../teddyData";
 import { spTeddyRewards } from "../utils/spTeddyRewards";
+import { useColorMode } from "theme-ui";
 
 type TokenRowProps = {
   name: React.ReactNode;
@@ -41,6 +42,8 @@ export const TokenRow: React.FC<TokenRowProps> = ({ name, image, addToken, toolt
 };
 
 export const TokenStats: React.FC = () => {
+  const [colorMode] = useColorMode();
+
   const select = ({ price, lusdInStabilityPool, total, totalStakedLQTY }: LiquityStoreState) => ({
     price,
     lusdInStabilityPool,
@@ -273,14 +276,12 @@ export const TokenStats: React.FC = () => {
             style={{ paddingTop: "8px", marginLeft: "3px" }}
           />
         </Link>
-        <Link
-          href={`https://www.traderjoexyz.com/#/trade?outputCurrency=${addresses["lusdToken"]}`}
-          target="_blank"
-        >
+        <Link href="https://app.axial.exchange/#" target="_blank">
           <Image
-            src="./joe.png"
+            src={colorMode === "night" ? "./Axial_Token.svg" : "./Axial_Token.png"}
             width="15px"
             height="15px"
+            alt="Buy on Axial"
             style={{ paddingTop: "8px", marginLeft: "3px" }}
           />
         </Link>
@@ -301,17 +302,6 @@ export const TokenStats: React.FC = () => {
         >
           <Image
             src="./pangolin.svg"
-            width="15px"
-            height="15px"
-            style={{ paddingTop: "8px", marginLeft: "3px" }}
-          />
-        </Link>
-        <Link
-          href={`https://www.traderjoexyz.com/#/trade?outputCurrency=${addresses["lqtyToken"]}`}
-          target="_blank"
-        >
-          <Image
-            src="./joe.png"
             width="15px"
             height="15px"
             style={{ paddingTop: "8px", marginLeft: "3px" }}
