@@ -17,8 +17,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: sudo apt install -y git
-
 
       - uses: actions/setup-node@v2
         with:
@@ -42,12 +40,12 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.MY_TOKEN_SECRET }}
           NETLIFY_DEPLOY_TO_PROD: true
 
-      - name: Test SDK & UI
-        run: yarn test
+      # - name: Test SDK & UI
+      #   run: yarn test
 
-      - name: Test SDK integration against live contracts
-        if: ${{ github.ref == 'refs/heads/master' }}
-        run: yarn test-live
+      # - name: Test SDK integration against live contracts
+      #   if: ${{ github.ref == 'refs/heads/master' }}
+      #   run: yarn test-live
 
       # - name: Release SDK on NPM
       #   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
