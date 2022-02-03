@@ -6,7 +6,7 @@ const envVarPattern = new RegExp(`^${envVar}=.*`);
 
 const getCommitHash = () => {
   try {
-    return execSync("git rev-parse HEAD", { encoding: "ascii" }).trim();
+    return execSync("/usr/bin/env git rev-parse HEAD", { encoding: "ascii" }).trim();
   } catch {
     return "unknown";
   }
