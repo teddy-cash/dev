@@ -270,7 +270,7 @@ export const TokenStats: React.FC = () => {
           target="_blank"
         >
           <Image
-            src="./pangolin.svg"
+            src="./pangolin2.svg"
             width="15px"
             height="15px"
             style={{ paddingTop: "8px", marginLeft: "3px" }}
@@ -301,7 +301,7 @@ export const TokenStats: React.FC = () => {
           target="_blank"
         >
           <Image
-            src="./pangolin.svg"
+            src="./pangolin2.svg"
             width="15px"
             height="15px"
             style={{ paddingTop: "8px", marginLeft: "3px" }}
