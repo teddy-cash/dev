@@ -1,9 +1,15 @@
 import React, { useEffect, useReducer } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { AbstractConnector } from "@web3-react/abstract-connector";
-import { Button, Text, Flex, Link, Box } from "theme-ui";
+import { Button, Image, Text, Flex, Link, Box } from "theme-ui";
 
-import { injectedConnector } from "../connectors/injectedConnector";
+import { InjectedConnector } from "@web3-react/injected-connector";
+import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
+import { WalletLinkConnector } from "@web3-react/walletlink-connector";
+import metamaskImage from "../assets/metamask.svg";
+import walletconnectIcon from "../assets/walletconnect.svg";
+import coinbasewalletIcon from "../assets/coinbasewallet.svg";
+
 import { useAuthorizedConnection } from "../hooks/useAuthorizedConnection";
 
 import { RetryDialog } from "./RetryDialog";
@@ -11,7 +17,49 @@ import { ConnectionConfirmationDialog } from "./ConnectionConfirmationDialog";
 import { MetaMaskIcon } from "./MetaMaskIcon";
 import { Icon } from "./Icon";
 import { Modal } from "./Modal";
+import { map } from "lodash";
 
+const injectedConnector = new InjectedConnector({
+  supportedChainIds: [43114, 43113]
+});
+
+const walletconnect = new WalletConnectConnector({
+  rpc: {
+    43114: "https://api.avax.network/ext/bc/C/rpc",
+    43113: "https://api.avax-test.network/ext/bc/C/rpc"
+  },
+  bridge: "https://bridge.walletconnect.org",
+  qrcode: true
+  // pollingInterval: POLLING_INTERVAL / 12000
+});
+
+const walletlink = new WalletLinkConnector({
+  url: "https://api.avax.network/ext/bc/C/rpc",
+  appName: "vault"
+});
+interface WalletInfo {
+  name: string;
+  icon: string;
+  connector: AbstractConnector;
+}
+
+const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
+  METAMASK: {
+    name: "MetaMask",
+    icon: metamaskImage,
+    connector: injectedConnector
+  },
+  WALLET_CONNECT: {
+    name: "WalletConnect",
+    icon: walletconnectIcon,
+    connector: walletconnect
+  },
+  WALLET_LINK: {
+    name: "Coinbase Wallet",
+    icon: coinbasewalletIcon,
+    connector: walletlink
+  }
+};
 interface MaybeHasMetaMask {
   ethereum?: {
     isMetaMask?: boolean;
@@ -22,6 +70,7 @@ type ConnectionState =
   | { type: "inactive" }
   | {
       type: "activating" | "active" | "rejectedByUser" | "alreadyPending" | "failed";
+      error?: Error;
       connector: AbstractConnector;
     };
 
@@ -44,12 +93,15 @@ const connectionReducer: React.Reducer<ConnectionState, ConnectionAction> = (sta
       };
     case "fail":
       if (state.type !== "inactive") {
+        //     throw action.error;
+
         return {
           type: action.error.message.match(/user rejected/i)
             ? "rejectedByUser"
             : action.error.message.match(/already pending/i)
             ? "alreadyPending"
             : "failed",
+          error: action.error,
           connector: state.connector
         };
       }
@@ -114,43 +166,56 @@ export const WalletConnector: React.FC<WalletConnectorProps> = ({ children, load
   if (connectionState.type === "active") {
     return <>{children}</>;
   }
-
+  const doActivate = (connector: AbstractConnector) => {
+    return activate(connector);
+  };
   return (
     <>
-      <Flex sx={{ height: "100vh", justifyContent: "center", alignItems: "center" }}>
-        <Button
-          onClick={() => {
-            dispatch({ type: "startActivating", connector: injectedConnector });
-            activate(injectedConnector);
-          }}
-        >
-          {isMetaMask ? (
-            <>
-              <MetaMaskIcon />
-              <Box sx={{ ml: 2 }}>Connect to MetaMask</Box>
-            </>
-          ) : (
-            <>
-              <Icon name="plug" size="lg" />
-              <Box sx={{ ml: 2 }}>Connect wallet</Box>
-            </>
-          )}
-        </Button>
+      <Flex
+        sx={{
+          height: "100vh",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column"
+        }}
+      >
+        <h3>Connect your wallet</h3>
+        <div className="display: grid; grid-template-rows: auto; row-gap: 16px;">
+          {map(SUPPORTED_WALLETS, (wallet, index) => {
+            return (
+              <Button
+                key={wallet.name}
+                onClick={() => {
+                  dispatch({ type: "startActivating", connector: wallet.connector });
+                  doActivate(wallet.connector);
+                }}
+                sx={{
+                  marginTop: "5px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  width: "100%"
+                }}
+              >
+                <Box sx={{ mr: 5 }}>{wallet.name}</Box>
+                <Image src={wallet.icon} alt="icon" style={{ width: "24px" }} />
+              </Button>
+            );
+          })}
+        </div>
       </Flex>
 
       {connectionState.type === "failed" && (
         <Modal>
           <RetryDialog
-            title={isMetaMask ? "Failed to connect to MetaMask" : "Failed to connect wallet"}
+            title="Failed to connect wallet"
             onCancel={() => dispatch({ type: "cancel" })}
             onRetry={() => {
               dispatch({ type: "retry" });
               activate(connectionState.connector);
             }}
           >
-            <Box sx={{ textAlign: "center" }}>
-              You might need to install MetaMask or use a different browser.
-            </Box>
+            <Box sx={{ textAlign: "center" }}>{connectionState.error?.message}</Box>
             <Link sx={{ lineHeight: 3 }} href="https://metamask.io/download.html" target="_blank">
               Learn more <Icon size="xs" name="external-link-alt" />
             </Link>
@@ -161,9 +226,7 @@ export const WalletConnector: React.FC<WalletConnectorProps> = ({ children, load
       {connectionState.type === "activating" && (
         <Modal>
           <ConnectionConfirmationDialog
-            title={
-              isMetaMask ? "Confirm connection in MetaMask" : "Confirm connection in your wallet"
-            }
+            title={isMetaMask ? "Confirm connection in " : "Confirm connection in your wallet"}
             icon={isMetaMask ? <MetaMaskIcon /> : <Icon name="wallet" size="lg" />}
             onCancel={() => dispatch({ type: "cancel" })}
           >
