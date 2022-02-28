@@ -19,7 +19,7 @@ export const Footer = () => {
             Twitter
           </Link>
           &nbsp;&middot;&nbsp;{' '}
-          <Link href="https://medium.com/@teddy.cash" target="_blank">
+          <Link href="https://medium.com/teddy-cash" target="_blank">
             Medium
           </Link>
           &nbsp;&middot;&nbsp;{' '}
