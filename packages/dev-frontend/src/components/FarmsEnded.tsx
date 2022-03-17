@@ -2,10 +2,6 @@ import React from "react";
 import { Card, Heading, Box, Flex, Image, Link } from "theme-ui";
 import { Icon } from "./Icon";
 import { useLiquity } from "../hooks/LiquityContext";
-const TJ_POOlS = {
-  TSD: "0x2d16af2d7f1edb4bc5dbadf3fff04670b4bcd0bb",
-  TEDDY: "0x91f0963873bbca2e58d21bb0941c0d859db3ca31"
-};
 
 export const FarmsEnded: React.FC = () => {
   const {
@@ -29,7 +25,7 @@ export const FarmsEnded: React.FC = () => {
             <Flex
               style={{ marginBottom: 15, alignItems: "center", fontWeight: "bold", color: "white" }}
             >
-              <Image src="./axial-144x144.png" width="25" height="20" sx={{ marginRight: 1 }} />
+              <Image src="./Axial_Token.svg" width="25" height="20" sx={{ marginRight: 1 }} />
               <Link href={`https://app.axial.exchange/#/pools/ac4d/deposit`} target="_blank">
                 A4CD Stablecoin Pool (Dual Rewards)
                 <Icon
