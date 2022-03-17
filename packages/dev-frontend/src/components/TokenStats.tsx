@@ -265,6 +265,15 @@ export const TokenStats: React.FC = () => {
         <Link href={`${explorerUrl}${addresses["lusdToken"]}`} target="_blank">
           <Icon name="file-contract" style={{ marginLeft: "4px" }} size="xs" />
         </Link>
+        <Link href="https://app.axial.exchange/#" target="_blank">
+          <Image
+            src={colorMode === "night" ? "./Axial_Token.svg" : "./Axial_Token.svg"}
+            width="15px"
+            height="15px"
+            alt="Buy on Axial"
+            style={{ paddingTop: "8px", marginLeft: "3px" }}
+          />
+        </Link>
         <Link
           href={`https://app.pangolin.exchange/#/swap?outputCurrency=${addresses["lusdToken"]}`}
           target="_blank"
@@ -273,15 +282,6 @@ export const TokenStats: React.FC = () => {
             src="./pangolin2.svg"
             width="15px"
             height="15px"
-            style={{ paddingTop: "8px", marginLeft: "3px" }}
-          />
-        </Link>
-        <Link href="https://app.axial.exchange/#" target="_blank">
-          <Image
-            src={colorMode === "night" ? "./Axial_Token.svg" : "./Axial_Token.svg"}
-            width="15px"
-            height="15px"
-            alt="Buy on Axial"
             style={{ paddingTop: "8px", marginLeft: "3px" }}
           />
         </Link>
