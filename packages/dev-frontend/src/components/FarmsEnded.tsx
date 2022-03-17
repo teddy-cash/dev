@@ -19,8 +19,8 @@ export const FarmsEnded: React.FC = () => {
       <Card>
         <Heading>
           <Flex>
-            <Image src="./axial-144x144.png" width="25" height="25" sx={{ marginRight: 2 }} />
-            Axial Exchange
+            <Image src="./tsd.png" width="25" height="25" sx={{ marginRight: 2 }} />
+            TSD Farms
           </Flex>
         </Heading>
 
@@ -29,7 +29,7 @@ export const FarmsEnded: React.FC = () => {
             <Flex
               style={{ marginBottom: 15, alignItems: "center", fontWeight: "bold", color: "white" }}
             >
-              <Image src="./tsd.png" width="25" height="20" sx={{ marginRight: 1 }} />
+              <Image src="./axial-144x144.png" width="25" height="20" sx={{ marginRight: 1 }} />
               <Link href={`https://app.axial.exchange/#/pools/ac4d/deposit`} target="_blank">
                 A4CD Stablecoin Pool (Dual Rewards)
                 <Icon
@@ -38,70 +38,44 @@ export const FarmsEnded: React.FC = () => {
                 />
               </Link>
             </Flex>
-          </Box>
-        </Box>
-      </Card>
-      <Card>
-        <Heading>
-          <Flex>
-            <Image src="./pangolin.svg" width="20" height="20" sx={{ marginRight: 2 }} />
-            Pangolin
-          </Flex>
-        </Heading>
-
-        <Box sx={{ p: [2, 3] }}>
-          <Box>
             <Flex style={{ marginBottom: 15, alignItems: "center" }}>
-              <Image src="./tsd.png" width="25" height="20" sx={{ marginRight: 1 }} />
-              AVAX-TSD (LP)
+              <Image src="./pangolin2.svg" width="25" height="20" sx={{ marginRight: 1 }} />
               <Link
                 href={`https://app.pangolin.exchange/#/png/AVAX/${addresses["lusdToken"]}/1`}
                 target="_blank"
               >
+                AVAX-TSD (LP)
                 <Icon
                   name="external-link-alt"
                   style={{ marginLeft: 10, marginTop: 5, marginRight: 5 }}
                 />
               </Link>
             </Flex>
-
-            <Flex sx={{ color: "white" }}>
-              <Image src="./teddy-cash-icon.png" width="25" height="20" sx={{ marginRight: 1 }} />
-              <Link
-                href={`https://app.pangolin.exchange/#/png/AVAX/${addresses["lqtyToken"]}/1`}
-                target="_blank"
-              >
-                AVAX-TEDDY Farm (2x)
-                <Icon name="external-link-alt" style={{ marginLeft: 10, marginTop: 5 }} />
-              </Link>
-            </Flex>
           </Box>
         </Box>
       </Card>
-
       <Card>
         <Heading>
           <Flex>
-            <Image src="./joe.png" width="25" height="25" sx={{ marginRight: 2 }} />
-            Traderjoe
+            <Image src="./teddy-cash-icon.png" width="20" height="20" sx={{ marginRight: 2 }} />
+            Teddy Farms
           </Flex>
         </Heading>
+
         <Box sx={{ p: [2, 3] }}>
           <Box>
-            <Flex style={{ marginBottom: 15 }}>
-              <Image src="./tsd.png" width="25" height="25" sx={{ marginRight: 1 }} />
-              AVAX-TSD LP
-              <Link href={`https://www.traderjoexyz.com/#/farm/${TJ_POOlS["TSD"]}`} target="_blank">
-                <Icon name="external-link-alt" style={{ marginLeft: 10, marginTop: 5 }} />
-              </Link>
-            </Flex>
-            <Flex>
-              <Image src="./teddy-cash-icon.png" width="25" height="25" sx={{ marginRight: 1 }} />
-              AVAX-TEDDY LP
+            <Flex sx={{ color: "white" }}>
+              <Image
+                src="./Elk_Logo_Compact_ 512x512.png"
+                width="25"
+                height="20"
+                sx={{ marginRight: 1 }}
+              />
               <Link
-                href={`https://www.traderjoexyz.com/#/farm/${TJ_POOlS["TEDDY"]}`}
+                href={`https://app.elk.finance/#/elk/${addresses["lqtyToken"]}/1`}
                 target="_blank"
               >
+                AVAX-TEDDY Farm on ELK Finance[Boosted]
                 <Icon name="external-link-alt" style={{ marginLeft: 10, marginTop: 5 }} />
               </Link>
             </Flex>
