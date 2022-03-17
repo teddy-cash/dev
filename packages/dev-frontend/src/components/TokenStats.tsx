@@ -307,6 +307,17 @@ export const TokenStats: React.FC = () => {
             style={{ paddingTop: "8px", marginLeft: "3px" }}
           />
         </Link>
+        <Link
+          href={`https://app.elk.finance/#/swap?outputCurrency=${addresses["lqtyToken"]}`}
+          target="_blank"
+        >
+          <Image
+            src="./Elk_Logo_Compact_ 512x512.png"
+            width="15px"
+            height="15px"
+            style={{ paddingTop: "8px", marginLeft: "3px" }}
+          />
+        </Link>
       </TokenRow>
 
       <Flex
